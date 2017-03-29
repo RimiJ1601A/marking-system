@@ -1,0 +1,100 @@
+
+.ding{
+	width:100%;
+	height:70px;
+	background-color: white; 
+}
+.logo{
+	margin-left:53px;
+}
+.left{
+	width:250px;
+	height:910px;
+	background-color:#328bcd;  
+	float: left;
+}
+.right{
+	width: 1653px;
+	height: 910px;
+	background-color: #edefef;
+	float: left; 
+}
+.headframe{
+	width: 150px;
+	height:150px;
+	border-radius: 50%; 
+	background-color: white;
+	margin: auto;
+	margin-top: 20px;
+}
+.headphoto{
+	width: 140px;
+	height:140px;
+	border-radius: 50%; 
+	padding-left: 10px;
+	padding-top: 10px;
+}
+#username{
+	font-size: 16px;
+	text-align: center;
+	margin-top: 20px;
+
+}
+.ziti{
+	width:100%;
+	height:50px;
+	font-family: cursive;
+	color:#d2d2d2;
+	font-size: 20px;
+	padding: 10px 30px;
+}
+.fangshang:HOVER {
+	color: white;
+	cursor: pointer;
+}
+.yc{
+	font-size: 16px;
+	display: none;
+	left: 60px;
+	text-align: center;
+}
+.ycyh{
+	font-size: 16px;
+	display: none;
+	left: 60px;
+	text-align: center;
+}
+#left_ul{
+	padding-left: 0px;
+}
+.logo_l{
+	float: left;
+	padding-right: 30px;
+	padding-top: 3px;
+}
+.caret_but{
+	margin-left: 20px;
+}
+#headcaret{
+	margin-left: 10px;
+}
+.userinfo{
+	font-size: 16px;
+	display: none;
+	top: 60px;
+	left: 70px;
+	height: 40px;
+	margin: auto;
+	text-align: center;
+	padding-top: 0px;
+}
+.white_line_p{
+	background-color: rgba(255, 255, 255, 0.58);
+	height: 1px;
+}
+#zhiwei_p{
+	font-size: xx-large;
+	color: #d2d2d2;
+	text-align: center;
+	margin-top: 20px;
+}
