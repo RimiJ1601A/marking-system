@@ -1,0 +1,167 @@
+﻿create database IF NOT EXISTS markSystem;
+use markSystem;
+create table IF NOT EXISTS user(
+    id int NOT NULL AUTO_INCREMENT,
+    user_account varchar(20) NOT NULL,
+    password varchar(50) NOT NULL,
+    user_name varchar(10) NOT NULL,
+    age int(3) NOT NULL,
+    sex int(1) NOT NULL,
+    role_id int NOT NULL,
+    bulid_time date NOT NULL,
+    PRIMARY KEY (id)
+)ENGINE = InnoDb DEFAULT CHARSET = utf8;
+
+INSERT INTO user(user_account,password,user_name,age,sex,role_id,bulid_time)
+    VALUES  ("test1","1008611abc","张三",20,1,1,"2017-03-13"),
+            ("test2","1008611abc","李大",19,2,2,"2017-03-13"),
+            ("test3","1008611abc","李二",19,2,2,"2017-03-13"),
+            ("test4","1008611abc","王五",18,1,3,"2017-03-13"),
+            ("test5","1008611abc","王六",18,1,3,"2017-03-13"),
+            ("test6","1008611abc","王七",18,1,3,"2017-03-13"),
+            ("test7","1008611abc","王八",18,1,3,"2017-03-13"),
+            ("test8","1008611abc","王九",18,1,3,"2017-03-13"),
+            ("test9","1008611abc","王十",18,1,3,"2017-03-13");
+
+create table IF NOT EXISTS role(
+    id int NOT NULL,
+    role_name varchar(20) NOT NULL,
+    function_id int NOT NULL,
+    bulid_time date NOT NULL
+)ENGINE = InnoDb DEFAULT CHARSET = utf8;
+
+INSERT INTO role(id,role_name,function_id,bulid_time)
+    VALUES (1,"管理员",1,"2017-03-12"),
+            (1,"管理员",2,"2017-03-12"),
+            (1,"管理员",3,"2017-03-12"),
+            (1,"管理员",4,"2017-03-12"),
+            (1,"管理员",5,"2017-03-12"),
+            (1,"管理员",6,"2017-03-12"),
+            (1,"管理员",7,"2017-03-12"),
+            (1,"管理员",8,"2017-03-12"),
+            (1,"管理员",9,"2017-03-12"),
+            (1,"管理员",10,"2017-03-12"),
+            (1,"管理员",11,"2017-03-12"),
+            (1,"管理员",12,"2017-03-12"),
+            (1,"管理员",13,"2017-03-12"),
+            (2,"教师",5,"2017-03-12"),
+            (2,"教师",6,"2017-03-12"),
+            (2,"教师",7,"2017-03-12"),
+            (2,"教师",8,"2017-03-12"),
+            (2,"学生",14,"2017-03-12"),
+            (2,"学生",14,"2017-03-12");
+
+create table IF NOT EXISTS function(
+    id int NOT NULL AUTO_INCREMENT,
+    function_name varchar(20) NOT NULL,
+    PRIMARY KEY (id)
+)ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+
+INSERT INTO function(function_name) 
+VALUES ("查看用户"),
+        ("编辑用户"),
+        ("增加用户"),
+        ("删除用户"),
+        ("创建班级"),
+        ("查看班级"),
+        ("编辑班级"),
+        ("删除班级"),
+        ("增加职位"),
+        ("编辑职位"),
+        ("查看职位"),
+        ("删除职位"),
+        ("创建评分表"),
+        ("评分评分表");  
+
+create table IF NOT EXISTS team(
+    id int NOT NULL AUTO_INCREMENT,
+    team_name varchar(20) NOT NULL,
+    bulid_time date NOT NULL,
+    PRIMARY KEY (id)
+)ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+
+INSERT INTO team(team_name,bulid_time) VALUES ("Java1601","2017-03-12"),("ios1601","2017-03-12");
+
+create table IF NOT EXISTS u_p_t(
+    id int NOT NULL AUTO_INCREMENT,
+    user_id int NOT NULL,
+    team_id int NOT NULL,
+    role_id int NOT NULL,
+     PRIMARY KEY (id)
+)ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+
+INSERT INTO u_p_t(user_id,team_id,role_id) VALUES (3,2,2),(2,1,2),(4,1,3),(5,1,3),(6,1,3),(7,2,3),(8,2,3);
+
+create table IF NOT EXISTS quiz(
+    id int NOT NULL,
+    quiz_title varchar(50) NOT NULL,
+    quiz_content varchar(200) NOT NULL,
+    quiz_score int NOT NULL,
+    quiz_type varchar(10) NOT NULL
+)ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+
+INSERT INTO quiz(id,quiz_title,quiz_content,quiz_score,quiz_type) VALUES 
+            (1,"对这个老师的评价如何","很好",10,"choice_question"),
+            (1,"对这个老师的评价如何","还不错",7,"choice_question"),
+            (1,"对这个老师的评价如何","勉强",3,"choice_question"),
+            (1,"对这个老师的评价如何","差评",1,"choice_question"),
+            (2,"这个老师帅不帅","成鱼落雁",10,"choice_question"),
+            (2,"这个老师帅不帅","闭月羞花",8,"choice_question"),
+            (2,"这个老师帅不帅","倾国倾城",7,"choice_question"),
+            (2,"这个老师帅不帅","吃藕",5,"choice_question"),
+            (3,"叙述对这个老师的评价","该老师积极认真,认真教学",0,"essay_question")
+            ;
+
+create table IF NOT EXISTS marktable(
+    id int NOT NULL,
+    name varchar(50) NOT NULL,
+    start_time date NOT NULL,
+    end_time date NOT NULL,
+    quiz_id varchar(10) NOT NULL
+)ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+
+INSERT INTO marktable(id,name,start_time,end_time,quiz_id) VALUES
+        (1,"第一次考核","2017-04-01","2017-04-10",1),
+        (1,"第一次考核","2017-04-01","2017-04-10",2),
+        (1,"第一次考核","2017-04-01","2017-04-10",3);
+
+
+create table IF NOT EXISTS user_marke(
+    id int NOT NULL AUTO_INCREMENT,
+    team_id int NOT NULL,
+    evaluated_id int NOT NULL,
+    marktable_id int NOT null,
+    PRIMARY KEY (id)
+)ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+
+INSERT INTO user_marke(team_id,evaluated_id,marktable_id) VALUES
+                        (1,2,1),
+                        (2,3,1);
+
+
+create table IF NOT EXISTS resulttable(
+    id int NOT NULL AUTO_INCREMENT,
+    quiz_id int NOT NULL,
+    answer varchar(200) NOT NULL,
+    answer_score int NOT null,
+    evaluated_id int NOT NULL,
+    evaluation_id int NOT null,
+    marktable_id int NOT NULL,
+    team_id int NOT NULL,
+    PRIMARY KEY (id)
+)ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+
+INSERT INTO resulttable(quiz_id,answer,answer_score,evaluated_id,evaluation_id,marktable_id,team_id) VALUES
+                        (1,"很好",10,2,4,1,1),
+                        (2,"闭月羞花",8,2,4,1,1),
+                        (3,"该老师积极认真负责",0,2,4,1,1),
+                        (1,"很好",10,2,5,1,1),
+                        (2,"倾国倾城",7,2,5,1,1),
+                        (3,"该老师积极向上",0,2,5,1,1),
+                        (1,"还不错",7,2,6,1,1),
+                        (2,"倾国倾城",7,2,6,1,1),
+                        (3,"该老师积极向上",0,2,6,1,1);
+
+
+
+
