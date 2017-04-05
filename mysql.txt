@@ -97,7 +97,7 @@ create table IF NOT EXISTS quiz(
     quiz_title varchar(50) NOT NULL,
     quiz_content varchar(200) NOT NULL,
     quiz_score int NOT NULL,
-    quiz_type varchar(10) NOT NULL
+    quiz_type varchar(30) NOT NULL
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 
 INSERT INTO quiz(id,quiz_title,quiz_content,quiz_score,quiz_type) VALUES 
