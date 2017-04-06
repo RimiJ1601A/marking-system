@@ -1,26 +1,28 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<title>我的主页</title>
-		<link type="text/css" rel="stylesheet" href="./css/bootstrap.css">
-		<link type="text/css" rel="stylesheet" href="./css/bootstrap-theme.css">
-		<link type="text/css" rel="stylesheet" href="./css/common.css">
-		<link type="text/css" rel="stylesheet" href="./css/marke.css">
-		<script type="text/javascript" src="./js/jquery-3.1.0.js"></script>
-		<script type="text/javascript" src="./js/marke.js"></script>
-	</head>
-	<body>
-
-		<div class="ding">
-			<img class="logo" src="./images/logo.png"/>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的主页</title>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.css">
+<link type="text/css" rel="stylesheet" href="/css/common.css">
+<link type="text/css" rel="stylesheet" href="/css/marke.css">
+<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="/js/marke.js"></script>
+</head>
+<body>
+			<div class="ding">
+			<img class="logo" src="/images/logo.png"/>
 		</div>	
 		<div class="left">
 			<div><p id="zhiwei_p">学生</p></div>
 			<p class="white_line_p"></p>
 			<div class="headframe">
-				<img class="headphoto" src="./images/headphoto.png">
+				<img class="headphoto" src="/images/headphoto.png">
 			</div>
-			<div class="ziti fangshang" id="username">深田恭子<b id="headcaret" class="caret"></b>
+			<div class="ziti fangshang" id="username">你的名字<b id="headcaret" class="caret"></b>
 			</div>
 					<div class="ziti fangshang userinfo">个人信息</div>
 					<div class="ziti fangshang userinfo">设置</div>
@@ -50,5 +52,5 @@
 		<div class="right">
 		
 		</div>
-	</body>
+</body>
 </html>

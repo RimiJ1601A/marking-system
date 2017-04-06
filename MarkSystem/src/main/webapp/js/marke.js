@@ -1,0 +1,11 @@
+			$(function(){
+				$("#pf").click(function(){
+					$(".yc").slideToggle(500);
+				});
+				$("#yh").click(function(){
+					$(".ycyh").slideToggle(500);
+				});
+                $("#username").click(function(){
+					$(".userinfo").slideToggle(500);
+				});
+			});
