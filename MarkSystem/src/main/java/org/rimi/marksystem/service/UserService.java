@@ -9,4 +9,10 @@ import org.springframework.stereotype.Component;
 public interface UserService {
 	
 	public List<User> getAllUser();
+	
+	public List<String> getAllUserAccount();
+	
+	public List<String> getUserByName(String name);
+	
+	public User getUserByUserAccountAndPassword(String userName,String passWord);
 }	

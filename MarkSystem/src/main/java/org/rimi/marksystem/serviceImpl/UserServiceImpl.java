@@ -1,6 +1,5 @@
 package org.rimi.marksystem.serviceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.rimi.marksystem.dao.UserDao;
@@ -16,7 +15,33 @@ public class UserServiceImpl implements UserService{
 	private UserDao userDaoImpl;
 	
 	public List<User> getAllUser() {
+		try{
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		return userDaoImpl.selectAllUser();
+	}
+
+	public List<String> getAllUserAccount() {
+		try{
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return userDaoImpl.selectAllUserAccount();
+	}
+
+	public List<String> getUserByName(String name) {
+		// TODO Auto-generated method stub
+		return userDaoImpl.selectAllUserAccount();
+	}
+	
+	//判断是否包含该账户
+	public User getUserByUserAccountAndPassword(String userName, String passWord) {
+		User user = new User();
+		user = userDaoImpl.selectUserByUserAccountAndPassWord(userName, passWord);
+		return user;
 	}
 	
 	

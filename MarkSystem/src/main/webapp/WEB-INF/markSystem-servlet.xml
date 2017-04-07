@@ -46,5 +46,11 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="org.rimi.marksystem.util.LoginIntercptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>

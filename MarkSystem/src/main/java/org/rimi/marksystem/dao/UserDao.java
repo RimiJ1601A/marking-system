@@ -12,4 +12,7 @@ public interface UserDao {
 	
 	public List<User> selectAllUser();
 	
+	public List<String> selectAllUserAccount();
+	
+	public User selectUserByUserAccountAndPassWord(String userName,String passWord);
 }
