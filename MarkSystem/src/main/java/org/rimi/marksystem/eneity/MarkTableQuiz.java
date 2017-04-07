@@ -2,8 +2,8 @@ package org.rimi.marksystem.eneity;
 
 public class MarkTableQuiz {    
     private int id;
-    private int quizId;
-    private int marktableId;
+    private int quizId;				//问题Id
+    private int marktableId;		//评分表id
 	public int getId() {
 		return id;
 	}

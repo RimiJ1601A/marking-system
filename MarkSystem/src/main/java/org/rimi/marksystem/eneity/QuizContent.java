@@ -2,9 +2,9 @@ package org.rimi.marksystem.eneity;
 
 public class QuizContent {
     private int id;
-    private int quizId;
-    private String content;
-    private int quizCore;
+    private int quizId;					//问题id
+    private String content;				//问题答案
+    private int quizCore;				//答案分数
 	public int getId() {
 		return id;
 	}
