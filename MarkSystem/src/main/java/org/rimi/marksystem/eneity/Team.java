@@ -8,7 +8,7 @@ import java.util.Date;
 public class Team {
     private int id;
     private String teamName;		//班级名称
-    private Date buildTime;			//创建时间
+    private String buildTime;			//创建时间
 	public int getId() {
 		return id;
 	}
@@ -21,10 +21,10 @@ public class Team {
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
-	public Date getBuildTime() {
+	public String getBuildTime() {
 		return buildTime;
 	}
-	public void setBuildTime(Date buildTime) {
+	public void setBuildTime(String buildTime) {
 		this.buildTime = buildTime;
 	}
     

@@ -37,7 +37,7 @@ public class UserDapImpl implements UserDao{
 					user.setAge(rs.getInt(5));
 					user.setSex(Sex.getSexByValue(rs.getInt(6)));
 					user.setRoleId(rs.getInt(7));
-					user.setBulidTime(rs.getDate(8));
+					user.setBulidTime(rs.getDate(8).toString());
 					tempUser.add(user);
 				}
 				return tempUser;
@@ -94,7 +94,7 @@ public class UserDapImpl implements UserDao{
 					tempuser.setAge(rs.getInt(5));
 					tempuser.setSex(Sex.getSexByValue(rs.getInt(6)));
 					tempuser.setRoleId(rs.getInt(7));
-					tempuser.setBulidTime(rs.getDate(8));
+					tempuser.setBulidTime(rs.getDate(8).toString());
 				}
 				return tempuser;
 			}

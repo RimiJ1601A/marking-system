@@ -9,7 +9,7 @@ public class Role {
     private int id;
     private String roleName;		//职位名称
     private String functionId;			//功能ID
-    private Date buildTime;			//创建时间
+    private String buildTime;			//创建时间
 	public int getId() {
 		return id;
 	}
@@ -28,10 +28,10 @@ public class Role {
 	public void setFunctionId(String functionId) {
 		this.functionId = functionId;
 	}
-	public Date getBuildTime() {
+	public String getBuildTime() {
 		return buildTime;
 	}
-	public void setBuildTime(Date buildTime) {
+	public void setBuildTime(String buildTime) {
 		this.buildTime = buildTime;
 	}
     

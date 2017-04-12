@@ -15,7 +15,7 @@ public class User {
     private int age;					//年龄
     private Sex sex;					//性别(1代表男，2代表女)
     private int roleId;					//用户所在职位ID
-    private Date bulidTime;				//用户注册时间
+    private String bulidTime;				//用户注册时间
 	public int getId() {
 		return id;
 	}
@@ -58,10 +58,10 @@ public class User {
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
-	public Date getBulidTime() {
+	public String getBulidTime() {
 		return bulidTime;
 	}
-	public void setBulidTime(Date bulidTime) {
+	public void setBulidTime(String bulidTime) {
 		this.bulidTime = bulidTime;
 	}
     

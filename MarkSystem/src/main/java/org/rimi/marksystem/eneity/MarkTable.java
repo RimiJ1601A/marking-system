@@ -9,8 +9,8 @@ import java.util.List;
 public class MarkTable { 
     private int id;
     private String name;			//评分表名字
-    private Date startTime;			//评分开始时间
-    private Date endTime;			//评分结束时间
+    private String startTime;			//评分开始时间
+    private String endTime;			//评分结束时间
     
     private List<MarkTableQuiz> markTableQuiz;			//评分问题list
     
@@ -41,16 +41,16 @@ public class MarkTable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
     
