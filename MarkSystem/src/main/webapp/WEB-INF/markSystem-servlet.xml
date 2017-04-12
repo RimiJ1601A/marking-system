@@ -53,4 +53,12 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
+	<bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">  
+    <property name="locations">
+        <array>  
+            <value>classpath:uploadPhoto.properties</value>  
+        </array>  
+    </property>  
+	</bean> 
+	
 </beans>

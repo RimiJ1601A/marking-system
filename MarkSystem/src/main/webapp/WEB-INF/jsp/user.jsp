@@ -8,15 +8,7 @@
 <script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
 <script type="text/javascript">
 		function add(){
-			var b = [{"quizTitle":"________点击编辑内容________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]}];
-			var a = [{"quizTitle":"________点击编辑内容________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]},{"quizTitle":"__________    ༭  Ŀ    __________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]},{"quizTitle":"__________    ༭  Ŀ    __________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]},{"quizTitle":"__________    ༭  Ŀ    __________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]},{"quizTitle":"__________    ༭  Ŀ    __________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]}];  
-			
-			var c = [];
-	        var data1={"content":"test","quizCore":"10"};
-	        var data2={"content":"ququ","quizCore":"7"};
-	        c.push(data1);
-	        c.push(data2);
-	        alert(c);
+			var a = [{"quizTitle":"________点击编辑内容________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]},{"quizTitle":"__________    ༭  Ŀ    __________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]},{"quizTitle":"__________    ༭  Ŀ    __________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]},{"quizTitle":"__________    ༭  Ŀ    __________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]},{"quizTitle":"__________    ༭  Ŀ    __________","quizContent":[{"content":"A","quizCore":"90"},{"content":"B","quizCore":"80"},{"content":"C","quizCore":"70"}]}];
 		        $.ajax({ 
 		            type:"POST", 
 		            url:"/requestQuiz", 

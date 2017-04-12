@@ -1,6 +1,7 @@
 package org.rimi.marksystem.eneity;
 
 import java.util.Date;
+import java.util.List;
 
 /*
  * 评分表类
@@ -10,6 +11,24 @@ public class MarkTable {
     private String name;			//评分表名字
     private Date startTime;			//评分开始时间
     private Date endTime;			//评分结束时间
+    
+    private List<MarkTableQuiz> markTableQuiz;			//评分问题list
+    
+    private List<UserMarke> userMarke;					//评分班级和评分人list
+    
+    
+	public List<MarkTableQuiz> getMarkTableQuiz() {
+		return markTableQuiz;
+	}
+	public void setMarkTableQuiz(List<MarkTableQuiz> markTableQuiz) {
+		this.markTableQuiz = markTableQuiz;
+	}
+	public List<UserMarke> getUserMarke() {
+		return userMarke;
+	}
+	public void setUserMarke(List<UserMarke> userMarke) {
+		this.userMarke = userMarke;
+	}
 	public int getId() {
 		return id;
 	}

@@ -9,10 +9,7 @@
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.css">
 <script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
 <script type="text/javascript" src="/js/login.js"></script>
-<script type="text/javascript">
-	var error = ${error};
-	alert(error);
-</script>
+
 </head>
 <body>
 	<div class="top">

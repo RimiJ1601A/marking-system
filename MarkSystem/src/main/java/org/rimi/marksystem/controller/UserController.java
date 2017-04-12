@@ -3,9 +3,14 @@ package org.rimi.marksystem.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.rimi.marksystem.eneity.Quiz;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.UserService;
+import org.rimi.marksystem.util.CommonMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,32 +32,38 @@ public class UserController {
 	}
 	//登陆判断逻辑
 	@RequestMapping("/login")
-	public String login(@RequestParam("userAccount") String userAccount,@RequestParam("password") String password,Model model){
+	public String login(@RequestParam("userAccount") String userAccount,@RequestParam("password") String password,Model model,HttpServletRequest request){
 		User user = new User();
 		user = userServiceImpl.getUserByUserAccountAndPassword(userAccount, password);
 		if(user == null){
 			model.addAttribute("error","用户名密码错误");
 			return "login";
 		}else{
-			//写判断权限生成功能逻辑
-			
-			return "index";
+			request.getSession().setAttribute("user", user);
+			return "redirect:/index";
 		}
-	} 
+	}
 	
 	@RequestMapping(value="/user")
 	public String getUser(Model model){
 		List<User> userlist = new ArrayList<User>();
 		userlist = userServiceImpl.getAllUser();
-		System.out.println("____________user");
 		return "user";
 	}
 
-/*	@RequestMapping("/requestQuiz")
-	@ResponseBody
-	public void requestQuiz(@RequestBody List<Quiz> quizs){
-		
-		System.out.println(quizs.size());
-		System.out.println("_______________");
-	}*/
+//	@RequestMapping("/requestQuiz")
+//	@ResponseBody
+//	public void requestQuiz(@RequestBody List<Quiz> quizs){
+//		
+//		System.out.println(quizs.size());
+//		System.out.println("_______________");
+//	}
+	
+	
+	
+	@RequestMapping(value="photo")
+	public String headPhoto(){
+		return "headphoto";
+	}
+	
 }

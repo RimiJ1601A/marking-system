@@ -38,9 +38,9 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	//判断是否包含该账户
-	public User getUserByUserAccountAndPassword(String userName, String passWord) {
+	public User getUserByUserAccountAndPassword(String userAccount, String passWord) {
 		User user = new User();
-		user = userDaoImpl.selectUserByUserAccountAndPassWord(userName, passWord);
+		user = userDaoImpl.selectUserByUserAccountAndPassWord(userAccount, passWord);
 		return user;
 	}
 	

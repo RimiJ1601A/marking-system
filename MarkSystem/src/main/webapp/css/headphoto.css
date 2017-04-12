@@ -1,0 +1,33 @@
+img{
+    max-width:100%;
+}
+.preview-lg{
+    max-width: 150px;
+    max-height: 150px;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+.modal-dialog{
+    width: 900px;
+}
+.modal-content{
+    height: 586px;
+}
+.row{
+    width: 864px;
+    height: 379px;
+}
+.img_bg{
+    width: 100px;
+    height: 100px;
+}
+.container{
+    width: 600px;
+    height: 360px;
+    position: absolute;
+}
+.preview-lg{
+    position: absolute;
+    left: 670px;
+}

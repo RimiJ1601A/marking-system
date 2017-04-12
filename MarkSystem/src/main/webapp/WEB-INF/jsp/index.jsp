@@ -26,7 +26,6 @@
 			</div>
 					<div class="ziti fangshang userinfo">个人信息</div>
 					<div class="ziti fangshang userinfo">设置</div>
-
 			<div>
 				<ul id="left_ul">
 					<div class="ziti fangshang">
@@ -47,8 +46,7 @@
 						<div class="ziti fangshang yc">评分</div>
 				</ul>
 			</div>
-		</div>
-		
+		</div>	
 		<div class="right">
 		
 		</div>

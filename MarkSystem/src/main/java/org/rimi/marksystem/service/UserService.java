@@ -14,5 +14,5 @@ public interface UserService {
 	
 	public List<String> getUserByName(String name);
 	
-	public User getUserByUserAccountAndPassword(String userName,String passWord);
+	public User getUserByUserAccountAndPassword(String userAccount,String passWord);
 }	
