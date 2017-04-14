@@ -46,6 +46,7 @@ public class UserController {
 	
 	@RequestMapping(value="/user")
 	public String getUser(Model model){
+	
 		List<User> userlist = new ArrayList<User>();
 		userlist = userServiceImpl.getAllUser();
 		return "user";

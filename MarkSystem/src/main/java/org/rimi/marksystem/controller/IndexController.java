@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/*
+ * 个人主页
+ */
+
 @Controller
 public class IndexController {
 	
@@ -17,7 +21,6 @@ public class IndexController {
 		//写判断权限生成功能逻辑
 		User tempuser = new User();
 		tempuser = (User)request.getSession().getAttribute("user");
-		
 		
 		
 		return "index";
