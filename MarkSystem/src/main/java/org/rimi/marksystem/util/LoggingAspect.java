@@ -3,15 +3,14 @@ package org.rimi.marksystem.util;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class LoggingAspect {
 	
-	private static final Logger logger = Logger.getLogger(LoggingAspect.class); 
+/*	private static final Logger logger = Logger.getLogger(LoggingAspect.class); 
 	
-/*	@Pointcut("execution(* org.rimi.marksystem.serviceImpl.UserServiceImpl.getUserByUserAccountAndPassword(..)) && target(target) && args(userAccount,passWord)")
+	@Pointcut("execution(* org.rimi.marksystem.serviceImpl.UserServiceImpl.getUserByUserAccountAndPassword(..)) && target(target) && args(userAccount,passWord)")
 	public void point(Object target,String userAccount,String passWord){
 		
 	}

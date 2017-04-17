@@ -1,0 +1,127 @@
+.right_top{
+	width:1653px;
+	height:250px;
+}
+.right_bottom{
+	width:1653px;
+	height:660px;
+	background-color:white;
+}
+.input_position{
+	width:300px;
+	height:100px;
+	position:relative;
+	left:10%;
+	top:30%;
+}
+.input_wz{
+	position:relative;
+	width:250px;
+	left:30%;
+	top:-30%;
+}
+.label-ziti{
+	color:black;
+}
+.btn-wz{
+	width:125px;
+	height:40px;
+	position:relative;
+	left:30%;
+	top:50px;
+}
+.biao-daxiao{
+	width:1550px;
+	height:100px;
+	position:relative;
+	left:50px;
+}
+.biao-position{
+	position:relative;
+	top:20px;
+}
+.anniu-wz{
+	width:40px;
+	height:40px;
+	position:relative;
+	left:80%;
+	top:10px;
+}
+#zhbt{
+	width:60px;
+}
+.gltbkuang{
+	width:100px;
+	height:200px;
+	background-color:#2aabd2;
+	position:absolute;
+	left:88%;
+	top:40%;
+	display:none;
+}
+.glgnwz{
+	position:relative;
+	left:10px;
+	top:5px;
+	color:white;
+}
+.btsize-wz{
+	width:15px;
+	height:15px;
+	color:#0088cc;
+	position:relative;
+	left:10px;
+}
+.btsize-wz:hover{
+	color:gray;
+	cursor:pointer;
+}
+#btsc{
+	color:#EA356D;
+	position:relative;
+	left:30px;
+}
+#btsc:hover{
+	color:#BB6F86;
+}
+#btbj{
+	position:relative;
+	left:20px;
+}
+.fenyewz{
+	position:relative;
+	left:35%;
+	top:20px;
+}
+.dhk-btwz{
+	width:100px;
+	height:40px;
+	position:relative;
+	left:35%;
+	top:100px;
+}
+.scbt{
+	width:60px;
+	height:30px;
+	position:relative;
+	left:30%;
+	top:80px;
+}
+.zwtjsrk{
+	position:relative;
+	left:330px;
+	top:1px;
+	width: 320px;
+}
+.zwtjbq{
+	width:300px;
+	font-size:18px;
+	position:relative;
+	left:200px;
+	top:35px;
+}
+.zwtjbq1{
+	position:relative;
+	left:50px;
+	top:35px;
+}

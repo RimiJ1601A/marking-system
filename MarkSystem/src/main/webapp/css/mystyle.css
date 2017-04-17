@@ -1,0 +1,53 @@
+ /*调整header logo背景*/
+@media (max-width: 767px) {
+    .skin-black .main-header>.logo:hover {
+        background-color: #fff;
+    }
+    .skin-black .main-header>.logo {
+        background-color: #fff;
+        color: #fff;
+        border-bottom: 0 solid transparent;
+        border-right: none;
+    }
+}
+
+/*调整左侧遍导航条*/
+/*.skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {*/
+    background-color: #328bcd;
+}
+/*调整用户面板头像*/
+.user-panel{
+	margin-top: 10px;
+}
+.user-panel>.image>img {
+ 
+    max-width: 120px;
+  
+}
+.user-panel>.image{
+ 
+    text-align: center;
+  
+}
+.user-panel .info{
+	position: relative;
+}
+
+/*调整新闻展示栏位置*/
+
+#news{
+  
+    margin: 15px auto;
+    width: 96%;
+   
+}
+
+ img{
+    margin: 0 auto;
+}
+
+/*调整个人看板位置*/
+.dashboard{
+   width: 96%;
+   margin: 0 auto;
+}

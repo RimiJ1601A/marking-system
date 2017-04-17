@@ -13,20 +13,20 @@
 </head>
 <body>
 	<div class="top">
-		<img class="img-picture" src="/images/logo.png" /img>
+		<img class="img-picture" src="/images/logo.png"/>
 	</div>
 	<div class="bg">
-		<img class="bg-picture" src="/images/login_bg.png" /img>
+		<img class="bg-picture" src="/images/login_bg.png"/>
 		<div class="bg-two">
 			<form action="/login" method="post">
 				<div class="font" style="color: #000033">
 					<p>睿峰评教系统</p>
 				</div>
 				<div class="input-picture">
-					<img class="user_logo" src="./images/user_logo.png" />
+					<img class="user_logo" src="/images/user_logo.png"/>
 				</div>
 				<div class="input-logo">
-					<img class="password_logo" src="./images/password.png" />
+					<img class="password_logo" src="/images/password.png"/>
 				</div>
 					<input type="text" class="input-field" name="userAccount"><br>
 					<br> <input type="password" class="input-box" name="password">

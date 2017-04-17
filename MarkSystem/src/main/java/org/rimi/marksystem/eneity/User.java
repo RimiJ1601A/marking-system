@@ -1,6 +1,5 @@
 package org.rimi.marksystem.eneity;
 
-import java.util.Date;
 
 /*
  * 用户类
@@ -16,6 +15,13 @@ public class User {
     private Sex sex;					//性别(1代表男，2代表女)
     private int roleId;					//用户所在职位ID
     private String bulidTime;				//用户注册时间
+    private String headPhotoUrl;
+	public String getHeadPhotoUrl() {
+		return headPhotoUrl;
+	}
+	public void setHeadPhotoUrl(String headPhotoUrl) {
+		this.headPhotoUrl = headPhotoUrl;
+	}
 	public int getId() {
 		return id;
 	}
