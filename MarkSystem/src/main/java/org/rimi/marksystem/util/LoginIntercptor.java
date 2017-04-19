@@ -31,6 +31,7 @@ public class LoginIntercptor  implements HandlerInterceptor{
 			}
 		}else{
 			if(user != null){
+						
 				return true;				
 			}else{
 				response.sendRedirect("/loginPage");
