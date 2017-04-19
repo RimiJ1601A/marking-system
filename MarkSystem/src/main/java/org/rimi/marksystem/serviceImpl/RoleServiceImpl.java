@@ -77,4 +77,21 @@ public class RoleServiceImpl implements RoleService {
 		}
 	}
 
+	public String getRoleNameByRoleId(int id) {
+	String roleName = roleDaoImpl.selectRoleNameByRoleId(id);
+		if(roleName == null){
+			return "暂无职位";
+		}else{
+			return roleName;
+		}	
+	}
+
+	public String getFunctionNameByRoleId(int roleId) {
+		String functionsName = roleDaoImpl.selectFunctionNameByRoleId(roleId);
+		if(functionsName == null){
+			functionsName = "没有职位";
+		}
+		return functionsName;
+	}
+
 }

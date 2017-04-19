@@ -20,14 +20,7 @@ public class TestController {
 
 			throw new BusinessException("30");
 		};
-		return "test2";
-	}
-	
-	@RequestMapping("/role2")
-	public String test1(){
-		int[] a = new int[10];
-		a[11]=89;
-		return "role2";
+		return "test";
 	}
 	
 	@RequestMapping("*")

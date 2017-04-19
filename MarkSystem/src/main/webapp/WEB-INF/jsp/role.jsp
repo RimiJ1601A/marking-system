@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,6 +48,7 @@
 <body class="hold-transition skin-black sidebar-mini fixed">
 
 	<div class="wrapper">
+		<!-- Main Header -->
 		<!-- Main Header -->
 		<header class="main-header"> <!-- Logo --> <a href="#"
 			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
@@ -186,7 +188,7 @@
 								<a href="#" class="btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
-								<a href="#" class="btn btn-default btn-flat">Sign out</a>
+								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
 							</div>
 						</li>
 					</ul>
@@ -201,7 +203,6 @@
 		</div>
 		</nav> </header>
 
-
 		<!-- Left side column. contains the logo and sidebar -->
 		<aside class="main-sidebar"> <!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar"> <!-- Sidebar user panel (optional) -->
@@ -211,10 +212,11 @@
 					alt="User Image">
 			</div>
 			<div class="info">
-				<p>User Name</p>
+				<p>${sessionScope.user.userName}</p>
 				<!-- Status -->
 				<!-- 通过text-xxx来个更改颜色 -->
-				<a href="#"><i class="fa fa-circle text-success"></i> User Role</a>
+				<a href="#"><i class="fa fa-circle text-success"></i>
+					${sessionScope.roleName}</a>
 			</div>
 		</div>
 
@@ -234,26 +236,45 @@
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="/index"><i class="fa fa-home"></i> <span>个人主页</span></a></li>
-			<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
-			<li class="treeview"><a href="#"><i class="fa fa-user"></i>
-					<span>用户管理</span> <span class="pull-right-container"> <i
-						class="fa fa-angle-left pull-right"></i>
-				</span> </a>
-				<ul class="treeview-menu">
-					<li><a href="#">人员信息</a></li>
-					<li><a href="/team">班级信息</a></li>
-				</ul></li>
+			<li class="active"><a href="/index"><i class="fa fa-home"></i>
+					<span>个人主页</span></a></li>
+
+			<c:set var="functions" value="${sessionScope.functions}" />
+			<c:if test="${fn:contains(functions,'职位')}">
+				<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
+			</c:if>
+
+			<c:if
+				test="${fn:contains(functions,'用户') || fn:contains(functions,'班级')}">
+				<li class="treeview"><a href="#"><i class="fa fa-user"></i>
+						<span>用户管理</span> <span class="pull-right-container"> <i
+							class="fa fa-angle-left pull-right"></i>
+					</span> </a>
+
+					<ul class="treeview-menu">
+						<c:if test="${fn:contains(functions,'用户')}">
+							<li><a href="#">人员信息</a></li>
+						</c:if>
+						<c:if test="${fn:contains(functions,'班级')}">
+							<li><a href="/team">班级信息</a></li>
+						</c:if>
+					</ul></li>
+			</c:if>
+
 			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
 				</span> </a>
 				<ul class="treeview-menu">
-					<li><a href="#">创建评分表</a></li>
+					<c:if test="${fn:contains(functions,'创建评分表')}">
+						<li><a href="#">创建评分表</a></li>
+					</c:if>
 					<li><a href="#">考评</a></li>
 				</ul></li>
+
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
+
 
 
 		<!-- Content Wrapper. Contains page content -->

@@ -20,14 +20,15 @@ public class RoleDaoImpl implements RoleDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	//查询所有职位
+
+	// 查询所有职位
 	public List<Role> selectRoleAll() {
 		List<Role> result = new ArrayList<Role>();
-		result = jdbcTemplate.query("select * from role", new ResultSetExtractor<List<Role>>(){
+		result = jdbcTemplate.query("select * from role", new ResultSetExtractor<List<Role>>() {
 
 			public List<Role> extractData(ResultSet arg0) throws SQLException, DataAccessException {
 				List<Role> s = new ArrayList<Role>();
-				while(arg0.next()){
+				while (arg0.next()) {
 					Role role = new Role();
 					List<String> function = new ArrayList<String>();
 					role.setId(arg0.getInt(1));
@@ -44,33 +45,35 @@ public class RoleDaoImpl implements RoleDao {
 					role.setBuildTime(arg0.getString(4));
 					s.add(role);
 				}
-				
+
 				return s;
-			}		
-			
+			}
+
 		});
 		return result;
 	}
-	//查询总数
+
+	// 查询总数
 	public int selectRoleCount() {
 		int result = jdbcTemplate.queryForObject("select count(*) from role", Integer.class);
 		return result;
 	}
-	//分页查询
+
+	// 分页查询
 	public List<Role> selectRolePage(final int start, final int count) {
 		List<Role> result = new ArrayList<Role>();
-		result = jdbcTemplate.query("select * from role limit ?,?", new PreparedStatementSetter(){
+		result = jdbcTemplate.query("select * from role limit ?,?", new PreparedStatementSetter() {
 
 			public void setValues(PreparedStatement ps) throws SQLException {
 				ps.setInt(1, start);
 				ps.setInt(2, count);
 			}
-			
-		}, new ResultSetExtractor<List<Role>>(){
+
+		}, new ResultSetExtractor<List<Role>>() {
 
 			public List<Role> extractData(ResultSet arg0) throws SQLException, DataAccessException {
 				List<Role> s = new ArrayList<Role>();
-				while(arg0.next()){
+				while (arg0.next()) {
 					Role role = new Role();
 					List<String> function = new ArrayList<String>();
 					role.setId(arg0.getInt(1));
@@ -87,85 +90,146 @@ public class RoleDaoImpl implements RoleDao {
 					role.setBuildTime(arg0.getString(4));
 					s.add(role);
 				}
-				
+
 				return s;
 			}
-			
+
 		});
 		return result;
 	}
-	//插入
+
+	// 插入
 	public void insertRole(Role role) {
-		jdbcTemplate.update("INSERT INTO role(role_name,function_id,bulid_time)VALUES(?,?,?)", role.getRoleName(),role.getFunctionId(),role.getBuildTime());
-		
+		jdbcTemplate.update("INSERT INTO role(role_name,function_id,bulid_time)VALUES(?,?,?)", role.getRoleName(),
+				role.getFunctionId(), role.getBuildTime());
+
 	}
-	//删除
+
+	// 删除
 	public void dropRole(int id) {
 		jdbcTemplate.update("delete from role where id =?", id);
-		
+
 	}
-	//根据ID查功能名称
+
+	// 根据ID查功能名称
 	public String selectRoleFunction(final int id) {
 		String relust = null;
-		relust = jdbcTemplate.query("select * from function where id = ?", new PreparedStatementSetter(){
+		relust = jdbcTemplate.query("select * from function where id = ?", new PreparedStatementSetter() {
 
 			public void setValues(PreparedStatement ps) throws SQLException {
 				// TODO Auto-generated method stub
 				ps.setInt(1, id);
 			}
-			
-		}, new ResultSetExtractor<String>(){
+
+		}, new ResultSetExtractor<String>() {
 			public String extractData(ResultSet arg0) throws SQLException, DataAccessException {
 				String s = new String();
-				while(arg0.next()){
-					s= arg0.getString(2);
+				while (arg0.next()) {
+					s = arg0.getString(2);
 				}
 				return s;
 			}
-			
+
 		});
 		return relust;
 	}
-	public List<Role> selectRole(final int start,final int count,final String name) {
+
+	public List<Role> selectRole(final int start, final int count, final String name) {
 		List<Role> relust = new ArrayList<Role>();
-		relust = jdbcTemplate.query("select * from role where role_name like ? limit ?,?", new PreparedStatementSetter(){
+		relust = jdbcTemplate.query("select * from role where role_name like ? limit ?,?",
+				new PreparedStatementSetter() {
+
+					public void setValues(PreparedStatement ps) throws SQLException {
+						// TODO Auto-generated method stub
+						ps.setString(1, "%" + name + "%");
+						ps.setInt(2, start);
+						ps.setInt(3, count);
+					}
+
+				}, new ResultSetExtractor<List<Role>>() {
+					List<Role> s = new ArrayList<Role>();
+
+					public List<Role> extractData(ResultSet arg0) throws SQLException, DataAccessException {
+						while (arg0.next()) {
+							Role role = new Role();
+							List<String> function = new ArrayList<String>();
+							role.setId(arg0.getInt(1));
+							role.setRoleName(arg0.getString(2));
+							role.setFunctionId(arg0.getString(3));
+							String roleArray = arg0.getString(3);
+							String[] idArray = roleArray.split(",");
+							for (int i = 0; i < idArray.length; i++) {
+								int id = Integer.parseInt(idArray[i]);
+								String functionName = selectRoleFunction(id);
+								function.add(functionName);
+							}
+							role.setFunction(function);
+							role.setBuildTime(arg0.getString(4));
+							s.add(role);
+						}
+						return s;
+					}
+				});
+		return relust;
+	}
+
+	// 修改
+	public void updateRole(String name, String funcitonId) {
+		// TODO Auto-generated method stub
+		jdbcTemplate.update("update role set function_id = ? where role_name = ?", funcitonId, name);
+	}
+
+	public String selectRoleNameByRoleId(final int id) {
+		// TODO Auto-generated method stub
+		String roleName = null;
+		roleName = jdbcTemplate.query("select role_name from role where id = ?", new PreparedStatementSetter() {
 
 			public void setValues(PreparedStatement ps) throws SQLException {
 				// TODO Auto-generated method stub
-				ps.setString(1, "%"+name+"%");
-				ps.setInt(2, start);
-				ps.setInt(3, count);
+				ps.setInt(1, id);
 			}
-			
-		}, new ResultSetExtractor<List<Role>>() {
-			List<Role> s = new ArrayList<Role>();
-			public List<Role> extractData(ResultSet arg0) throws SQLException, DataAccessException {
-				while(arg0.next()){
-					Role role = new Role();
-					List<String> function = new ArrayList<String>();
-					role.setId(arg0.getInt(1));
-					role.setRoleName(arg0.getString(2));
-					role.setFunctionId(arg0.getString(3));
-					String roleArray = arg0.getString(3);
-					String[] idArray = roleArray.split(",");
-					for (int i = 0; i < idArray.length; i++) {
-						int id = Integer.parseInt(idArray[i]);
-						String functionName = selectRoleFunction(id);
-						function.add(functionName);
-					}
-					role.setFunction(function);
-					role.setBuildTime(arg0.getString(4));
-					s.add(role);
+		}, new ResultSetExtractor<String>() {
+			public String extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				String tempName = null;
+				while (rs.next()) {
+					tempName = rs.getString(1);
 				}
-				return s;
+				return tempName;
 			}
 		});
-		return relust;
+		return roleName;
 	}
-	//修改
-	public void updateRole(String name, String funcitonId) {
-		// TODO Auto-generated method stub
-		jdbcTemplate.update("update role set function_id = ? where role_name = ?", funcitonId,name);
+
+	public String selectFunctionNameByRoleId(final int roleId) {
+		String functionId = null;
+		functionId = jdbcTemplate.query("select function_id from role where id = ?", new PreparedStatementSetter() {
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, roleId);
+			}
+		}, new ResultSetExtractor<String>() {
+			public String extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				String tempFunctionId = null;
+				while (rs.next()) {
+					tempFunctionId = rs.getString(1);
+				}
+				return tempFunctionId;
+			}
+		});
+		if(functionId == null){
+			return null;
+		}
+		String[] functionsId = functionId.split(",");
+		String functionNames = "";
+		for(int i=0;i<functionsId.length;i++){
+			int num = Integer.valueOf(functionsId[i]);
+			functionNames=functionNames+selectRoleFunction(num);
+		}
+		
+		
+		return functionNames;
 	}
 
 }
