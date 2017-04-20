@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.UserService;
+import org.rimi.marksystem.util.CommonMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,24 +35,24 @@ public class UserController {
 			return "login";
 		}else{
 			request.getSession().setAttribute("user", user);
+			String roleName = CommonMap .roleNameMap.get(user.getRoleId());
+			String functionName = CommonMap.roleFunctionMap.get(user.getRoleId());
+			request.getSession().setAttribute("functions", functionName);
+			request.getSession().setAttribute("roleName", roleName);
 			return "redirect:/index";
 		}
 	}
 	
+
 	@RequestMapping(value="/user")
-	public String getUser(Model model){
-	
+	public String getUser(Model model){	
 		List<User> userlist = new ArrayList<User>();
 		userlist = userServiceImpl.getAllUser();
 		return "user";
 	}
 	
 	
-	@RequestMapping(value="photo")
-	public String headPhoto(){
-		return "headphoto";
-	}
-	
+
 	@RequestMapping("/signOut")
 	public String signOut(HttpServletRequest request){
 		request.getSession().removeAttribute("user");

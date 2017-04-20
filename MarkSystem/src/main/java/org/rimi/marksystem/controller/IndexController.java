@@ -23,13 +23,7 @@ public class IndexController {
 	
 	@RequestMapping("/index")
 	public String index(User user,Model model,HttpServletRequest request){
-		//写判断权限生成功能逻辑
-		User tempuser = new User();
-		tempuser = (User)request.getSession().getAttribute("user");
-		String roleName = CommonMap .roleNameMap.get(tempuser.getRoleId());
-		String functionName = CommonMap.roleFunctionMap.get(tempuser.getRoleId());
-		request.getSession().setAttribute("functions", functionName);
-		request.getSession().setAttribute("roleName", roleName);
+
 		return "index";
 	}
 	
