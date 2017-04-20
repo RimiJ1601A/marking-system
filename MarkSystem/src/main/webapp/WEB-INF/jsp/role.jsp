@@ -15,13 +15,14 @@
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.css">
-<link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.css">
-<link type="text/css" rel="stylesheet" href="/css/common.css">
-<link type="text/css" rel="stylesheet" href="/css/marke.css">
+<!-- <link type="text/css" rel="stylesheet" href="/css/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.css"> -->
+<!-- <link type="text/css" rel="stylesheet" href="/css/common.css">
+<!-- <link type="text/css" rel="stylesheet" href="/css/marke.css">
 <link type="text/css" rel="stylesheet" href="/css/zhiweiguanli.css">
 <link type="text/css" rel="stylesheet" href="/css/dialog.css">
-<link type="text/css" rel="stylesheet" href="/css/bjgl.css">
+<link type="text/css" rel="stylesheet" href="/css/bjgl.css"> -->
+-->
 <!-- <script type="text/javascript" src="/js/jquery-3.1.0.js"></script> -->
 
 <script type="text/javascript">
@@ -238,6 +239,7 @@
 			<!-- Optionally, you can add icons to the links -->
 			<li class="active"><a href="/index"><i class="fa fa-home"></i>
 					<span>个人主页</span></a></li>
+<<<<<<< HEAD
 
 			<c:set var="functions" value="${sessionScope.functions}" />
 			<c:if test="${fn:contains(functions,'职位')}">
@@ -261,6 +263,17 @@
 					</ul></li>
 			</c:if>
 
+=======
+			<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
+			<li class="treeview"><a href="#"><i class="fa fa-user"></i>
+					<span>用户管理</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span> </a>
+				<ul class="treeview-menu">
+					<li><a href="#">人员信息</a></li>
+					<li><a href="/team">班级信息</a></li>
+				</ul></li>
+>>>>>>> 前端样式基本完成，廖磊部分表格样式完成，需要自己填写对应js
 			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
@@ -279,7 +292,184 @@
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<div class="right_top">
+
+			<section class="content-header">
+			<h1>
+				职位管理
+				<!-- 可以放上次登录时间 -->
+				<small>编辑用户职位</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+				<li class="active">职位管理</li>
+			</ol>
+			</section>
+			<br> <br>
+			<!-- Main content -->
+			<section class="dashboard ">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box box-solid box-primary">
+						<div class="box-header">
+							<h3 class="box-title">职位管理列表</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div id="example1_wrapper"
+								class="dataTables_wrapper form-inline dt-bootstrap">
+								<div class="row">
+									<!-- 查询职位 -->
+									<div id="example1_filter" class="dataTables_filter">
+										<div class="col-sm-6">
+											<div class="input-group margin">
+												<input type="text" class="form-control"
+													placeholder="请输入职位名称..." aria-controls="example1"
+													id="sousuo"> <span class="input-group-btn">
+													<button onclick="sousuo()" type="button"
+														class="btn btn-info btn-flat">查询职位
+												</span>
+												</button>
+												</span>
+											</div>
+										</div>
+										<!-- 表单功能按钮：增加、刷新、下载、查看选项 -->
+										<div class="col-sm-6"
+											style="text-align: right; padding-top: 10px">
+											<div class="btn-group">
+											<div class="btn-group">
+													<button type="button" 
+														class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="管理图表">
+														<i class="fa fa-fw fa-list-ul"></i>
+													</button>
+													<ul class="dropdown-menu " >
+														<li><a href="#">Dropdown link</a></li>
+														<li><a href="#">Dropdown link</a></li>
+													</ul>
+												</div>
+												<button type="button" class="btn btn-info " title="添加职位"
+													onclick="tjzw()">
+													<i class="fa fa-fw fa-plus"></i>
+												</button>
+												<button type="button" class="btn btn-info " title="刷新"
+													onclick="shuaxin()">
+													<i class="fa fa-fw fa-refresh"></i>
+												</button>
+												
+												<button type="button" class="btn btn-info btn-flat" title="导出表格">
+													<i class="fa fa-fw fa-download"></i>
+												</button>
+												
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<table id="example1"
+											class="table table-bordered table-striped dataTable"
+											role="grid" aria-describedby="example1_info">
+											<thead>
+												<tr role="row">
+													<th class="sorting_asc" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-sort="ascending"
+														aria-label="Rendering engine: activate to sort column descending"
+														style="width: 100px;">职位名称</th>
+													<th class="sorting" tabindex="0" aria-controls="example1"
+														rowspan="1" colspan="1"
+														aria-label="Browser: activate to sort column ascending"
+														style="width: 70px;">功能名称</th>
+													<th class="sorting" tabindex="0" aria-controls="example1"
+														rowspan="1" colspan="1"
+														aria-label="Platform(s): activate to sort column ascending"
+														style="width: 72px;">创建日期</th>
+													<th class="sorting" tabindex="0" aria-controls="example1"
+														rowspan="1" colspan="1"
+														aria-label="Engine version: activate to sort column ascending"
+														style="width: 46px;text-align:center;">操作</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr role="row" class="odd">
+													<td class="sorting_1">Gecko</td>
+													<td>Firefox 1.0</td>
+													<td>Win 98+ / OSX.2+llllllllllllllllllllllllllllllll</td>
+													<td>1.7</td>
+												</tr>
+												<c:forEach var="it" items="${rolePage}">
+													<tr role="row" class="odd">
+														<td class="xsmc">${it.roleName}</td>
+														<td class="gnmc"><c:forEach var="fun"
+																items="${it.function}">
+                                                                    ${fun}
+                                                                </c:forEach></td>
+														<td class="xsrq">${it.buildTime }</td>
+														<td style="vertical-align: middle;text-align: center;"><span
+															class="glyphicon glyphicon-picture btsize-wz"
+															aria-hidden="true" title="查看"
+															onclick="ck('${it.roleName}','${it.function}','${it.buildTime }')" style="color:#00c0ef;"></span>
+															<span class="glyphicon glyphicon-list-alt btsize-wz"
+															id="btbj" aria-hidden="true" title="编辑"
+															onclick="bj('${it.roleName}')" style="color:#00c0ef;"></span> <span
+															class="glyphicon glyphicon-trash btsize-wz" id="btsc"
+															aria-hidden="true" title="删除" onclick="sc(${it.id})" style="color: rgb(212, 106, 64);"></span></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+											<tfoot>
+												<tr>
+													<th rowspan="1" colspan="1">职位名称</th>
+													<th rowspan="1" colspan="1">功能名称</th>
+													<th rowspan="1" colspan="1">创建时间</th>
+													<th rowspan="1" colspan="1" stylt="text-align:center;">操作</th>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-5">
+										<div class="dataTables_info" id="example1_info" role="status"
+											aria-live="polite">Showing 1 to 10 of 57 entries</div>
+									</div>
+									<div class="col-sm-7">
+										<div class="dataTables_paginate paging_simple_numbers"
+											id="example1_paginate">
+											<ul class="pagination">
+												<li class="paginate_button previous disabled"
+													id="example1_previous"><a href="#"
+													aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li>
+												<li class="paginate_button active"><a href="#"
+													aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li>
+												<li class="paginate_button next" id="example1_next"><a
+													href="#" aria-controls="example1" data-dt-idx="7"
+													tabindex="0">Next</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+				</div>
+			</div>
+			</section>
+
+		</div>
+
+		<%-- <div class="right_top">
 
 				<div class="input_position zwgl">
 					<label class="label-ziti"> 搜索职位:</label>
@@ -292,24 +482,29 @@
 					onclick="sousuo()">查询</button>
 			</div>
 			<div class="right_bottom">
-				<button type="button" class="btn btn-info anniu-wz zwgl"
+			<div class="row">
+			<div class="col-md-8">
+				<button type="button" class="btn btn-info l"
 					title="添加职位" onclick="tjzw()">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				</button>
-				<button type="button" class="btn btn-info anniu-wz zwgl" title="刷新"
+				<button type="button" class="btn btn-info l" title="刷新"
 					onclick="shuaxin()">
 					<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
 				</button>
-				<button type="button" class="btn btn-info anniu-wz zwgl"
+				<button type="button" class="btn btn-info l"
 					title="导出表格">
 					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
 				</button>
-				<button type="button" id="zhbt" class="btn btn-info anniu-wz zwgl"
+				<button type="button" id="zhbt" class="btn btn-info l"
 					title="管理图表" onclick="gltb()">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;<b
 						class="caret caret_but"></b>
 				</button>
-
+</div>
+</div>
+<div class="row">
+			<div class="col-md-8">
 				<div class="table-responsive biao-position zwgl">
 					<table class="table table-bordered biao-daxiao">
 						<tr class="active">
@@ -339,6 +534,8 @@
 							</tr>
 						</c:forEach>
 					</table>
+				</div>
+				</div>
 				</div>
 				<div class="fenyewz zwgl" style="width: 800px;">
 					<label class="bjglfy" id="totalpage">
@@ -502,7 +699,7 @@
 				</div>
 
 			</div>
-		</div>
+		</div> --%>
 
 		<!-- /.content-wrapper -->
 
@@ -510,6 +707,7 @@
 		<footer class="main-footer"> <!-- Default to the left --> <strong>Copyright
 			&copy; 2017 <a href="#">Rimiedu</a>.
 		</strong> All rights reserved. </footer>
+	</div>
 	</div>
 
 
