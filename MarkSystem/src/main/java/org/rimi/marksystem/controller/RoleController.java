@@ -3,6 +3,7 @@ package org.rimi.marksystem.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.rimi.marksystem.eneity.Role;
 import org.rimi.marksystem.service.RoleService;
@@ -58,6 +59,12 @@ public class RoleController {
 	//增加职位
 	@RequestMapping(value="roleadd",method = RequestMethod.GET)
 	public String addRole(@RequestParam(value="zwgn",required=false)String functionId,@RequestParam(value="zwname",required=false)String name,Model model){
+		//判断是否存在此职位名称
+		boolean exits = false;
+		List<String> roleNames = roleServiceImpl.getRoleName();
+		if(roleNames.contains(name)){
+			exits = true;
+		}
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String sj = sdf.format(date);
@@ -65,8 +72,13 @@ public class RoleController {
 		role.setRoleName(name);
 		role.setFunctionId(functionId);
 		role.setBuildTime(sj);
-		roleServiceImpl.addRole(role);
-		return "redirect:/role";
+		
+		if(exits == true || name == null || name.isEmpty() || functionId == null || functionId.isEmpty()){
+			return "redirect:/role";
+		}else{
+			roleServiceImpl.addRole(role);
+			return "redirect:/role";
+		}
 		
 	}
 	//修改职位

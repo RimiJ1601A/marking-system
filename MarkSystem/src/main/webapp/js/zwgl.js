@@ -1,16 +1,11 @@
 	
 	$(function(){
 		//分页
-		if(total<10){
-				yeshu =1;
-			}else{
-				yeshu=parseInt((total+10-1)/10);
-			}
-			
-			for(var i=dangqianye;i<=yeshu;i++){
+		
+			for(var i=1;i<=yeshu;i++){
 					var yuansu="<a href='role?dangqianye="+i+"'>"+i+"</a>";
 							
-					if(i>dangqianye+9){
+					if(yeshu>10){
 						yuansu="";
 					}
 					$("#fyanniu").append(yuansu);

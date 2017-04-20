@@ -104,7 +104,4 @@
 		<finalName>MarkSystem</finalName>
 	</build>
 
-	<modules>
-		<module>?</module>
-	</modules>
 </project>

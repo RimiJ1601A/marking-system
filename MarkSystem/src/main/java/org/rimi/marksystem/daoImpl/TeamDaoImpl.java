@@ -148,9 +148,41 @@ public class TeamDaoImpl implements TeamDao {
 				List<Team> result = new ArrayList<Team>();
 				while(rs.next()){
 					Team team = new Team();
-					team.setId(rs.getInt(1));
+					int userId;
+					int roleIdStu;
+					int roleIdTeacher;
+					roleIdStu = selectRoleId("学生");
+					roleIdTeacher = selectRoleId("教师");
+					int teamId = rs.getInt(1);
+					team.setId(teamId);
 					team.setTeamName(rs.getString(2));
 					team.setBuildTime(rs.getString(3));
+					//查学生
+					List<User> students = selectUserId(teamId,roleIdStu);//查userID
+					List<String> studentNames = new ArrayList<String>();//存学生名字
+					ListIterator<User> it = students.listIterator();
+					while(it.hasNext()){
+						User user = it.next();
+						userId = user.getId();
+//						User student = new User();
+						String name = selectName(userId);//查学生名字
+//						student.setUserName(name);
+//						studentNames.add(student);
+						studentNames.add(name);
+					}
+					team.setStudentCount(studentNames.size());
+					team.setStudents(studentNames);
+					//查老师
+					List<User> teachers = selectUserId(teamId,roleIdTeacher);//查老师userID
+					List<String> teachersName = new ArrayList<String>();//存老师名字
+					ListIterator<User> item = teachers.listIterator();
+					while(item.hasNext()){
+						User user = item.next();
+						userId = user.getId();
+						String name = selectName(userId);//查教师名字
+						teachersName.add(name);
+					}
+					team.setTeacherName(teachersName);
 					result.add(team);
 				}
 				return result;
@@ -233,5 +265,26 @@ public class TeamDaoImpl implements TeamDao {
 			}
 		});
 		return users;
+	}
+
+	public List<String> selectTeamName() {
+		List<String> teamname = new ArrayList<String>();
+		teamname = jdbcTemplate.query("select team_name from team", new ResultSetExtractor<List<String>>(){
+
+			public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<String> result = new ArrayList<String>();
+				while(rs.next()){
+					result.add(rs.getString(1));
+				}
+				return result;
+			}
+			
+		});
+		return teamname;
+	}
+
+	public int selectUsersRoleId(String userAccount) {
+		int roleId = jdbcTemplate.queryForObject("select role_id from user where user_account = ?", new Object[] {userAccount}, Integer.class);
+		return roleId;
 	}
 }

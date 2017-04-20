@@ -119,4 +119,14 @@ public class TeamServiceImpl implements TeamService {
 		return 0;
 	}
 
+	public List<String> getTeamName() {
+		// TODO Auto-generated method stub
+		return teamDaoImpl.selectTeamName();
+	}
+
+	public int getUsersRoleId(String userAccount) {
+		
+		return teamDaoImpl.selectUsersRoleId(userAccount);
+	}
+
 }

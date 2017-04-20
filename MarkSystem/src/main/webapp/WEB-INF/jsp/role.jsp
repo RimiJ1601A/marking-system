@@ -25,7 +25,7 @@
 
 <script type="text/javascript">
 	//分页的总页数,当前页和总的记录数
-	var yeshu;
+	var yeshu=${next};
 	var dangqianye=${dangqianye};
 	var total = ${total};
 	//职位查看的ID,名称,功能名称和创建日期
@@ -321,7 +321,7 @@
 				</div>
 				<div class="fenyewz zwgl" style="width: 800px;">
 					<label class="bjglfy" id="totalpage">
-						共:yeshu页&nbsp;当前:dangqianye页</label>
+						共:${next}页&nbsp;当前:${dangqianye}页</label>
 					<nav aria-label="Page navigation">
 					<ul class="pagination">
 						<li><button class="btn btn-info sxybt" onclick="syy()">上一页</button></li>

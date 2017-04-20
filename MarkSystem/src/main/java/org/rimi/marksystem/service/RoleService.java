@@ -23,4 +23,6 @@ public interface RoleService {
 	public void deleteRole(int id);
 	//根据ID查询功能名称
 	public String getRoleFunction(int id);
+	//获取职位名
+	public List<String> getRoleName();
 }

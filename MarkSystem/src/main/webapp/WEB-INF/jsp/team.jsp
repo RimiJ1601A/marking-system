@@ -305,7 +305,7 @@
 					</div>
 					<div class="fenyewz zwgl" style="width: 800px;">
 						<label class="bjglfy" id="totalpage">
-							共:yeshu页&nbsp;当前:dangqianye页</label>
+							共:${next}页&nbsp;当前:${dangqianye}页</label>
 						<nav aria-label="Page navigation">
 						<ul class="pagination">
 							<li><button onclick="syy()" class="btn btn-info sxybt">上一页</button></li>
@@ -511,15 +511,9 @@
 	<script type="text/javascript" src="/js/bjgl.js"></script>
 	<script type="text/javascript">
 		//分页的总页数,当前页和总的记录数
-		var yeshu;
-		var dangqianye = $
-		{
-			dangqianye
-		};
-		var total = $
-		{
-			total
-		};
+		var yeshu=${next};
+		var dangqianye = ${dangqianye};
+		var total = ${total};
 		//定义删除ID
 		var scId;
 		var teamId;//接收班级ID

@@ -167,5 +167,19 @@ public class RoleDaoImpl implements RoleDao {
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("update role set function_id = ? where role_name = ?", funcitonId,name);
 	}
+	public List<String> selectRoleName() {
+		List<String> roleName = jdbcTemplate.query("select role_name from role", new ResultSetExtractor<List<String>>(){
+
+			public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<String> result = new ArrayList<String>();
+				while(rs.next()){
+					result.add(rs.getString(1));
+				}
+				return result;
+			}
+			
+		});
+		return roleName;
+	}
 
 }

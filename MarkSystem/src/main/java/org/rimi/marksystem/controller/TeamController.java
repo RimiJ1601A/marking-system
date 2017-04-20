@@ -60,18 +60,24 @@ public class TeamController {
 	//增加
 	@RequestMapping(value="/teamadd",method=RequestMethod.GET)
 	public String teamAdd(@RequestParam("teamName")String name,Model model){
+		//判断是否存在此班级名称
+		boolean exits = false;
+		List<String> teamName = teamServiceImpl.getTeamName();
+		if(teamName.contains(name)){
+			exits = true;
+		}
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String sj = sdf.format(date);
 		Team team = new Team();
 		team.setTeamName(name);
 		team.setBuildTime(sj);
-		if(name == null || name.isEmpty()){
+		if(name == null || name.isEmpty() || exits == true){
 			return "redirect:/team";
 		}else{
 			teamServiceImpl.addTeam(team);
+			return "redirect:/team";
 		}
-		return "redirect:/team";
 	}
 	//修改
 	@RequestMapping(value="/team_modify",method=RequestMethod.GET)
@@ -125,16 +131,22 @@ public class TeamController {
 	public String addstu(@RequestParam("teamId")int teamId,@RequestParam("userAccount")String userAccount){
 		int userId = teamServiceImpl.getUserId(userAccount);
 		int roleId = teamServiceImpl.getRoleId("学生");
+		int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
 		//插入学生到班级
-		teamServiceImpl.addtTeam(userId, roleId, teamId);
-		return "redirect:/team";
+		if(usersRoleId == roleId){
+			teamServiceImpl.addtTeam(userId, roleId, teamId);
+		}
+		return "redirect:/team";			
 	}
 	//删除学生
 	@RequestMapping(value="/deletestu",method=RequestMethod.GET)
 	public String dropstu(@RequestParam("teamId")int teamId,@RequestParam("userAccount")String userAccount){
 		int userId = teamServiceImpl.getUserId(userAccount);
+		int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
 		int roleId = teamServiceImpl.getRoleId("学生");
-		teamServiceImpl.dropTeam(userId, roleId, teamId);
+		if(usersRoleId == roleId){
+			teamServiceImpl.dropTeam(userId, roleId, teamId);
+		}
 		return "redirect:/team";
 	}
 	//添加教师
@@ -142,8 +154,11 @@ public class TeamController {
 	public String addteacher(@RequestParam("teamId")int teamId,@RequestParam("userAccount")String userAccount){
 		int userId = teamServiceImpl.getUserId(userAccount);
 		int roleId = teamServiceImpl.getRoleId("教师");
+		int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
 		//插入教师到班级
-		teamServiceImpl.addtTeam(userId, roleId, teamId);
+		if(usersRoleId == roleId){
+			teamServiceImpl.addtTeam(userId, roleId, teamId);			
+		}
 		return "redirect:/team";
 	}
 	//删除教师
@@ -151,7 +166,10 @@ public class TeamController {
 	public String dropteacher(@RequestParam("teamId")int teamId,@RequestParam("userAccount")String userAccount){
 		int userId = teamServiceImpl.getUserId(userAccount);
 		int roleId = teamServiceImpl.getRoleId("教师");
-		teamServiceImpl.dropTeam(userId, roleId, teamId);
+		int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
+		if(usersRoleId == roleId){
+			teamServiceImpl.dropTeam(userId, roleId, teamId);
+		}
 		return "redirect:/team";
 	}
 }
