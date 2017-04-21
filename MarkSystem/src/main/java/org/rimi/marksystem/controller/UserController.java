@@ -53,9 +53,19 @@ public class UserController {
 
 	@RequestMapping(value = "/user")
 	public String getUser(Model model, HttpServletRequest request) {
-		String obj = request.getParameter("page");
+		int totalPage;//总页数
+		String obj = request.getParameter("dangqianye");
+		//当前页
+		int dqy;
+		if(obj == null || obj.isEmpty()){
+			dqy = 1;
+		}else{
+			dqy = Integer.parseInt(obj);
+		}
+		model.addAttribute("dangqianye", dqy);
 		List<String> userAllnum = userServiceImpl.getAllUserAccount();
 		model.addAttribute("userAllnum", userAllnum.size());
+		totalPage = (userAllnum.size()+10-1)/10;
 		int page = 0;
 		if (obj != null) {
 			try {
@@ -71,6 +81,7 @@ public class UserController {
 		List<User> userlist = new ArrayList<User>();
 		userlist = userServiceImpl.getUsersByPage(page, account);
 		model.addAttribute("userlist", userlist);
+		model.addAttribute("totalPage", totalPage);
 		return "user";
 	}
 

@@ -1,25 +1,46 @@
 			$(function(){
-				//分页
-				var dqy="<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=team?dangqianye="+dangqianye+">"+dangqianye+"</a>";	
+				// 分页
+				var xsys = 6;// 页面显示多少页
+				var yuan;
+				var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=team?dangqianye="
+						+ dangqianye + ">" + dangqianye + "</a>";
 				$("#dqy").append(dqy);
-				for(var i=1;i<=yeshu;i++){
-					if(i<dangqianye){
-						var j = dangqianye-1;
-						var yuan="<a aria-controls='example1' data-dt-idx='"+j+"' tabindex='0' href=team?dangqianye="+i+">"+j+"</a>";
-						if(i<j){
-							yuan="";
+				for (var i = 1; i <= yeshu; i++) {
+					if (yeshu < xsys) {
+						if (i < dangqianye) {
+							yuan = "<a aria-controls='example1' data-dt-idx='" + i
+									+ "' tabindex='0' href=team?dangqianye=" + i + ">" + i
+									+ "</a>";
+							$("#qianmian").append(yuan);
 						}
-						$("#qianmian").append(yuan);
-					}
-					if(i>dangqianye){
-						var yuansu="<a aria-controls='example1' data-dt-idx='"+i+"' tabindex='0' href=team?dangqianye="+i+">"+i+"</a>";
-						if(i>5+dangqianye){
-							yuansu="";
+						if (i > dangqianye) {
+							var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
+									+ "' tabindex='0' href=team?dangqianye=" + i + ">" + i
+									+ "</a>";
+
+							$("#fyanniu").append(yuansu);
 						}
-						$("#fyanniu").append(yuansu);
-						
+					} else {
+						if (i < dangqianye) {
+							yuan = "<a aria-controls='example1' data-dt-idx='" + i
+									+ "' tabindex='0' href=team?dangqianye=" + i + ">" + i
+									+ "</a>";
+							if (i <=dangqianye-xsys) {
+								yuan = "";
+							}
+							$("#qianmian").append(yuan);
+						}
+						if (i > dangqianye) {
+							var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
+									+ "' tabindex='0' href=team?dangqianye=" + i + ">" + i
+									+ "</a>";
+							if (i > xsys) {
+								yuansu = "";
+							}
+							$("#fyanniu").append(yuansu);
+
+						}
 					}
-					//$("#totalpage").html("共:"+yeshu+"页&nbsp;当前第:"+dangqianye+"页");
 				}
 				//checkbox的选择
 				$("#glbjmc").change(function() { 
@@ -329,4 +350,9 @@
 					dangqianye = yeshu;
 				}
 				location.href="team?dangqianye="+dangqianye;
+			}
+			
+			//导出表格
+			function exportExel(){
+				location.href="team_export";
 			}
