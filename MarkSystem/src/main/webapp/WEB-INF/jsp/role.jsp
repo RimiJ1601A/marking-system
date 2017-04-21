@@ -325,7 +325,7 @@
                                                     <i class="fa fa-fw fa-refresh"></i>
                                                 </button>
                                                 
-                                                <button type="button" class="btn btn-info btn-flat" title="导出表格">
+                                                <button type="button" class="btn btn-info btn-flat" title="导出表格" onclick="exportExel()">
                                                     <i class="fa fa-fw fa-download"></i>
                                                 </button>
                                                 
