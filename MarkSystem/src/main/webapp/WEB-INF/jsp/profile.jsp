@@ -400,24 +400,26 @@
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="setinfo">
-                                    <form class="form-horizontal">
+                                    <form action="/updateUser" method="post" class="form-horizontal">
                                     
                                         <div class="form-group">
                                             <label for="inputName" class="col-sm-2 control-label">姓名</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputName" placeholder="修改你的姓名...">
+                                                <input type="text" class="form-control" name="userName" placeholder="修改你的姓名...">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputAge" class="col-sm-2 control-label">年龄</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputAge" placeholder="修改你的年龄...">
+                                                <input type="text" class="form-control" name="age" placeholder="修改你的年龄...">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputSex" class="col-sm-2 control-label">性别</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputSex" placeholder="修改你的性别...">
+                                              <!--   <input type="text" class="form-control" id="inputSex" placeholder="修改你的性别..."> -->
+	                                            <label><input name="sex" type="radio" value="1" />男</label> 
+												<label><input name="sex" type="radio" value="2" />女</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -562,5 +564,6 @@
 				});
 			}, type);
 		});
+
 	</script>
 </html>

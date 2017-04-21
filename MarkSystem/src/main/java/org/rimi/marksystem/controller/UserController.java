@@ -1,18 +1,23 @@
 package org.rimi.marksystem.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.UserService;
 import org.rimi.marksystem.util.CommonMap;
+import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -94,12 +99,30 @@ public class UserController {
 	}
 
 	@RequestMapping("/updateUser")
-	public String updateUser(@RequestParam("user_name") String user_name, @RequestParam("age") String age,
-			@RequestParam("sex") String sex, @RequestParam("user_account") String user_account,
-			HttpServletRequest request, Model model) {
-		userServiceImpl.updateUser(user_account, null);
-
-		return "reirect:/index";
+	public String updateUser(@RequestParam("userName") String userName, @RequestParam("age") String age,
+			@RequestParam("sex") String sex,HttpServletRequest request, Model model) {
+		String msg = "";
+		User user = (User)request.getSession().getAttribute("user");
+		User updaUser = new User();
+		updaUser.setUserName(userName);
+		updaUser.setSex(Sex.getSexByValue(Integer.valueOf(sex)));
+		int userAge = 0;
+		try {
+			userAge = Integer.valueOf(age);
+		} catch (Exception e) {
+			// TODO: handle exception
+			msg="请输入正确的年龄";
+			model.addAttribute("msg",msg);
+			return "redirect:/profile";
+		}		
+		updaUser.setAge(Integer.valueOf(userAge));
+		userServiceImpl.updateUser(user.getUserAccount(), updaUser);
+		user.setUserName(userName);
+		user.setAge(userAge);
+		user.setSex(Sex.getSexByValue(Integer.valueOf(sex)));
+		msg="修改成功";
+		model.addAttribute("msg",msg);
+		return "redirect:/profile";
 	}
 
 	@RequestMapping("/updatePassword")
