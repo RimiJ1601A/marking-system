@@ -19,12 +19,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
-	
-	
-	@RequestMapping("/index")
-	public String index(User user,Model model,HttpServletRequest request){
 
-		return "index";
+	@RequestMapping("/index")
+	public String index(User user, Model model, HttpServletRequest request) {
+
+		user = (User) request.getSession().getAttribute("user");
+		if (user.getRoleId() == 1) {
+			return "index-admin";
+		} else if (user.getRoleId() == 2) {
+			return "index-teacher";
+		} else if (user.getRoleId() == 3) {
+			return "index-student";
+		} else {
+			return "index";
+		}
+
 	}
-	
+	@RequestMapping("/profile")
+	public String profileView() {
+
+		return "profile";
+	}
+
 }

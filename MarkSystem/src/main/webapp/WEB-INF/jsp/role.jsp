@@ -422,7 +422,7 @@
 													<th rowspan="1" colspan="1">职位名称</th>
 													<th rowspan="1" colspan="1">功能名称</th>
 													<th rowspan="1" colspan="1">创建时间</th>
-													<th rowspan="1" colspan="1" stylt="text-align:center;">操作</th>
+													<th rowspan="1" colspan="1" style="text-align:center;">操作</th>
 												</tr>
 											</tfoot>
 										</table>
