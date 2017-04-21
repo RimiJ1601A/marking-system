@@ -1,5 +1,6 @@
 package org.rimi.marksystem.controller;
 
+import org.rimi.marksystem.util.LoggingAspect;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,12 +9,22 @@ public class TestController {
 
 	
 	@RequestMapping("/test")
-	public String test(){
+	public String test(){	
+		try {
+			int[] a = new int[10];
+			a[11]=89;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+
+		/*	throw new BusinessException("30");*/
+		};
 		return "test";
 	}
 	
-	@RequestMapping("/role2")
-	public String test1(){
-		return "role2";
+	@RequestMapping("*")
+	public String noFound(){
+		
+		return "noFound";
 	}
 }

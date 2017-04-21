@@ -22,7 +22,12 @@ public interface RoleService {
 	//删除(根据ID删除)
 	public void deleteRole(int id);
 	//根据ID查询功能名称
-	public String getRoleFunction(int id);
+//	public String getRoleFunction(int id);
+	public String getRoleFunction(int functionId);
 	//获取职位名
 	public List<String> getRoleName();
+	//根据id获取职位名称
+	public String getRoleNameByRoleId(int roleId);
+	//根据roleId获取所有function名字
+	public String getFunctionNameByRoleId(int roleId);
 }

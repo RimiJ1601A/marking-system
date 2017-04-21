@@ -35,11 +35,11 @@ public class TeamController {
 			if(start<0){
 				start =0;
 			}
-			if(start>totalPage){
+			if(start>=totalPage){
 				start = totalPage-1;
 			}
 		}
-		List<Team> team = teamServiceImpl.getTeam(start, 10);
+		List<Team> team = teamServiceImpl.getTeam(start*10, 10);
 		model.addAttribute("team", team);
 		model.addAttribute("dangqianye", start+1);
 		model.addAttribute("next", totalPage);
@@ -54,7 +54,7 @@ public class TeamController {
 		model.addAttribute("team", team);
 		model.addAttribute("total", team.size());
 		model.addAttribute("dangqianye", 1);
-		model.addAttribute("next", 2);
+		model.addAttribute("next", 1);
 		return "team";
 	}
 	//增加

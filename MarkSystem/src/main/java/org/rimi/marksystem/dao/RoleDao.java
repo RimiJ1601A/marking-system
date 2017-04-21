@@ -25,4 +25,9 @@ public interface RoleDao {
 	public String selectRoleFunction(int id);
 	//获取职位名
 	public List<String> selectRoleName();
+	//根据ID查找职位名称
+	public String selectRoleNameByRoleId(int id);
+	
+	//根据roleId查找function名称
+	public String selectFunctionNameByRoleId(int roleId);
 }

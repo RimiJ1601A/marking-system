@@ -45,15 +45,6 @@ public class UserController {
 		userlist = userServiceImpl.getAllUser();
 		return "user";
 	}
-
-//	@RequestMapping("/requestQuiz")
-//	@ResponseBody
-//	public void requestQuiz(@RequestBody List<Quiz> quizs){
-//		
-//		System.out.println(quizs.size());
-//		System.out.println("_______________");
-//	}
-	
 	
 	
 	@RequestMapping(value="photo")
@@ -61,4 +52,9 @@ public class UserController {
 		return "headphoto";
 	}
 	
+	@RequestMapping("/signOut")
+	public String signOut(HttpServletRequest request){
+		request.getSession().removeAttribute("user");
+		return "redirect:/loginPage";
+	}
 }

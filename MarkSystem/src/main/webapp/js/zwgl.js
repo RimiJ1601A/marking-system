@@ -1,16 +1,28 @@
 	
 	$(function(){
 		//分页
-		
-			for(var i=1;i<=yeshu;i++){
-					var yuansu="<a href='role?dangqianye="+i+"'>"+i+"</a>";
-							
-					if(yeshu>10){
-						yuansu="";
-					}
-					$("#fyanniu").append(yuansu);
-					$("#totalpage").html("共:"+yeshu+"页&nbsp;当前第:"+dangqianye+"页");
+		var dqy="<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=role?dangqianye="+dangqianye+">"+dangqianye+"</a>";	
+		$("#dqy").append(dqy);
+		for(var i=1;i<=yeshu;i++){
+			if(i<dangqianye){
+				var j = dangqianye-1;
+				var yuan="<a aria-controls='example1' data-dt-idx='"+j+"' tabindex='0' href=role?dangqianye="+i+">"+j+"</a>";
+				if(i<j){
+					yuan="";
 				}
+				$("#qianmian").append(yuan);
+			}
+			if(i>dangqianye){
+				var yuansu="<a aria-controls='example1' data-dt-idx='"+i+"' tabindex='0' href=role?dangqianye="+i+">"+i+"</a>";
+				if(i>5+dangqianye){
+					yuansu="";
+				}
+				$("#fyanniu").append(yuansu);
+				
+			}
+			//$("#totalpage").html("共:"+yeshu+"页&nbsp;当前第:"+dangqianye+"页");
+		}
+	
 			
 				//checkbox的选择
 				$("#gnid").change(function() { 

@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>Rimiedu_MSystem | admi</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -21,82 +23,8 @@
   -->
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
-<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
-<script type="text/javascript">
-	function add() {
-		var a = [ {
-			"quizTitle" : "________点击编辑内容________",
-			"quizContent" : [ {
-				"content" : "A",
-				"quizCore" : "90"
-			}, {
-				"content" : "B",
-				"quizCore" : "80"
-			}, {
-				"content" : "C",
-				"quizCore" : "70"
-			} ]
-		}, {
-			"quizTitle" : "__________    ༭  Ŀ    __________",
-			"quizContent" : [ {
-				"content" : "A",
-				"quizCore" : "90"
-			}, {
-				"content" : "B",
-				"quizCore" : "80"
-			}, {
-				"content" : "C",
-				"quizCore" : "70"
-			} ]
-		}, {
-			"quizTitle" : "__________    ༭  Ŀ    __________",
-			"quizContent" : [ {
-				"content" : "A",
-				"quizCore" : "90"
-			}, {
-				"content" : "B",
-				"quizCore" : "80"
-			}, {
-				"content" : "C",
-				"quizCore" : "70"
-			} ]
-		}, {
-			"quizTitle" : "__________    ༭  Ŀ    __________",
-			"quizContent" : [ {
-				"content" : "A",
-				"quizCore" : "90"
-			}, {
-				"content" : "B",
-				"quizCore" : "80"
-			}, {
-				"content" : "C",
-				"quizCore" : "70"
-			} ]
-		}, {
-			"quizTitle" : "__________    ༭  Ŀ    __________",
-			"quizContent" : [ {
-				"content" : "A",
-				"quizCore" : "90"
-			}, {
-				"content" : "B",
-				"quizCore" : "80"
-			}, {
-				"content" : "C",
-				"quizCore" : "70"
-			} ]
-		} ];
-		$.ajax({
-			type : "POST",
-			url : "/requestQuiz",
-			dataType : "json",
-			contentType : "application/json",
-			data : JSON.stringify(a),
-			success : function(data) {
 
-			}
-		});
-	}
-</script>
+
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -105,7 +33,7 @@
 		<header class="main-header"> <!-- Logo --> <a href="#"
 			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
 			class="logo-mini"><b>R</b>I<b>m</b>I</span> <!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><img src="images/Rimilogo.png" alt=""></span>
+			<span class="logo-lg"><img src="/images/Rimilogo.png" alt=""></span>
 		</a> <!-- Header Navbar --> <nav class="navbar navbar-static-top"
 			role="navigation"> <!-- Sidebar toggle button--> <a href="#"
 			class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span
@@ -288,7 +216,8 @@
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="/index"><i class="fa fa-home"></i> <span>个人主页</span></a></li>
+			<li class="active"><a href="/index"><i class="fa fa-home"></i>
+					<span>个人主页</span></a></li>
 			<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
 			<li class="treeview"><a href="#"><i class="fa fa-user"></i>
 					<span>用户管理</span> <span class="pull-right-container"> <i
@@ -312,24 +241,179 @@
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-		
-		
-		
-		
+   <section class="content-header">
+                <h1>
+        欢迎来到个人首页
+        <!-- 可以放上次登录时间 -->
+        <small>新闻、个人看板</small>
+      </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+                    <li class="active">个人首页</li>
+                </ol>
+            </section>
+            <section>
+                <div class="box box-solid" id="news">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">新闻</h3>
+                       
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="http://placehold.it/1920x550/39CCCC/ffffff&text=学校公告" alt="First slide">
+                                    <div class="carousel-caption">
+                                        First Slide
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="http://placehold.it/1920x550/3c8dbc/ffffff&text=明星教师" alt="Second slide">
+                                    <div class="carousel-caption">
+                                        Second Slide
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img src="http://placehold.it/1920x550/f39c12/ffffff&text=优秀学员" alt="Third slide">
+                                    <div class="carousel-caption">
+                                        Third Slide
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="fa fa-angle-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="fa fa-angle-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </section>
+            <!-- Main content -->
+            <!-- 这里放个人看板信息 -->
+            <section class="dashboard ">
+               
+                    <!-- 统计图 -->
+                    
+                <div class="row">
+                    <div class="col-lg-7 ">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">个人总览</h3>
+                                
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="display: block;">
+                                <p class="text-center">
+                                    <strong>学习状况: 1 Jan, 2016 - 30 Jul, 2016</strong>
+                                </p>
+                                <div class="chart">
+                                    <!-- 被评次数 Chart Canvas -->
+                                    <!-- 显示从系统启用到查询时的统计数据 -->
+                                    <canvas id="studentChart" style="height: 220px; width: 1071px;" height="220" width="1071"></canvas>
+                                </div>
+                                <!-- /.chart-responsive -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
+
+
+
+                    <!-- 事件提醒盒 -->
+                    <div class="col-lg-5">
+                       
+                    <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">最近事件</h3>
+
+              
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <ul class="products-list product-list-in-box">
+                <li class="item">
+                  <div class="product-img">
+                    <img src="/images/default-50x50.gif" alt="Product Image">
+                  </div>
+                  <div class="product-info">
+                    <a href="javascript:void(0)" class="product-title">Teacher Luo
+                      <span class="label label-warning pull-right">2016-11</span></a>
+                        <span class="product-description">
+                          需要你对Teacher Luo进行教学质量评分.
+                        </span>
+                  </div>
+                </li>
+                <!-- /.item -->
+                <li class="item">
+                  <div class="product-img">
+                    <img src="/images/default-50x50.gif" alt="Product Image">
+                  </div>
+                  <div class="product-info">
+                    <a href="javascript:void(0)" class="product-title">Teacher Shang
+                      <span class="label label-info pull-right">2016-10</span></a>
+                        <span class="product-description">
+                          需要你对Teacher Shang进行教学质量评分.
+                        </span>
+                  </div>
+                </li>
+                <!-- /.item -->
+                <li class="item">
+                  <div class="product-img">
+                    <img src="/images/default-50x50.gif" alt="Product Image">
+                  </div>
+                  <div class="product-info">
+                    <a href="javascript:void(0)" class="product-title">Teacher Li <span class="label label-danger pull-right">2017-04</span></a>
+                        <span class="product-description">
+                          需要你对Teacher Li进行教学质量评分.
+                        </span>
+                  </div>
+                </li>
+                
+              </ul>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-center">
+              <a href="javascript:void(0)" class="uppercase">查看所有事件</a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+                </div>
+                </div>
+
+
+         
+            
+
+
+
+            </section>
+
+
 		</div>
 		<!-- /.content-wrapper -->
 
 		<!-- Main Footer -->
-		<footer class="main-footer"> <!-- Default to the left --> <strong>Copyright
-			&copy; 2017 <a href="#">Rimiedu</a>.
+		<footer class="main-footer"> <!-- Default to the left -->
+		<div class="pull-right hidden-xs">
+			<b>Version</b> 3.1.0
+		</div>
+		<strong>Copyright &copy; 2017 <a href="#">Rimiedu</a>.
 		</strong> All rights reserved. </footer>
 	</div>
 	<!-- ./wrapper -->
 
 	<!-- REQUIRED JS SCRIPTS -->
 
-	<!-- jQuery 2.2.3 -->
-	<script src="/js/jquery-2.2.3.min.js"></script>
+	<!-- jQuery 3.1.0 -->
+	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
@@ -340,99 +424,6 @@
 
 	<!-- Chart js -->
 	<script src="/js/Chart.min.js"></script>
-	<%-- 	<script type="text/javascript">
-	 $(function () {
-		    /* ChartJS
-		     * -------
-		     * Here we will create a few charts using ChartJS
-		     */
-
-		    //--------------
-		    //- AREA CHART -
-		    //--------------
-
-		    // Get context with jQuery - using jQuery's .get() method.
-		    var salesChartCanvas = $("#salesChart").get(0).getContext("2d");
-		    // This will get the first returned node in the jQuery collection.
-		    var salesChart = new Chart(salesChartCanvas);
-
-		    var salesChartData = {
-		      labels: ["January", "February", "March", "April", "May", "June", "July"],
-		      datasets: [
-		        {
-		          label: "Electronics",
-		          fillColor: "rgba(210, 214, 222, 1)",
-		          strokeColor: "rgba(210, 214, 222, 1)",
-		          pointColor: "rgba(210, 214, 222, 1)",
-		          pointStrokeColor: "#c1c7d1",
-		          pointHighlightFill: "#fff",
-		          pointHighlightStroke: "rgba(220,220,220,1)",
-		          data: [65, 59, 80, 81, 56, 55, 40]
-		        },
-		        {
-		          label: "Digital Goods",
-		          fillColor: "rgba(60,141,188,0.9)",
-		          strokeColor: "rgba(60,141,188,0.8)",
-		          pointColor: "#3b8bba",
-		          pointStrokeColor: "rgba(60,141,188,1)",
-		          pointHighlightFill: "#fff",
-		          pointHighlightStroke: "rgba(60,141,188,1)",
-		          data: [28, 48, 40, 19, 86, 27, 90]
-		        }
-		      ]
-		    };
-
-		    var salesChartOptions = {
-		      //Boolean - If we should show the scale at all
-		      showScale: true,
-		      //Boolean - Whether grid lines are shown across the chart
-		      scaleShowGridLines: false,
-		      //String - Colour of the grid lines
-		      scaleGridLineColor: "rgba(0,0,0,.05)",
-		      //Number - Width of the grid lines
-		      scaleGridLineWidth: 1,
-		      //Boolean - Whether to show horizontal lines (except X axis)
-		      scaleShowHorizontalLines: true,
-		      //Boolean - Whether to show vertical lines (except Y axis)
-		      scaleShowVerticalLines: true,
-		      //Boolean - Whether the line is curved between points
-		      bezierCurve: true,
-		      //Number - Tension of the bezier curve between points
-		      bezierCurveTension: 0.3,
-		      //Boolean - Whether to show a dot for each point
-		      pointDot: false,
-		      //Number - Radius of each point dot in pixels
-		      pointDotRadius: 4,
-		      //Number - Pixel width of point dot stroke
-		      pointDotStrokeWidth: 1,
-		      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-		      pointHitDetectionRadius: 20,
-		      //Boolean - Whether to show a stroke for datasets
-		      datasetStroke: true,
-		      //Number - Pixel width of dataset stroke
-		      datasetStrokeWidth: 2,
-		      //Boolean - Whether to fill the dataset with a color
-		      datasetFill: true,
-		      //String - A legend template
-		      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-		      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-		      maintainAspectRatio: true,
-		      //Boolean - whether to make the chart responsive to window resizing
-		      responsive: true
-		    };
-
-		    //Create the line chart
-		    salesChart.Line(salesChartData, salesChartOptions);
-
-		  
-		  });
-	</script>
-	<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
-
-</body>
-
- --%>
+	<!-- adminchartjs -->
+	<script src="/js/studentchart.js"></script>
 </html>

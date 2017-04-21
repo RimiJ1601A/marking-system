@@ -36,11 +36,11 @@ public class RoleController {
 			if(start<0){
 				start =0;
 			}
-			if(start>totalPage){
+			if(start>=totalPage){
 				start = totalPage-1;
 			}
 		}
-		List<Role> rolePage = roleServiceImpl.getRolePage(start, 10);
+		List<Role> rolePage = roleServiceImpl.getRolePage(start*10, 10);
 		model.addAttribute("rolePage", rolePage);
 		model.addAttribute("dangqianye", start+1);
 		model.addAttribute("next", totalPage);
@@ -53,7 +53,7 @@ public class RoleController {
 		model.addAttribute("total", role.size());
 		model.addAttribute("dangqianye", 1);
 		model.addAttribute("rolePage",role);
-		model.addAttribute("next", 2);
+		model.addAttribute("next", 1);
 		return "role";
 	}
 	//增加职位
