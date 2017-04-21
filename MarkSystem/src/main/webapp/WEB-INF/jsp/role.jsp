@@ -369,7 +369,6 @@
                                                                 items="${it.function}">
                                                                     ${fun}
                                                                 </c:forEach></td>
-<<<<<<< HEAD
 														<td class="xsrq">${it.buildTime }</td>
 														<td style="vertical-align: middle;text-align: center;"><span
 															class="glyphicon glyphicon-picture btsize-wz"
@@ -383,47 +382,32 @@
 													</tr>
 												</c:forEach>
 											</tbody>
-											<tfoot>
-												<tr>
-													<th rowspan="1" colspan="1">职位名称</th>
-													<th rowspan="1" colspan="1">功能名称</th>
-													<th rowspan="1" colspan="1">创建时间</th>
-													<th rowspan="1" colspan="1" style="text-align:center;">操作</th>
-												</tr>
-											</tfoot>
+											
 										</table>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-5">
-										<div class="dataTables_info" id="example1_info" role="status"
-											aria-live="polite">Showing 1 to 10 of 57 entries</div>
-									</div>
-									<div class="col-sm-7">
-										<div class="dataTables_paginate paging_simple_numbers"
-											id="example1_paginate">
-											<ul class="pagination">
-												<li class="paginate_button previous disabled"
-													id="example1_previous"><a href="#"
-													aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li>
-												<li class="paginate_button active"><a href="#"
-													aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
-												<li class="paginate_button "><a href="#"
-													aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li>
-												<li class="paginate_button "><a href="#"
-													aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li>
-												<li class="paginate_button "><a href="#"
-													aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
-												<li class="paginate_button "><a href="#"
-													aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
-												<li class="paginate_button "><a href="#"
-													aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li>
-												<li class="paginate_button next" id="example1_next"><a
-													href="#" aria-controls="example1" data-dt-idx="7"
-													tabindex="0">Next</a></li>
-											</ul>
-										</div>
-									</div>
+                                        <div class="dataTables_info" id="example1_info" role="status"
+                                            aria-live="polite">第${dangqianye}页,共${next}页</div>
+                                    </div>
+							<div class="col-sm-7">
+                                        <div class="dataTables_paginate paging_simple_numbers"
+                                            id="example1_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous"
+                                                    id="example1_previous"><a onclick="syy()"
+                                                    aria-controls="example1" data-dt-idx="0" tabindex="0">上一页</a></li>
+                                               <li class="paginate_button " id="qianmian">
+                                               <li class="paginate_button active" id="dqy">
+                                               <li class="paginate_button " id="fyanniu">
+                                                    </li>
+                                                <li class="paginate_button next" id="example1_next"><a
+                                                    onclick="xyy()" aria-controls="example1" data-dt-idx="7"
+                                                    tabindex="0">下一页</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
 								</div>
 							</div>
 						</div>

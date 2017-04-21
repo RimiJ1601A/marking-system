@@ -383,53 +383,26 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-5">
-										<div class="dataTables_info" id="example1_info" role="status"
-											aria-live="polite">Showing 1 to 10 of 57 entries</div>
-									</div>
-									<div class="col-sm-7">
-										<div class="dataTables_paginate paging_simple_numbers"
-											id="example1_paginate">
-											<ul class="pagination">
-												<c:set var="usernum" value="11" />
-
-												<li class="previous disabled" id="example1_previous"><a
-													href="#" aria-controls="example1" data-dt-idx="0"
-													tabindex="0">Previous</a></li>
-												<c:if test="${usernum> 0 }">
-													<li class="paginate_button active"><a
-														href="/user?page=1" aria-controls="example1"
-														data-dt-idx="1" tabindex="0">1</a></li>
-												</c:if>
-												<c:if test="${usernum> 10 }">
-													<li class="paginate_button"><a href="#"
-														aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li>
-												</c:if>
-
-												<c:if test="${usernum> 20 }">
-													<li class="paginate_button "><a href="#"
-														aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li>
-												</c:if>
-   
-												<c:if test="${usernum> 30 }">
-													<li class="paginate_button "><a href="#"
-														aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
-												</c:if>
-
-												<c:if test="${usernum> 40 }">
-													<li class="paginate_button "><a href="#"
-														aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
-												</c:if>
-
-												<c:if test="${usernum> 50 }">
-													<li class="paginate_button " value="5"><a href="#"
-														aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li>
-												</c:if>
-
-												<li class="next" id="example1_next"><a href="#"
-													aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a></li>
-											</ul>
-										</div>
-									</div>
+                                        <div class="dataTables_info" id="example1_info" role="status"
+                                            aria-live="polite">第${dangqianye}页,共${totalPage}页</div>
+                                    </div>
+								<div class="col-sm-7">
+                                        <div class="dataTables_paginate paging_simple_numbers"
+                                            id="example1_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous"
+                                                    id="example1_previous"><a onclick="syy()"
+                                                    aria-controls="example1" data-dt-idx="0" tabindex="0">上一页</a></li>
+                                               <li class="paginate_button " id="qianmian">
+                                               <li class="paginate_button active" id="dqy">
+                                               <li class="paginate_button " id="fyanniu">
+                                                    </li>
+                                                <li class="paginate_button next" id="example1_next"><a
+                                                    onclick="xyy()" aria-controls="example1" data-dt-idx="7"
+                                                    tabindex="0">下一页</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
 								</div>
 							</div>
 						</div>
@@ -453,15 +426,10 @@
 
 	<script src="/js/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript">
-		var num = $
-		{
-			userAllnum
-		};
-		for (var i = 1; i <= num; i++) {
-			var newLi = "<li class='paginate_button'><a href="+i+" aria-controls='example1' data-dt-idx="+i+" tabindex='0'>"
-					+ i + "</a></li>";
-			$(".pagination").append(newLi);
-		}
+		//分页的总页数,当前页和总的记录数
+	    var yeshu=${totalPage};
+	    var dangqianye=${dangqianye};
+		
 	</script>
 	<script type="text/javascript" src="/js/marke.js"></script>
 	<script type="text/javascript" src="/js/buttons.js"></script>
