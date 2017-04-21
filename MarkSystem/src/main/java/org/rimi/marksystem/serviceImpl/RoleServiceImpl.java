@@ -15,10 +15,8 @@ public class RoleServiceImpl implements RoleService {
 	
 	//查询所有职位
 	public List<Role> getRoleAll() {
-		// TODO Auto-generated method stub
 		return roleDaoImpl.selectRoleAll();
 	}
-
 	//查询总数
 	public int getRoleCount() {
 		// TODO Auto-generated method stub
@@ -56,7 +54,12 @@ public class RoleServiceImpl implements RoleService {
 	//删除
 	public void deleteRole(int id) {
 		// TODO Auto-generated method stub
-		roleDaoImpl.dropRole(id);
+		try {
+			roleDaoImpl.dropRole(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 
 	//根据ID查询功能名称
@@ -75,6 +78,10 @@ public class RoleServiceImpl implements RoleService {
 			
 			return roleDaoImpl.selectRole(start,count,name);
 		}
+	}
+	public List<String> getRoleName() {
+		
+		return roleDaoImpl.selectRoleName();
 	}
 
 	public String getRoleNameByRoleId(int id) {

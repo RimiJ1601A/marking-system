@@ -15,6 +15,8 @@ public interface TeamDao {
 	public List<Team> selectTeam(int start,int count);
 	//根据班级名称搜索
 	public List<Team> selectTeam(int start,int count,String name);
+	//获得班级名称
+	public List<String> selectTeamName();
 	//查询总数
 	public int selectTeam();
 	//增加班级
@@ -37,4 +39,6 @@ public interface TeamDao {
 	public List<User> selectUserId(int teamId,int roleId);
 	//根据用户ID获得学生或教师姓名
 	public String selectName(int userId);
+	//根据账号获得roleID
+	public int selectUsersRoleId(String userAccount);
 }

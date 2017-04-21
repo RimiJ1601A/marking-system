@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,18 +15,14 @@
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.css">
-<link type="text/css" rel="stylesheet" href="/css/common.css">
-<link type="text/css" rel="stylesheet" href="/css/marke.css">
-<link type="text/css" rel="stylesheet" href="/css/zhiweiguanli.css">
-<link type="text/css" rel="stylesheet" href="/css/bjgl.css">
 <link type="text/css" rel="stylesheet" href="/css/dialog.css">
 <script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
-
+<link rel="stylesheet" href="/css/zhiweiguanli.css">
+<link rel="stylesheet" href="/css/bjgl.css">
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
 	<div class="wrapper">
-		<!-- Main Header -->
 		<!-- Main Header -->
 		<header class="main-header"> <!-- Logo --> <a href="#"
 			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
@@ -167,7 +162,7 @@
 								<a href="#" class="btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
-								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
+								<a href="#" class="btn btn-default btn-flat">Sign out</a>
 							</div>
 						</li>
 					</ul>
@@ -182,7 +177,8 @@
 		</div>
 		</nav> </header>
 
-		<!-- Left side column. contains the logo and sidebar -->
+
+
 		<aside class="main-sidebar"> <!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar"> <!-- Sidebar user panel (optional) -->
 		<div class="user-panel">
@@ -191,11 +187,10 @@
 					alt="User Image">
 			</div>
 			<div class="info">
-				<p>${sessionScope.user.userName}</p>
+				<p>User Name</p>
 				<!-- Status -->
 				<!-- 通过text-xxx来个更改颜色 -->
-				<a href="#"><i class="fa fa-circle text-success"></i>
-					${sessionScope.roleName}</a>
+				<a href="#"><i class="fa fa-circle text-success"></i> User Role</a>
 			</div>
 		</div>
 
@@ -215,304 +210,492 @@
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="/index"><i class="fa fa-home"></i>
-					<span>个人主页</span></a></li>
-
-			<c:set var="functions" value="${sessionScope.functions}" />
-			<c:if test="${fn:contains(functions,'职位')}">
-				<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
-			</c:if>
-
-			<c:if
-				test="${fn:contains(functions,'用户') || fn:contains(functions,'班级')}">
-				<li class="treeview"><a href="#"><i class="fa fa-user"></i>
-						<span>用户管理</span> <span class="pull-right-container"> <i
-							class="fa fa-angle-left pull-right"></i>
-					</span> </a>
-
-					<ul class="treeview-menu">
-						<c:if test="${fn:contains(functions,'用户')}">
-							<li><a href="#">人员信息</a></li>
-						</c:if>
-						<c:if test="${fn:contains(functions,'班级')}">
-							<li><a href="/team">班级信息</a></li>
-						</c:if>
-					</ul></li>
-			</c:if>
-
+			<li class="active"><a href="/index"><i class="fa fa-home"></i> <span>个人主页</span></a></li>
+			<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
+			<li class="treeview"><a href="#"><i class="fa fa-user"></i>
+					<span>用户管理</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span> </a>
+				<ul class="treeview-menu">
+					<li><a href="#">人员信息</a></li>
+					<li><a href="/team">班级信息</a></li>
+				</ul></li>
 			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
 				</span> </a>
 				<ul class="treeview-menu">
-					<c:if test="${fn:contains(functions,'创建评分表')}">
-						<li><a href="#">创建评分表</a></li>
-					</c:if>
+					<li><a href="#">创建评分表</a></li>
 					<li><a href="#">考评</a></li>
 				</ul></li>
-
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
+<div class="content-wrapper">
 
+            <section class="content-header">
+            <h1>
+                班级管理
+                <!-- 可以放上次登录时间 -->
+                <small>编辑班级</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+                <li class="active">职位管理</li>
+            </ol>
+            </section>
+            <br> <br>
+            <!-- Main content -->
+            <section class="dashboard ">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-solid box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">班级管理列表</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div id="example1_wrapper"
+                                class="dataTables_wrapper form-inline dt-bootstrap">
+                                <div class="row">
+                                    <!-- 查询班级 -->
+                                    <div id="example1_filter" class="dataTables_filter">
+                                        <div class="col-sm-6">
+                                            <div class="input-group margin">
+                                                <input type="text" class="form-control"
+                                                    placeholder="请输入班级名称..." aria-controls="example1"
+                                                    id="sousuo"> <span class="input-group-btn">
+                                                    <button onclick="sousuo()" type="button"
+                                                        class="btn btn-info btn-flat">查询班级
+                                                </span>
+                                                </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!-- 表单功能按钮：增加、刷新、下载、查看选项 -->
+                                        <div class="col-sm-6"
+                                            style="text-align: right; padding-top: 10px">
+                                            <div class="btn-group">
+                                            <div class="btn-group">
+                                                    <button type="button" 
+                                                        class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="管理图表">
+                                                        <i class="fa fa-fw fa-list-ul"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu " >
+                                                      <li>
+															
+													<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+															id="glbjmc">&nbsp;班级名称
+														</li>
+														<li>
+															<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+															id="glxsrs">&nbsp;学生人数
+														</li>
+														<li>
+															<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+															id="glxsxm">&nbsp;学生姓名
+														</li>
+														<li>
+															<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+															id="gljsxm">&nbsp;教师姓名
+														</li>
+														<li>
+															<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+															id="glxsrq">&nbsp;创建日期
+														</li>
+                                                    </ul>
+                                                </div>
+                                                <button type="button" class="btn btn-info " title="添加职位"
+                                                    onclick="tjzw()">
+                                                    <i class="fa fa-fw fa-plus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-info " title="刷新"
+                                                    onclick="shuaxin()">
+                                                    <i class="fa fa-fw fa-refresh"></i>
+                                                </button>
+                                                
+                                                <button type="button" class="btn btn-info btn-flat" title="导出表格">
+                                                    <i class="fa fa-fw fa-download"></i>
+                                                </button>
+                                                
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1"
+                                            class="table table-bordered table-striped dataTable"
+                                            role="grid" aria-describedby="example1_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc bjmc" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-sort="ascending"
+                                                        aria-label="Rendering engine: activate to sort column descending"
+                                                        style="width: 100px;">班级名称</th>
+                                                    <th class="sorting xsrs" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending"
+                                                        style="width: 70px;">学生人数</th>
+                                                    <th class="sorting xsxm" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending"
+                                                        style="width: 70px;">学生姓名</th>
+                                                     <th class="sorting jsxm" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending"
+                                                        style="width: 70px;">教师姓名</th>
+                                                    <th class="sorting xsrq" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending"
+                                                        style="width: 72px;">创建日期</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Engine version: activate to sort column ascending"
+                                                        style="width: 46px;text-align:center;">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                             
+                                                <c:forEach var="it" items="${team }">
+													<tr class="active">
+														<td class="bjmc">${it.teamName}</td>
+														<td class="xsrs">${it.studentCount}</td>
+														<td class="xsxm"><c:forEach var="item"
+																items="${it.students}">
+													${item}
+													
+												</c:forEach></td>
+														<td class="jsxm"><c:forEach var="teac"
+																items="${it.teacherName}">
+													${teac}
+													
+												</c:forEach></td>
+														<td class="xsrq">${it.buildTime}</td>
+                                                        <td style="vertical-align: middle;text-align: center;"><span
+                                                            class="glyphicon glyphicon-picture btsize-wz"
+                                                            aria-hidden="true" title="查看"
+                                                            onclick="ck('${it.teamName}',${it.studentCount},'${it.students}','${it.teacherName}','${it.buildTime}')"></span>
+                                                            <span class="glyphicon glyphicon-list-alt btsize-wz"
+                                                            id="btbj" aria-hidden="true" title="编辑"
+                                                            onclick="bj(${it.id})" style="color:#00c0ef;"></span> <span
+                                                            class="glyphicon glyphicon-trash btsize-wz" id="btsc"
+                                                            aria-hidden="true" title="删除" onclick="sc(${it.id})" style="color: rgb(212, 106, 64);"></span></td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                          
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="dataTables_info" id="example1_info" role="status"
+                                            aria-live="polite">第${dangqianye}页,共${next}页</div>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="dataTables_paginate paging_simple_numbers"
+                                            id="example1_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous"
+                                                    id="example1_previous"><a onclick="syy()"
+                                                    aria-controls="example1" data-dt-idx="0" tabindex="0">上一页</a></li>
+                                                <li class="paginate_button " id="qianmian">
+                                               <li class="paginate_button active" id="dqy">
+                                               <li class="paginate_button " id="fyanniu">
+                                                <%-- 
+                                                <a href="team?dangqianye=1"
+                                                    aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+                                                <li class="paginate_button "><a href="team?dangqianye=2"
+                                                    aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li>
+                                                <li class="paginate_button "><a href="team?dangqianye=3"
+                                                    aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li>
+                                                <li class="paginate_button "><a href="team?dangqianye=4"
+                                                    aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
+                                                <li class="paginate_button "><a href="team?dangqianye=5"
+                                                    aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
+                                                <li class="paginate_button "><a href="team?dangqianye=6"
+                                                    aria-controls="example1" data-dt-idx="6" tabindex="0">6</a>
+                                                  --%>  
+                                                </li>
+                                                <li class="paginate_button next" id="example1_next"><a
+                                                    onclick="xyy()" aria-controls="example1" data-dt-idx="7"
+                                                    tabindex="0">下一页</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+            </section>
 
-		<div class="content-wrapper">
-			<div class="right_top">
-				<div class="input_position zwgl">
-					<label class="label-ziti"> 搜索班级:</label>
-					<div class="input-group input_wz">
-						<input type="text" class="form-control" id="ssbjmc"
-							placeholder="请输入班级名称" aria-describedby="sizing-addon2">
+        </div>
+
+<%-- 
+			<div class="content-wrapper">
+				<div class="right_top">
+					<div class="input_position zwgl">
+						<label class="label-ziti"> 搜索班级:</label>
+						<div class="input-group input_wz">
+							<input type="text" class="form-control" id="ssbjmc"
+								placeholder="请输入班级名称" aria-describedby="sizing-addon2">
+						</div>
 					</div>
+					<button type="button" class="btn btn-info btn-wz zwgl"
+						onclick="sousuo()">查询</button>
 				</div>
-				<button type="button" class="btn btn-info btn-wz zwgl"
-					onclick="sousuo()">查询</button>
-			</div>
-			<div class="right_bottom">
-				<button type="button" class="btn btn-info anniu-wz zwgl"
-					title="创建班级" onclick="tjzw()">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				</button>
-				<button type="button" class="btn btn-info anniu-wz zwgl" title="刷新"
-					onclick="shuaxin()">
-					<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-				</button>
-				<button type="button" class="btn btn-info anniu-wz zwgl"
-					title="导出表格">
-					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-				</button>
-				<button type="button" id="zhbt" class="btn btn-info anniu-wz zwgl"
-					title="管理图表" onclick="gltb()">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;<b
-						class="caret caret_but"></b>
-				</button>
+				<div class="right_bottom">
+					<button type="button" class="btn btn-info anniu-wz zwgl"
+						title="创建班级" onclick="tjzw()">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-info anniu-wz zwgl" title="刷新"
+						onclick="shuaxin()">
+						<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-info anniu-wz zwgl"
+						title="导出表格">
+						<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+					</button>
+					<button type="button" id="zhbt" class="btn btn-info anniu-wz zwgl"
+						title="管理图表" onclick="gltb()">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;<b
+							class="caret caret_but"></b>
+					</button>
 
-				<div class="table-responsive biao-position zwgl">
-					<table class="table table-bordered biao-daxiao">
-						<tr class="active">
-							<td class="bjmc">班级名称</td>
-							<td class="xsrs">学生人数</td>
-							<td class="xsxm">学生姓名</td>
-							<td class="jsxm">教师姓名</td>
-							<td class="xsrq">创建日期</td>
-							<td>操作</td>
-						</tr>
-						<c:forEach var="it" items="${team }">
+					<div class="table-responsive biao-position zwgl">
+						<table class="table table-bordered biao-daxiao">
 							<tr class="active">
-								<td class="bjmc">${it.teamName}</td>
-								<td class="xsrs">${it.studentCount}</td>
-								<td class="xsxm"><c:forEach var="item"
-										items="${it.students}">
+								<td class="bjmc">班级名称</td>
+								<td class="xsrs">学生人数</td>
+								<td class="xsxm">学生姓名</td>
+								<td class="jsxm">教师姓名</td>
+								<td class="xsrq">创建日期</td>
+								<td>操作</td>
+							</tr>
+							<c:forEach var="it" items="${team }">
+								<tr class="active">
+									<td class="bjmc">${it.teamName}</td>
+									<td class="xsrs">${it.studentCount}</td>
+									<td class="xsxm"><c:forEach var="item"
+											items="${it.students}">
 								${item}
 								
 							</c:forEach></td>
-								<td class="jsxm"><c:forEach var="teac"
-										items="${it.teacherName}">
+									<td class="jsxm"><c:forEach var="teac"
+											items="${it.teacherName}">
 								${teac}
 								
 							</c:forEach></td>
-								<td class="xsrq">${it.buildTime}</td>
+									<td class="xsrq">${it.buildTime}</td>
 
-								<td><span class="glyphicon glyphicon-picture btsize-wz"
-									aria-hidden="true" title="查看"
-									onclick="ck('${it.teamName}',${it.studentCount},'${it.students}','${it.teacherName}','${it.buildTime}')"></span>
-									<span class="glyphicon glyphicon-list-alt btsize-wz" id="btbj"
-									aria-hidden="true" title="编辑" onclick="bj(${it.id})"></span> <span
-									class="glyphicon glyphicon-trash btsize-wz" id="btsc"
-									aria-hidden="true" title="删除" onclick="sc(${it.id})"></span></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-				<div class="fenyewz zwgl" style="width: 800px;">
-					<label class="bjglfy" id="totalpage">
-						共:yeshu页&nbsp;当前:dangqianye页</label>
-					<nav aria-label="Page navigation">
-					<ul class="pagination">
-						<li><button onclick="syy()" class="btn btn-info sxybt">上一页</button></li>
-						<li><button onclick="xyy()" class="btn btn-info sxybt">下一页</button></li>
-						<li><a href="team?dangqianye=1" aria-label="Previous"
-							title="首页"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li id="fyanniu"></li>
-
-						<li><a href="team?dangqianye=${next}" aria-label="Next"
-							title="尾页"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-					</ul>
-					</nav>
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="1"
-							id="tiaozhuan">
+									<td><span class="glyphicon glyphicon-picture btsize-wz"
+										aria-hidden="true" title="查看"
+										onclick="ck('${it.teamName}',${it.studentCount},'${it.students}','${it.teacherName}','${it.buildTime}')"></span>
+										<span class="glyphicon glyphicon-list-alt btsize-wz" id="btbj"
+										aria-hidden="true" title="编辑" onclick="bj(${it.id})"></span> <span
+										class="glyphicon glyphicon-trash btsize-wz" id="btsc"
+										aria-hidden="true" title="删除" onclick="sc(${it.id})"></span></td>
+								</tr>
+							</c:forEach>
+						</table>
 					</div>
-					<button type="button" class="btn btn-info tzwz" onclick="tz()">跳转</button>
-				</div>
-				<div id="tjzwdialog" title="创建班级" style="display: none;">
+					<div class="fenyewz zwgl" style="width: 800px;">
+						<label class="bjglfy" id="totalpage">
+							共:${next}页&nbsp;当前:${dangqianye}页</label>
+						<nav aria-label="Page navigation">
+						<ul class="pagination">
+							<li><button onclick="syy()" class="btn btn-info sxybt">上一页</button></li>
+							<li><button onclick="xyy()" class="btn btn-info sxybt">下一页</button></li>
+							<li><a href="team?dangqianye=1" aria-label="Previous"
+								title="首页"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
+							<li id="fyanniu"></li>
 
-					<label class="label-ziti bjmcbj"> 班级名称:</label>
-					<div class="input-group bjmcsrk">
-						<input type="text" class="form-control" id="teamName"
-							placeholder="请输入职位名称" aria-describedby="sizing-addon2">
+							<li><a href="team?dangqianye=${next}" aria-label="Next"
+								title="尾页"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+						</nav>
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="1"
+								id="tiaozhuan">
+						</div>
+						<button type="button" class="btn btn-info tzwz" onclick="tz()">跳转</button>
+					</div>
+					--%>
+					<div id="tjzwdialog" title="创建班级" style="display: none;">
+
+						<label class="label-ziti bjmcbj"> 班级名称:</label>
+						<div class="input-group bjmcsrk">
+							<input type="text" class="form-control" id="teamName"
+								placeholder="请输入职位名称" aria-describedby="sizing-addon2">
+						</div>
+
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="tjqueren()">确认</button>
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="tjquxiao()">取消</button>
+					</div>
+					<div id="ckzwdialog" title="查看班级" style="display: none;">
+						<p>
+							<label class="label-ziti zwtjbq"> 班级名称:</label><label
+								class="label-ziti zwtjbq zwtjbq1" id="ckbjmc"> </label>
+						</p>
+						<p>
+							<label class="label-ziti zwtjbq"> 学生人数:</label><label
+								class="label-ziti zwtjbq zwtjbq1" id="ckxsrs"> </label>
+						</p>
+						<p>
+							<label class="label-ziti zwtjbq"> 学生姓名:</label><label
+								class="label-ziti zwtjbq zwtjbq1" id="ckxsxm"> </label>
+						</p>
+						<p>
+							<label class="label-ziti zwtjbq"> 教师姓名:</label><label
+								class="label-ziti zwtjbq zwtjbq1" id="ckjsxm"> </label>
+						</p>
+						<p>
+							<label class="label-ziti zwtjbq"> 创建日期:</label><label
+								class="label-ziti zwtjbq zwtjbq1" id="ckcjrq"> </label>
+						</p>
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="ckqueren()">确认</button>
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="ckquxiao()">取消</button>
+					</div>
+					<div id="bjzwdialog" title="编辑班级" style="display: none;">
+						<p>
+							<button type="button" class="btn btn-info bjbj" onclick="tjxs()">添加学生</button>
+						</p>
+						<p>
+							<button type="button" class="btn btn-info bjbj" onclick="scxs()">删除学生</button>
+						</p>
+						<p>
+							<button type="button" class="btn btn-info bjbj" onclick="pldr()">批量添加学生</button>
+						</p>
+						<p>
+							<button type="button" class="btn btn-info bjbj" onclick="tjjs()">添加教师</button>
+						</p>
+						<p>
+							<button type="button" class="btn btn-info bjbj" onclick="scjs()">删除教师</button>
+						</p>
+						<p>
+							<button type="button" class="btn btn-info bjbj"
+								onclick="bjquxiao()">取消</button>
+						</p>
+						<input id="bjId" type="text" style="display: none" />
+					</div>
+					<div id="tjxsdialog" title="添加学生" style="display: none;">
+
+						<label class="label-ziti bjmcbj"> 学生账号:</label>
+						<div class="input-group bjmcsrk">
+							<input type="text" class="form-control" id="tjxsaccount"
+								placeholder="请输入学生账号" aria-describedby="sizing-addon2">
+						</div>
+
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="tjxsqueren()">确认</button>
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="tjxsquxiao()">取消</button>
+					</div>
+					<div id="scxsdialog" title="删除学生" style="display: none;">
+
+						<label class="label-ziti bjmcbj"> 学生账号:</label>
+						<div class="input-group bjmcsrk">
+							<input type="text" class="form-control" id="scxsaccount"
+								placeholder="请输入学生账号" aria-describedby="sizing-addon2">
+						</div>
+
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="scxsqueren()">确认</button>
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="scxsquxiao()">取消</button>
+					</div>
+					<div id="pltjxsdialog" title="批量添加学生" style="display: none;">
+
+						<label class="label-ziti bjmcbj"> 学生账号前缀:</label>
+						<div class="input-group bjmcsrk">
+							<input type="text" class="form-control" id="stuprif"
+								placeholder="请输入学生账号前缀" aria-describedby="sizing-addon2">
+						</div>
+						<label class="label-ziti srbjrs"> 输入班级人数:</label>
+						<div class="input-group srbjrsk">
+							<input type="text" class="form-control" id="stucount"
+								placeholder="请输入班级学生人数" aria-describedby="sizing-addon2">
+						</div>
+
+						<button type="button" class="btn btn-info pltjxsbt"
+							onclick="pltjxsqueren()">确认</button>
+						<button type="button" class="btn btn-info pltjxsbtqx"
+							onclick="pltjxsquxiao()">取消</button>
+					</div>
+					<div id="tjjsdialog" title="添加教师" style="display: none;">
+
+						<label class="label-ziti bjmcbj"> 教师账号:</label>
+						<div class="input-group bjmcsrk">
+							<input type="text" class="form-control" id="tjjszh"
+								placeholder="请输入教师账号" aria-describedby="sizing-addon2">
+						</div>
+
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="tjjsqueren()">确认</button>
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="tjjsquxiao()">取消</button>
+					</div>
+					<div id="scjsdialog" title="删除教师" style="display: none;">
+
+						<label class="label-ziti bjmcbj"> 教师账号:</label>
+						<div class="input-group bjmcsrk">
+							<input type="text" class="form-control" id="scjszh"
+								placeholder="请输入教师账号" aria-describedby="sizing-addon2">
+						</div>
+
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="scjsqueren()">确认</button>
+						<button type="button" class="btn btn-info dhk-btwz"
+							onclick="scjsquxiao()">取消</button>
+					</div>
+					<div id="scdialog" title="删除班级" style="display: none;">
+						<h3>是否删除该班级?</h3>
+
+						<button type="button" class="btn btn-info dhk-btwz scbt"
+							onclick="scqueren()">确认</button>
+						<button type="button" class="btn btn-info dhk-btwz scbt"
+							onclick="scquxiao()">取消</button>
+						<input id="ycId" type="text" style="display: none" />
+					</div>
+					<%--
+					<div class="gltbkuang" id="xsyuyc">
+						<p>
+							<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+								id="glbjmc">&nbsp;<label class=" glgnwz"> 班级名称</label>
+						</p>
+						<p>
+							<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+								id="glxsrs">&nbsp;<label class=" glgnwz"> 学生人数</label>
+						</p>
+						<p>
+							<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+								id="glxsxm">&nbsp;<label class=" glgnwz"> 学生姓名</label>
+						</p>
+						<p>
+							<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+								id="gljsxm">&nbsp;<label class=" glgnwz"> 教师姓名</label>
+						</p>
+						<p>
+							<input type="checkbox" checked="checked" name="gn" class="glgnwz"
+								id="glxsrq">&nbsp;<label class=" glgnwz"> 创建日期</label>
+						</p>
 					</div>
 
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="tjqueren()">确认</button>
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="tjquxiao()">取消</button>
 				</div>
-				<div id="ckzwdialog" title="查看班级" style="display: none;">
-					<p>
-						<label class="label-ziti zwtjbq"> 班级名称:</label><label
-							class="label-ziti zwtjbq zwtjbq1" id="ckbjmc"> </label>
-					</p>
-					<p>
-						<label class="label-ziti zwtjbq"> 学生人数:</label><label
-							class="label-ziti zwtjbq zwtjbq1" id="ckxsrs"> </label>
-					</p>
-					<p>
-						<label class="label-ziti zwtjbq"> 学生姓名:</label><label
-							class="label-ziti zwtjbq zwtjbq1" id="ckxsxm"> </label>
-					</p>
-					<p>
-						<label class="label-ziti zwtjbq"> 教师姓名:</label><label
-							class="label-ziti zwtjbq zwtjbq1" id="ckjsxm"> </label>
-					</p>
-					<p>
-						<label class="label-ziti zwtjbq"> 创建日期:</label><label
-							class="label-ziti zwtjbq zwtjbq1" id="ckcjrq"> </label>
-					</p>
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="ckqueren()">确认</button>
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="ckquxiao()">取消</button>
-				</div>
-				<div id="bjzwdialog" title="编辑班级" style="display: none;">
-					<p>
-						<button type="button" class="btn btn-info bjbj" onclick="tjxs()">添加学生</button>
-					</p>
-					<p>
-						<button type="button" class="btn btn-info bjbj" onclick="scxs()">删除学生</button>
-					</p>
-					<p>
-						<button type="button" class="btn btn-info bjbj" onclick="pldr()">批量添加学生</button>
-					</p>
-					<p>
-						<button type="button" class="btn btn-info bjbj" onclick="tjjs()">添加教师</button>
-					</p>
-					<p>
-						<button type="button" class="btn btn-info bjbj" onclick="scjs()">删除教师</button>
-					</p>
-					<p>
-						<button type="button" class="btn btn-info bjbj"
-							onclick="bjquxiao()">取消</button>
-					</p>
-					<input id="bjId" type="text" style="display: none" />
-				</div>
-				<div id="tjxsdialog" title="添加学生" style="display: none;">
-
-					<label class="label-ziti bjmcbj"> 学生账号:</label>
-					<div class="input-group bjmcsrk">
-						<input type="text" class="form-control" id="tjxsaccount"
-							placeholder="请输入学生账号" aria-describedby="sizing-addon2">
-					</div>
-
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="tjxsqueren()">确认</button>
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="tjxsquxiao()">取消</button>
-				</div>
-				<div id="scxsdialog" title="删除学生" style="display: none;">
-
-					<label class="label-ziti bjmcbj"> 学生账号:</label>
-					<div class="input-group bjmcsrk">
-						<input type="text" class="form-control" id="scxsaccount"
-							placeholder="请输入学生账号" aria-describedby="sizing-addon2">
-					</div>
-
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="scxsqueren()">确认</button>
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="scxsquxiao()">取消</button>
-				</div>
-				<div id="pltjxsdialog" title="批量添加学生" style="display: none;">
-
-					<label class="label-ziti bjmcbj"> 学生账号前缀:</label>
-					<div class="input-group bjmcsrk">
-						<input type="text" class="form-control" id="stuprif"
-							placeholder="请输入学生账号前缀" aria-describedby="sizing-addon2">
-					</div>
-					<label class="label-ziti srbjrs"> 输入班级人数:</label>
-					<div class="input-group srbjrsk">
-						<input type="text" class="form-control" id="stucount"
-							placeholder="请输入班级学生人数" aria-describedby="sizing-addon2">
-					</div>
-
-					<button type="button" class="btn btn-info pltjxsbt"
-						onclick="pltjxsqueren()">确认</button>
-					<button type="button" class="btn btn-info pltjxsbtqx"
-						onclick="pltjxsquxiao()">取消</button>
-				</div>
-				<div id="tjjsdialog" title="添加教师" style="display: none;">
-
-					<label class="label-ziti bjmcbj"> 教师账号:</label>
-					<div class="input-group bjmcsrk">
-						<input type="text" class="form-control" id="tjjszh"
-							placeholder="请输入教师账号" aria-describedby="sizing-addon2">
-					</div>
-
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="tjjsqueren()">确认</button>
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="tjjsquxiao()">取消</button>
-				</div>
-				<div id="scjsdialog" title="删除教师" style="display: none;">
-
-					<label class="label-ziti bjmcbj"> 教师账号:</label>
-					<div class="input-group bjmcsrk">
-						<input type="text" class="form-control" id="scjszh"
-							placeholder="请输入教师账号" aria-describedby="sizing-addon2">
-					</div>
-
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="scjsqueren()">确认</button>
-					<button type="button" class="btn btn-info dhk-btwz"
-						onclick="scjsquxiao()">取消</button>
-				</div>
-				<div id="scdialog" title="删除班级" style="display: none;">
-					<h3>是否删除该班级?</h3>
-
-					<button type="button" class="btn btn-info dhk-btwz scbt"
-						onclick="scqueren()">确认</button>
-					<button type="button" class="btn btn-info dhk-btwz scbt"
-						onclick="scquxiao()">取消</button>
-					<input id="ycId" type="text" style="display: none" />
-				</div>
-				<div class="gltbkuang" id="xsyuyc">
-					<p>
-						<input type="checkbox" checked="checked" name="gn" class="glgnwz"
-							id="glbjmc">&nbsp;<label class=" glgnwz"> 班级名称</label>
-					</p>
-					<p>
-						<input type="checkbox" checked="checked" name="gn" class="glgnwz"
-							id="glxsrs">&nbsp;<label class=" glgnwz"> 学生人数</label>
-					</p>
-					<p>
-						<input type="checkbox" checked="checked" name="gn" class="glgnwz"
-							id="glxsxm">&nbsp;<label class=" glgnwz"> 学生姓名</label>
-					</p>
-					<p>
-						<input type="checkbox" checked="checked" name="gn" class="glgnwz"
-							id="gljsxm">&nbsp;<label class=" glgnwz"> 教师姓名</label>
-					</p>
-					<p>
-						<input type="checkbox" checked="checked" name="gn" class="glgnwz"
-							id="glxsrq">&nbsp;<label class=" glgnwz"> 创建日期</label>
-					</p>
-				</div>
-
 			</div>
-		</div>
-
+			--%>
 
 
 
@@ -532,15 +715,9 @@
 	<script type="text/javascript" src="/js/bjgl.js"></script>
 	<script type="text/javascript">
 		//分页的总页数,当前页和总的记录数
-		var yeshu;
-		var dangqianye = $
-		{
-			dangqianye
-		};
-		var total = $
-		{
-			total
-		};
+		var yeshu=${next};
+		var dangqianye = ${dangqianye};
+		var total = ${total};
 		//定义删除ID
 		var scId;
 		var teamId;//接收班级ID

@@ -15,12 +15,8 @@ public class MarkTable {
     
     private List<MarkTableQuiz> markTableQuiz;			//评分问题list   
     private List<UserMarke> userMarke;					//评分班级和评分人list
- 
     
-    
-    Map<team_Id, map<MarkTable_id,marktable>
-    
-    
+   
     public List<MarkTableQuiz> getMarkTableQuiz() {
 		return markTableQuiz;
 	}

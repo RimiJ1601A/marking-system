@@ -22,7 +22,8 @@ public interface TeamService {
 		public void modifyTeam();
 		//删除班级
 		public void dropTeam(int id);
-		
+		//得到班级名称
+		public List<String> getTeamName();
 		//添加人员
 		public void addUser(User user);
 		//通过职位名称查roleID
@@ -37,4 +38,6 @@ public interface TeamService {
 		public int getUserId(int teamId);
 		//通过班级ID和roleID得到userID
 		public int getUserId(int teamId,int roleId);
+		//根据账号获得roleId
+		public int getUsersRoleId(String userAccount);
 }

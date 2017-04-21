@@ -1,6 +1,5 @@
 package org.rimi.marksystem.controller;
 
-import org.rimi.marksystem.exception.BusinessException;
 import org.rimi.marksystem.util.LoggingAspect;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,7 @@ public class TestController {
 		} catch (Exception e) {
 			// TODO: handle exception
 
-			throw new BusinessException("30");
+		/*	throw new BusinessException("30");*/
 		};
 		return "test";
 	}

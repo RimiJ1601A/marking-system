@@ -231,5 +231,19 @@ public class RoleDaoImpl implements RoleDao {
 		
 		return functionNames;
 	}
+	public List<String> selectRoleName() {
+		List<String> roleName = jdbcTemplate.query("select role_name from role", new ResultSetExtractor<List<String>>(){
+
+			public List<String> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<String> result = new ArrayList<String>();
+				while(rs.next()){
+					result.add(rs.getString(1));
+				}
+				return result;
+			}
+			
+		});
+		return roleName;
+	}
 
 }
