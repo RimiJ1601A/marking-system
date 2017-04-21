@@ -19,18 +19,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
-	
-	
+
 	@RequestMapping("/index")
-	public String index(User user,Model model,HttpServletRequest request){
-		//写判断权限生成功能逻辑
-		User tempuser = new User();
-		tempuser = (User)request.getSession().getAttribute("user");
-		String roleName = CommonMap .roleNameMap.get(tempuser.getRoleId());
-		String functionName = CommonMap.roleFunctionMap.get(tempuser.getRoleId());
-		request.getSession().setAttribute("functions", functionName);
-		request.getSession().setAttribute("roleName", roleName);
-		return "index";
+	public String index(User user, Model model, HttpServletRequest request) {
+
+		user = (User) request.getSession().getAttribute("user");
+		if (user.getRoleId() == 1) {
+			return "index-admin";
+		} else if (user.getRoleId() == 2) {
+			return "index-teacher";
+		} else if (user.getRoleId() == 3) {
+			return "index-student";
+		} else {
+			return "index";
+		}
+
 	}
-	
+	@RequestMapping("/profile")
+	public String profileView() {
+
+		return "profile";
+	}
+
 }

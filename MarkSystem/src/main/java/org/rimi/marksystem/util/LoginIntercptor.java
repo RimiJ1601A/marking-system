@@ -20,24 +20,24 @@ public class LoginIntercptor  implements HandlerInterceptor{
 			throws Exception {
 		//    request.getRequestURI()路径/loginPage
 		//    request.getRequestURL()路径http://localhost:8080/loginPage
-//		String uri = request.getRequestURI();
-//		User user = (User)request.getSession().getAttribute("user");
-//		if(uri.equals("/loginPage") || uri.equals("/login")){		
-//			if(user!=null){
-//				response.sendRedirect("/index");
-//				return false;
-//			}else{
-//					return true;		
-//			}
-//		}else{
-//			if(user != null){
-//				
-//				return true;				
-//			}else{
-//				response.sendRedirect("/loginPage");
-//				return false;
-//			}
-//		}
+/*		String uri = request.getRequestURI();
+		User user = (User)request.getSession().getAttribute("user");
+		if(uri.equals("/loginPage") || uri.equals("/login")){		
+			if(user!=null){
+				response.sendRedirect("/index");
+				return false;
+			}else{
+					return true;		
+			}
+		}else{
+			if(user != null){
+				
+				return true;				
+			}else{
+				response.sendRedirect("/loginPage");
+				return false;
+			}
+		}*/
 		return true;
 	}
 	/*

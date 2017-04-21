@@ -4,6 +4,7 @@ public class MarkTableQuiz {
     private int id;
     private int quizId;				//问题Id
     private int marktableId;		//评分表id
+    
 	public int getId() {
 		return id;
 	}

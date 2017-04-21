@@ -369,6 +369,105 @@
                                                                 items="${it.function}">
                                                                     ${fun}
                                                                 </c:forEach></td>
+<<<<<<< HEAD
+														<td class="xsrq">${it.buildTime }</td>
+														<td style="vertical-align: middle;text-align: center;"><span
+															class="glyphicon glyphicon-picture btsize-wz"
+															aria-hidden="true" title="查看"
+															onclick="ck('${it.roleName}','${it.function}','${it.buildTime }')" style="color:#00c0ef;"></span>
+															<span class="glyphicon glyphicon-list-alt btsize-wz"
+															id="btbj" aria-hidden="true" title="编辑"
+															onclick="bj('${it.roleName}')" style="color:#00c0ef;"></span> <span
+															class="glyphicon glyphicon-trash btsize-wz" id="btsc"
+															aria-hidden="true" title="删除" onclick="sc(${it.id})" style="color: rgb(212, 106, 64);"></span></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+											<tfoot>
+												<tr>
+													<th rowspan="1" colspan="1">职位名称</th>
+													<th rowspan="1" colspan="1">功能名称</th>
+													<th rowspan="1" colspan="1">创建时间</th>
+													<th rowspan="1" colspan="1" style="text-align:center;">操作</th>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-5">
+										<div class="dataTables_info" id="example1_info" role="status"
+											aria-live="polite">Showing 1 to 10 of 57 entries</div>
+									</div>
+									<div class="col-sm-7">
+										<div class="dataTables_paginate paging_simple_numbers"
+											id="example1_paginate">
+											<ul class="pagination">
+												<li class="paginate_button previous disabled"
+													id="example1_previous"><a href="#"
+													aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li>
+												<li class="paginate_button active"><a href="#"
+													aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
+												<li class="paginate_button "><a href="#"
+													aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li>
+												<li class="paginate_button next" id="example1_next"><a
+													href="#" aria-controls="example1" data-dt-idx="7"
+													tabindex="0">Next</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+				</div>
+			</div>
+			</section>
+
+		</div>
+
+		<%-- <div class="right_top">
+
+				<div class="input_position zwgl">
+					<label class="label-ziti"> 搜索职位:</label>
+					<div class="input-group input_wz">
+						<input type="text" class="form-control " placeholder="请输入职位名称"
+							id="sousuo" aria-describedby="sizing-addon2">
+					</div>
+				</div>
+				<button type="button" class="btn btn-info btn-wz zwgl"
+					onclick="sousuo()">查询</button>
+			</div>
+			<div class="right_bottom">
+			<div class="row">
+			<div class="col-md-8">
+				<button type="button" class="btn btn-info l"
+					title="添加职位" onclick="tjzw()">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-info l" title="刷新"
+					onclick="shuaxin()">
+					<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-info l"
+					title="导出表格">
+					<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+				</button>
+				<button type="button" id="zhbt" class="btn btn-info l"
+					title="管理图表" onclick="gltb()">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;<b
+						class="caret caret_but"></b>
+				</button>
+=======
                                                         <td class="xsrq">${it.buildTime }</td>
                                                         <td style="vertical-align: middle;text-align: center;"><span
                                                             class="glyphicon glyphicon-picture btsize-wz"
@@ -465,6 +564,7 @@
                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;<b
                         class="caret caret_but"></b>
                 </button>
+>>>>>>> cb92a866177202d2c9b9b4431b2a93a7651fa405
 </div>
 </div>
 <div class="row">

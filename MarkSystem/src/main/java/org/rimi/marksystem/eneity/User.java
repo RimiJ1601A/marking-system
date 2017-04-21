@@ -15,7 +15,14 @@ public class User {
     private Sex sex;					//性别(1代表男，2代表女)
     private int roleId;					//用户所在职位ID
     private String bulidTime;				//用户注册时间
-    private String headPhotoUrl;
+    private String headPhotoUrl;			//头像URL路径
+	private String roleName;				//职位名称
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 	public String getHeadPhotoUrl() {
 		return headPhotoUrl;
 	}
