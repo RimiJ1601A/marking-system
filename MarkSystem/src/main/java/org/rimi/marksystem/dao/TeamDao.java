@@ -25,20 +25,12 @@ public interface TeamDao {
 	public void updateTeam();
 	//删除班级
 	public void deleteTeam(int id);
-	//添加人员
-	public void insertUser(User user);
-	//通过职位名称查roleID
-	public int selectRoleId(String name);
 	//添加班级学生和教师
 	public void insertTeam(int userId,int roleId,int teamId );
 	//删除本班学生或老师
 	public void deleteTeam(int userId,int roleId,int teamId );
-	//根据账号获得userId
-	public int selectUserId(String userAccount);
+	
 	//通过班级ID和roleID得到userID
 	public List<User> selectUserId(int teamId,int roleId);
-	//根据用户ID获得学生或教师姓名
-	public String selectName(int userId);
-	//根据账号获得roleID
-	public int selectUsersRoleId(String userAccount);
+	
 }

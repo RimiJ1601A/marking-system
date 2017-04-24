@@ -246,4 +246,10 @@ public class RoleDaoImpl implements RoleDao {
 		return roleName;
 	}
 
+	public int selectRoleId(String name) {
+		// TODO Auto-generated method stub
+		int roleId = jdbcTemplate.queryForObject("select id from role where role_name = ?", new Object[] {name}, Integer.class);
+		return roleId;
+	}
+
 }

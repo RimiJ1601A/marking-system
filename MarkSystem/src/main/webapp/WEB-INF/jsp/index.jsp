@@ -52,7 +52,7 @@
 									<!-- start message --> <a href="#">
 										<div class="pull-left">
 											<!-- User Image -->
-											<img src="/images/user2-160x160.jpg" class="img-circle"
+											<img src="${sessionScope.user.userName}" class="img-circle"
 												alt="User Image">
 										</div> <!-- Message title and timestamp -->
 										<h4>
@@ -161,7 +161,7 @@
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">Profile</a>
+								<a href="/profile" class="btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
 								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
@@ -184,7 +184,7 @@
 		<section class="sidebar"> <!-- Sidebar user panel (optional) -->
 		<div class="user-panel">
 			<div class="image">
-				<img src="/images/user2-160x160.jpg" class="img-circle"
+				<img src="${sessionScope.user.userName}" class="img-circle"
 					alt="User Image">
 			</div>
 			<div class="info">
@@ -231,7 +231,7 @@
 					<ul class="treeview-menu">
 						<c:if
 							test="${fn:contains(functions,'用户')}">
-							<li><a href="#">人员信息</a></li>
+							<li><a href="/user">人员信息</a></li>
 						</c:if>
 						<c:if
 							test="${fn:contains(functions,'班级')}">
@@ -246,7 +246,7 @@
 				</span> </a>
 				<ul class="treeview-menu">
 					<c:if test="${fn:contains(functions,'创建评分表')}">
-						<li><a href="#">创建评分表</a></li>
+						<li><a href="/markTable">创建评分表</a></li>
 					</c:if>				
 					<li><a href="#">考评</a></li>
 				</ul></li>

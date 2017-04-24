@@ -110,6 +110,7 @@ public class UserDapImpl implements UserDao {
 							tempuser.setSex(Sex.getSexByValue(rs.getInt(6)));
 							tempuser.setRoleId(rs.getInt(7));
 							tempuser.setBulidTime(rs.getDate(8).toString());
+							tempuser.setHeadPhotoUrl(rs.getString(9));
 						}
 						return tempuser;
 					}
@@ -275,6 +276,22 @@ public class UserDapImpl implements UserDao {
 			}
 		});	
 		return userlist;
+	}
+
+	public int selectUserId(String userAccount) {
+		int userId = jdbcTemplate.queryForObject("select id from user where user_account = ?", new Object[] {userAccount}, Integer.class);
+		return userId;
+	}
+
+
+	public String selectName(int userId) {
+		String name = jdbcTemplate.queryForObject("select user_name from user where id = ? ", new Object[]{userId}, String.class);
+		return name;
+	}
+	
+	public int selectUsersRoleId(String userAccount) {
+		int roleId = jdbcTemplate.queryForObject("select role_id from user where user_account = ?", new Object[] {userAccount}, Integer.class);
+		return roleId;
 	}
 
 }

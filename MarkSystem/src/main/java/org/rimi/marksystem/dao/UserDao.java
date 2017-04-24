@@ -36,5 +36,11 @@ public interface UserDao {
     
     //分页查询
     public List<User> getUsersByPage(int page,int account);
+  //根据账号获得userId
+  	public int selectUserId(String userAccount);
+  //根据用户ID获得学生或教师姓名
+  	public String selectName(int userId);
+  //根据账号获得roleID
+  	public int selectUsersRoleId(String userAccount);
     
 }

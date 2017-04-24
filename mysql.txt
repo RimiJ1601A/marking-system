@@ -14,15 +14,15 @@ create table IF NOT EXISTS user(
 )ENGINE = InnoDb DEFAULT CHARSET = utf8;
 
 INSERT INTO user(user_account,password,user_name,age,sex,role_id,bulid_time,headphoto_url)
-    VALUES  ("test1","1008611abc","张三",20,1,1,"2017-03-13","/images/defaultHeadPhoto"),
-            ("test2","1008611abc","李大",19,2,2,"2017-03-13","/images/defaultHeadPhoto"),
-            ("test3","1008611abc","李二",19,2,2,"2017-03-13","/images/defaultHeadPhoto"),
-            ("test4","1008611abc","王五",18,1,3,"2017-03-13","/images/defaultHeadPhoto"),
-            ("test5","1008611abc","王六",18,1,3,"2017-03-13","/images/defaultHeadPhoto"),
-            ("test6","1008611abc","王七",18,1,3,"2017-03-13","/images/defaultHeadPhoto"),
-            ("test7","1008611abc","王八",18,1,3,"2017-03-13","/images/defaultHeadPhoto"),
-            ("test8","1008611abc","王九",18,1,3,"2017-03-13","/images/defaultHeadPhoto"),
-            ("test9","1008611abc","王十",18,1,3,"2017-03-13","/images/defaultHeadPhoto");
+    VALUES  ("test1","1008611abc","张三",20,1,1,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test2","1008611abc","李大",19,2,2,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test3","1008611abc","李二",19,2,2,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test4","1008611abc","王五",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test5","1008611abc","王六",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test6","1008611abc","王七",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test7","1008611abc","王八",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test8","1008611abc","王九",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test9","1008611abc","王十",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png");
 
 create table IF NOT EXISTS role(
     id int NOT NULL AUTO_INCREMENT,

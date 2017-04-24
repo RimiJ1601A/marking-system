@@ -2,7 +2,9 @@ package org.rimi.marksystem.serviceImpl;
 
 import java.util.List;
 
+import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.TeamDao;
+import org.rimi.marksystem.dao.UserDao;
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.TeamService;
@@ -13,6 +15,8 @@ public class TeamServiceImpl implements TeamService {
 
 	@Autowired
 	private TeamDao teamDaoImpl;
+	private UserDao userdaoimp;
+	private RoleDao roledaoimp;
 	
 	public List<Team> getAllTeam() {
 		// TODO Auto-generated method stub
@@ -72,7 +76,7 @@ public class TeamServiceImpl implements TeamService {
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
 		try {
-			teamDaoImpl.insertUser(user);
+			userdaoimp.insertUser(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			
@@ -81,7 +85,7 @@ public class TeamServiceImpl implements TeamService {
 
 	public int getRoleId(String name) {
 		// TODO Auto-generated method stub
-		return teamDaoImpl.selectRoleId(name);
+		return roledaoimp.selectRoleId(name);
 	}
 
 	public void addtTeam(int userId, int roleId, int teamId) {
@@ -106,7 +110,7 @@ public class TeamServiceImpl implements TeamService {
 
 	public int getUserId(String userAccount) {
 		// TODO Auto-generated method stub
-		return teamDaoImpl.selectUserId(userAccount);
+		return userdaoimp.selectUserId(userAccount);
 	}
 
 	public int getUserId(int teamId, int roleId) {
@@ -126,7 +130,7 @@ public class TeamServiceImpl implements TeamService {
 
 	public int getUsersRoleId(String userAccount) {
 		
-		return teamDaoImpl.selectUsersRoleId(userAccount);
+		return userdaoimp.selectUsersRoleId(userAccount);
 	}
 
 }

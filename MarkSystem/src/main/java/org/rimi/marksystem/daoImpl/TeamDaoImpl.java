@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.TeamDao;
+import org.rimi.marksystem.dao.UserDao;
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class TeamDaoImpl implements TeamDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	private RoleDao roledaoimp;
+	private UserDao userdaoimp;
+	
 	public List<Team> selectAllTeam() {
 		List<Team> teams = new ArrayList<Team>(); 
 		teams = jdbcTemplate.query("select * from team ", new ResultSetExtractor<List<Team>>(){
@@ -29,10 +34,20 @@ public class TeamDaoImpl implements TeamDao {
 				while(rs.next()){
 					Team team = new Team();
 					int userId;
-					int roleIdStu;
-					int roleIdTeacher;
-					roleIdStu = selectRoleId("学生");
-					roleIdTeacher = selectRoleId("教师");
+					int roleIdStu = 3;
+					int roleIdTeacher = 2;
+					try {
+						roleIdStu = roledaoimp.selectRoleId("学生");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						
+					}
+					try {
+						roleIdTeacher = roledaoimp.selectRoleId("教师");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						
+					}
 					int teamId = rs.getInt(1);
 					team.setId(teamId);
 					team.setTeamName(rs.getString(2));
@@ -45,7 +60,13 @@ public class TeamDaoImpl implements TeamDao {
 						User user = it.next();
 						userId = user.getId();
 //						User student = new User();
-						String name = selectName(userId);//查学生名字
+						String name = "";//查学生名字
+						try {
+							name = userdaoimp.selectName(userId);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							
+						}
 //						student.setUserName(name);
 //						studentNames.add(student);
 						studentNames.add(name);
@@ -59,7 +80,13 @@ public class TeamDaoImpl implements TeamDao {
 					while(item.hasNext()){
 						User user = item.next();
 						userId = user.getId();
-						String name = selectName(userId);//查教师名字
+						String name = "";//查教师名字
+						try {
+							name = userdaoimp.selectName(userId);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							
+						}
 						teachersName.add(name);
 					}
 					team.setTeacherName(teachersName);
@@ -88,10 +115,20 @@ public class TeamDaoImpl implements TeamDao {
 				while(rs.next()){
 					Team team = new Team();
 					int userId;
-					int roleIdStu;
-					int roleIdTeacher;
-					roleIdStu = selectRoleId("学生");
-					roleIdTeacher = selectRoleId("教师");
+					int roleIdStu = 3;
+					int roleIdTeacher = 2;
+					try {
+						roleIdStu = roledaoimp.selectRoleId("学生");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						
+					}
+					try {
+						roleIdTeacher = roledaoimp.selectRoleId("教师");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						
+					}
 					int teamId = rs.getInt(1);
 					team.setId(teamId);
 					team.setTeamName(rs.getString(2));
@@ -104,7 +141,13 @@ public class TeamDaoImpl implements TeamDao {
 						User user = it.next();
 						userId = user.getId();
 //						User student = new User();
-						String name = selectName(userId);//查学生名字
+						String name = "";//查学生名字
+						try {
+							name = userdaoimp.selectName(userId);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							
+						}
 //						student.setUserName(name);
 //						studentNames.add(student);
 						studentNames.add(name);
@@ -118,7 +161,13 @@ public class TeamDaoImpl implements TeamDao {
 					while(item.hasNext()){
 						User user = item.next();
 						userId = user.getId();
-						String name = selectName(userId);//查教师名字
+						String name = "";//查教师名字
+						try {
+							name = userdaoimp.selectName(userId);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							
+						}
 						teachersName.add(name);
 					}
 					team.setTeacherName(teachersName);
@@ -149,10 +198,20 @@ public class TeamDaoImpl implements TeamDao {
 				while(rs.next()){
 					Team team = new Team();
 					int userId;
-					int roleIdStu;
-					int roleIdTeacher;
-					roleIdStu = selectRoleId("学生");
-					roleIdTeacher = selectRoleId("教师");
+					int roleIdStu = 3;
+					int roleIdTeacher = 2;
+					try {
+						roleIdStu = roledaoimp.selectRoleId("学生");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						
+					}
+					try {
+						roleIdTeacher = roledaoimp.selectRoleId("教师");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						
+					}
 					int teamId = rs.getInt(1);
 					team.setId(teamId);
 					team.setTeamName(rs.getString(2));
@@ -165,7 +224,13 @@ public class TeamDaoImpl implements TeamDao {
 						User user = it.next();
 						userId = user.getId();
 //						User student = new User();
-						String name = selectName(userId);//查学生名字
+						String name = "";//查学生名字
+						try {
+							name = userdaoimp.selectName(userId);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							
+						}
 //						student.setUserName(name);
 //						studentNames.add(student);
 						studentNames.add(name);
@@ -179,7 +244,13 @@ public class TeamDaoImpl implements TeamDao {
 					while(item.hasNext()){
 						User user = item.next();
 						userId = user.getId();
-						String name = selectName(userId);//查教师名字
+						String name = "";//查教师名字
+						try {
+							name = userdaoimp.selectName(userId);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							
+						}
 						teachersName.add(name);
 					}
 					team.setTeacherName(teachersName);
@@ -211,17 +282,6 @@ public class TeamDaoImpl implements TeamDao {
 		jdbcTemplate.update("delete from team where id = ?",id);
 	}
 
-	public void insertUser(User user) {
-		// TODO Auto-generated method stub
-		jdbcTemplate.update("INSERT INTO user(user_account,password,user_name,age,sex,role_id,bulid_time)VALUES (?,?,?,?,?,?,?)", user.getUserAccount(),user.getPassword(),user.getUserName(),user.getAge(),user.getSex().getValue(),user.getRoleId(),user.getBulidTime());
-	}
-
-	public int selectRoleId(String name) {
-		// TODO Auto-generated method stub
-		int roleId = jdbcTemplate.queryForObject("select id from role where role_name = ?", new Object[] {name}, Integer.class);
-		return roleId;
-	}
-
 	public void insertTeam(int userId, int roleId, int teamId) {
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("INSERT INTO u_p_t(user_id,team_id,role_id) VALUES (?,?,?) ", userId,teamId,roleId);
@@ -230,16 +290,6 @@ public class TeamDaoImpl implements TeamDao {
 	public void deleteTeam(int userId, int roleId, int teamId) {
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("delete from u_p_t where user_id = ? and team_id = ?",userId,teamId);
-	}
-
-	public int selectUserId(String userAccount) {
-		int userId = jdbcTemplate.queryForObject("select id from user where user_account = ?", new Object[] {userAccount}, Integer.class);
-		return userId;
-	}
-
-	public String selectName(int userId) {
-		String name = jdbcTemplate.queryForObject("select user_name from user where id = ? ", new Object[]{userId}, String.class);
-		return name;
 	}
 
 	public List<User> selectUserId(final int teamId, final int roleId) {
@@ -283,8 +333,4 @@ public class TeamDaoImpl implements TeamDao {
 		return teamname;
 	}
 
-	public int selectUsersRoleId(String userAccount) {
-		int roleId = jdbcTemplate.queryForObject("select role_id from user where user_account = ?", new Object[] {userAccount}, Integer.class);
-		return roleId;
-	}
 }
