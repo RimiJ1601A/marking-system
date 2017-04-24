@@ -22,6 +22,7 @@
 .user-panel>.image>img {
  
     max-width: 120px;
+    max-height: 120px;
   
 }
 .user-panel>.image{
@@ -70,4 +71,8 @@
 /* jsp不识别line-height属性，消息框调整 */
 .info-box > .info-box-icon{
 	padding-top:20px;
+}
+#profileUserImg{
+	width: 120px;
+    height: 120px;
 }

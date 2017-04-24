@@ -20,7 +20,8 @@
 <body class="hold-transition skin-black sidebar-mini fixed">
 
 	<div class="wrapper">
-		<!-- Main Header -->
+
+
 		<!-- Main Header -->
 		<header class="main-header"> <!-- Logo --> <a href="#"
 			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
@@ -48,8 +49,8 @@
 									<!-- start message --> <a href="#">
 										<div class="pull-left">
 											<!-- User Image -->
-											<img src="/images/user2-160x160.jpg" class="img-circle"
-												alt="User Image">
+											<img src="${sessionScope.user.headPhotoUrl}"
+												class="img-circle" alt="User Image">
 										</div> <!-- Message title and timestamp -->
 										<h4>
 											Support Team <small><i class="fa fa-clock-o"></i> 5
@@ -127,14 +128,15 @@
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
-						src="/images/user2-160x160.jpg" class="user-image"
+						src="${sessionScope.user.headPhotoUrl}" class="user-image"
 						alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
 						<span class="hidden-xs">Alexander Pierce</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
-						<li class="user-header"><img src="/images/user2-160x160.jpg"
-							class="img-circle" alt="User Image">
+						<li class="user-header"><img
+							src="${sessionScope.user.headPhotoUrl}" class="img-circle"
+							alt="User Image">
 
 							<p>
 								Alexander Pierce - Web Developer <small>Member since
@@ -157,7 +159,7 @@
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">Profile</a>
+								<a href="/profile" class="btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
 								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
@@ -180,7 +182,7 @@
 		<section class="sidebar"> <!-- Sidebar user panel (optional) -->
 		<div class="user-panel">
 			<div class="image">
-				<img src="/images/user2-160x160.jpg" class="img-circle"
+				<img src="${sessionScope.user.headPhotoUrl}" class="img-circle"
 					alt="User Image">
 			</div>
 			<div class="info">
@@ -210,9 +212,10 @@
 			<!-- Optionally, you can add icons to the links -->
 			<li class="active"><a href="/index"><i class="fa fa-home"></i>
 					<span>个人主页</span></a></li>
+
 			<c:set var="functions" value="${sessionScope.functions}" />
-			<c:if test="${fn:contains(functions,'人员')}">
-				<li><a href="/role"><i class="fa fa-briefcase"></i> <span>人员管理</span></a></li>
+			<c:if test="${fn:contains(functions,'职位')}">
+				<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
 			</c:if>
 
 			<c:if
@@ -224,19 +227,29 @@
 
 					<ul class="treeview-menu">
 						<c:if test="${fn:contains(functions,'用户')}">
-							<li><a href="#">人员信息</a></li>
+							<li><a href="/user">人员信息</a></li>
 						</c:if>
 						<c:if test="${fn:contains(functions,'班级')}">
 							<li><a href="/team">班级信息</a></li>
 						</c:if>
 					</ul></li>
 			</c:if>
+
+			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
+					<span>评分系统</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span> </a>
+				<ul class="treeview-menu">
+					<c:if test="${fn:contains(functions,'创建评分表')}">
+						<li><a href="/markTable">创建评分表</a></li>
+					</c:if>
+					<li><a href="#">考评</a></li>
+				</ul></li>
+
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
 
 
-
-		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 
 			<section class="content-header">
@@ -383,26 +396,25 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-5">
-                                        <div class="dataTables_info" id="example1_info" role="status"
-                                            aria-live="polite">第${dangqianye}页,共${totalPage}页</div>
-                                    </div>
-								<div class="col-sm-7">
-                                        <div class="dataTables_paginate paging_simple_numbers"
-                                            id="example1_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button previous"
-                                                    id="example1_previous"><a onclick="syy()"
-                                                    aria-controls="example1" data-dt-idx="0" tabindex="0">上一页</a></li>
-                                               <li class="paginate_button " id="qianmian">
-                                               <li class="paginate_button active" id="dqy">
-                                               <li class="paginate_button " id="fyanniu">
-                                                    </li>
-                                                <li class="paginate_button next" id="example1_next"><a
-                                                    onclick="xyy()" aria-controls="example1" data-dt-idx="7"
-                                                    tabindex="0">下一页</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+										<div class="dataTables_info" id="example1_info" role="status"
+											aria-live="polite">第${dangqianye}页,共${totalPage}页</div>
+									</div>
+									<div class="col-sm-7">
+										<div class="dataTables_paginate paging_simple_numbers"
+											id="example1_paginate">
+											<ul class="pagination">
+												<li class="paginate_button previous" id="example1_previous"><a
+													onclick="syy()" aria-controls="example1" data-dt-idx="0"
+													tabindex="0">上一页</a></li>
+												<li class="paginate_button " id="qianmian">
+												<li class="paginate_button active" id="dqy">
+												<li class="paginate_button " id="fyanniu"></li>
+												<li class="paginate_button next" id="example1_next"><a
+													onclick="xyy()" aria-controls="example1" data-dt-idx="7"
+													tabindex="0">下一页</a></li>
+											</ul>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -427,9 +439,14 @@
 	<script src="/js/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript">
 		//分页的总页数,当前页和总的记录数
-	    var yeshu=${totalPage};
-	    var dangqianye=${dangqianye};
-		
+		var yeshu = $
+		{
+			totalPage
+		};
+		var dangqianye = $
+		{
+			dangqianye
+		};
 	</script>
 	<script type="text/javascript" src="/js/marke.js"></script>
 	<script type="text/javascript" src="/js/buttons.js"></script>

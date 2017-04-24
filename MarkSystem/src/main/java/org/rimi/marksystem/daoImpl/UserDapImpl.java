@@ -110,6 +110,7 @@ public class UserDapImpl implements UserDao {
 							tempuser.setSex(Sex.getSexByValue(rs.getInt(6)));
 							tempuser.setRoleId(rs.getInt(7));
 							tempuser.setBulidTime(rs.getDate(8).toString());
+							tempuser.setHeadPhotoUrl(rs.getString(9));
 						}
 						return tempuser;
 					}
