@@ -18,6 +18,7 @@ public class LoginIntercptor  implements HandlerInterceptor{
 	 */
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		
 		//    request.getRequestURI()路径/loginPage
 		//    request.getRequestURL()路径http://localhost:8080/loginPage
 		String uri = request.getRequestURI();
@@ -31,6 +32,7 @@ public class LoginIntercptor  implements HandlerInterceptor{
 			}
 		}else{
 			if(user != null){
+				user.getRoleId();
 				
 				return true;				
 			}else{

@@ -28,12 +28,14 @@ $(document).on("click","#addclass",function() {
 									success : function(teams) {
 										for (var j = 0; j < teams.length; j++) {
 											var a = [];
+											if(teams[j].users!=null){
 											for (var i = 0; i < teams[j].users.length; i++) {
 												var evaluatedName = {"name" : teams[j].users[i].userName,"id": teams[j].users[i].id};
 												a.push(evaluatedName);
 											}
 											var team = {"classname" : teams[j].teamName,"classId": teams[j].teamId,"student" : a};
 											b.push(team);
+											}
 										}
 										clickteamcount++;
 										var newdiv = $("<div></div>");

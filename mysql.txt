@@ -52,12 +52,7 @@ VALUES ("查看用户"),
         ("查看班级"),
         ("编辑班级"),
         ("删除班级"),
-        ("增加职位"),
-        ("编辑职位"),
-        ("查看职位"),
-        ("删除职位"),
-        ("创建评分表"),
-        ("评分评分表");  
+           
 
 create table IF NOT EXISTS team(
     id int NOT NULL AUTO_INCREMENT,
@@ -69,7 +64,8 @@ create table IF NOT EXISTS team(
 INSERT INTO team(team_name,bulid_time) VALUES ("Java1601","2017-03-12"),("ios1601","2017-03-12");
 
 create table IF NOT EXISTS u_p_t(
-    id int NOT NULL AUTO_INCREMENT,
+    id int NOT NULL AUTO_INCREMENT,.
+
     user_id int NOT NULL,
     team_id int NOT NULL,
     role_id int NOT NULL,

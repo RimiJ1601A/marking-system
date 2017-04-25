@@ -16,6 +16,7 @@ public class TeamServiceImpl implements TeamService {
 	@Autowired
 	private TeamDao teamDaoImpl;
 	private UserDao userdaoimp;
+	@Autowired
 	private RoleDao roledaoimp;
 	
 	public List<Team> getAllTeam() {

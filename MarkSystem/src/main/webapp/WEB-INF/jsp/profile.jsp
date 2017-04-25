@@ -30,7 +30,6 @@
 
 <link rel="stylesheet" href="/css/mystyle.css">
 
-
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -296,8 +295,9 @@
 							<!-- 模态框（Modal） -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 								aria-labelledby="myModalLabel" aria-hidden="true">
+						
 								<div class="modal-dialog">
-									<div class="modal-content">
+									<div id="img_content" class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
@@ -308,9 +308,9 @@
 												onclick="document.getElementById('inputImage').click();">选择照片</button>
 											<input id="inputImage" type="file" accept="image/*"
 												style="opacity: 0;" />
-											<div class="row">
-												<div class="container">
-													<img class="img_bg" src="/images/user8-128x128.jpg">
+											<div id="img_row" class="row">
+												<div id="img_container" class="container">
+													<img class="img_bg" src="${sessionScope.user.headPhotoUrl}">
 												</div>
 												<div id="face_image" class="image-preview preview-lg"></div>
 											</div>
@@ -519,6 +519,11 @@
 			</div>
 			<!-- /.row --> </section>
 			<!-- /.content -->
+
+
+
+
+
 
 
 		</div>

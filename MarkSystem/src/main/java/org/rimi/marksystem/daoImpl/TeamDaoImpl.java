@@ -24,6 +24,7 @@ public class TeamDaoImpl implements TeamDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private RoleDao roledaoimp;
+	@Autowired
 	private UserDao userdaoimp;
 	
 	public List<Team> selectAllTeam() {

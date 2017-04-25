@@ -7,6 +7,8 @@ img{
     width: 150px;
     height: 150px;
     overflow: hidden;
+    position: absolute;
+    left: 670px;
 }
 .modal-dialog{
     width: 900px;
@@ -27,7 +29,4 @@ img{
     height: 360px;
     position: absolute;
 }
-.preview-lg{
-    position: absolute;
-    left: 670px;
-}
+
