@@ -7,11 +7,13 @@ import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.ResultTable;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.ResultTableService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ResultTableServiceImpl implements ResultTableService{
 	
+	@Autowired
 	private ResultTableDao resultTableDaoImpl;
 	
 	/*
