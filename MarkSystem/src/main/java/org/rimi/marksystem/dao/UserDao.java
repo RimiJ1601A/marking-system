@@ -14,7 +14,7 @@ public interface UserDao {
 	
 	public User selectUserByUserAccountAndPassWord(String userAccount,String passWord);
 	//条件搜索
-	public List<User> selectUser(String account,String name);
+	public List<User> selectUser(String name);
 	//增加用户
 	public void insertUser(User user);
 	//删除用户(根据账号删除)

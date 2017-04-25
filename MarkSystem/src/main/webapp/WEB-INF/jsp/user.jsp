@@ -15,7 +15,9 @@
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
+<link type="text/css" rel="stylesheet" href="/css/dialog.css">
 
+<link rel="stylesheet" href="/css/zhiweiguanli.css">
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -302,12 +304,22 @@
 														<i class="fa fa-fw fa-list-ul"></i>
 													</button>
 													<ul class="dropdown-menu ">
-														<li><a href="#">Dropdown link</a></li>
-														<li><a href="#">Dropdown link</a></li>
+														<li><input type="checkbox" checked="checked"
+															name="gn" id="zh">&nbsp;账号</li>
+														<li><input type="checkbox" checked="checked"
+															name="gn" id="rymc">&nbsp;人员名称</li>
+														<li><input type="checkbox" checked="checked"
+															name="gn" id="nl">&nbsp;年龄</li>
+														<li><input type="checkbox" checked="checked"
+															name="gn" id="xb">&nbsp;性别</li>
+														<li><input type="checkbox" checked="checked"
+															name="gn" id="zw">&nbsp;职位</li>
+														<li><input type="checkbox" checked="checked"
+															name="gn" id="cjrq">&nbsp;创建日期</li>
 													</ul>
 												</div>
 												<button type="button" class="btn btn-info " title="添加人员"
-													onclick="tjzw()">
+													onclick="tjry()">
 													<i class="fa fa-fw fa-plus"></i>
 												</button>
 												<button type="button" class="btn btn-info " title="刷新"
@@ -316,7 +328,7 @@
 												</button>
 
 												<button type="button" class="btn btn-info btn-flat"
-													title="导出表格">
+													title="导出表格" onclick="exportExel()">
 													<i class="fa fa-fw fa-download"></i>
 												</button>
 
@@ -332,25 +344,30 @@
 											role="grid" aria-describedby="example1_info">
 											<thead>
 												<tr role="row">
-													<th class="sorting_asc" tabindex="0"
+													<th class="sorting_asc xszh" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-sort="ascending"
+														aria-label="Rendering engine: activate to sort column descending"
+														style="width: 100px;">账号</th>
+													<th class="sorting_asc xsrymc" tabindex="0"
 														aria-controls="example1" rowspan="1" colspan="1"
 														aria-sort="ascending"
 														aria-label="Rendering engine: activate to sort column descending"
 														style="width: 100px;">人员名称</th>
-													<th class="sorting" tabindex="0" aria-controls="example1"
-														rowspan="1" colspan="1"
+													<th class="sorting xsnl" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
 														aria-label="Browser: activate to sort column ascending"
 														style="width: 70px;">年龄</th>
-													<th class="sorting" tabindex="0" aria-controls="example1"
-														rowspan="1" colspan="1"
+													<th class="sorting xsxb" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
 														aria-label="Browser: activate to sort column ascending"
 														style="width: 70px;">性别</th>
-													<th class="sorting" tabindex="0" aria-controls="example1"
-														rowspan="1" colspan="1"
+													<th class="sorting xszw" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
 														aria-label="Browser: activate to sort column ascending"
 														style="width: 70px;">职位</th>
-													<th class="sorting" tabindex="0" aria-controls="example1"
-														rowspan="1" colspan="1"
+													<th class="sorting xscjrq" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
 														aria-label="Platform(s): activate to sort column ascending"
 														style="width: 72px;">创建日期</th>
 													<th class="sorting" tabindex="0" aria-controls="example1"
@@ -362,35 +379,27 @@
 											<tbody>
 												<c:forEach var="it" items="${userlist}">
 													<tr role="row" class="odd">
-														<td class="sorting_1">${it.userName}</td>
-														<td>${it.age}</td>
-														<td>${it.sex.sex}</td>
-														<td>${it.roleName}</td>
-														<td>${it.bulidTime}</td>
+														<td class="xszh">${it.userAccount}</td>
+														<td class="sorting_1 xsrymc">${it.userName}</td>
+														<td class="xsnl">${it.age}</td>
+														<td class="xsxb">${it.sex.sex}</td>
+														<td class="xszw">${it.roleName}</td>
+														<td class="xscjrq">${it.bulidTime}</td>
 														<td style="vertical-align: middle; text-align: center;"><span
 															class="glyphicon glyphicon-picture btsize-wz"
-															aria-hidden="true" title="查看" onclick=""
+															aria-hidden="true" title="查看" onclick="ck('${it.userAccount}','${it.userName}','${it.age}','${it.sex.sex}','${it.roleName}','${it.bulidTime}')"
 															style="color: #00c0ef;"></span> <span
 															class="glyphicon glyphicon-list-alt btsize-wz" id="btbj"
-															aria-hidden="true" title="编辑" onclick=""
+															aria-hidden="true" title="编辑" onclick="bj('${it.userAccount}','${it.userName}','${it.age}')"
 															style="color: #00c0ef;"></span> <span
 															class="glyphicon glyphicon-trash btsize-wz" id="btsc"
-															aria-hidden="true" title="删除" onclick=""
+															aria-hidden="true" title="删除" onclick="sc('${it.userAccount}')"
 															style="color: rgb(212, 106, 64);"></span></td>
 													</tr>
 												</c:forEach>
 
 											</tbody>
-											<tfoot>
-												<tr>
-													<th rowspan="1" colspan="1">人员名称</th>
-													<th rowspan="1" colspan="1">年龄</th>
-													<th rowspan="1" colspan="1">性别</th>
-													<th rowspan="1" colspan="1">职位</th>
-													<th rowspan="1" colspan="1">创建时间</th>
-													<th rowspan="1" colspan="1" style="text-align: center;">操作</th>
-												</tr>
-											</tfoot>
+
 										</table>
 									</div>
 								</div>
@@ -425,7 +434,109 @@
 			</section>
 
 		</div>
+		<div id="tjzwdialog" title="人员信息添加" style="display: none;">
+			<form action="insertUser" method="get">
+			<label class="label-ziti zwtjbq"> 帐号:</label>
+			<div class="input-group zwtjsrk">
+				<input type="text" class="form-control" placeholder="请输入帐号"
+					aria-describedby="sizing-addon2" name="srzh">
+			</div>
+			<label class="label-ziti zwtjbq">人员名称:</label>
+			<div class="input-group zwtjsrk">
+				<input type="text" class="form-control" placeholder="请输入姓名"
+					aria-describedby="sizing-addon2" name="srxm">
+			</div>
+			
+			<label class="label-ziti zwtjbq"> 年龄:</label>
+			<div class="input-group zwtjsrk">
+				<input type="text" class="form-control" placeholder="请输入年龄"
+					aria-describedby="sizing-addon2" name="srnl">
+			</div>
+			<label class="label-ziti zwtjbq"> 性别:</label>
+			<div class="input-group zwtjsrk">
+				<input type="radio" name="sex" value="男"/>男
+				<input type="radio" name="sex" value="女"/>女
+			</div>
+			<label class="label-ziti zwtjbq"> 职位:</label>
+			<div class="input-group zwtjsrk">
+			<c:forEach var="it" items="${rolename}">
+				<input type="radio" name="role" value="${it}"/>${it}
+			</c:forEach>
+			</div>
+			<input type="submit" class="btn btn-info dhk-btwz" value="确认" />
+			<button type="button" class="btn btn-info dhk-btwz"
+				onclick="tjquxiao()">取消</button>
+				</form>
+		</div>
+		<div id="ckzwdialog" title="人员信息查看" style="display: none;">
+			<p>
+				<label class="label-ziti zwtjbq"> 账号:</label><label
+					class="label-ziti zwtjbq zwtjbq1" id="ckzh"> 1</label>
+			</p>
+			<p>
+				<label class="label-ziti zwtjbq"> 人员名称:</label><label
+					class="label-ziti zwtjbq zwtjbq1" id="ckrymc"> 1</label>
+			</p>
+			<p>
+				<label class="label-ziti zwtjbq"> 性别:</label><label
+					class="label-ziti zwtjbq zwtjbq1" id="ckxb"> </label>
+			</p>
+			<p>
+				<label class="label-ziti zwtjbq"> 职位:</label><label
+					class="label-ziti zwtjbq zwtjbq1" id="ckzw"> </label>
+			</p>
+			<p>
+				<label class="label-ziti zwtjbq"> 创建日期:</label><label
+					class="label-ziti zwtjbq zwtjbq1" id="ckcjrq"> </label>
+			</p>
+			<button type="button" class="btn btn-info dhk-btwz"
+				onclick="ckqueren()">确认</button>
+			<button type="button" class="btn btn-info dhk-btwz"
+				onclick="ckquxiao()">取消</button>
+		</div>
+		<div id="bjzwdialog" title="人员信息编辑" style="display: none;">
+			<form action="updateUser" method="get">
+			<label class="label-ziti zwtjbq"> 帐号:</label>
+			<div class="input-group zwtjsrk">
+				<input type="text" id="zwbjzwmc" class="form-control" placeholder="请输入帐号"
+					aria-describedby="sizing-addon2" name="srzh" readonly="true">
+			</div>
+			<label class="label-ziti zwtjbq">人员名称:</label>
+			<div class="input-group zwtjsrk">
+				<input type="text" id="srxm" class="form-control" placeholder="请输入姓名"
+					aria-describedby="sizing-addon2" name="srxm">
+			</div>
+			
+			<label class="label-ziti zwtjbq"> 年龄:</label>
+			<div class="input-group zwtjsrk">
+				<input type="text" id="srnl" class="form-control" placeholder="请输入年龄"
+					aria-describedby="sizing-addon2" name="srnl">
+			</div>
+			<label class="label-ziti zwtjbq"> 性别:</label>
+			<div class="input-group zwtjsrk">
+				<input type="radio" name="sex" value="男"/>男
+				<input type="radio" name="sex" value="女"/>女
+			</div>
+			<label class="label-ziti zwtjbq"> 职位:</label>
+			<div class="input-group zwtjsrk">
+			<c:forEach var="it" items="${rolename}">
+				<input type="radio" name="role" value="${it}"/>${it}
+			</c:forEach>
+			</div>
+			<input type="submit" class="btn btn-info dhk-btwz" value="确认" />
+			<button type="button" class="btn btn-info dhk-btwz"
+				onclick="bjquxiao()">取消</button>
+				</form>
+		</div>
+		<div id="scdialog" title="人员信息删除" style="display: none;">
+			<h3>是否删除该人信息?</h3>
 
+			<button type="button" class="btn btn-info dhk-btwz scbt"
+				onclick="scqueren()">确认</button>
+			<button type="button" class="btn btn-info dhk-btwz scbt"
+				onclick="scquxiao()">取消</button>
+			<input type="text" id="cuanId" style="display: none" />
+		</div>
 		<!-- /.content-wrapper -->
 
 		<!-- Main Footer -->
@@ -439,20 +550,25 @@
 	<script src="/js/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript">
 		//分页的总页数,当前页和总的记录数
-		var yeshu = $
-		{
-			totalPage
-		};
-		var dangqianye = $
-		{
-			dangqianye
-		};
-	</script>
+		var yeshu = ${totalPage};
+		var dangqianye = ${dangqianye};
+		
+		//人员信息
+		var zh ;
+		var rymc ;
+		var nl ;
+		var xb ;
+		var zw ;
+		var cjrq ;
+		
+		</script>
 	<script type="text/javascript" src="/js/marke.js"></script>
 	<script type="text/javascript" src="/js/buttons.js"></script>
 	<script type="text/javascript" src="/js/user.js"></script>
-	<!-- 	<script type="text/javascript" src="/js/dialog1.js"></script>
+	<script type="text/javascript" src="/js/dialog1.js"></script>
 	<script type="text/javascript" src="/js/dialog2.js"></script>
+	<!-- 	
+	
 	<script type="text/javascript" src="/js/zwgl.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script> -->
 	<script src="/js/bootstrap.min.js"></script>

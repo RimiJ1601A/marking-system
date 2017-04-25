@@ -30,4 +30,6 @@ public interface RoleService {
 	public String getRoleNameByRoleId(int roleId);
 	//根据roleId获取所有function名字
 	public String getFunctionNameByRoleId(int roleId);
+	//根据role名称查roleId
+	public int getRoleId(String roleName);
 }

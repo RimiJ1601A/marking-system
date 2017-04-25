@@ -100,5 +100,10 @@ public class RoleServiceImpl implements RoleService {
 		}
 		return functionsName;
 	}
+	public int getRoleId(String roleName) {
+		// TODO Auto-generated method stub
+		return roleDaoImpl.selectRoleId(roleName);
+	}
+	
 
 }

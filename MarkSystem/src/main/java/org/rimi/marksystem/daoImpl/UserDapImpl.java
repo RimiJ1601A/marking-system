@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.UserDao;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.util.Sex;
@@ -21,6 +22,8 @@ public class UserDapImpl implements UserDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private RoleDao roleDaoImpl;
 
 	// 查询所有用户信息
 	public List<User> selectAllUser() {
@@ -37,8 +40,10 @@ public class UserDapImpl implements UserDao {
 					user.setAge(rs.getInt(5));
 					user.setSex(Sex.getSexByValue(rs.getInt(6)));
 					user.setRoleId(rs.getInt(7));
+					
 					user.setBulidTime(rs.getDate(8).toString());
 					user.setHeadPhotoUrl(rs.getString(9));
+					user.setRoleName(roleDaoImpl.selectRoleNameByRoleId(rs.getInt(7)));
 					tempUser.add(user);
 				}
 				return tempUser;
@@ -51,17 +56,18 @@ public class UserDapImpl implements UserDao {
 	public void insertUser(final User user) {
 		// TODO Auto-generated method stub
 		jdbcTemplate.update(
-				"inser into user (userAccount,age,sex,roleId,userName,bulidTime,headPhotoUrl) values = (?,?,?,?,?,?,?) ",
+				"insert into user (user_account,password,user_name,age,sex,role_id,bulid_time,headphoto_url) values(?,?,?,?,?,?,?,?) ",
 				new PreparedStatementSetter() {
 
 					public void setValues(PreparedStatement ps) throws SQLException {
 						ps.setString(1, user.getUserAccount());
-						ps.setInt(2, user.getAge());
-						ps.setInt(3, user.getSex().getValue());
-						ps.setInt(4, user.getRoleId());
-						ps.setString(5, user.getUserName());
-						ps.setString(6, user.getBulidTime());
-						ps.setString(7, user.getHeadPhotoUrl());
+						ps.setString(2, user.getPassword());
+						ps.setString(3, user.getUserName());
+						ps.setInt(4, user.getAge());
+						ps.setInt(5, user.getSex().getValue());
+						ps.setInt(6, user.getRoleId());
+						ps.setString(7, user.getBulidTime());
+						ps.setString(8, user.getHeadPhotoUrl());
 					}
 
 				});
@@ -123,14 +129,13 @@ public class UserDapImpl implements UserDao {
 		}
 	}
 
-	public List<User> selectUser(final String account, final String name) {
+	public List<User> selectUser(final String name) {
 		List<User> username = new ArrayList<User>();
-		username = jdbcTemplate.query("select * from user where user_account like ? and username like ?",
+		username = jdbcTemplate.query("select * from user where user_name like ? limit 0,10",
 				new PreparedStatementSetter() {
 
 					public void setValues(PreparedStatement ps) throws SQLException {
-						ps.setString(1, account);
-						ps.setString(2, name);
+						ps.setString(1, "%"+name+"%");
 					}
 				}, new ResultSetExtractor<List<User>>() {
 
@@ -145,11 +150,12 @@ public class UserDapImpl implements UserDao {
 							visitor.setId(rs.getInt(1));
 							visitor.setUserAccount(rs.getString(2));
 							visitor.setPassword(rs.getString(3));
-							visitor.setUserName(rs.getString(3));
+							visitor.setUserName(rs.getString(4));
 							visitor.setAge(rs.getInt(5));
 							visitor.setSex(Sex.getSexByValue(rs.getInt(6)));
 							visitor.setRoleId(rs.getInt(7));
 							visitor.setBulidTime(rs.getDate(8).toString());
+							visitor.setRoleName(roleDaoImpl.selectRoleNameByRoleId(rs.getInt(7)));
 							ab.add(visitor);
 						}
 						return ab;
@@ -160,7 +166,7 @@ public class UserDapImpl implements UserDao {
 
 	public void deleteUser(String account) {
 		// TODO Auto-generated method stub
-
+		jdbcTemplate.update("delete from user where user_account = ?", account);
 	}
 
 	public void updateUserRole(final String account, final int role_id) {
@@ -217,19 +223,9 @@ public class UserDapImpl implements UserDao {
 		}
 	}
 
-	public void updateUser(final String account, final User user) {
+	public void updateUser(String account, User user) {
 		// TODO Auto-generated method stub
-		jdbcTemplate.update("update user set user_name = ? , age = ? , sex = ? where user_account = ? ",
-				new PreparedStatementSetter() {
-
-					public void setValues(PreparedStatement ps) throws SQLException {
-						// TODO Auto-generated method stub
-						ps.setString(1, user.getUserName());
-						ps.setInt(2, user.getAge());
-						ps.setInt(3, user.getSex().getValue());
-						ps.setString(4, account);
-					}
-				});
+		jdbcTemplate.update("update user set user_name = ?,age = ?,sex = ?,role_id = ?,bulid_time = ? where user_account = ?", user.getUserName(),user.getAge(),user.getSex().getValue(),user.getRoleId(),user.getBulidTime(),user.getUserAccount());
 	}
 
 	public void resetPassword(final String account, final String password) {

@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDaoImpl;
 	@Autowired
 	private RoleDao roleDaoImpl;
-	
+
 	public List<User> getAllUser() {
 		try {
 
@@ -54,27 +54,52 @@ public class UserServiceImpl implements UserService {
 
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
-		userDaoImpl.insertUser(user);
+		try {
+			userDaoImpl.insertUser(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 
 	public void deleteUser(String account) {
 		// TODO Auto-generated method stub
-
+		try {
+			userDaoImpl.deleteUser(account);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 
 	public void updateUserRole(String account, int role_id) {
 		// TODO Auto-generated method stub
-		userDaoImpl.updateUserRole(account, role_id);
+		try {
+			userDaoImpl.updateUserRole(account, role_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 
 	public void updateUser(String account, User user) {
 		// TODO Auto-generated method stub
-		userDaoImpl.updateUser(account, user);
+		try {
+			userDaoImpl.updateUser(account, user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 
 	public void updatePassword(String account, String password) {
 		// TODO Auto-generated method stub
-		userDaoImpl.updatePassword(account, password);
+		try {
+			userDaoImpl.updatePassword(account, password);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 
 	public boolean checkPassWordIsTrue(String account, String password) {
@@ -84,22 +109,41 @@ public class UserServiceImpl implements UserService {
 
 	public void insertUser(User user) {
 		// TODO Auto-generated method stub
-		userDaoImpl.insertUser(user);
+		try {
+			userDaoImpl.insertUser(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 
 	public void resetPassword(String account, String password) {
 		// TODO Auto-generated method stub
-		userDaoImpl.resetPassword(account, password);
+		try {
+			userDaoImpl.resetPassword(account, password);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+		}
 	}
 
 	public List<User> getUsersByPage(int page, int account) {
 		// TODO Auto-generated method stub
 		List<User> userlist = userDaoImpl.getUsersByPage(page, account);
-		for(int i =0;i<userlist.size();i++){
+		for (int i = 0; i < userlist.size(); i++) {
 			String roleName = roleDaoImpl.selectRoleNameByRoleId(userlist.get(i).getRoleId());
 			userlist.get(i).setRoleName(roleName);
 		}
 		return userlist;
+	}
+
+	public List<User> getUser(String name) {
+		int i = userDaoImpl.selectUser(name).size();
+		if (i == 0) {
+			return userDaoImpl.selectAllUser();
+		} else {
+			return userDaoImpl.selectUser(name);
+		}
 	}
 
 }

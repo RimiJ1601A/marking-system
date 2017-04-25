@@ -36,4 +36,14 @@ public enum Sex {
 			return 2;
 		}
 	}
+	
+	public static Sex getSexByString(String sex){
+		
+		if(sex.equals("男")){
+			return MAN;
+		}else{
+			return WOMAN;
+		}
+		
+	}
 }

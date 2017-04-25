@@ -15,7 +15,8 @@ public interface UserService {
 	public List<String> getUserByName(String name);
 
 	public User getUserByUserAccountAndPassword(String userAccount, String passWord);
-
+	
+	public List<User> getUser(String name);
 	// 增加用户
 	public void addUser(User user);
 
