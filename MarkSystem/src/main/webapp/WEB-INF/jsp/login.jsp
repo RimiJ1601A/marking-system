@@ -27,13 +27,13 @@
 		<!-- /.login-logo -->
 		<div class="login-box-body">
 			<p class="login-box-msg">用户登录</p>
-			<form action="/login" method="post">
+			<form id="loginForm" action="/login" method="post">
 				<div class="form-group has-feedback">
-					<input type="text" name="userAccount" class="form-control" placeholder="账号"> <span
+					<input id="userAccount" type="text" name="userAccount" class="form-control" placeholder="账号"> <span
 						class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" name="password" class="form-control" placeholder="密码">
+					<input id="passWord" type="password" name="password" class="form-control" placeholder="密码">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
@@ -45,7 +45,7 @@
 					</div>
 					<!-- /.col -->
 					<div class="col-xs-4">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+						<button type="button" onclick="abc()" class="btn btn-primary btn-block btn-flat">登录</button>
 					</div>
 					<!-- /.col -->
 				</div>
@@ -83,6 +83,25 @@
 				increaseArea : '20%' // optional
 			});
 		});
+		window.onload=function(){
+			var err = "${error}";
+			if(err == ""){
+				
+			}else{
+				alert(err);
+			}
+		}
+		function abc(){
+			var acc = $("#userAccount").val();
+			var pas =  $("#passWord").val();
+			
+			if(acc == "" || pas == "" || acc == null || pas == null){
+				alert("不能为空");
+			}else{
+				$("#loginForm").submit();
+			}
+			
+		}
 	</script>
 </body>
 </html>

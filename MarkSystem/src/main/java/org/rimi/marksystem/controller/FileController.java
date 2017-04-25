@@ -6,11 +6,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
+import org.rimi.marksystem.eneity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +38,7 @@ public class FileController {
 	@Value("#{prop.fileName}") 
     private String fileName; 					// 文件名
 
-    @RequestMapping(value="/uploadphoto")
+    @RequestMapping(value="/uploadphototest")
     @ResponseBody
     public Map<String, String> uploadImage(HttpServletRequest request) {
     	Map<String, String> map = new HashMap<String, String>();
@@ -88,6 +91,8 @@ public class FileController {
                 }
             }
             map.put("msg", "上传成功");
+            User user=(User)request.getSession().getAttribute("user");
+            user.getHeadPhotoUrl();
         } catch (Exception e) {
         	map.put("msg", "上传失败");
         }

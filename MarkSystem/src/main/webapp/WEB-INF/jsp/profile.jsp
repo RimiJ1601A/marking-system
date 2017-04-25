@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -430,7 +430,7 @@
 							</div>
 							<!-- /.tab-pane -->
 							<div class="tab-pane" id="setinfo">
-								<form action="/updateUser" method="post" class="form-horizontal">
+								<form action="/changeInfo" method="post" class="form-horizontal" charset="UTF-8">
 
 									<div class="form-group">
 										<label for="inputName" class="col-sm-2 control-label">姓名</label>
@@ -457,22 +457,22 @@
 									<div class="form-group">
 										<label for="inputExperience" class="col-sm-2 control-label">你的经历</label>
 										<div class="col-sm-10">
-											<textarea class="form-control" id="inputExperience"
-												placeholder="修改你的经历..."></textarea>
+											<textarea readonly="readonly" class="form-control" id="inputExperience"
+												placeholder="抱歉该功能暂未开放"></textarea>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="inputSkills" class="col-sm-2 control-label">主要技能</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="inputSkills"
-												placeholder="修改你的主要技能...">
+											<input readonly="readonly" type="text" class="form-control" id="inputSkills"
+												placeholder="抱歉该功能暂未开放">
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="inputMotto" class="col-sm-2 control-label">座右铭</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="inputMotto"
-												placeholder="修改你的座右铭...">
+											<input readonly="readonly" type="text" class="form-control" id="inputMotto"
+												placeholder="抱歉该功能暂未开放">
 										</div>
 									</div>
 									<div class="form-group">
@@ -486,19 +486,19 @@
 
 
 							<div class="tab-pane" id="setpassword">
-								<form class="form-horizontal">
+								<form action="/changePassword" class="form-horizontal" method="post">
 									<div class="form-group">
 										<label for="inputOldpw" class="col-sm-2 control-label">旧密码</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" id="inputOldpw"
-												placeholder="请输入你的旧密码...">
+												name="oldPassword" placeholder="请输入你的旧密码...">
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="inputNewpw" class="col-sm-2 control-label">新密码</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control" id="inputNewpw"
-												placeholder="请输入你的新密码...">
+												name="newPassword" placeholder="请输入你的新密码...">
 										</div>
 									</div>
 
@@ -598,7 +598,7 @@
 					dataType : "json",
 					success : function(data) {
 						alert(data.msg);
-						$(".btn-default").click();
+						window.location.reload(); 
 					},
 					error : function(error) {
 						alert(error.msg);
@@ -606,5 +606,15 @@
 				});
 			}, type);
 		});
+		
+		window.onload=function(){
+			var msg ="${msg}";
+			if( msg == ""){
+				
+			}else{
+				alert(msg);
+			}
+			
+		} 
 	</script>
 </html>
