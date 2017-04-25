@@ -2,6 +2,9 @@ var quizsOnclick_count = 0;
 $(document).on("click","#goMarkTable_btn",function(){
 	quizsOnclick_count = 0;
 	var markTable_id = $(this).parent().parent().find("td").get(0).innerHTML;
+	var evaluated_id = $(this).parent().parent().find("td").get(5).innerHTML;
+	var teamName = $(this).parent().parent().find("td").get(4).innerHTML;
+	alert(evaluated_id);
 	$.ajax({
 		url : '/stuGetQuiz',
 		type : 'post',
@@ -10,17 +13,25 @@ $(document).on("click","#goMarkTable_btn",function(){
 		success : function(Quizs){
 			$(".initQuizsContent").remove();
 			var newInit = $("<div class='initQuizsContent'></div>");
+			$(newInit).attr("value",markTable_id);
+			$(newInit).attr("value1",evaluated_id);
+			$(newInit).attr("value2",teamName);
 			for(var i = 0;i<Quizs.length;i++){
 				if(i == Quizs.length-1){
 					
 				}
 				if(i == 0){
 					var quiz_title = $("<div class='quiz_title"+i+"' style='position:absolute;display:block;'>"+Quizs[i].quizTitle+"</br></div>");
+					$(quiz_title).attr("value",Quizs[i].id);
+					$(quiz_title).attr("value1",Quizs[i].quizTitle);
 				}else{
 					var quiz_title = $("<div class='quiz_title"+i+"' style='position:absolute;display:none;'>"+Quizs[i].quizTitle+"</br></div>");
+					$(quiz_title).attr("value",Quizs[i].id);
+					$(quiz_title).attr("value1",Quizs[i].quizTitle);
 				}
 				for(var j=0;j<Quizs[i].quizContent.length;j++){
 					var student_quizs = $("<input type='radio' name='student_quizContent"+i+"' value='"+Quizs[i].quizContent[j].quizCore+"'>"+Quizs[i].quizContent[j].content+" : "+Quizs[i].quizContent[j].quizCore+"</br>");
+					$(student_quizs).attr("value1",Quizs[i].quizContent[j].content);
 					$(quiz_title).append(student_quizs);
 				}
 				$(newInit).append(quiz_title);
@@ -52,4 +63,46 @@ $(document).on("click","#nextQuizs",function(){
 		$(".quiz_title"+(quizsOnclick_count+1)+"").css("display","block");
 		quizsOnclick_count++;		
 	}
+});
+
+$(document).on("click","#Save_result",function(){
+	var AllQuiz = $(".initQuizsContent").children();
+	var requestTable = [];
+	for(var i=0;i<AllQuiz.length;i++){
+		var quizId = $($(AllQuiz).get(i)).attr("value");
+		var answer;
+		var answerScore;
+		var evaluatedId = $(".initQuizsContent").attr("value1");
+		var marktableId = $(".initQuizsContent").attr("value");
+		var teamName = $(".initQuizsContent").attr("value2");
+		var inputName;
+		
+		
+		if($($(AllQuiz).get(i)).find("input").length == 0){
+			answer = "这道题是问答题";
+			answerScore = 0;
+		}else{
+			inputName = $($(AllQuiz).get(i)).find("input").attr("name");
+			answer = $('input[type="radio"][name='+inputName+']:checked').attr("value1");
+			answerScore = $('input[type="radio"][name='+inputName+']:checked').attr("value");
+		}
+		var requestQuiz = {"quizId":quizId,"answer":answer,"answerScore":answerScore,"evaluatedId":evaluatedId,"marktableId":marktableId,"teamName":teamName};
+		requestTable.push(requestQuiz);
+	}
+	
+	$.ajax({
+		url: '/result',
+		type : 'post',
+		data: JSON.stringify(requestTable),
+		contentType : 'application/json; charset=utf-8',
+		success : function(){
+			alert("Save Success!!");
+			$("#student_quizs").modal("hide");
+			location.reload();
+		},
+		error : function(){
+			alert("Save Error!!");
+		}
+	})
+	
 });

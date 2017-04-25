@@ -7,6 +7,22 @@ public class RequestMarkTableQuiz {
     private String name; //评分表name
     private String teamName;   //需要评分的 班级名字
     private String evaluatedName; //被评分人名字
+    private int evalueateId;
+    private boolean marked; //是否已被评价
+    
+    
+	public boolean isMarked() {
+		return marked;
+	}
+	public void setMarked(boolean marked) {
+		this.marked = marked;
+	}
+	public int getEvalueateId() {
+		return evalueateId;
+	}
+	public void setEvalueateId(int evalueateId) {
+		this.evalueateId = evalueateId;
+	}
 	public int getMarktableId() {
 		return marktableId;
 	}

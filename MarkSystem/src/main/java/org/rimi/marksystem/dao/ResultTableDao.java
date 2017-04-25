@@ -27,4 +27,10 @@ public interface ResultTableDao {
 	public List<ResultTable> selectResultTableByEvaluatedId(MarkTable markTable,User user);
 
 
+	
+	/*
+	 * 根据班级名查询班级ID
+	 */
+	
+	public int selectTeamId(String teamName);
 }

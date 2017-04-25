@@ -274,6 +274,7 @@
 						<th>结束时间</th>
 						<th>表名</th>
 						<th>班级</th>
+						<th>被评分人ID</th>
 						<th>被评分人</th>
 						<th>#</th>
 					</tr>
@@ -286,9 +287,18 @@
 							<td>${Listrmtqs.endTime}</td>
 							<td>${Listrmtqs.name}</td>
 							<td>${Listrmtqs.teamName}</td>
+							<td>${Listrmtqs.evalueateId}</td>
 							<td>${Listrmtqs.evaluatedName}</td>
+							<c:if test="${Listrmtqs.marked}">
 							<td><div id="goMarkTable_btn" class="btn btn-default"
-									style="height: 30px;" data-toggle="modal" data-target="#student_quizs">点击进入答题</div></td>
+									style="height: 30px;" data-toggle="modal" data-target="#student_quizs">点击进入答题</div>
+							</td>
+							</c:if>
+							<c:if test="${!Listrmtqs.marked}">
+							<td><div class="btn btn-default"
+									style="height: 30px;">已被您评价过</div>
+							</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 					<!-- <tr class="bg-primary" style="background-color: #292b2c;">
@@ -344,7 +354,7 @@
 								data-dismiss="modal">关闭</button>
 							<button type="button"  id="prevQuizs" class="btn btn-default">上一题</button>
 							<button type="button"  id="nextQuizs" class="btn btn-default">下一题</button>
-							<button type="button" class="btn btn-primary">提交</button>
+							<button type="button"  id="Save_result" class="btn btn-primary">提交</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->

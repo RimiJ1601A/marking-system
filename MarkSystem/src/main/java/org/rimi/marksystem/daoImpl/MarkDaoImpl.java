@@ -42,7 +42,7 @@ public class MarkDaoImpl implements MarkDao{
 
 	public List<RequestMarkTableQuiz> selectRequestMarkTableQuiz(int id) {
 		// TODO Auto-generated method stub
-		List<RequestMarkTableQuiz> requestMarkTableQuizs = jdbcTemplate.query("select team_name,user_name,marktable_id,name,start_time,end_time from user,team,user_marke,marktable where user_marke.marktable_id = marktable.id and user_marke.team_id = team.id and user_marke.evaluated_id = user.id and team_id = "+id+"", new ResultSetExtractor<List<RequestMarkTableQuiz>>(){
+		List<RequestMarkTableQuiz> requestMarkTableQuizs = jdbcTemplate.query("select team_name,evaluated_id,user_name,marktable_id,name,start_time,end_time from user,team,user_marke,marktable where user_marke.marktable_id = marktable.id and user_marke.team_id = team.id and user_marke.evaluated_id = user.id and user.id = user_marke.evaluated_id and team_id = "+id+"", new ResultSetExtractor<List<RequestMarkTableQuiz>>(){
 
 			public List<RequestMarkTableQuiz> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				// TODO Auto-generated method stub
@@ -50,11 +50,12 @@ public class MarkDaoImpl implements MarkDao{
 				while(rs.next()){
 					RequestMarkTableQuiz rmtq = new RequestMarkTableQuiz();
 					rmtq.setTeamName(rs.getString(1));
-					rmtq.setEvaluatedName(rs.getString(2));
-					rmtq.setMarktableId(rs.getInt(3));
-					rmtq.setName(rs.getString(4));
-					rmtq.setStartTime(rs.getString(5));
-					rmtq.setEndTime(rs.getString(6));
+					rmtq.setEvalueateId(rs.getInt(2));
+					rmtq.setEvaluatedName(rs.getString(3));
+					rmtq.setMarktableId(rs.getInt(4));
+					rmtq.setName(rs.getString(5));
+					rmtq.setStartTime(rs.getString(6));
+					rmtq.setEndTime(rs.getString(7));
 					rmtqs.add(rmtq);
 				}
 				return rmtqs;
@@ -122,6 +123,25 @@ public class MarkDaoImpl implements MarkDao{
 			
 		});
 		return quizContents;
+	}
+
+	@Override
+	public List<Integer> selectResultInfo(int user_id, int marktable_id) {
+		List<Integer> count = jdbcTemplate.query("select id from resulttable where evaluation_id = "+user_id+" and marktable_id = "+marktable_id+"", new ResultSetExtractor<List<Integer>>(){
+
+			@Override
+			public List<Integer> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				List<Integer> integers = new ArrayList<>();
+				while(rs.next()){
+					int id = rs.getInt(1);
+					integers.add(id);
+				}
+				return integers;
+			}
+
+		});
+		return count;
 	}
 	
 }

@@ -488,7 +488,7 @@ input.labelauty+label {
 								class="bb-custom-icon bb-custom-icon-arrow-right">Next</a> <a
 								id="bb-nav-last" href="#"
 								class="bb-custom-icon bb-custom-icon-last">New</a> <a
-								id="saveQuiz" class="saveQuiz">Save</a> </nav>
+								id="saveQuiz" class="saveQuiz"  style="cursor: pointer;">Save</a> </nav>
 						</div>
 					</div>
 					<!-- /.modal-content -->

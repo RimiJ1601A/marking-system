@@ -47,5 +47,11 @@ public class MarkServiceImpl implements MarkService{
 		
 		return markDaoImpl.selectTeamId(id);
 	}
+
+	@Override
+	public List<Integer> getInfo(int userid, int marktableid) {
+		// TODO Auto-generated method stub
+		return markDaoImpl.selectResultInfo(userid, marktableid);
+	}
 	
 }
