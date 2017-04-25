@@ -43,4 +43,11 @@ public interface UserDao {
   //根据账号获得roleID
   	public int selectUsersRoleId(String userAccount);
     
+  	/***
+  	 * 修改用户头像
+  	 * @param imgUrl  头像路径
+  	 * @param userAccount	用户账号
+  	 */
+  	public void updateUserHeadPhoto(String imgUrl,String userAccount);
+  	
 }

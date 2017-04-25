@@ -290,4 +290,11 @@ public class UserDapImpl implements UserDao {
 		return roleId;
 	}
 
+	@Override
+	public void updateUserHeadPhoto(String imgUrl, String userAccount) {
+			
+		jdbcTemplate.update("update user set headphoto_url  = ? where user_account = ? ", new Object[]{imgUrl,userAccount});
+	
+	}
+
 }

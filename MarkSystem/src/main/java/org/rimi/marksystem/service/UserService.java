@@ -43,5 +43,11 @@ public interface UserService {
 	
     //分页查询
     public List<User> getUsersByPage(int page,int account);
-
+    
+    /***
+     * 修改头像
+     * @param imgUrl		头像路径
+     * @param userAccount	用户账户
+     */
+    public void changeUserHeadPhoto(String imgUrl,String userAccount);
 }

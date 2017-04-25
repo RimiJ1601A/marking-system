@@ -146,4 +146,9 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public void changeUserHeadPhoto(String imgUrl, String userAccount) {
+		userDaoImpl.updateUserHeadPhoto(imgUrl, userAccount);
+	}
+
 }
