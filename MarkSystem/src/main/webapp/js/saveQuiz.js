@@ -37,10 +37,11 @@ $(document).on("click",".saveQuiz",function(){
 		data: qsjson,
 		contentType: 'application/json; charset=utf-8',
 		success : function(){
-			alert(1);
+			alert("Save Success!");
+			$("#myModal").modal("hide");
 		},
 		error : function(){
-			alert(2);
+			alert("Error!!");
 		}
 	})
 	});

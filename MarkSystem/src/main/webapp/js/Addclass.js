@@ -196,10 +196,14 @@ function submitmarkTable() {
 		data : JSON.stringify(markTable),
 		contentType : 'application/json; charset=utf-8',
 		success : function() {
-			alert(1);
+			alert("Save Success!!");
+			$("#myTable").modal("hide");
 		},
 		error : function() {
-			alert(2);
+			alert("Save Error!!");
 		}
 	});
+}
+function closequizmodal(){
+	$("#quizList").modal("hide");
 }
