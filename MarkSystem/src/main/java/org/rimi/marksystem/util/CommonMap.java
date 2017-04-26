@@ -3,6 +3,8 @@ package org.rimi.marksystem.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.rimi.marksystem.eneity.Role;
+
 public class CommonMap {	
 	
 	/*
@@ -15,4 +17,6 @@ public class CommonMap {
 	 */
 	public static Map<Integer,String> roleFunctionMap = new HashMap<Integer,String>();
 	
+	
+	public static Map<Integer,Map<Role,String>> roleMap = new HashMap<>();
 }

@@ -43,7 +43,7 @@
 					</div>
 					<!-- /.col -->
 					<div class="col-xs-4">
-						<button type="button" onclick="abc()" class="btn btn-primary btn-block btn-flat">登录</button>
+						<button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
 					</div>
 					<!-- /.col -->
 				</div>
@@ -68,20 +68,18 @@
 		<!-- /.login-box-body -->
 	</div>
 	
-<!-- 	<script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
-	Bootstrap 3.3.6
+ 	<script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	iCheck
-	<script type="text/javascript" src="/js/icheck.min.js"></script> -->
+	<script type="text/javascript" src="/js/icheck.min.js"></script> 
 	<script type="text/javascript" src="/js/login.js"></script>
 	<script>
-/* 		$(function() {
+ 		$(function() {
 			$('input').iCheck({
 				checkboxClass : 'icheckbox_square-blue',
 				radioClass : 'iradio_square-blue',
 				increaseArea : '20%' // optional
 			});
-		}); */
+		}); 
 		
 		window.onload=function(){
 			var err = "${error}";
