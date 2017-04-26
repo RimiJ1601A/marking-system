@@ -42,7 +42,7 @@ public class MarkDaoImpl implements MarkDao{
 
 	public List<RequestMarkTableQuiz> selectRequestMarkTableQuiz(int id) {
 		// TODO Auto-generated method stub
-		List<RequestMarkTableQuiz> requestMarkTableQuizs = jdbcTemplate.query("select team_name,evaluated_id,user_name,marktable_id,name,start_time,end_time from user,team,user_marke,marktable where user_marke.marktable_id = marktable.id and user_marke.team_id = team.id and user_marke.evaluated_id = user.id and user.id = user_marke.evaluated_id and team_id = "+id+"", new ResultSetExtractor<List<RequestMarkTableQuiz>>(){
+		List<RequestMarkTableQuiz> requestMarkTableQuizs = jdbcTemplate.query("select team_name,evaluated_id,user_name,marktable_id,name,start_time,end_time from user,team,user_marke,marktable where user_marke.marktable_id = marktable.id and user_marke.team_id = team.id and user_marke.evaluated_id = user.id and user.id = user_marke.evaluated_id and team_id = "+id+" order by end_time DESC", new ResultSetExtractor<List<RequestMarkTableQuiz>>(){
 
 			public List<RequestMarkTableQuiz> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				// TODO Auto-generated method stub
