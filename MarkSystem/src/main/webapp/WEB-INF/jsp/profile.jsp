@@ -333,7 +333,7 @@
 							<p class="text-muted">作为xxx负责过xx项目xx的开发 ，同时参与过xx项目xxx的开发</p>
 							<hr>
 							<strong><i class="fa fa-calendar-plus-o margin-r-5"></i>加入时间</strong>
-							<p class="text-muted">2016-10-01</p>
+							<p class="text-muted">${sessionScope.user.bulidTime}</p>
 							<hr>
 							<strong><i class="fa fa-pencil margin-r-5"></i> 主要技能</strong>
 							<p>
