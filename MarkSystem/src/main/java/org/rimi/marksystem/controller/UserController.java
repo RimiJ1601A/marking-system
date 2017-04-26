@@ -79,8 +79,8 @@ public class UserController {
 			return "login";
 		} else {
 			request.getSession().setAttribute("user", user);
-			String roleName = CommonMap.roleNameMap.get(user.getRoleId());
-			String functionName = CommonMap.roleFunctionMap.get(user.getRoleId()); 
+			String roleName = roleServiceImpl.getRoleNameByRoleId(user.getRoleId());
+			String functionName = roleServiceImpl.getFunctionNameByRoleId(user.getRoleId()); 
 			request.getSession().setAttribute("functions", functionName);
 			request.getSession().setAttribute("roleName", roleName);
 			return "redirect:/index";

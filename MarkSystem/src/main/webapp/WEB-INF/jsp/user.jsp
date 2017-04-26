@@ -216,6 +216,7 @@
 					<span>个人主页</span></a></li>
 
 			<c:set var="functions" value="${sessionScope.functions}" />
+			
 			<c:if test="${fn:contains(functions,'职位')}">
 				<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
 			</c:if>
@@ -318,10 +319,12 @@
 															name="gn" id="cjrq">&nbsp;创建日期</li>
 													</ul>
 												</div>
+												<c:if test="${fn:contains(functions,'增加用户')}">
 												<button type="button" class="btn btn-info " title="添加人员"
 													onclick="tjry()">
 													<i class="fa fa-fw fa-plus"></i>
 												</button>
+												</c:if>
 												<button type="button" class="btn btn-info " title="刷新"
 													onclick="shuaxin()">
 													<i class="fa fa-fw fa-refresh"></i>
@@ -377,6 +380,7 @@
 												</tr>
 											</thead>
 											<tbody>
+												
 												<c:forEach var="it" items="${userlist}">
 													<tr role="row" class="odd">
 														<td class="xszh">${it.userAccount}</td>
@@ -384,17 +388,27 @@
 														<td class="xsnl">${it.age}</td>
 														<td class="xsxb">${it.sex.sex}</td>
 														<td class="xszw">${it.roleName}</td>
-														<td class="xscjrq">${it.bulidTime}</td>
-														<td style="vertical-align: middle; text-align: center;"><span
-															class="glyphicon glyphicon-picture btsize-wz"
-															aria-hidden="true" title="查看" onclick="ck('${it.userAccount}','${it.userName}','${it.age}','${it.sex.sex}','${it.roleName}','${it.bulidTime}')"
-															style="color: #00c0ef;"></span> <span
-															class="glyphicon glyphicon-list-alt btsize-wz" id="btbj"
-															aria-hidden="true" title="编辑" onclick="bj('${it.userAccount}','${it.userName}','${it.age}')"
-															style="color: #00c0ef;"></span> <span
-															class="glyphicon glyphicon-trash btsize-wz" id="btsc"
-															aria-hidden="true" title="删除" onclick="sc('${it.userAccount}')"
-															style="color: rgb(212, 106, 64);"></span></td>
+														<td class="xscjrq">${it.bulidTime}</td>			
+														<td style="vertical-align: middle; text-align: center;">
+															
+															<c:if test="${fn:contains(functions,'查看用户')}">
+															<span class="glyphicon glyphicon-picture btsize-wz"
+																aria-hidden="true" title="查看" onclick="ck('${it.userAccount}','${it.userName}','${it.age}','${it.sex.sex}','${it.roleName}','${it.bulidTime}')"
+																style="color: #00c0ef;"></span>
+															</c:if>
+															<c:if test="${fn:contains(functions,'编辑用户')}">
+															<span
+																class="glyphicon glyphicon-list-alt btsize-wz" id="btbj"
+																aria-hidden="true" title="编辑" onclick="bj('${it.userAccount}','${it.userName}','${it.age}')"
+																style="color: #00c0ef;"></span>
+															</c:if>
+															<c:if test="${fn:contains(functions,'删除用户')}">
+															<span
+																class="glyphicon glyphicon-trash btsize-wz" id="btsc"
+																aria-hidden="true" title="删除" onclick="sc('${it.userAccount}')"
+																style="color: rgb(212, 106, 64);"></span>
+																</c:if>
+														</td>
 													</tr>
 												</c:forEach>
 

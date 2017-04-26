@@ -25,14 +25,6 @@ public class Start{
     @PostConstruct  
     public void  init(){  
         System.out.println("I'm  init  method  using  @PostConstrut....");
-        List<Role> roles = roleServiceImpl.getRoleAll();
-        for(int i =0;i<roles.size();i++){
-        	int roleId = roles.get(i).getId();
-        	String roleName = roleServiceImpl.getRoleNameByRoleId(roleId);
-        	String functionsName = roleServiceImpl.getFunctionNameByRoleId(roleId);
-        	CommonMap.roleNameMap.put(roleId, roleName);
-        	CommonMap.roleFunctionMap.put(roleId, functionsName);
-        }
         
         System.out.println("加载完成");
     }  
