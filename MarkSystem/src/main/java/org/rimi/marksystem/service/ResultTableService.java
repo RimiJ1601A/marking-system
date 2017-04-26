@@ -28,4 +28,5 @@ public interface ResultTableService {
 	public List<ResultTable> getResultTableByEvaluatedId(MarkTable markTable,User user);
 
 	
+	public int getTeamId(String teamName);
 }

@@ -26,8 +26,18 @@ public class MarkController {
 		
 		//id->teamid
 		User user = (User)request.getSession().getAttribute("user");
+		int user_id = user.getId();
 		List<Integer> integers = markServiceImpl.getTeamId(user.getId());
 		List<RequestMarkTableQuiz> rmtqs = markServiceImpl.getTableInfo(integers);
+		
+		for (RequestMarkTableQuiz requestMarkTableQuiz : rmtqs) {
+			List<Integer> count = markServiceImpl.getInfo(user_id, requestMarkTableQuiz.getMarktableId());
+			if(count.size() == 0){
+				requestMarkTableQuiz.setMarked(true);//没有被评价
+			}else{
+				requestMarkTableQuiz.setMarked(false);//已被评价
+			}
+		}
 		model.addAttribute("Listrmtq",rmtqs);
 		return "mark";
 	}
@@ -35,6 +45,7 @@ public class MarkController {
 	@RequestMapping("/stuGetQuiz")
 	@ResponseBody
 	public List<Quiz> getQuizs(HttpServletRequest request){
+		//获取当前button 下的marktableId
 		String mtid = request.getParameter("markTableId");
 //		System.out.println(mtid);
 		Integer markTable_id = null;

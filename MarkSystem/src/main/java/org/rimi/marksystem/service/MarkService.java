@@ -15,4 +15,6 @@ public interface MarkService {
 	public List<Integer> getQuizId(int id);
 	
 	public List<Integer> getTeamId(int id);
+	
+	public List<Integer> getInfo(int userid,int marktableid);
 }

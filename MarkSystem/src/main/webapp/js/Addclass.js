@@ -160,7 +160,6 @@ $(document)
 				});
 
 function submitmarkTable() {
-	alert(1123);
 	var name = $("#Title").val();
 	var endTime = $("#date").val();
 	var quizs = [];

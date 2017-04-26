@@ -42,4 +42,10 @@ public interface MarkDao {
 	 */
 	
 	public List<QuizContent> selectquizContent(int id);
+	
+	/**
+	 * 根据 user_id 和marktable_id 去结果表查看是否有评价的数据，如果没有返回false，如果有返回true
+	 */
+	
+	public List<Integer> selectResultInfo(int user_id,int marktable_id);
 }

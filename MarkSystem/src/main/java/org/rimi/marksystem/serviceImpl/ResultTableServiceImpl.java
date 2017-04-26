@@ -20,7 +20,8 @@ public class ResultTableServiceImpl implements ResultTableService{
 	 * 插入一张试卷的问题回答结果
 	 */
 	public void addResultTable(List<ResultTable> resultTable) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
+		resultTableDaoImpl.insertResultTable(resultTable);
 	}
 
 	/*
@@ -37,6 +38,13 @@ public class ResultTableServiceImpl implements ResultTableService{
 	public List<ResultTable> getResultTableByEvaluatedId(MarkTable markTable, User user) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getTeamId(String teamName) {
+		// TODO Auto-generated method stub
+		
+		return resultTableDaoImpl.selectTeamId(teamName);
 	}
 
 }

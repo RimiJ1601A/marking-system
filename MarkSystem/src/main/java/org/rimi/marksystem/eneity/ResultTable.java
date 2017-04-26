@@ -5,13 +5,22 @@ package org.rimi.marksystem.eneity;
  */
 public class ResultTable {
     private int id;
-    private int quizId;					//问题
+    private int quizId;					//问题id
     private String answer;				//问题回答
     private String answerScore;			//回答得分
-    private int evaluatedId;			//被评分ID
-    private int evaluationId;			//评分ID
+    private int evaluatedId;			//被评分人ID
+    private int evaluationId;			//评分人ID
     private int marktableId;			//评分表ID
     private int teamId;					//班级ID
+    private String teamName; //班级名字
+    
+    
+	public String getTeamName() {
+		return teamName;
+	}
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
 	public int getId() {
 		return id;
 	}
