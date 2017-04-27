@@ -38,6 +38,13 @@ public class MarkController {
 				requestMarkTableQuiz.setMarked(false);//已被评价
 			}
 		}
+		for(int i=0;i<rmtqs.size();i++){
+			if(user_id == rmtqs.get(i).getEvalueateId()){
+				rmtqs.remove(i);
+			}
+		}
+		
+		
 		model.addAttribute("Listrmtq",rmtqs);
 		return "mark";
 	}

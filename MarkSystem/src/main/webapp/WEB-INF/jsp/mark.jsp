@@ -274,7 +274,7 @@
 						<th>结束时间</th>
 						<th>表名</th>
 						<th>班级</th>
-						<th>被评分人ID</th>
+						<th style="display:none;">被评分人ID</th>
 						<th>被评分人</th>
 						<th>#</th>
 					</tr>
@@ -287,7 +287,7 @@
 							<td>${Listrmtqs.endTime}</td>
 							<td>${Listrmtqs.name}</td>
 							<td>${Listrmtqs.teamName}</td>
-							<td>${Listrmtqs.evalueateId}</td>
+							<td style="display:none;">${Listrmtqs.evalueateId}</td>
 							<td>${Listrmtqs.evaluatedName}</td>
 							<c:if test="${Listrmtqs.marked}">
 							<td><div id="goMarkTable_btn" class="btn btn-default"
