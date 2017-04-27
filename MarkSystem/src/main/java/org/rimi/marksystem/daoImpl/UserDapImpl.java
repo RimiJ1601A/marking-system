@@ -296,5 +296,29 @@ public class UserDapImpl implements UserDao {
 		jdbcTemplate.update("update user set headphoto_url  = ? where user_account = ? ", new Object[]{imgUrl,userAccount});
 	
 	}
+    
+    
+    @Override
+    //根据roleid查询用户数量
+    public int selectUsersSum(int roleId) {
+        int sum=jdbcTemplate.queryForObject("select count(*) from user where role_id =?", new Object[]{roleId},Integer.class );
+        return sum;
+    }
+    
+    @Override
+    public int selectMonthlyUsersSum(int roleId) {
+        //DATE_ADD(curdate(),interval -day(curdate())+1 day)获取本月第一天
+        String sql="select count(*) from user where role_id=? and bulid_time >=(DATE_ADD(curdate(),interval -day(curdate())+1 day))";
+        int sum =jdbcTemplate.queryForObject(sql, new Object[]{roleId},Integer.class);
+        return sum;
+    }
+    
+    @Override
+    public List selectNewUsers(int year) {
+        List list=new ArrayList<>();
+        String sql="select date_format(bulid_time,'%m') as month,count(*) as students from user where date_format(bulid_time,'%Y')=? group by month order by month ";
+        jdbcTemplate.queryForMap(sql, new Object[]{year}, argTypes);
+        return null;
+    }
 
 }

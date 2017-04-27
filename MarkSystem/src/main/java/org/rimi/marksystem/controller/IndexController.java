@@ -25,7 +25,29 @@ public class IndexController {
 
 		user = (User) request.getSession().getAttribute("user");
 		if (user.getRoleId() == 1) {
-			return "index-admin";
+            // index-admin顶部卡片统计数据，在校学生、本月新增学生、在校老师
+            int studentsSum = userServiceImpl.getUsersSumByRoleId(3);
+            int studentsMonthlySum = userServiceImpl.getMonthlyUsersSumByBuildTime(3);
+            int teachersSum = userServiceImpl.getUsersSumByRoleId(2);
+            model.addAttribute("studentsSum", studentsSum);
+            model.addAttribute("studentsMonthlySum", studentsMonthlySum);
+            model.addAttribute("teachersSum", teachersSum);
+            
+            // 获取登录系统时间
+            long currentLoginTime = System.currentTimeMillis();
+            Date logindate = new Date(currentLoginTime);
+            
+            // 显示统计图表的展示时间
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("MMM dd,YYYY");// 统一格式
+            String nowdate = formatter.format(logindate);// 显示的最终时间
+            String startdate = formatter.format(countServiceImpl.countBegintime());// 统计的开始时间
+            model.addAttribute("startdate", startdate);
+            model.addAttribute("nowdate", nowdate);
+            
+            
+            
+            return "index-admin";
 		} else if (user.getRoleId() == 2) {
 			return "index-teacher";
 		} else if (user.getRoleId() == 3) {

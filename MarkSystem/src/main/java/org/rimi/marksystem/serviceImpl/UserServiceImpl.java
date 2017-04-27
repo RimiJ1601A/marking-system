@@ -150,5 +150,18 @@ public class UserServiceImpl implements UserService {
 	public void changeUserHeadPhoto(String imgUrl, String userAccount) {
 		userDaoImpl.updateUserHeadPhoto(imgUrl, userAccount);
 	}
+    
+    @Override
+    public int getUsersSumByRoleId(int roleId) {
+        
+        return userDaoImpl.selectUsersSum(roleId);
+    }
+    
+    @Override
+    public int getMonthlyUsersSumByBuildTime(int roleId) {
+        
+        return userDaoImpl.selectMonthlyUsersSum(roleId);
+    }
+
 
 }

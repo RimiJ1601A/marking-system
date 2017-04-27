@@ -50,4 +50,9 @@ public interface UserService {
      * @param userAccount	用户账户
      */
     public void changeUserHeadPhoto(String imgUrl,String userAccount);
+    
+    //统计用户总数
+    public int getUsersSumByRoleId(int roleId);
+    //统计当月注册用户
+    public int getMonthlyUsersSumByBuildTime(int roleId);
 }
