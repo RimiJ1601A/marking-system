@@ -71,4 +71,6 @@ public interface MarkTableDao {
 	 * 查询当前Quiz ID
 	 */
 	public int selectCurrentQuizID();
+	
+	
 }
