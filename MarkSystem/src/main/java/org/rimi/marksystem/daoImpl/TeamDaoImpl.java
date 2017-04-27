@@ -334,4 +334,31 @@ public class TeamDaoImpl implements TeamDao {
 		return teamname;
 	}
 
+	@Override
+	public Team getTeamByiId(int id) {
+		Team team = new Team();
+		team = jdbcTemplate.query("select * from team where id =?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, id);
+			}
+		}, new ResultSetExtractor<Team>() {
+
+			@Override
+			public Team extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				Team team = new Team();
+				while(rs.next()){
+					team.setId(rs.getInt(1));
+					team.setTeamName(rs.getString(2));
+					team.setBuildTime(rs.getString(3));
+				}
+				return team;
+			}
+		});
+		return team;
+	}
+
 }

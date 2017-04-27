@@ -452,18 +452,30 @@
 						<!-- /.box-header -->
 						<div class="box-body">
 							<ul class="products-list product-list-in-box">
+							<c:set var="index" value="0" />
+							<c:forEach var="tu" items="${tulist}">
+								<c:set var="index" value="${index+1}" />
 								<li class="item">
 									<div class="product-img">
 										<img src="/images/default-50x50.gif" alt="Product Image">
 									</div>
 									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Java1601
-											<span class="label label-warning pull-right">2016-11</span>
-										</a> <span class="product-description"> Java1601对 xxx
-											Teacher发起了评教. </span>
+										<a href="javascript:void(0)" class="product-title">${tu.team.teamName}
+										<c:if test="${index == 1}">
+											<span class="label label-warning pull-right">${tu.startTime}</span>										
+										</c:if>
+										<c:if test="${index == 2}">
+											<span class="label label-info pull-right">${tu.startTime}</span>										
+										</c:if>
+										<c:if test="${index == 3}">
+											<span class="label label-danger pull-right">${tu.startTime}</span>										
+										</c:if>
+										</a> <span class="product-description">${tu.team.teamName}对 ${tu.evaluatedUser.userName}
+											发起了评教. </span>
 									</div>
-								</li>
-								<!-- /.item -->
+								</li>				
+							</c:forEach>
+<!-- 								/.item
 								<li class="item">
 									<div class="product-img">
 										<img src="/images/default-50x50.gif" alt="Product Image">
@@ -475,7 +487,7 @@
 											Teacher发起了评教. </span>
 									</div>
 								</li>
-								<!-- /.item -->
+								/.item
 								<li class="item">
 									<div class="product-img">
 										<img src="/images/default-50x50.gif" alt="Product Image">
@@ -486,7 +498,7 @@
 										</a> <span class="product-description"> Web1701对 xxx
 											Teacher发起了评教. </span>
 									</div>
-								</li>
+								</li> -->
 
 							</ul>
 						</div>

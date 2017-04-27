@@ -58,4 +58,6 @@ public interface UserDao {
     //按月查相应年度新增用户
     public List selectNewUsers(int year);
   	
+    public User selectUserByid(int id);
+    
 }

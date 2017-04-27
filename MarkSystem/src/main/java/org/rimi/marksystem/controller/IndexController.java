@@ -1,13 +1,15 @@
 package org.rimi.marksystem.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.rimi.marksystem.eneity.TeamAndUser;
 import org.rimi.marksystem.eneity.User;
-import org.rimi.marksystem.service.RoleService;
-import org.rimi.marksystem.util.CommonMap;
+import org.rimi.marksystem.service.CountService;
+import org.rimi.marksystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
-
+	
+	@Autowired
+	private UserService userServiceImpl;
+	@Autowired
+	private CountService countServiceImpl;
+	
 	@RequestMapping("/index")
 	public String index(User user, Model model, HttpServletRequest request) {
 
@@ -45,7 +52,8 @@ public class IndexController {
             model.addAttribute("startdate", startdate);
             model.addAttribute("nowdate", nowdate);
             
-            
+            List<TeamAndUser> tulist = countServiceImpl.getTeamAndUser();
+            model.addAttribute("tulist", tulist);
             
             return "index-admin";
 		} else if (user.getRoleId() == 2) {

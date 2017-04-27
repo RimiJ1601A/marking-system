@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.UserDao;
+import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -317,8 +318,34 @@ public class UserDapImpl implements UserDao {
     public List selectNewUsers(int year) {
         List list=new ArrayList<>();
         String sql="select date_format(bulid_time,'%m') as month,count(*) as students from user where date_format(bulid_time,'%Y')=? group by month order by month ";
-        jdbcTemplate.queryForMap(sql, new Object[]{year}, argTypes);
+        //jdbcTemplate.queryForMap(sql, new Object[]{year}, argTypes);
         return null;
     }
+
+	@Override
+	public User selectUserByid(int id) {
+		User user = new User();
+		user = jdbcTemplate.query("select * from user where id =?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, id);
+			}
+		}, new ResultSetExtractor<User>() {
+
+			@Override
+			public User extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				User user = new User();
+				while(rs.next()){
+					user.setId(rs.getInt(1));
+					user.setUserName(rs.getString(4));
+				}
+				return user;
+			}
+		});
+		return user;
+	}
 
 }

@@ -33,4 +33,5 @@ public interface TeamDao {
 	//通过班级ID和roleID得到userID
 	public List<User> selectUserId(int teamId,int roleId);
 	
+	public Team getTeamByiId(int id);
 }
