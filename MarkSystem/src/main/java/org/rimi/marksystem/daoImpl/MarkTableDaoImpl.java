@@ -15,6 +15,7 @@ import org.rimi.marksystem.eneity.Quiz;
 import org.rimi.marksystem.eneity.QuizContent;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.eneity.UserMarke;
+import org.rimi.marksystem.util.QuizType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -195,7 +196,7 @@ public class MarkTableDaoImpl implements MarkTableDao{
 
 	public void insertQuiz(Quiz quiz) {
 		// TODO Auto-generated method stub
-		jdbcTemplate.update("INSERT INTO quiz (quiz_title,quiz_type) VALUE(?,?)", quiz.getQuizTitle(),"选择题");
+		jdbcTemplate.update("INSERT INTO quiz (quiz_title,quiz_type) VALUE(?,?)", quiz.getQuizTitle(),QuizType.CHOICE_QUESTION.getType());
 		int id = selectCurrentQuizID();
 		insertQuiz_content(id, quiz);
 	}
@@ -229,7 +230,7 @@ public class MarkTableDaoImpl implements MarkTableDao{
 
 	public void insertEssayQuestion(Quiz quiz) {
 		// TODO Auto-generated method stub
-		jdbcTemplate.update("INSERT INTO quiz (quiz_title,quiz_type) VALUE(?,?)", quiz.getQuizTitle(),"问答题");
+		jdbcTemplate.update("INSERT INTO quiz (quiz_title,quiz_type) VALUE(?,?)", quiz.getQuizTitle(),QuizType.ESSAY_QUESTION.getType());
 	}
 
 	public List<UserMarke> selectUserMarkeBymarktableId(int id) {
@@ -258,8 +259,5 @@ public class MarkTableDaoImpl implements MarkTableDao{
 			}
 		});
 		return umlist;
-	}
-
-
-	
+	}	
 }

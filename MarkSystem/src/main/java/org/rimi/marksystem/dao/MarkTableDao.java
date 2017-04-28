@@ -80,6 +80,9 @@ public interface MarkTableDao {
 	 */
 	public void insertEssayQuestion(Quiz quiz);
 
+
 	public List<UserMarke> selectUserMarkeBymarktableId(int id); 
+
+
 
 }
