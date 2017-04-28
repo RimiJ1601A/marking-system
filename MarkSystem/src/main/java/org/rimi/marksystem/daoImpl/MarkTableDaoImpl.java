@@ -14,6 +14,7 @@ import org.rimi.marksystem.eneity.MarkTableTeam;
 import org.rimi.marksystem.eneity.Quiz;
 import org.rimi.marksystem.eneity.QuizContent;
 import org.rimi.marksystem.eneity.User;
+import org.rimi.marksystem.eneity.UserMarke;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -58,8 +59,25 @@ public class MarkTableDaoImpl implements MarkTableDao{
 	 * 查询所有评分表
 	 */
 	public List<MarkTable> selectMarkeTable() {
-		// TODO Auto-generated method stub
-		return null;
+		List<MarkTable> mtlist = new ArrayList<MarkTable>();
+		mtlist = jdbcTemplate.query("select * from marktable order by id desc",new ResultSetExtractor<List<MarkTable>>(){
+
+			@Override
+			public List<MarkTable> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<MarkTable> templist = new ArrayList<MarkTable>();
+				while(rs.next()){
+					MarkTable mt = new MarkTable();
+					mt.setId(rs.getInt(1));
+					mt.setName(rs.getString(2));
+					mt.setStartTime(rs.getString(3));
+					mt.setEndTime(rs.getString(4));
+					templist.add(mt);
+				}
+				return templist;
+			}
+		
+		});
+		return mtlist;
 	}
 
 	
@@ -208,9 +226,40 @@ public class MarkTableDaoImpl implements MarkTableDao{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void insertEssayQuestion(Quiz quiz) {
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("INSERT INTO quiz (quiz_title,quiz_type) VALUE(?,?)", quiz.getQuizTitle(),"问答题");
 	}
+=======
+	public List<UserMarke> selectUserMarkeBymarktableId(int id) {
+		List<UserMarke> umlist = new ArrayList<>();
+		umlist = jdbcTemplate.query("select * from user_marke where marktable_id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, id);
+			}
+		}, new ResultSetExtractor<List<UserMarke>>() {
+
+			@Override
+			public List<UserMarke> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<UserMarke> templist = new ArrayList<>();
+				while(rs.next()){
+					UserMarke um = new UserMarke();
+					um.setId(rs.getInt(1));
+					um.setTeamId(rs.getInt(2));
+					um.setEvaluatedId(rs.getInt(3));
+					um.setMarktableId(rs.getInt(4));
+					templist.add(um);	
+				}
+				return templist;
+			}
+		});
+		return umlist;
+	}
+
+>>>>>>> 94c4f3eec8ec733bfd552e128ef8e01b86d86cc1
 	
 }

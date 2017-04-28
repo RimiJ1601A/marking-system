@@ -108,3 +108,18 @@
     width: 100px;
     height: 100px;
 } */
+
+/* 调整图表中的小图标houver效果 */
+span.glyphicon.glyphicon-picture:hover{
+
+    background-color: blanchedalmond;
+  
+}
+span.glyphicon.glyphicon-list-alt:hover{
+
+    background-color: blanchedalmond;
+  
+}
+span.glyphicon.glyphicon-trash:hover{
+     background-color: blanchedalmond;
+}

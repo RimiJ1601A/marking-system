@@ -350,8 +350,8 @@
 					<div class="info-box">
 						<span class="info-box-icon bg-aqua"><i class="fa fa-group"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">学生</span> <span
-								class="info-box-number">1,410</span>
+							<span class="info-box-text">在线学生</span> <span
+								class="info-box-number">${studentsSum}</span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>
@@ -363,8 +363,8 @@
 						<span class="info-box-icon bg-green"><i
 							class="fa fa-user-plus"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">新增学生</span> <span
-								class="info-box-number">410</span>
+							<span class="info-box-text">本月新增学生</span> <span
+								class="info-box-number">${studentsMonthlySum}</span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>
@@ -376,8 +376,8 @@
 						<span class="info-box-icon bg-yellow"><i
 							class="fa  fa-graduation-cap"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">老师</span> <span
-								class="info-box-number">60</span>
+							<span class="info-box-text">在校老师</span> <span
+								class="info-box-number">${teachersSum</span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>
@@ -408,6 +408,7 @@
 					<div class="box box-solid">
 						<div class="box-header with-border">
 							<h3 class="box-title">个人总览</h3>
+							<small>系统启用时间:${startdate}</small>
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool"
 									data-widget="collapse">
@@ -418,7 +419,7 @@
 						<!-- /.box-header -->
 						<div class="box-body" style="display: block;">
 							<p class="text-center">
-								<strong>学生: 1 Jan, 2016 - 30 Jul, 2016</strong>
+								<strong>每月用户对比: 统计至 ${nowdate}</strong>
 							</p>
 							<div class="chart">
 								<!-- 被评次数 Chart Canvas -->
@@ -452,18 +453,30 @@
 						<!-- /.box-header -->
 						<div class="box-body">
 							<ul class="products-list product-list-in-box">
+							<c:set var="index" value="0" />
+							<c:forEach var="tu" items="${tulist}">
+								<c:set var="index" value="${index+1}" />
 								<li class="item">
 									<div class="product-img">
 										<img src="/images/default-50x50.gif" alt="Product Image">
 									</div>
 									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Java1601
-											<span class="label label-warning pull-right">2016-11</span>
-										</a> <span class="product-description"> Java1601对 xxx
-											Teacher发起了评教. </span>
+										<a href="javascript:void(0)" class="product-title">${tu.team.teamName}
+										<c:if test="${index == 1}">
+											<span class="label label-warning pull-right">${tu.startTime}</span>										
+										</c:if>
+										<c:if test="${index == 2}">
+											<span class="label label-info pull-right">${tu.startTime}</span>										
+										</c:if>
+										<c:if test="${index == 3}">
+											<span class="label label-danger pull-right">${tu.startTime}</span>										
+										</c:if>
+										</a> <span class="product-description">${tu.team.teamName}对 ${tu.evaluatedUser.userName}
+											发起了评教. </span>
 									</div>
-								</li>
-								<!-- /.item -->
+								</li>				
+							</c:forEach>
+<!-- 								/.item
 								<li class="item">
 									<div class="product-img">
 										<img src="/images/default-50x50.gif" alt="Product Image">
@@ -475,7 +488,7 @@
 											Teacher发起了评教. </span>
 									</div>
 								</li>
-								<!-- /.item -->
+								/.item
 								<li class="item">
 									<div class="product-img">
 										<img src="/images/default-50x50.gif" alt="Product Image">
@@ -486,7 +499,7 @@
 										</a> <span class="product-description"> Web1701对 xxx
 											Teacher发起了评教. </span>
 									</div>
-								</li>
+								</li> -->
 
 							</ul>
 						</div>
@@ -666,6 +679,29 @@
 
 	<!-- jQuery 3.1.0 -->
 	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+	<!-- adminchartjs数据 -->
+	<script type="text/javascript">
+		var Xaxis = $
+		{
+			Xaxis
+		};
+		var Yaxis = $
+		{
+			Yaxis
+		};
+		var oldYaxis = $
+		{
+			oldYaxis
+		};
+		var now = $
+		{
+			thisyear
+		};
+		var last = $
+		{
+			thisyear - 1
+		};
+	</script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->

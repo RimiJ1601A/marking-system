@@ -49,5 +49,17 @@ public interface UserDao {
   	 * @param userAccount	用户账号
   	 */
   	public void updateUserHeadPhoto(String imgUrl,String userAccount);
-  	
+    
+    //根据roleid查询相应用户数量
+    public int selectUsersSum(int roleId);
+    
+    //根据用户的roleid查用户当月注册数量
+    public int selectMonthlyUsersSum(int roleId);
+    //按月查相应年度新增用户,查当年，无新用户不统计
+    public List<Map<String, Object>> selectNewUsers(int year);
+    //按月查相应年度注册用户，查前一年，无注册用户，记为零
+    public  List<Map<String, Object>> selectlastNewUsers(int lastyear);
+    
+    public User selectUserByid(int id);
+    
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.MarkTableTeam;
 import org.rimi.marksystem.eneity.Quiz;
+import org.rimi.marksystem.eneity.UserMarke;
 import org.springframework.stereotype.Component;
 
 /*
@@ -73,8 +74,12 @@ public interface MarkTableDao {
 	public int selectCurrentQuizID();
 	
 	
+<<<<<<< HEAD
 	/**
 	 * 插入问答题
 	 */
 	public void insertEssayQuestion(Quiz quiz);
+=======
+	public List<UserMarke> selectUserMarkeBymarktableId(int id); 
+>>>>>>> 94c4f3eec8ec733bfd552e128ef8e01b86d86cc1
 }

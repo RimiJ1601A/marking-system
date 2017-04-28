@@ -332,10 +332,12 @@
 															name="gn" id="glrq">&nbsp;日期</li>
 													</ul>
 												</div>
+												<c:if test="${fn:contains(functions,'增加用户')}">
 												<button type="button" class="btn btn-info " title="添加职位"
 													onclick="tjzw()">
 													<i class="fa fa-fw fa-plus"></i>
 												</button>
+												</c:if>
 												<button type="button" class="btn btn-info " title="刷新"
 													onclick="shuaxin()">
 													<i class="fa fa-fw fa-refresh"></i>
@@ -387,17 +389,27 @@
                                                                     ${fun}
                                                                 </c:forEach></td>
 														<td class="xsrq">${it.buildTime }</td>
-														<td style="vertical-align: middle; text-align: center;"><span
+														<td style="vertical-align: middle; text-align: center;">
+														<c:if test="${fn:contains(functions,'查看用户')}">
+														<span
 															class="glyphicon glyphicon-picture btsize-wz"
 															aria-hidden="true" title="查看"
 															onclick="ck('${it.roleName}','${it.function}','${it.buildTime }')"
-															style="color: #00c0ef;"></span> <span
+															style="color: #00c0ef;"></span> 
+															</c:if>
+															<c:if test="${fn:contains(functions,'编辑用户')}">
+															<span
 															class="glyphicon glyphicon-list-alt btsize-wz" id="btbj"
 															aria-hidden="true" title="编辑"
 															onclick="bj('${it.roleName}')" style="color: #00c0ef;"></span>
+															
+															</c:if>
+															<c:if test="${fn:contains(functions,'删除用户')}">
 															<span class="glyphicon glyphicon-trash btsize-wz"
 															id="btsc" aria-hidden="true" title="删除"
-															onclick="sc(${it.id})" style="color: rgb(212, 106, 64);"></span></td>
+															onclick="sc(${it.id})" style="color: rgb(212, 106, 64);"></span>
+															</c:if>
+															</td>
 													</tr>
 												</c:forEach>
 											</tbody>
