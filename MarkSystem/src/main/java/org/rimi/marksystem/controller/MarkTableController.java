@@ -56,4 +56,10 @@ public class MarkTableController {
 	public void addQuizs(@RequestBody List<Quiz> quizs){
 		markTableServiceImpl.addQuizs(quizs);
 	}
+	
+	@RequestMapping("/addEssayQuestion")
+	@ResponseBody
+	public void addEssayQuestion(@RequestBody Quiz quiz){
+		markTableServiceImpl.addEssayQuestion(quiz);
+	}
 }

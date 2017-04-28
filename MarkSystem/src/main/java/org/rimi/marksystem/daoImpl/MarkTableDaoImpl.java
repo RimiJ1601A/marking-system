@@ -186,7 +186,6 @@ public class MarkTableDaoImpl implements MarkTableDao{
 		});
 		return mttss;
 	}
-
 	public void insertQuizs(List<Quiz> quizs) {
 		// TODO Auto-generated method stub
 		for (Quiz quiz : quizs) {
@@ -227,6 +226,10 @@ public class MarkTableDaoImpl implements MarkTableDao{
 	}
 
 	@Override
+	public void insertEssayQuestion(Quiz quiz) {
+		// TODO Auto-generated method stub
+		jdbcTemplate.update("INSERT INTO quiz (quiz_title,quiz_type) VALUE(?,?)", quiz.getQuizTitle(),"问答题");
+	}
 	public List<UserMarke> selectUserMarkeBymarktableId(int id) {
 		List<UserMarke> umlist = new ArrayList<>();
 		umlist = jdbcTemplate.query("select * from user_marke where marktable_id = ?", new PreparedStatementSetter() {

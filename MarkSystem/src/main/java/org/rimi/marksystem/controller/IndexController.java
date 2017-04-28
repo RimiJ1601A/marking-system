@@ -1,6 +1,7 @@
 package org.rimi.marksystem.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +52,18 @@ public class IndexController {
             String startdate = formatter.format(countServiceImpl.countBegintime());// 统计的开始时间
             model.addAttribute("startdate", startdate);
             model.addAttribute("nowdate", nowdate);
+            
+            //显示统计图的具体数据
+            Calendar c = Calendar.getInstance();
+            c.setTime(logindate);
+            int thisyear=c.get(Calendar.YEAR);
+            
+            model.addAttribute("thisyear", thisyear);
+            model.addAttribute("Xaxis",countServiceImpl.getXaxis(thisyear));//获得登录年份时间的横坐标
+            model.addAttribute("Yaxis", countServiceImpl.getYaxis(thisyear));//获得登录年份时间的纵坐标
+            model.addAttribute("oldYaxis", countServiceImpl.getLastYaxis(thisyear-1));//获得前一年的纵坐标
+            
+            
             
             List<TeamAndUser> tulist = countServiceImpl.getTeamAndUser();
             model.addAttribute("tulist", tulist);

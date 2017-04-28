@@ -80,4 +80,11 @@ public class MarkTableServiceImpl implements MarkeTableService{
 		return MarkTableDaoImpl.selectAllMarkeTableTeam();
 	}
 
+
+	@Override
+	public void addEssayQuestion(Quiz quiz) {
+		// TODO Auto-generated method stub
+		MarkTableDaoImpl.insertEssayQuestion(quiz);
+	}
+
 }
