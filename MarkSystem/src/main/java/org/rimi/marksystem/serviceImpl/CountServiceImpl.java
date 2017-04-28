@@ -32,6 +32,9 @@ public class CountServiceImpl implements CountService {
 	
 	
 	@Override
+    /**
+     * 统计图表开始时间
+     */
 	public Date countBegintime() {
 		List<User> users = new ArrayList<>();
 		Date date = null;
@@ -61,6 +64,54 @@ public class CountServiceImpl implements CountService {
 		return date;
 	}
 
+    
+    @Override
+    // 获得指定年的月份数据
+    
+    public List<String> getXaxis(int year) {
+        List<String> month = new ArrayList<>();
+        List<Map<String, Object>> lists = userDaoImpl.selectNewUsers(year);
+        for (Map<String, Object> map : lists) {
+            
+            month.add((String) map.values().toArray()[0]);
+            
+        }
+        return month;
+    }
+    
+    
+    @Override
+    // 获得指定年的人数统计数据
+    
+    public List<Long> getYaxis(int year) {
+        List<Long> newSum = new ArrayList<>();
+        List<Map<String, Object>> lists = userDaoImpl.selectNewUsers(year);
+        for (Map<String, Object> map : lists) {
+            
+            newSum.add((Long) map.values().toArray()[1]);
+            
+        }
+        return newSum;
+    }
+    
+    @Override
+    // 获得指定年前一年的人数统计数据
+    
+    public List<Long> getLastYaxis(int lastyear) {
+        List<Long> newLastSum = new ArrayList<>();
+        List<Map<String, Object>> lists = userDaoImpl.selectlastNewUsers(lastyear);
+        for (Map<String, Object> map : lists) {
+            
+            newLastSum.add((Long) map.values().toArray()[1]);
+            
+        }
+        
+        return newLastSum;
+    }
+    
+    
+   
+    
 	@Override
 	public List<TeamAndUser> getTeamAndUser() {
 		List<TeamAndUser> tulist = new ArrayList<>();

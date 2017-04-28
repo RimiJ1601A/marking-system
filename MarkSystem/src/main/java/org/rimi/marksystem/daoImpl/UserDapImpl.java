@@ -307,6 +307,7 @@ public class UserDapImpl implements UserDao {
     }
     
     @Override
+    //根据用户的roleid查用户当月注册数量
     public int selectMonthlyUsersSum(int roleId) {
         //DATE_ADD(curdate(),interval -day(curdate())+1 day)获取本月第一天
         String sql="select count(*) from user where role_id=? and bulid_time >=(DATE_ADD(curdate(),interval -day(curdate())+1 day))";
@@ -315,13 +316,27 @@ public class UserDapImpl implements UserDao {
     }
     
     @Override
-    public List selectNewUsers(int year) {
-        List list=new ArrayList<>();
-        String sql="select date_format(bulid_time,'%m') as month,count(*) as students from user where date_format(bulid_time,'%Y')=? group by month order by month ";
-        //jdbcTemplate.queryForMap(sql, new Object[]{year}, argTypes);
-        return null;
+    //按月查相应年度新增用户,查当年，无新用户不统计
+    public List<Map<String, Object>> selectNewUsers(int year) {
+        
+        String sql="select date_format(bulid_time,'%m') as month,count(*) as userssum from user where date_format(bulid_time,'%Y')=? group by month order by month ";
+        return jdbcTemplate.queryForList(sql,new Object[]{year});
     }
 
+    
+    @Override
+    //按月查相应年度注册用户，查前一年，无注册用户，记为零
+    public List<Map<String, Object>> selectlastNewUsers(int lastyear) {
+        String sql="select MT.MONTH_NUM,ifnull(total_num,0) as newusers from MONTH_TABLE MT left join (select date_format(bulid_time,'%m') as month,count(*) as TOTAL_NUM from user  where date_format(bulid_time,'%Y')=? group by month) u on u.month = MT.MONTH_NUM order by MT.MONTH_NUM";
+        return jdbcTemplate.queryForList(sql,new Object[]{lastyear});
+        
+    }
+    
+    
+    
+    
+    
+    
 	@Override
 	public User selectUserByid(int id) {
 		User user = new User();
