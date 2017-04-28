@@ -441,6 +441,31 @@ input.labelauty+label {
 					</tr>
 				</tbody>
 			</table>
+			<div id="AddQuizType" data-toggle="modal" data-target="#quizType">
+				<a
+					class="button button-glow button-border button-rounded button-primary">Add
+					essay question</a>
+			</div>
+			<div class="modal fade" id="quizType" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">自定义添加问答题</h4>
+						</div>
+						<div id="Add_quizType" class="modal-body">输入问题题目</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary" onclick="saveEssayQuestion();">添加</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
 			<div id="button" data-toggle="modal" data-target="#myModal">
 				<a
 					class="button button-glow button-border button-rounded button-primary">Diy
@@ -488,7 +513,8 @@ input.labelauty+label {
 								class="bb-custom-icon bb-custom-icon-arrow-right">Next</a> <a
 								id="bb-nav-last" href="#"
 								class="bb-custom-icon bb-custom-icon-last">New</a> <a
-								id="saveQuiz" class="saveQuiz"  style="cursor: pointer;">Save</a> </nav>
+								id="saveQuiz" class="saveQuiz" style="cursor: pointer;">Save</a>
+							</nav>
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -553,7 +579,8 @@ input.labelauty+label {
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 						</button>
-						<button type="button" class="btn btn-primary" onclick="closequizmodal();">提交</button>
+						<button type="button" class="btn btn-primary"
+							onclick="closequizmodal();">提交</button>
 					</div>
 				</div>
 				<!-- /.modal-content -->

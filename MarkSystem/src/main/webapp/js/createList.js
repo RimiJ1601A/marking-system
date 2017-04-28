@@ -5,7 +5,7 @@ $(document).ready(function(){
 		var bbitem = $("<div class='bb-item'></div>");
 		var createTable_List = $("<div class='createTable_List'></div>");
 		var List_id = $("<span class='List_id'>"+acount+'.'+"</span>");
-		var content = $("<div class='content-lxd'>"+'__________水电费水电费水电费__________'+"</div>");
+		var content = $("<div class='content-lxd'>"+'__________点击编辑内容__________'+"</div>");
 		var p = $("<p class='Line'></p>");
 		var newResult = $("<span class='result'>"+'A'+"</span>");
 		var newFont = $("<span class='font'>"+'.    Score:'+"</span>");

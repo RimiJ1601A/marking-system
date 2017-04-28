@@ -58,7 +58,7 @@ public interface MarkTableDao {
 	public void insertQuizs(List<Quiz> quizs);
 	
 	/*
-	 * 单条插入问题
+	 * 单条插入选择题问题
 	 */
 	public void insertQuiz(Quiz quiz);
 	
@@ -71,4 +71,10 @@ public interface MarkTableDao {
 	 * 查询当前Quiz ID
 	 */
 	public int selectCurrentQuizID();
+	
+	
+	/**
+	 * 插入问答题
+	 */
+	public void insertEssayQuestion(Quiz quiz);
 }

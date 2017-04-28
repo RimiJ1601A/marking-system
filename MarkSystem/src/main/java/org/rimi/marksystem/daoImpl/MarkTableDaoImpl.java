@@ -168,7 +168,6 @@ public class MarkTableDaoImpl implements MarkTableDao{
 		});
 		return mttss;
 	}
-
 	public void insertQuizs(List<Quiz> quizs) {
 		// TODO Auto-generated method stub
 		for (Quiz quiz : quizs) {
@@ -206,6 +205,12 @@ public class MarkTableDaoImpl implements MarkTableDao{
 			
 		});
 		return Id;
+	}
+
+	@Override
+	public void insertEssayQuestion(Quiz quiz) {
+		// TODO Auto-generated method stub
+		jdbcTemplate.update("INSERT INTO quiz (quiz_title,quiz_type) VALUE(?,?)", quiz.getQuizTitle(),"问答题");
 	}
 	
 }

@@ -29,10 +29,15 @@ $(document).on("click","#goMarkTable_btn",function(){
 					$(quiz_title).attr("value",Quizs[i].id);
 					$(quiz_title).attr("value1",Quizs[i].quizTitle);
 				}
+				if(Quizs[i].quizContent.length==0){
+					var essayQuiz = $("<div class='essayQuizValue'>在这里输入你的问题答案!</div>");
+					$(quiz_title).append(essayQuiz);
+				}else{
 				for(var j=0;j<Quizs[i].quizContent.length;j++){
 					var student_quizs = $("<input type='radio' name='student_quizContent"+i+"' value='"+Quizs[i].quizContent[j].quizCore+"'>"+Quizs[i].quizContent[j].content+" : "+Quizs[i].quizContent[j].quizCore+"</br>");
 					$(student_quizs).attr("value1",Quizs[i].quizContent[j].content);
 					$(quiz_title).append(student_quizs);
+				}
 				}
 				$(newInit).append(quiz_title);
 				
@@ -79,7 +84,7 @@ $(document).on("click","#Save_result",function(){
 		
 		
 		if($($(AllQuiz).get(i)).find("input").length == 0){
-			answer = "这道题是问答题";
+			answer = $($(AllQuiz).get(i)).find(".essayQuizValue").text();
 			answerScore = 0;
 		}else{
 			inputName = $($(AllQuiz).get(i)).find("input").attr("name");
@@ -106,3 +111,32 @@ $(document).on("click","#Save_result",function(){
 	})
 	
 });
+
+$(document).on("click",".essayQuizValue",function(){
+	var td = $(this);
+	var txt = td.text();
+	if(txt == "输入不能为空！" || txt =="在这里输入你的问题答案!"){
+		var input =  $("<input type='text'value=''/>");
+	}
+	else{
+		var input =  $("<input type='text'value='"+txt+"'/>");
+	}
+	input.css("width","500px");
+	input.css("white-space","normal");
+	input.css("word-wrap","break-word");
+	td.html(input);
+	input.click(function() { return false; });
+	input.trigger("focus");
+	input.blur(function(){
+			var newtxt = $(this).val();
+			if(newtxt == ""){
+				td.html("输入不能为空！");
+			}
+			else if (newtxt != txt) {
+			td.html(newtxt);
+			}
+			else{
+						td.html(newtxt);
+				}
+	});
+})

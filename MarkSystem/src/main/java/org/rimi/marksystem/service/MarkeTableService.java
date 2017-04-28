@@ -37,5 +37,5 @@ public interface MarkeTableService {
 
 	public List<MarkTableTeam> getMarkTableTeam();
 	
-
+	public void addEssayQuestion(Quiz quiz);
 }

@@ -1,5 +1,11 @@
+#AddQuizType{
+   position: absolute;
+   left: 56.6%;
+   top: 353px;
+}
+
 #button{
-	 position: relative;
+   position: relative;
    left: 65%;
    top: 24px;
 }
