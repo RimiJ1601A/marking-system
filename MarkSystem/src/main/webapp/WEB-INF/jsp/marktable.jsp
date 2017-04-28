@@ -455,7 +455,9 @@ input.labelauty+label {
 								aria-hidden="true">&times;</button>
 							<h4 class="modal-title" id="myModalLabel">自定义添加问答题</h4>
 						</div>
-						<div id="Add_quizType" class="modal-body">输入问题题目</div>
+						<div id="quiztypeBody"class="modal-body">
+							<div id="Add_quizType" >输入问题题目</div>
+						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">关闭</button>

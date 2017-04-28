@@ -139,4 +139,5 @@ $(document).on("click",".essayQuizValue",function(){
 						td.html(newtxt);
 				}
 	});
-})
+});
+
