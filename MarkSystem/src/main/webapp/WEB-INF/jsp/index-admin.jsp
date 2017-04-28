@@ -377,7 +377,7 @@
 							class="fa  fa-graduation-cap"></i></span>
 						<div class="info-box-content">
 							<span class="info-box-text">在校老师</span> <span
-								class="info-box-number">${teachersSum</span>
+								class="info-box-number">${teachersSum}</span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>

@@ -1,6 +1,7 @@
 package org.rimi.marksystem.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.rimi.marksystem.eneity.User;
 import org.springframework.stereotype.Component;

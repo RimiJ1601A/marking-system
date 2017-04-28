@@ -226,12 +226,12 @@ public class MarkTableDaoImpl implements MarkTableDao{
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public void insertEssayQuestion(Quiz quiz) {
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("INSERT INTO quiz (quiz_title,quiz_type) VALUE(?,?)", quiz.getQuizTitle(),"问答题");
 	}
-=======
+
 	public List<UserMarke> selectUserMarkeBymarktableId(int id) {
 		List<UserMarke> umlist = new ArrayList<>();
 		umlist = jdbcTemplate.query("select * from user_marke where marktable_id = ?", new PreparedStatementSetter() {
@@ -260,6 +260,6 @@ public class MarkTableDaoImpl implements MarkTableDao{
 		return umlist;
 	}
 
->>>>>>> 94c4f3eec8ec733bfd552e128ef8e01b86d86cc1
+
 	
 }

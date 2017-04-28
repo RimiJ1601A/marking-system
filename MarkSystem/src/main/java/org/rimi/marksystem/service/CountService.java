@@ -8,7 +8,6 @@ import org.rimi.marksystem.eneity.TeamAndUser;
 
 public interface CountService {
 	
-	public Date countBegintime();
 	
 	public List<TeamAndUser> getTeamAndUser();
     

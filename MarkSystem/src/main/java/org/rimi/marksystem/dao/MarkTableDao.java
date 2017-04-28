@@ -74,12 +74,12 @@ public interface MarkTableDao {
 	public int selectCurrentQuizID();
 	
 	
-<<<<<<< HEAD
+
 	/**
 	 * 插入问答题
 	 */
 	public void insertEssayQuestion(Quiz quiz);
-=======
+
 	public List<UserMarke> selectUserMarkeBymarktableId(int id); 
->>>>>>> 94c4f3eec8ec733bfd552e128ef8e01b86d86cc1
+
 }
