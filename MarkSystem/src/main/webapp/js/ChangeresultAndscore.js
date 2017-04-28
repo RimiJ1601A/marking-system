@@ -107,3 +107,8 @@ $(document).on("click","#Add_quizType",function(){
 				}
 	});
 });
+$(document).on("click","#AddQuizType",function(){
+	$("#Add_quizType").remove();
+	var newTag = $("<div id='Add_quizType' >输入问题题目</div>");
+	$("#quiztypeBody").append(newTag);
+});
