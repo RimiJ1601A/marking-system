@@ -120,14 +120,35 @@ var question = [];
  * {"id":"5","quizTitle":"是水电费水电费"}; question.push(q1); question.push(q2);
  * question.push(q3); question.push(q4); question.push(q5);
  */
+function getToday()
+{
+    var d=new Date();
+    var str="";
+    str+=d.getFullYear()+"-";
+    
+    var month=d.getMonth()+1;
+    if(month<10)
+        month="0"+month;
+    var day=d.getDate();
+    if(day<10)
+        day="0"+day;
+    
+    str+=month;
+    str+="-";
+    str+=day;
+    return str;
+    
+};
 var clickcount = 1;
 $(document)
 		.on(
 				"click",
 				"#List_button",
 				function() {
+					var today=getToday();
 					$("#date").datetimepicker({
 						format : 'yyyy-mm-dd',
+						startDate : today,
 						startView : 4,
 						minView : 2
 					});
