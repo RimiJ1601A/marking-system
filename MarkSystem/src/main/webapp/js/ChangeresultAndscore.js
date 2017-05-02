@@ -55,14 +55,11 @@ $(document).on("click",".score",function(){
 		var td = $(this);
 		var txt = td.text();
 		if(txt == "输入不能为空！" || txt =="__________点击编辑内容__________"){
-			var input =  $("<input type='text'value=''/>");
+			var input =  $("<textarea class='txt_input' id='remark' rows='2' cols='45' onkeyup='ta(this)'  maxlength='50' title='最多可输入50个字符'></textarea>");
 		}
 		else{
-			var input =  $("<input type='text'value='"+txt+"'/>");
+			var input =  $("<textarea class='txt_input' id='remark' rows='2' cols='45' onkeyup='ta(this)'  maxlength='50' title='最多可输入50个字符'>"+txt+"</textarea>");
 		}
-		input.css("width","500px");
-		input.css("white-space","normal");
-		input.css("word-wrap","break-word");
 		td.html(input);
 		input.click(function() { return false; });
 		input.trigger("focus");
@@ -79,18 +76,22 @@ $(document).on("click",".score",function(){
  				}
 		});
 	});
+function ta(obj){
+	var val=$(obj).val().length;
+	if(val>50){
+		alert("至多输入50个字符！");
+		$(obj).val($(obj).val().substring(0,50))
+		}
+};
 $(document).on("click","#Add_quizType",function(){
 	var td = $(this);
 	var txt = td.text();
 	if(txt == "输入不能为空！" || txt =="输入问题题目"){
-		var input =  $("<input type='text'value=''/>");
+		var input =  $("<textarea class='txt_input' id='remark' rows='2' cols='50' onkeyup='ta(this)'  maxlength='50' title='最多可输入50个字符'></textarea>");
 	}
 	else{
-		var input =  $("<input type='text'value='"+txt+"'/>");
+		var input =  $("<textarea class='txt_input' id='remark' rows='2' cols='50' onkeyup='ta(this)'  maxlength='50' title='最多可输入50个字符'>"+txt+"</textarea>");
 	}
-	input.css("width","500px");
-	input.css("white-space","normal");
-	input.css("word-wrap","break-word");
 	td.html(input);
 	input.click(function() { return false; });
 	input.trigger("focus");

@@ -161,20 +161,19 @@ $(document)
 								contentType : 'application/json; charset=utf-8',
 								dataType : 'json',
 								success : function(quizs) {
-									if (clickcount == 1) {
 										for (var i = 0; i < quizs.length; i++) {
+											alert(quizs[i].quizTitle);
 											var newcheck = $("<input type='checkbox' name='checkbox' value="
 													+ quizs[i].id
-													+ " data-labelauty="
-													+ quizs[i].quizTitle + ">");
+													+ " data-labelauty='"
+													+ quizs[i].quizTitle + "'>");
 											$(".quiz_List").append(newcheck);
 										}
 										$(':input').labelauty();
-									}
 									clickcount++;
 								},
 								error : function() {
-									alert(2);
+									alert(3);
 								}
 							});
 
