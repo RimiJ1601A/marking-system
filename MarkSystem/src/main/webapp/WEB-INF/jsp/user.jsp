@@ -390,7 +390,7 @@
 														<td class="xszw">${it.roleName}</td>
 														<td class="xscjrq">${it.bulidTime}</td>			
 														<td style="vertical-align: middle; text-align: center;">
-															
+															<div>
 															<c:if test="${fn:contains(functions,'查看用户')}">
 															<span class="glyphicon glyphicon-picture btsize-wz"
 																aria-hidden="true" title="查看" onclick="ck('${it.userAccount}','${it.userName}','${it.age}','${it.sex.sex}','${it.roleName}','${it.bulidTime}')"
@@ -408,6 +408,7 @@
 																aria-hidden="true" title="删除" onclick="sc('${it.userAccount}')"
 																style="color: rgb(212, 106, 64);"></span>
 																</c:if>
+															</div>
 														</td>
 													</tr>
 												</c:forEach>

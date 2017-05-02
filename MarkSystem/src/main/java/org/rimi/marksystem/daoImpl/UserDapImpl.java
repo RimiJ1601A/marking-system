@@ -357,6 +357,10 @@ public class UserDapImpl implements UserDao {
 				while(rs.next()){
 					user.setId(rs.getInt(1));
 					user.setUserName(rs.getString(4));
+					user.setAge(rs.getInt(5));
+					user.setSex(Sex.getSexByValue(rs.getInt(6)));
+					user.setRoleId(rs.getInt(7));
+					user.setHeadPhotoUrl(rs.getString(9));
 				}
 				return user;
 			}

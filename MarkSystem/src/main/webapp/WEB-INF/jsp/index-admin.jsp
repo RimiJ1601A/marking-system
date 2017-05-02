@@ -476,31 +476,6 @@
 									</div>
 								</li>				
 							</c:forEach>
-<!-- 								/.item
-								<li class="item">
-									<div class="product-img">
-										<img src="/images/default-50x50.gif" alt="Product Image">
-									</div>
-									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Ios1601
-											<span class="label label-info pull-right">2016-10</span>
-										</a> <span class="product-description"> Ios1601对 xxx
-											Teacher发起了评教. </span>
-									</div>
-								</li>
-								/.item
-								<li class="item">
-									<div class="product-img">
-										<img src="/images/default-50x50.gif" alt="Product Image">
-									</div>
-									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Web1701
-											<span class="label label-danger pull-right">2017-04</span>
-										</a> <span class="product-description"> Web1701对 xxx
-											Teacher发起了评教. </span>
-									</div>
-								</li> -->
-
 							</ul>
 						</div>
 						<!-- /.box-body -->
@@ -512,6 +487,62 @@
 				</div>
 			</div>
 			<div class="row">
+			
+			<c:forEach var="teacherli" items="${teacherlist}">
+			
+							<div class="col-md-4">
+					<!-- Widget: user widget style 1 -->
+					<div class="box box-widget widget-user">
+						<!-- Add the bg color to the header using any of the bg-* classes -->
+						<div class="widget-user-header bg-yellow">
+							<h3 class="widget-user-username">${teacherli.user.userName}</h3>
+							<h5 class="widget-user-desc">${teacherli.user.roleName}</h5>
+						</div>
+						<div class="widget-user-image">
+							<img class="img-circle" src="/images/user7-128x128.jpg"
+								alt="User Avatar">
+						</div>
+						<div class="box-footer ">
+							<div class="row">
+								<div class="col-sm-4 border-right">
+									<div class="description-block">
+										<h5 class="description-header">${teacherli.count}</h5>
+										<span class="description-text">被评次数</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+								<div class="col-sm-4 border-right">
+									<div class="description-block">
+										<h5 class="description-header">
+											${teacherli.average}
+										</h5>
+										<span class="description-text">平均分</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+								<div class="col-sm-4">
+									<div class="description-block">
+										<h5 class="description-header">${teacherli.recent}</h5>
+										<span class="description-text">最近评分</span>
+									</div>
+									<!-- /.description-block -->
+								</div>
+								<!-- /.col -->
+							</div>
+							<!-- /.row -->
+						</div>
+					</div>
+					<!-- /.widget-user -->
+				</div>
+				<!-- /.col -->
+			
+			
+			
+			
+			</c:forEach>
+			
 				<div class="col-md-4">
 					<!-- Widget: user widget style 1 -->
 					<div class="box box-widget widget-user">
@@ -681,26 +712,11 @@
 	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
 	<!-- adminchartjs数据 -->
 	<script type="text/javascript">
-		var Xaxis = $
-		{
-			Xaxis
-		};
-		var Yaxis = $
-		{
-			Yaxis
-		};
-		var oldYaxis = $
-		{
-			oldYaxis
-		};
-		var now = $
-		{
-			thisyear
-		};
-		var last = $
-		{
-			thisyear - 1
-		};
+		var Xaxis = ${Xaxis};
+		var Yaxis = ${Yaxis};
+		var oldYaxis = ${oldYaxis};
+		var now = ${thisyear};
+		var last = ${thisyear - 1};
 	</script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>

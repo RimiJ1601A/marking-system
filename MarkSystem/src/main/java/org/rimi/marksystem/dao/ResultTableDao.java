@@ -3,6 +3,7 @@ package org.rimi.marksystem.dao;
 import java.util.List;
 
 import org.rimi.marksystem.eneity.MarkTable;
+import org.rimi.marksystem.eneity.Quiz;
 import org.rimi.marksystem.eneity.ResultTable;
 import org.rimi.marksystem.eneity.User;
 import org.springframework.stereotype.Component;
@@ -33,4 +34,14 @@ public interface ResultTableDao {
 	 */
 	
 	public int selectTeamId(String teamName);
+	
+	
+	public List<ResultTable> getResultTables(int userId);
+	
+	public Quiz selectQuizById(int id);
+	
+	public String getEndTimeById(int marktableId);
+	
+	public List<ResultTable> getResultTablesByUserAndMarkId(int userId,int markTableId);
+	
 }
