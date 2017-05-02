@@ -21,16 +21,16 @@ $(document).on("click","#goMarkTable_btn",function(){
 					
 				}
 				if(i == 0){
-					var quiz_title = $("<div class='quiz_title"+i+"' style='position:absolute;display:block;'>"+Quizs[i].quizTitle+"</br></div>");
+					var quiz_title = $("<div class='quiz_title"+i+"' style='position:absolute;display:block;font-size: 20px;'>"+Quizs[i].quizTitle+"</br></div>");
 					$(quiz_title).attr("value",Quizs[i].id);
 					$(quiz_title).attr("value1",Quizs[i].quizTitle);
 				}else{
-					var quiz_title = $("<div class='quiz_title"+i+"' style='position:absolute;display:none;'>"+Quizs[i].quizTitle+"</br></div>");
+					var quiz_title = $("<div class='quiz_title"+i+"' style='position:absolute;display:none;font-size: 20px;'>"+Quizs[i].quizTitle+"</br></div>");
 					$(quiz_title).attr("value",Quizs[i].id);
 					$(quiz_title).attr("value1",Quizs[i].quizTitle);
 				}
 				if(Quizs[i].quizContent.length==0){
-					var essayQuiz = $("<div class='essayQuizValue'>在这里输入你的问题答案!</div>");
+					var essayQuiz = $("<div class='essayQuizValue' style='width:870px;font-size: 16px;'>点击在这里输入你的问题答案!</div>");
 					$(quiz_title).append(essayQuiz);
 				}else{
 				for(var j=0;j<Quizs[i].quizContent.length;j++){
@@ -111,19 +111,22 @@ $(document).on("click","#Save_result",function(){
 	})
 	
 });
-
+function ta(obj){
+	var val=$(obj).val().length;
+	if(val>200){
+		alert("至多输入200个字符！");
+		$(obj).val($(obj).val().substring(0,200))
+		}
+};
 $(document).on("click",".essayQuizValue",function(){
 	var td = $(this);
 	var txt = td.text();
-	if(txt == "输入不能为空！" || txt =="在这里输入你的问题答案!"){
-		var input =  $("<input type='text'value=''/>");
+	if(txt == "输入不能为空！" || txt =="点击在这里输入你的问题答案!"){
+		var input =  $("<textarea class='txt_input' id='remark' rows='10' cols='120' onkeyup='ta(this)'  maxlength='200' title='最多可输入200个字符'></textarea>");
 	}
 	else{
-		var input =  $("<input type='text'value='"+txt+"'/>");
+		var input =  $("<textarea class='txt_input' id='remark' rows='10' cols='120' onkeyup='ta(this)'  maxlength='200' title='最多可输入200个字符'>"+txt+"</textarea>");
 	}
-	input.css("width","500px");
-	input.css("white-space","normal");
-	input.css("word-wrap","break-word");
 	td.html(input);
 	input.click(function() { return false; });
 	input.trigger("focus");
