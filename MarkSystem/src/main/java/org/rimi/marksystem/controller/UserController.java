@@ -88,7 +88,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user")
-	public String getUser(Model model, HttpServletRequest request) {
+	public String getUser(@RequestParam(value="value",required=false) String name ,Model model, HttpServletRequest request) {
 		int totalPage;// 总页数
 		String obj = request.getParameter("dangqianye");
 		// 当前页
@@ -101,7 +101,7 @@ public class UserController {
 		model.addAttribute("dangqianye", dqy);
 		List<String> userAllnum = userServiceImpl.getAllUserAccount();
 		model.addAttribute("userAllnum", userAllnum.size());
-		totalPage = (userAllnum.size() + 10 - 1) / 10;
+		
 		int page = 0;
 		if (obj != null) {
 			try {
@@ -110,14 +110,28 @@ public class UserController {
 				// TODO: handle exception
 			}
 		}
-		page = page * 10;
+		page = page * account;
 		if ((page + account) > userAllnum.size()) {
 			page = 0;
 		}
 		List<User> userlist = new ArrayList<User>();
-		userlist = userServiceImpl.getUsersByPage(page, account);
+		if (name == null || name.isEmpty()) {
+			name="";
+			userlist = userServiceImpl.getUsersByPage(name , page, account);
+			totalPage = (userAllnum.size() + account - 1) / account;
+		}else{
+			try {
+				userlist = userServiceImpl.getUser(name);
+				totalPage = (userlist.size() + account - 1) / account;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				totalPage = 1;
+			}
+			userlist = userServiceImpl.getUsersByPage(name , page, account);
+		}	
 		model.addAttribute("userlist", userlist);
 		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("selectName", name);
 		// 返回职位名称
 		List<String> rolenames = roleServiceImpl.getRoleName();
 		model.addAttribute("rolename", rolenames);

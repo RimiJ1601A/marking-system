@@ -1,23 +1,31 @@
 package org.rimi.marksystem.serviceImpl;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.rimi.marksystem.dao.MarkTableDao;
+import org.rimi.marksystem.dao.ResultTableDao;
 import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.TeamDao;
 import org.rimi.marksystem.dao.UserDao;
+import org.rimi.marksystem.daoImpl.RoleDaoImpl;
 import org.rimi.marksystem.eneity.MarkTable;
+import org.rimi.marksystem.eneity.ResultTable;
+import org.rimi.marksystem.eneity.TeacherResults;
 import org.rimi.marksystem.eneity.TeamAndUser;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.eneity.UserMarke;
 import org.rimi.marksystem.service.CountService;
+import org.rimi.marksystem.service.ResultTableService;
+import org.rimi.marksystem.util.QuizType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +38,10 @@ public class CountServiceImpl implements CountService {
 	private MarkTableDao markTableDaoImpl;
 	@Autowired
 	private TeamDao teamDaoImpl;
-	
+	@Autowired
+	private ResultTableDao resultTableDaoImpl;
+	@Autowired
+	private RoleDao roleDaoImpl;
 	
 	@Override
     /**
@@ -126,7 +137,11 @@ public class CountServiceImpl implements CountService {
 				tu.setStartTime(mtlist.get(i).getStartTime());
 				tu.setEndTime(mtlist.get(i).getEndTime());
 				tu.setTeam(teamDaoImpl.getTeamByiId(mtlist.get(i).getUserMarke().get(j).getTeamId()));
-				tu.setEvaluatedUser(userDaoImpl.selectUserByid(mtlist.get(i).getUserMarke().get(j).getEvaluatedId()));
+				User user = userDaoImpl.selectUserByid(mtlist.get(i).getUserMarke().get(j).getEvaluatedId());
+				user.setRoleName(roleDaoImpl.selectRoleNameByRoleId(user.getRoleId()));
+				
+				tu.setEvaluatedUser(user);
+				
 				tulist.add(tu);
 				if(tulist.size()>=3){
 					return tulist;
@@ -136,4 +151,88 @@ public class CountServiceImpl implements CountService {
 		return tulist;
 	}
 
+
+	@Override
+	public TeacherResults getTeachersResults(int userId) {
+		// TODO Auto-generated method stub
+
+		int MarktableId = -1;				//考核表ID
+		User user = userDaoImpl.selectUserByid(userId);
+		user.setRoleName(roleDaoImpl.selectRoleNameByRoleId(user.getRoleId()));
+		List<Integer> MarktableIdlist = new ArrayList<>();
+		
+		List<ResultTable> rtlist = resultTableDaoImpl.getResultTables(userId);
+		
+		Map<String, List<String>> contentmap = new HashMap<>();
+		
+		
+		for(int i =0;i<rtlist.size();i++){		
+			if(rtlist.get(i).getMarktableId()>MarktableId){
+				MarktableId=rtlist.get(i).getMarktableId();
+				MarktableIdlist.add(MarktableId);		
+			}
+		}
+		List<String> xEndTime = new ArrayList<>();					//x轴坐标		
+		for(int i =0;i<MarktableIdlist.size();i++){
+			xEndTime.add(resultTableDaoImpl.getEndTimeById(i));
+		}
+		List<Float> averagelist = new ArrayList<>();
+		List<Float> recentlist = new ArrayList<>();
+		Float average = 0f;
+		
+		for(int i =0;i<MarktableIdlist.size();i++){
+			
+			List<ResultTable> nowlist = resultTableDaoImpl.getResultTablesByUserAndMarkId(user.getId(), MarktableIdlist.get(i));
+			Float recent = getRecent(nowlist);		
+			recentlist.add(recent);
+			average = (average+recent)/(i+1);
+			averagelist.add(average);
+			contentmap.put(xEndTime.get(i), getContent(nowlist));			
+		}
+		TeacherResults tr = new TeacherResults();
+		tr.setUser(user);
+		tr.setxEndTime(xEndTime);
+		tr.setAveragelist(averagelist);
+		tr.setRecentlist(recentlist);
+		if(averagelist.size()==0){
+			tr.setAverage(0f);
+		}else{
+			tr.setAverage(averagelist.get(averagelist.size()-1));		
+		}
+		if(recentlist.size()==0){
+			tr.setRecent(0f);		
+		}else{
+			tr.setRecent(recentlist.get(recentlist.size()-1));			
+		}
+		tr.setContentmap(contentmap);
+		return tr;
+	}
+
+	
+	
+	public Float getRecent(List<ResultTable> nowlist){
+		int sum = 0;
+		String recent = "-1";
+		for(int j =0;j<nowlist.size();j++){
+			if(resultTableDaoImpl.selectQuizById(nowlist.get(j).getQuizId()).getQuizType().equals(QuizType.CHOICE_QUESTION)){
+				sum+=Integer.valueOf(nowlist.get(j).getAnswerScore());
+			}
+			if(nowlist.size()!=0){
+				recent = new DecimalFormat("0.00").format(sum/nowlist.size());
+			}						
+		}
+		Float f = Float.parseFloat(recent);
+		return f;
+	}
+	
+	public List<String> getContent(List<ResultTable> nowlist){
+		List<String> content = new ArrayList<>();
+		for(int j =0;j<nowlist.size();j++){
+			if(resultTableDaoImpl.selectQuizById(nowlist.get(j).getQuizId()).getQuizType().equals(QuizType.ESSAY_QUESTION)){
+				content.add(nowlist.get(j).getAnswer());			
+			}
+		}
+		return content;
+	}
+	
 }

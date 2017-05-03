@@ -17,26 +17,7 @@
 <link rel="stylesheet" href="/css/mystyle.css">
 <link type="text/css" rel="stylesheet" href="/css/dialog.css">
 <link rel="stylesheet" href="/css/zhiweiguanli.css">
-<script type="text/javascript">
-    //分页的总页数,当前页和总的记录数
-    var yeshu=${next};
-    var dangqianye=${dangqianye};
-    var total = ${total};
-    //职位查看的ID,名称,功能名称和创建日期
-    var zwid;   
-    var zwmc;
-    var gnmc;
-    var cjrq;
-    //职位的list
-    var kong = "${rolePage}";
-    //功能ID
-    var gongneng;
-    //职位名称
-    var roleName;
-    //职位ID
-    var zwid;
-    
-</script>
+
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -380,7 +361,12 @@
 												</tr>
 											</thead>
 											<tbody>
-
+													<c:set var="list" scope="session" value="${rolePage}"></c:set>
+												<c:if test="${fn:length(list)==0}">
+													<tr role="row" class="odd">
+														<td colspan="4" style="text-align:center"><b>查无此数据</b></td>
+													</tr>
+												</c:if>
 												<c:forEach var="it" items="${rolePage}">
 													<tr role="row" class="odd">
 														<td class="xsmc">${it.roleName}</td>
@@ -799,4 +785,87 @@
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/app.min.js"></script>
 	<script src="/js/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript">
+    //分页的总页数,当前页和总的记录数
+    var yeshu=${next};
+    var dangqianye=${dangqianye};
+    var total = ${total};
+    //职位查看的ID,名称,功能名称和创建日期
+    var zwid;   
+    var zwmc;
+    var gnmc;
+    var cjrq;
+    //职位的list
+    var kong = "${rolePage}";
+    //功能ID
+    var gongneng;
+    //职位名称
+    var roleName;
+    //职位ID
+    var zwid;
+  //搜索框赋值
+	if("${selectName}" == ""){
+		
+	}else{
+		$("#sousuo").attr("placeholder","${selectName}");
+	}
+	// 分页
+	var xsys = 6;// 页面显示多少页
+	var yuan;
+	var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=role?dangqianye="+ dangqianye + "&value=${selectName}>" + dangqianye + "</a>";
+	$("#dqy").append(dqy);
+	for (var i = 1; i <= yeshu; i++) {
+		if (yeshu < xsys) {
+			if (i < dangqianye) {
+				yuan = "<a aria-controls='example1' data-dt-idx='" + i
+						+ "' tabindex='0' href=role?dangqianye=" + i + "&value=${selectName}>" + i
+						+ "</a>";
+				$("#qianmian").append(yuan);
+			}
+			if (i > dangqianye) {
+				var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
+						+ "' tabindex='0' href=role?dangqianye=" + i + "&value=${selectName}>" + i
+						+ "</a>";
+
+				$("#fyanniu").append(yuansu);
+			}
+		} else {
+			if (i < dangqianye) {
+				yuan = "<a aria-controls='example1' data-dt-idx='" + i
+						+ "' tabindex='0' href=role?dangqianye=" + i + "&value=${selectName}>" + i
+						+ "</a>";
+				if (i <=dangqianye-xsys) {
+					yuan = "";
+				}
+				$("#qianmian").append(yuan);
+			}
+			if (i > dangqianye) {
+				var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
+						+ "' tabindex='0' href=role?dangqianye=" + i + "&value=${selectName}>" + i
+						+ "</a>";
+				if (i > xsys) {
+					yuansu = "";
+				}
+				$("#fyanniu").append(yuansu);
+
+			}
+		}
+	}
+	//上一页
+	function syy() {
+		dangqianye -= 1;
+		if (dangqianye < 1) {
+			dangqianye = 1;
+		}
+		location.href="role?value=${selectName}"+"&dangqianye="+ dangqianye;
+	}
+	// 下一页
+	function xyy() {
+		dangqianye += 1;
+		if (dangqianye > yeshu) {
+			dangqianye = yeshu;
+		}
+		location.href="role?value=${selectName}"+"&dangqianye="+ dangqianye;
+	}
+</script>
 </html>

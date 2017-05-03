@@ -1,47 +1,47 @@
 $(function() {
 	// 分页
-	var xsys = 6;// 页面显示多少页
-	var yuan;
-	var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=role?dangqianye="
-			+ dangqianye + ">" + dangqianye + "</a>";
-	$("#dqy").append(dqy);
-	for (var i = 1; i <= yeshu; i++) {
-		if (yeshu < xsys) {
-			if (i < dangqianye) {
-				yuan = "<a aria-controls='example1' data-dt-idx='" + i
-						+ "' tabindex='0' href=role?dangqianye=" + i + ">" + i
-						+ "</a>";
-				$("#qianmian").append(yuan);
-			}
-			if (i > dangqianye) {
-				var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
-						+ "' tabindex='0' href=role?dangqianye=" + i + ">" + i
-						+ "</a>";
-
-				$("#fyanniu").append(yuansu);
-			}
-		} else {
-			if (i < dangqianye) {
-				yuan = "<a aria-controls='example1' data-dt-idx='" + i
-						+ "' tabindex='0' href=role?dangqianye=" + i + ">" + i
-						+ "</a>";
-				if (i <=dangqianye-xsys) {
-					yuan = "";
-				}
-				$("#qianmian").append(yuan);
-			}
-			if (i > dangqianye) {
-				var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
-						+ "' tabindex='0' href=role?dangqianye=" + i + ">" + i
-						+ "</a>";
-				if (i > xsys) {
-					yuansu = "";
-				}
-				$("#fyanniu").append(yuansu);
-
-			}
-		}
-	}
+//	var xsys = 6;// 页面显示多少页
+//	var yuan;
+//	var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=role?dangqianye="
+//			+ dangqianye + ">" + dangqianye + "</a>";
+//	$("#dqy").append(dqy);
+//	for (var i = 1; i <= yeshu; i++) {
+//		if (yeshu < xsys) {
+//			if (i < dangqianye) {
+//				yuan = "<a aria-controls='example1' data-dt-idx='" + i
+//						+ "' tabindex='0' href=role?dangqianye=" + i + ">" + i
+//						+ "</a>";
+//				$("#qianmian").append(yuan);
+//			}
+//			if (i > dangqianye) {
+//				var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
+//						+ "' tabindex='0' href=role?dangqianye=" + i + ">" + i
+//						+ "</a>";
+//
+//				$("#fyanniu").append(yuansu);
+//			}
+//		} else {
+//			if (i < dangqianye) {
+//				yuan = "<a aria-controls='example1' data-dt-idx='" + i
+//						+ "' tabindex='0' href=role?dangqianye=" + i + ">" + i
+//						+ "</a>";
+//				if (i <=dangqianye-xsys) {
+//					yuan = "";
+//				}
+//				$("#qianmian").append(yuan);
+//			}
+//			if (i > dangqianye) {
+//				var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
+//						+ "' tabindex='0' href=role?dangqianye=" + i + ">" + i
+//						+ "</a>";
+//				if (i > xsys) {
+//					yuansu = "";
+//				}
+//				$("#fyanniu").append(yuansu);
+//
+//			}
+//		}
+//	}
 
 	// checkbox的选择
 	$("#gnid").change(function() {
@@ -183,7 +183,7 @@ function scquxiao() {
 // 查询职位
 function sousuo() {
 	var roleName = $("#sousuo").val();
-	location.href = "roleselect?roleName=" + roleName;
+	location.href = "role?value=" + roleName+"&dangqianye=1";
 }
 // 跳转
 function tz() {
@@ -191,21 +191,21 @@ function tz() {
 	location.href = "role?dangqianye=" + dangqianye;
 }
 // 上一页
-function syy() {
-	dangqianye -= 1;
-	if (dangqianye < 1) {
-		dangqianye = 1;
-	}
-	location.href = "role?dangqianye=" + dangqianye;
-}
+//function syy() {
+//	dangqianye -= 1;
+//	if (dangqianye < 1) {
+//		dangqianye = 1;
+//	}
+//	location.href = "role?dangqianye=" + dangqianye;
+//}
 // 下一页
-function xyy() {
-	dangqianye += 1;
-	if (dangqianye > yeshu) {
-		dangqianye = yeshu;
-	}
-	location.href = "role?dangqianye=" + dangqianye;
-}
+//function xyy() {
+//	dangqianye += 1;
+//	if (dangqianye > yeshu) {
+//		dangqianye = yeshu;
+//	}
+//	location.href = "role?dangqianye=" + dangqianye;
+//}
 // 导出表格
 function exportExel() {
 	location.href = "role_export";

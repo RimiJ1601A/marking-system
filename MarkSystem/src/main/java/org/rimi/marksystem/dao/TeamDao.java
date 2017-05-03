@@ -19,6 +19,7 @@ public interface TeamDao {
 	public List<String> selectTeamName();
 	//查询总数
 	public int selectTeam();
+	public int selectTeam(String name);
 	//增加班级
 	public void insertTeam(Team team);
 	//修改班级
