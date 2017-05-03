@@ -418,31 +418,20 @@
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
-							<div class="callout callout-info">
-								<h4>2016-11-01 12:00</h4>
-
-								<p>这是我见过最帅的老师，没有之一！</p>
-							</div>
-							<div class="callout callout-danger">
-								<h4>2016-10-28 12:00</h4>
-
-								<p>老师，人家有个大胆的想法....</p>
-							</div>
-							<div class="callout callout-warning">
-								<h4>2016-10-30 13:30</h4>
-
-								<p>原来想不通的地方，老师一讲，居然让我举一反三，关键老师讲课还幽默！</p>
-							</div>
-							<div class="callout callout-success">
-								<h4>2016-10-30 13:30</h4>
-
-								<p>老师我只能给你101分了，多的一分就是让你骄傲的！</p>
-							</div>
+						
+						<c:forEach var="comment" items="${TeacherResults.contentmap}">
+							<c:forEach var="content" items="${comment.value}">							
+								<div class="callout callout-info">
+									<h4>${comment.key}</h4>
+									<p>${content}</p>
+								</div>					
+							</c:forEach>
+						</c:forEach>
 						</div>
 						<!-- /.box-body -->
 
 						<div class="box-footer text-center">
-							<a href="javascript:void(0)" class="uppercase">查看更多评语</a>
+							<a id="more-content" href="javascript:void(0)" class="uppercase">查看更多评语</a>
 						</div>
 					</div>
 
@@ -472,6 +461,46 @@
 
 	<!-- jQuery 3.1.0 -->
 	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+	<script type="text/javascript">
+	
+		var XendTime = "${TeacherResults.xEndTime}";
+		var a = XendTime.split(",");
+		for(var i=0;i<a.length;i++){
+			a[i]=a[i].replace("[","");
+			a[i]=a[i].replace("]","");
+		}
+		var recent  = ${TeacherResults.recentlist};
+		var avrage = ${TeacherResults.averagelist};
+		
+		
+		var lss=$(".callout");
+		for(var i=0;i<lss.length;i++){
+			var color = i%4;
+			if(color==0){
+				lss[i].className="callout callout-info";
+			}else if(color==1){
+				lss[i].className="callout callout-danger";
+			}else if(color==2){
+				lss[i].className="callout callout-success";
+			}else{
+				lss[i].className="callout callout-warning";
+			}
+			if(i>3){
+				$(lss[i]).css("display","none");
+			}
+		}
+		$("#more-content").on("click",function(){
+			var hiddendiv = $(".callout:hidden");
+			if(hiddendiv[0]==null){
+				alert("没有数据了");
+			}
+			for(var i =0;i<3;i++){
+				$(hiddendiv[i]).css("display","block");
+			}
+		})
+		
+	</script>
+	
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->

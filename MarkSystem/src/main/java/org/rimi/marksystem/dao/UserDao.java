@@ -62,5 +62,5 @@ public interface UserDao {
     public  List<Map<String, Object>> selectlastNewUsers(int lastyear);
     
     public User selectUserByid(int id);
-    
+  
 }

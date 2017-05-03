@@ -1,10 +1,12 @@
 package org.rimi.marksystem.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +31,8 @@ public class IndexController {
 	private UserService userServiceImpl;
 	@Autowired
 	private CountService countServiceImpl;
+	
+	private final int TeacherChartLength = 6;
 	
 	@RequestMapping("/index")
 	public String index(User user, Model model, HttpServletRequest request) {
@@ -82,19 +86,23 @@ public class IndexController {
             	tr.setCount(count);
             	teacherResultslist.add(tr);          	
             }
-            model.addAttribute("teacherlist", teacherResultslist);
-            System.out.println(teacherResultslist.size());
-            
+            model.addAttribute("teacherlist", teacherResultslist);           
             return "index-admin";
 		} else if (user.getRoleId() == 2) {
-            List<TeamAndUser> tulist = countServiceImpl.getTeamAndUser();
-            model.addAttribute("tulist", tulist);
-            List<TeacherResults> teacherResultslist = new ArrayList<TeacherResults>(); 
-            for(int i=0;i<tulist.size();i++){          	
-            	TeacherResults tr = countServiceImpl.getTeachersResults(tulist.get(i).getEvaluatedUser().getId());
-            	teacherResultslist.add(tr);          	
+            TeacherResults tr = countServiceImpl.getTeachersResults(user.getId());
+            List<String> x = tr.getxEndTime();
+            List<Float> avrage = tr.getAveragelist();
+            List<Float> recent = tr.getRecentlist();
+            if(x.size()>TeacherChartLength){
+            	x = x.subList(x.size()-TeacherChartLength, x.size());
+            	avrage=avrage.subList(avrage.size()-TeacherChartLength, avrage.size());
+            	recent =recent.subList(recent.size()-TeacherChartLength, recent.size());
+            	tr.setxEndTime(x);
+            	tr.setAveragelist(avrage);
+            	tr.setRecentlist(recent);
             }
-            model.addAttribute("teacherlist", teacherResultslist);
+            model.addAttribute("TeacherResults", tr);
+
 			return "index-teacher";
 		} else if (user.getRoleId() == 3) {
 			return "index-student";

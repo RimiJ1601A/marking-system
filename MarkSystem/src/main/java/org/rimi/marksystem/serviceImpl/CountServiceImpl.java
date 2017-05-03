@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.rimi.marksystem.dao.MarkTableDao;
 import org.rimi.marksystem.dao.ResultTableDao;
@@ -163,7 +164,7 @@ public class CountServiceImpl implements CountService {
 		
 		List<ResultTable> rtlist = resultTableDaoImpl.getResultTables(userId);
 		
-		Map<String, List<String>> contentmap = new HashMap<>();
+		Map<String, List<String>> contentmap = new TreeMap<>((Collections.reverseOrder()));
 		
 		
 		for(int i =0;i<rtlist.size();i++){		
@@ -174,7 +175,7 @@ public class CountServiceImpl implements CountService {
 		}
 		List<String> xEndTime = new ArrayList<>();					//x轴坐标		
 		for(int i =0;i<MarktableIdlist.size();i++){
-			xEndTime.add(resultTableDaoImpl.getEndTimeById(i));
+			xEndTime.add(resultTableDaoImpl.getEndTimeById(i+1));
 		}
 		List<Float> averagelist = new ArrayList<>();
 		List<Float> recentlist = new ArrayList<>();
@@ -185,7 +186,7 @@ public class CountServiceImpl implements CountService {
 			List<ResultTable> nowlist = resultTableDaoImpl.getResultTablesByUserAndMarkId(user.getId(), MarktableIdlist.get(i));
 			Float recent = getRecent(nowlist);		
 			recentlist.add(recent);
-			average = (average+recent)/(i+1);
+			average = Float.parseFloat(new DecimalFormat("0.00").format((average*i+recent)/(i+1)));
 			averagelist.add(average);
 			contentmap.put(xEndTime.get(i), getContent(nowlist));			
 		}
@@ -213,13 +214,19 @@ public class CountServiceImpl implements CountService {
 	public Float getRecent(List<ResultTable> nowlist){
 		int sum = 0;
 		String recent = "-1";
+		int count = 0 ;
 		for(int j =0;j<nowlist.size();j++){
 			if(resultTableDaoImpl.selectQuizById(nowlist.get(j).getQuizId()).getQuizType().equals(QuizType.CHOICE_QUESTION)){
 				sum+=Integer.valueOf(nowlist.get(j).getAnswerScore());
+				count++;
 			}
 			if(nowlist.size()!=0){
-				recent = new DecimalFormat("0.00").format(sum/nowlist.size());
-			}						
+				if(count == 0){
+					recent = new DecimalFormat("0.00").format(sum);	
+				}else{
+					recent = new DecimalFormat("0.00").format(sum/count);
+				}
+			}
 		}
 		Float f = Float.parseFloat(recent);
 		return f;
