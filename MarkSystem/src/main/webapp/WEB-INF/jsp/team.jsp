@@ -375,6 +375,12 @@
 												</tr>
 											</thead>
 											<tbody>
+													<c:set var="list" scope="session" value="${team}"></c:set>
+												<c:if test="${fn:length(list)==0}">
+													<tr role="row" class="odd">
+														<td colspan="6" style="text-align:center"><b>查无此数据</b></td>
+													</tr>
+												</c:if>
 
 												<c:forEach var="it" items="${team }">
 													<tr class="active">
@@ -757,6 +763,70 @@
 		//批量导入学生的前缀
 		var studentPref;
 		var userAccount;
+		//搜索框赋值
+		if("${selectName}" == ""){
+			
+		}else{
+			$("#sousuo").attr("placeholder","${selectName}");
+		}
+		// 分页
+		var xsys = 6;// 页面显示多少页
+		var yuan;
+		var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=team?dangqianye="+ dangqianye + "&value=${selectName}>" + dangqianye + "</a>";
+		$("#dqy").append(dqy);
+		for (var i = 1; i <= yeshu; i++) {
+			if (yeshu < xsys) {
+				if (i < dangqianye) {
+					yuan = "<a aria-controls='example1' data-dt-idx='" + i
+							+ "' tabindex='0' href=team?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "</a>";
+					$("#qianmian").append(yuan);
+				}
+				if (i > dangqianye) {
+					var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
+							+ "' tabindex='0' href=team?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "</a>";
+
+					$("#fyanniu").append(yuansu);
+				}
+			} else {
+				if (i < dangqianye) {
+					yuan = "<a aria-controls='example1' data-dt-idx='" + i
+							+ "' tabindex='0' href=team?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "</a>";
+					if (i <=dangqianye-xsys) {
+						yuan = "";
+					}
+					$("#qianmian").append(yuan);
+				}
+				if (i > dangqianye) {
+					var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
+							+ "' tabindex='0' href=team?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "</a>";
+					if (i > xsys) {
+						yuansu = "";
+					}
+					$("#fyanniu").append(yuansu);
+
+				}
+			}
+		}
+		//上一页
+		function syy() {
+			dangqianye -= 1;
+			if (dangqianye < 1) {
+				dangqianye = 1;
+			}
+			location.href="team?value=${selectName}"+"&dangqianye="+ dangqianye;
+		}
+		// 下一页
+		function xyy() {
+			dangqianye += 1;
+			if (dangqianye > yeshu) {
+				dangqianye = yeshu;
+			}
+			location.href="team?value=${selectName}"+"&dangqianye="+ dangqianye;
+		}
 	</script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>

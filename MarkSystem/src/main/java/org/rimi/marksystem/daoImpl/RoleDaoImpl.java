@@ -252,4 +252,10 @@ public class RoleDaoImpl implements RoleDao {
 		return roleId;
 	}
 
+	@Override
+	public int selectRole(String name) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.queryForObject("select count(*) from role where role_name like ?", new Object[] {"%"+name+"%"},Integer.class);
+	}
+
 }

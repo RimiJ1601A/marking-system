@@ -30,13 +30,8 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	public List<Team> getTeam(int start,int count,String name) {
-		int size = teamDaoImpl.selectTeam(start,count,name).size();
-		if(size == 0){
-			return teamDaoImpl.selectTeam(start, count);
-		}else{
-			
-			return teamDaoImpl.selectTeam(start,count,name);
-		}
+	
+		return teamDaoImpl.selectTeam(start,count,name);
 	}
 
 	public int getTeam() {
@@ -132,6 +127,12 @@ public class TeamServiceImpl implements TeamService {
 	public int getUsersRoleId(String userAccount) {
 		
 		return userdaoimp.selectUsersRoleId(userAccount);
+	}
+
+	@Override
+	public int getTeam(String name) {
+		// TODO Auto-generated method stub
+		return teamDaoImpl.selectTeam(name);
 	}
 
 }

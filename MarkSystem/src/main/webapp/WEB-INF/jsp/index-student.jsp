@@ -361,19 +361,23 @@
 						<!-- /.box-header -->
 						<div class="box-body">
 							<ul class="products-list product-list-in-box">
-								<li class="item">
-									<div class="product-img">
-										<img src="/images/default-50x50.gif" alt="Product Image">
-									</div>
-									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Teacher
-											Luo <span class="label label-warning pull-right">2016-11</span>
-										</a> <span class="product-description"> 需要你对Teacher
-											Luo进行教学质量评分. </span>
-									</div>
-								</li>
+								<c:forEach var="rm" items="${rmtqs}">
+								<c:if test="${rm.marked}">					
+									<li class="item">
+										<div class="product-img">
+											<img src="/images/default-50x50.gif" alt="Product Image">
+										</div>
+										<div class="product-info">
+											<a href="/mark" class="product-title">${rm.evaluatedName} 
+											<span class="label label-warning pull-right">${rm.startTime}</span>
+											</a> <span class="product-description"> 需要你对${rm.evaluatedName}进行教学质量评分. </span>
+										</div>
+									</li>
+								</c:if>					
+								</c:forEach>
 								<!-- /.item -->
-								<li class="item">
+								
+							<!-- 	<li class="item">
 									<div class="product-img">
 										<img src="/images/default-50x50.gif" alt="Product Image">
 									</div>
@@ -384,7 +388,7 @@
 											Shang进行教学质量评分. </span>
 									</div>
 								</li>
-								<!-- /.item -->
+								/.item
 								<li class="item">
 									<div class="product-img">
 										<img src="/images/default-50x50.gif" alt="Product Image">
@@ -395,7 +399,7 @@
 										</a> <span class="product-description"> 需要你对Teacher
 											Li进行教学质量评分. </span>
 									</div>
-								</li>
+								</li> -->
 
 							</ul>
 						</div>

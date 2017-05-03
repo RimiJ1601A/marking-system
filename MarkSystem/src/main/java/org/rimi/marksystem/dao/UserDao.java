@@ -16,6 +16,8 @@ public interface UserDao {
 	public User selectUserByUserAccountAndPassWord(String userAccount,String passWord);
 	//条件搜索
 	public List<User> selectUser(String name);
+	//分页搜索
+	public List<User> selectUser(String name,int start,int count);
 	//增加用户
 	public void insertUser(User user);
 	//删除用户(根据账号删除)
@@ -62,5 +64,11 @@ public interface UserDao {
     public  List<Map<String, Object>> selectlastNewUsers(int lastyear);
     
     public User selectUserByid(int id);
-  
+    
+    /***
+     * 根据职位ID获取该职位用户
+     * @param roleId
+     * @return
+     */
+    public List<User> selectUsersByRoleId(int roleId);
 }

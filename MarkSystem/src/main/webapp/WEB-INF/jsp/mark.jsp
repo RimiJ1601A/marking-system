@@ -280,6 +280,12 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:set  var="list" scope="session" value="${Listrmtq}"></c:set>
+					<c:if test="${fn:length(list) == 0}">
+						<tr class="bg-primary" style="background-color: #292b2c;">
+							<td colspan=7 style="text-align:center;"><b>没有对应时间下需要评分的表</b></td>
+						</tr>
+					</c:if>
 					<c:forEach var="Listrmtqs" items="${Listrmtq}">
 						<tr class="bg-primary" style="background-color: #292b2c;">
 							<td>${Listrmtqs.marktableId}</td>

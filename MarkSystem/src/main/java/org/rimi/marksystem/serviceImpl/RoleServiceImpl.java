@@ -70,14 +70,7 @@ public class RoleServiceImpl implements RoleService {
 
 	public List<Role> getRole(int start,int count,String name) {
 		// TODO Auto-generated method stub
-		int size = roleDaoImpl.selectRole(start, count, name).size();
-		if(size == 0){
-			return roleDaoImpl.selectRolePage(start, count);
-		}
-		else{
-			
-			return roleDaoImpl.selectRole(start,count,name);
-		}
+		return roleDaoImpl.selectRole(start, count, name);
 	}
 	public List<String> getRoleName() {
 		
@@ -103,6 +96,11 @@ public class RoleServiceImpl implements RoleService {
 	public int getRoleId(String roleName) {
 		// TODO Auto-generated method stub
 		return roleDaoImpl.selectRoleId(roleName);
+	}
+	@Override
+	public int getRole(String name) {
+		
+		return roleDaoImpl.selectRole(name);
 	}
 	
 

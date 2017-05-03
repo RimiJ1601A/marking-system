@@ -499,7 +499,9 @@
 							<h5 class="widget-user-desc">${teacherli.user.roleName}</h5>
 						</div>
 						<div class="widget-user-image">
-							<img class="img-circle" src="/images/user7-128x128.jpg"
+							<img 
+							
+							class="img-circle" src="${teacherli.user.headPhotoUrl}"
 								alt="User Avatar">
 						</div>
 						<div class="box-footer ">
@@ -543,108 +545,11 @@
 			
 			</c:forEach>
 			
-				<div class="col-md-4">
-					<!-- Widget: user widget style 1 -->
+				
+<!-- 				<div class="col-md-4">
+					Widget: user widget style 1
 					<div class="box box-widget widget-user">
-						<!-- Add the bg color to the header using any of the bg-* classes -->
-						<div class="widget-user-header bg-yellow">
-							<h3 class="widget-user-username">Nadia Carmichael</h3>
-							<h5 class="widget-user-desc">Lead Developer</h5>
-						</div>
-						<div class="widget-user-image">
-							<img class="img-circle" src="/images/user7-128x128.jpg"
-								alt="User Avatar">
-						</div>
-						<div class="box-footer ">
-							<div class="row">
-								<div class="col-sm-4 border-right">
-									<div class="description-block">
-										<h5 class="description-header">200</h5>
-										<span class="description-text">被评次数</span>
-									</div>
-									<!-- /.description-block -->
-								</div>
-								<!-- /.col -->
-								<div class="col-sm-4 border-right">
-									<div class="description-block">
-										<h5 class="description-header">85</h5>
-										<span class="description-text">平均分</span>
-									</div>
-									<!-- /.description-block -->
-								</div>
-								<!-- /.col -->
-								<div class="col-sm-4">
-									<div class="description-block">
-										<h5 class="description-header">90</h5>
-										<span class="description-text">最近评分</span>
-									</div>
-									<!-- /.description-block -->
-								</div>
-								<!-- /.col -->
-							</div>
-							<!-- /.row -->
-						</div>
-					</div>
-					<!-- /.widget-user -->
-				</div>
-				<!-- /.col -->
-
-
-
-
-
-
-
-
-				<div class="col-md-4">
-					<!-- Widget: user widget style 1 -->
-					<div class="box box-widget widget-user">
-						<!-- Add the bg color to the header using any of the bg-* classes -->
-						<div class="widget-user-header bg-aqua-active">
-							<h3 class="widget-user-username">Alexander Pierce</h3>
-							<h5 class="widget-user-desc">Founder &amp; CEO</h5>
-						</div>
-						<div class="widget-user-image">
-							<img class="img-circle" src="/images/user1-128x128.jpg"
-								alt="User Avatar">
-						</div>
-						<div class="box-footer">
-							<div class="row">
-								<div class="col-sm-4 border-right">
-									<div class="description-block">
-										<h5 class="description-header">200</h5>
-										<span class="description-text">被评次数</span>
-									</div>
-									<!-- /.description-block -->
-								</div>
-								<!-- /.col -->
-								<div class="col-sm-4 border-right">
-									<div class="description-block">
-										<h5 class="description-header">85</h5>
-										<span class="description-text">平均分</span>
-									</div>
-									<!-- /.description-block -->
-								</div>
-								<!-- /.col -->
-								<div class="col-sm-4">
-									<div class="description-block">
-										<h5 class="description-header">90</h5>
-										<span class="description-text">最近评分</span>
-									</div>
-									<!-- /.description-block -->
-								</div>
-								<!-- /.col -->
-							</div>
-							<!-- /.row -->
-						</div>
-					</div>
-					<!-- /.widget-user -->
-				</div>
-				<!-- /.col -->
-				<div class="col-md-4">
-					<!-- Widget: user widget style 1 -->
-					<div class="box box-widget widget-user">
-						<!-- Add the bg color to the header using any of the bg-* classes -->
+						Add the bg color to the header using any of the bg-* classes
 						<div class="widget-user-header bg-black"
 							style="background: url('/images/photo1.png') center center;">
 							<h3 class="widget-user-username">Elizabeth Pierce</h3>
@@ -661,32 +566,33 @@
 										<h5 class="description-header">200</h5>
 										<span class="description-text">被评次数</span>
 									</div>
-									<!-- /.description-block -->
+									/.description-block
 								</div>
-								<!-- /.col -->
+								/.col
 								<div class="col-sm-4 border-right">
 									<div class="description-block">
 										<h5 class="description-header">85</h5>
 										<span class="description-text">平均分</span>
 									</div>
-									<!-- /.description-block -->
+									/.description-block
 								</div>
-								<!-- /.col -->
+								/.col
 								<div class="col-sm-4">
 									<div class="description-block">
 										<h5 class="description-header">90</h5>
 										<span class="description-text">最近评分</span>
 									</div>
-									<!-- /.description-block -->
+									/.description-block
 								</div>
-								<!-- /.col -->
+								/.col
 							</div>
-							<!-- /.row -->
+							/.row
 						</div>
 					</div>
-					<!-- /.widget-user -->
+					/.widget-user
 				</div>
-				<!-- /.col -->
+				/.col
+			 -->
 			</div>
 			</section>
 			<!-- /.content -->

@@ -43,6 +43,8 @@ public interface UserService {
 	
     //分页查询
     public List<User> getUsersByPage(int page,int account);
+    //分页搜索
+    public List<User> getUsersByPage(String name,int page,int account);
     
     /***
      * 修改头像
@@ -55,4 +57,11 @@ public interface UserService {
     public int getUsersSumByRoleId(int roleId);
     //统计当月注册用户
     public int getMonthlyUsersSumByBuildTime(int roleId);
+    
+    /***
+     * 根据职位ID获取该职位用户
+     * @param roleId
+     * @return
+     */
+    public List<User> getUsersByRoleId(int roleId);
 }

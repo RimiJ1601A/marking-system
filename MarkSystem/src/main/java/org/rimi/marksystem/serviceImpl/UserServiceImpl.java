@@ -136,11 +136,20 @@ public class UserServiceImpl implements UserService {
 		}
 		return userlist;
 	}
+	public List<User> getUsersByPage(String name ,int page, int account) {
+		// TODO Auto-generated method stub
+		List<User> userlist = userDaoImpl.selectUser(name, page, account);
+		for (int i = 0; i < userlist.size(); i++) {
+			String roleName = roleDaoImpl.selectRoleNameByRoleId(userlist.get(i).getRoleId());
+			userlist.get(i).setRoleName(roleName);
+		}
+		return userlist;
+	}
 
 	public List<User> getUser(String name) {
 		int i = userDaoImpl.selectUser(name).size();
 		if (i == 0) {
-			return userDaoImpl.selectAllUser();
+			return null;
 		} else {
 			return userDaoImpl.selectUser(name);
 		}
@@ -162,6 +171,12 @@ public class UserServiceImpl implements UserService {
         
         return userDaoImpl.selectMonthlyUsersSum(roleId);
     }
+
+	@Override
+	public List<User> getUsersByRoleId(int roleId) {
+		List<User> userlist = userDaoImpl.selectUsersByRoleId(roleId);
+		return userlist;
+	}
 
 
 }

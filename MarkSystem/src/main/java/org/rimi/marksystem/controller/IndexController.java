@@ -10,10 +10,12 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.rimi.marksystem.eneity.RequestMarkTableQuiz;
 import org.rimi.marksystem.eneity.TeacherResults;
 import org.rimi.marksystem.eneity.TeamAndUser;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.CountService;
+import org.rimi.marksystem.service.MarkService;
 import org.rimi.marksystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,8 @@ public class IndexController {
 	private UserService userServiceImpl;
 	@Autowired
 	private CountService countServiceImpl;
+	@Autowired
+	private MarkService markServiceImpl;
 	
 	private final int TeacherChartLength = 6;
 	
@@ -75,10 +79,10 @@ public class IndexController {
             model.addAttribute("tulist", tulist);
             List<TeacherResults> teacherResultslist = new ArrayList<TeacherResults>(); 
            
-           // List<User> uslist =    获取最近的3个被评分的不同的教师
+           List<User> uslist = userServiceImpl.getUsersByRoleId(2);
             
-            for(int i=0;i<tulist.size();i++){          	
-            	TeacherResults tr = countServiceImpl.getTeachersResults(tulist.get(i).getEvaluatedUser().getId());
+            for(int i=0;i<uslist.size();i++){          	
+            	TeacherResults tr = countServiceImpl.getTeachersResults(uslist.get(i).getId());
             	int count=0;
             	for(int j=0;j<tr.getContentmap().size();j++){
             		count +=tr.getContentmap().get(tr.getxEndTime().get(j)).size();
@@ -105,6 +109,20 @@ public class IndexController {
 
 			return "index-teacher";
 		} else if (user.getRoleId() == 3) {
+			
+			int user_id = user.getId();
+			List<Integer> integers = markServiceImpl.getTeamId(user.getId());
+			List<RequestMarkTableQuiz> rmtqs = markServiceImpl.getTableInfo(integers);
+			
+			for (RequestMarkTableQuiz requestMarkTableQuiz : rmtqs) {
+				List<Integer> count = markServiceImpl.getInfo(user_id, requestMarkTableQuiz.getMarktableId());
+				if(count.size() == 0){
+					requestMarkTableQuiz.setMarked(true);//没有被评价
+				}else{
+					requestMarkTableQuiz.setMarked(false);//已被评价
+				}
+			}
+			model.addAttribute("rmtqs", rmtqs);		
 			return "index-student";
 		} else {
 			return "index";

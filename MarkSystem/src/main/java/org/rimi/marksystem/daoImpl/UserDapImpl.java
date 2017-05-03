@@ -166,6 +166,42 @@ public class UserDapImpl implements UserDao {
 		return username;
 	}
 
+	public List<User> selectUser(final String name ,final int start ,final int count) {
+		List<User> username = new ArrayList<User>();
+		username = jdbcTemplate.query("select * from user where user_name like ? limit ?,?",
+				new PreparedStatementSetter() {
+
+					public void setValues(PreparedStatement ps) throws SQLException {
+						ps.setString(1, "%"+name+"%");
+						ps.setInt(2, start);
+						ps.setInt(3, count);
+					}
+				}, new ResultSetExtractor<List<User>>() {
+
+					public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
+						List<User> ab = new ArrayList<User>();
+
+						if (rs == null) {
+							return null;
+						}
+						while (rs.next()) {
+							User visitor = new User();
+							visitor.setId(rs.getInt(1));
+							visitor.setUserAccount(rs.getString(2));
+							visitor.setPassword(rs.getString(3));
+							visitor.setUserName(rs.getString(4));
+							visitor.setAge(rs.getInt(5));
+							visitor.setSex(Sex.getSexByValue(rs.getInt(6)));
+							visitor.setRoleId(rs.getInt(7));
+							visitor.setBulidTime(rs.getDate(8).toString());
+							visitor.setRoleName(roleDaoImpl.selectRoleNameByRoleId(rs.getInt(7)));
+							ab.add(visitor);
+						}
+						return ab;
+					}
+				});
+		return username;
+	}
 	public void deleteUser(String account) {
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("delete from user where user_account = ?", account);
@@ -366,6 +402,39 @@ public class UserDapImpl implements UserDao {
 			}
 		});
 		return user;
+	}
+
+	@Override
+	public List<User> selectUsersByRoleId(int roleId) {
+		List<User> userlist = new ArrayList<User>();
+		userlist = jdbcTemplate.query("select * from user where role_id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, roleId);
+			}
+		}, new ResultSetExtractor<List<User>>() {
+
+			@Override
+			public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<User> templist = new ArrayList<User>();
+				while(rs.next()){
+					User user = new User();
+					user.setId(rs.getInt(1));
+					user.setUserAccount(rs.getString(2));
+					user.setPassword(rs.getString(3));
+					user.setUserName(rs.getString(4));
+					user.setAge(rs.getInt(5));
+					user.setSex(Sex.getSexByValue(rs.getInt(6)));
+					user.setRoleId(rs.getInt(7));
+					user.setBulidTime(rs.getDate(8).toString());
+					user.setHeadPhotoUrl(rs.getString(9));							
+					templist.add(user);
+				}
+				return templist;
+			}
+		});
+		return userlist;
 	}
 
 }
