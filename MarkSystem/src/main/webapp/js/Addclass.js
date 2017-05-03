@@ -162,7 +162,6 @@ $(document)
 								dataType : 'json',
 								success : function(quizs) {
 										for (var i = 0; i < quizs.length; i++) {
-											alert(quizs[i].quizTitle);
 											var newcheck = $("<input type='checkbox' name='checkbox' value="
 													+ quizs[i].id
 													+ " data-labelauty='"
