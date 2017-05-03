@@ -11,6 +11,8 @@ public interface RoleService {
 	public List<Role> getRoleAll();
 	//查询总数
 	public int getRoleCount();
+	//查询的总数
+	public int getRole(String name);
 	//根据职位名称查
 	public List<Role> getRole(int start,int count,String name);
 	//分页查询

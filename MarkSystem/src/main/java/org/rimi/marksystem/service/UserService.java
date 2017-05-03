@@ -43,6 +43,8 @@ public interface UserService {
 	
     //分页查询
     public List<User> getUsersByPage(int page,int account);
+    //分页搜索
+    public List<User> getUsersByPage(String name,int page,int account);
     
     /***
      * 修改头像

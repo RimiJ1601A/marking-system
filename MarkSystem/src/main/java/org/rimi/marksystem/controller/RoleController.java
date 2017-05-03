@@ -4,10 +4,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 import org.rimi.marksystem.eneity.Role;
+import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,43 +30,53 @@ public class RoleController {
 
 	@Autowired
 	private RoleService roleServiceImpl;
+	private final int account = 10; // 每页显示的数据
 	
 	@RequestMapping(value="/role")
-	public String getRole(@RequestParam(value="dangqianye",required=false)String pageNum,Model model){
+	public String getRole(@RequestParam(value="value",required=false)String name,@RequestParam(value="dangqianye",required=false)String pageNum,Model model){
 		int totalPage;//总页数
 		int start;
 		//查总共
-		int total = roleServiceImpl.getRoleCount();
+		if (name == null || name.isEmpty()) {
+			name="";
+		}
+		int total = roleServiceImpl.getRole(name);
 		model.addAttribute("total", total);
-		totalPage = (total+10-1)/10;
+		totalPage = (total+account-1)/account;
+		if(totalPage <=0){
+			totalPage = 1;
+		}
 		//分页查询
 		if(pageNum == null || pageNum.isEmpty()){
 			start = 0;
 		}else{
 			start = Integer.parseInt(pageNum)-1;
-			if(start<0){
-				start =0;
-			}
-			if(start>=totalPage){
-				start = totalPage-1;
-			}
+//			if(start<0){
+//				start =0;
+//			}
+//			if(start>=totalPage){
+//				start = totalPage-1;
+//			}
 		}
-		List<Role> rolePage = roleServiceImpl.getRolePage(start*10, 10);
+		
+		List<Role> rolePage = new ArrayList<Role>();
+		rolePage = roleServiceImpl.getRole(start*account, account, name);
 		model.addAttribute("rolePage", rolePage);
 		model.addAttribute("dangqianye", start+1);
+		model.addAttribute("selectName", name);
 		model.addAttribute("next", totalPage);
 		return "role";
 	}
 	//搜索职位
-	@RequestMapping(value="roleselect",method = RequestMethod.GET)
-	public String selectRole(@RequestParam("roleName")String name,Model model){
-		List<Role> role = roleServiceImpl.getRole(0,10,name);
-		model.addAttribute("total", role.size());
-		model.addAttribute("dangqianye", 1);
-		model.addAttribute("rolePage",role);
-		model.addAttribute("next", 1);
-		return "role";
-	}
+//	@RequestMapping(value="roleselect",method = RequestMethod.GET)
+//	public String selectRole(@RequestParam("roleName")String name,Model model){
+//		List<Role> role = roleServiceImpl.getRole(0,10,name);
+//		model.addAttribute("total", role.size());
+//		model.addAttribute("dangqianye", 1);
+//		model.addAttribute("rolePage",role);
+//		model.addAttribute("next", 1);
+//		return "role";
+//	}
 	//增加职位
 	@RequestMapping(value="roleadd",method = RequestMethod.GET)
 	public String addRole(@RequestParam(value="zwgn",required=false)String functionId,@RequestParam(value="zwname",required=false)String name,Model model){

@@ -361,4 +361,10 @@ public class TeamDaoImpl implements TeamDao {
 		return team;
 	}
 
+	@Override
+	public int selectTeam(String name) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.queryForObject("select count(*) from team where team_name like ?", new Object[]{"%"+name+"%"} ,Integer.class);
+	}
+
 }

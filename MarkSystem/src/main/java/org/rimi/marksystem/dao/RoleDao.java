@@ -13,6 +13,8 @@ public interface RoleDao {
 	public int selectRoleCount();
 	//根据职位名称查
 	public List<Role> selectRole(int start,int count,String name);
+	//查询的总数
+	public int selectRole(String name);
 	//分页查询
 	public List<Role> selectRolePage(int start,int count);
 	//增加

@@ -16,6 +16,7 @@ public interface TeamService {
 		public List<Team> getTeam(int start,int count,String name);
 		//查询总数
 		public int getTeam();
+		public int getTeam(String name);
 		//增加班级
 		public void addTeam(Team team);
 		//修改班级

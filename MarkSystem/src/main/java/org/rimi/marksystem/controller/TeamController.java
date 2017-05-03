@@ -28,44 +28,52 @@ public class TeamController {
 
 	@Autowired
 	private TeamService teamServiceImpl;
+	private final int account = 10; // 每页显示的数据
 
 	@RequestMapping("/team")
-	public String goTeam(@RequestParam(value = "dangqianye", required = false) String pageNum, Model model) {
+	public String goTeam(@RequestParam(value = "value", required = false) String name,@RequestParam(value = "dangqianye", required = false) String pageNum, Model model) {
 		int totalPage;// 总页数
 		int start;
-		int total = teamServiceImpl.getTeam();
+		if (name == null || name.isEmpty()) {
+			name="";
+		}
+		int total = teamServiceImpl.getTeam(name);
 		model.addAttribute("total", total);
-		totalPage = (total + 10 - 1) / 10;
+		totalPage = (total + account - 1) / account;
+		if(totalPage <=0){
+			totalPage = 1;
+		}
 		// 分页查询
 		if (pageNum == null || pageNum.isEmpty()) {
 			start = 0;
 		} else {
 			start = Integer.parseInt(pageNum) - 1;
-			if (start < 0) {
-				start = 0;
-			}
-			if (start >= totalPage) {
-				start = totalPage - 1;
-			}
+//			if (start < 0) {
+//				start = 0;
+//			}
+//			if (start >= totalPage) {
+//				start = totalPage - 1;
+//			}
 		}
-		List<Team> team = teamServiceImpl.getTeam(start * 10, 10);
+		List<Team> team = teamServiceImpl.getTeam(start*account, account, name);
 		model.addAttribute("team", team);
 		model.addAttribute("dangqianye", start + 1);
 		model.addAttribute("next", totalPage);
+		model.addAttribute("selectName", name);
 		return "team";
 	}
 
 	// 搜索
-	@RequestMapping(value = "/teamselect", method = RequestMethod.GET)
-	public String selectTeam(@RequestParam(value = "selectName", required = false) String name, Model model) {
-
-		List<Team> team = teamServiceImpl.getTeam(0, 10, name);
-		model.addAttribute("team", team);
-		model.addAttribute("total", team.size());
-		model.addAttribute("dangqianye", 1);
-		model.addAttribute("next", 1);
-		return "team";
-	}
+//	@RequestMapping(value = "/teamselect", method = RequestMethod.GET)
+//	public String selectTeam(@RequestParam(value = "selectName", required = false) String name, Model model) {
+//
+//		List<Team> team = teamServiceImpl.getTeam(0, 10, name);
+//		model.addAttribute("team", team);
+//		model.addAttribute("total", team.size());
+//		model.addAttribute("dangqianye", 1);
+//		model.addAttribute("next", 1);
+//		return "team";
+//	}
 
 	// 增加
 	@RequestMapping(value = "/teamadd", method = RequestMethod.GET)
