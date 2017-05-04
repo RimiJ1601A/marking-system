@@ -14,7 +14,9 @@
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <!-- iCheck -->
 <link rel="stylesheet" href="/css/blue.css">
-<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 </head>
 <body class="hold-transition login-page">
 	

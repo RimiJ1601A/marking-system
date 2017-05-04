@@ -29,7 +29,9 @@
 <link rel="stylesheet" href="/css/cropper.css">
 
 <link rel="stylesheet" href="/css/mystyle.css">
-
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -541,8 +543,7 @@
 
 	<!-- REQUIRED JS SCRIPTS -->
 
-	<!-- jQuery 3.1.0 -->
-	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+	
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->

@@ -17,9 +17,11 @@
 <link rel="stylesheet" href="/css/mystyle.css">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.css">
 <link type="text/css" rel="stylesheet" href="/css/dialog.css">
-<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
 <link rel="stylesheet" href="/css/zhiweiguanli.css">
 <link rel="stylesheet" href="/css/bjgl.css">
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 

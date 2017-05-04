@@ -18,6 +18,9 @@
 <link type="text/css" rel="stylesheet" href="/css/dialog.css">
 
 <link rel="stylesheet" href="/css/zhiweiguanli.css">
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
