@@ -15,6 +15,7 @@ public class TeamServiceImpl implements TeamService {
 
 	@Autowired
 	private TeamDao teamDaoImpl;
+	@Autowired
 	private UserDao userdaoimp;
 	@Autowired
 	private RoleDao roledaoimp;
@@ -133,6 +134,12 @@ public class TeamServiceImpl implements TeamService {
 	public int getTeam(String name) {
 		// TODO Auto-generated method stub
 		return teamDaoImpl.selectTeam(name);
+	}
+
+	@Override
+	public List<String> getUserAccount() {
+		// TODO Auto-generated method stub
+		return userdaoimp.selectAllUserAccount();
 	}
 
 }

@@ -41,4 +41,6 @@ public interface TeamService {
 		public int getUserId(int teamId,int roleId);
 		//根据账号获得roleId
 		public int getUsersRoleId(String userAccount);
+		//得到用户账号
+		public List<String> getUserAccount();
 }
