@@ -49,6 +49,7 @@
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- Messages: style can be found in dropdown.less-->
+				<%-- 
 				<li class="dropdown messages-menu">
 					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
@@ -63,8 +64,8 @@
 									<!-- start message --> <a href="#">
 										<div class="pull-left">
 											<!-- User Image -->
-											<img src="${sessionScope.user.headPhotoUrl}"
-												class="img-circle" alt="User Image">
+											<img src="${sessionScope.user.headPhotoUrl}" class="img-circle"
+												alt="User Image">
 										</div> <!-- Message title and timestamp -->
 										<h4>
 											Support Team <small><i class="fa fa-clock-o"></i> 5
@@ -137,26 +138,26 @@
 					</ul>
 				</li>
 
-
+				--%>
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="${sessionScope.user.headPhotoUrl}" class="user-image"
 						alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">Alexander Pierce</span>
+						<span class="hidden-xs">${sessionScope.user.userName}</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
-						<li class="user-header"><img
-							src="${sessionScope.user.headPhotoUrl}" class="img-circle"
-							alt="User Image">
+						<li class="user-header"><img src="${sessionScope.user.headPhotoUrl}"
+							class="img-circle" alt="User Image">
 
 							<p>
-								Alexander Pierce - Web Developer <small>Member since
-									Nov. 2012</small>
+								${sessionScope.user.userName} <small>${sessionScope.roleName}
+									</small>
 							</p></li>
 						<!-- Menu Body -->
+						<%-- 
 						<li class="user-body">
 							<div class="row">
 								<div class="col-xs-4 text-center">
@@ -170,13 +171,14 @@
 								</div>
 							</div> <!-- /.row -->
 						</li>
+						--%>
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="/profile" class="btn btn-default btn-flat">Profile</a>
+								<a href="/profile" class="btn btn-default btn-flat">修改信息</a>
 							</div>
 							<div class="pull-right">
-								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
+								<a href="/signOut" class="btn btn-default btn-flat">退出登录</a>
 							</div>
 						</li>
 					</ul>
@@ -329,8 +331,9 @@
 								<!-- /.modal -->
 							</div>
 
-							<h3 class="profile-username text-center">Alexander Pierce</h3>
-							<p class="text-muted text-center">Web Developer</p>
+							<h3 class="profile-username text-center">${sessionScope.user.userName}</h3>
+							<p class="text-muted text-center">${sessionScope.roleName}</p>
+							<%-- 
 							<strong><i class="fa fa-book margin-r-5"></i> 你的经历</strong>
 							<p class="text-muted">作为xxx负责过xx项目xx的开发 ，同时参与过xx项目xxx的开发</p>
 							<hr>
@@ -349,6 +352,7 @@
 							<strong><i class="fa fa-file-text-o margin-r-5"></i>座右铭</strong>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Etiam fermentum enim neque.</p>
+								--%>
 						</div>
 						<!-- /.box-body -->
 					</div>
