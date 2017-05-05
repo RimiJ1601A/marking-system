@@ -11,6 +11,7 @@ import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.UserDao;
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
+import org.rimi.marksystem.util.Messagedest;
 import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -27,6 +28,7 @@ public class UserDapImpl implements UserDao {
 	@Autowired
 	private RoleDao roleDaoImpl;
 
+	
 	// 查询所有用户信息
 	public List<User> selectAllUser() {
 		List<User> userlist = new ArrayList<User>();
@@ -57,13 +59,17 @@ public class UserDapImpl implements UserDao {
 	// 插入单个用户
 	public void insertUser(final User user) {
 		// TODO Auto-generated method stub
+		int i =jdbcTemplate.queryForObject("select count(*) from user where user_account = ?", new Object[]{user.getUserAccount()},Integer.class);
+		if(i>0){
+			return;
+		}
 		jdbcTemplate.update(
 				"insert into user (user_account,password,user_name,age,sex,role_id,bulid_time,headphoto_url) values(?,?,?,?,?,?,?,?) ",
 				new PreparedStatementSetter() {
 
 					public void setValues(PreparedStatement ps) throws SQLException {
 						ps.setString(1, user.getUserAccount());
-						ps.setString(2, user.getPassword());
+						ps.setString(2, Messagedest.getMD5(user.getPassword()));
 						ps.setString(3, user.getUserName());
 						ps.setInt(4, user.getAge());
 						ps.setInt(5, user.getSex().getValue());
@@ -100,7 +106,7 @@ public class UserDapImpl implements UserDao {
 
 					public void setValues(PreparedStatement ps) throws SQLException {
 						ps.setString(1, userName);
-						ps.setString(2, passWord);
+						ps.setString(2, Messagedest.getMD5(passWord));
 					}
 				}, new ResultSetExtractor<User>() {
 
@@ -225,7 +231,7 @@ public class UserDapImpl implements UserDao {
 
 			public void setValues(PreparedStatement ps) throws SQLException {
 				// TODO Auto-generated method stub
-				ps.setString(1, password);
+				ps.setString(1, Messagedest.getMD5(password));
 				ps.setString(2, account);
 			}
 		});
@@ -240,7 +246,7 @@ public class UserDapImpl implements UserDao {
 					public void setValues(PreparedStatement ps) throws SQLException {
 						// TODO Auto-generated method stub
 						ps.setString(1, account);
-						ps.setString(2, password);
+						ps.setString(2, Messagedest.getMD5(password));
 
 					}
 				}, new ResultSetExtractor<User>() {
@@ -272,7 +278,7 @@ public class UserDapImpl implements UserDao {
 
 			public void setValues(PreparedStatement ps) throws SQLException {
 				// TODO Auto-generated method stub
-				ps.setString(1, "123456");
+				ps.setString(1, Messagedest.getMD5("123456"));
 				ps.setString(2, account);
 			}
 		});

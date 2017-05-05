@@ -5,6 +5,7 @@ import java.util.List;
 import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.MarkTableTeam;
 import org.rimi.marksystem.eneity.Quiz;
+import org.rimi.marksystem.eneity.RequestMarkTableQuiz;
 import org.rimi.marksystem.eneity.UserMarke;
 import org.springframework.stereotype.Component;
 
@@ -88,4 +89,9 @@ public interface MarkTableDao {
 	
 	public Quiz getQuizById(int quizId);
 	
+	/*
+	 * 获得最新8条数据
+	 */
+	public List<RequestMarkTableQuiz> selectEightInfo();
+
 }

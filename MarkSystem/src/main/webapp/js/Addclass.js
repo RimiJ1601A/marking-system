@@ -30,7 +30,7 @@ $(document).on("click","#addclass",function() {
 											var a = [];
 											if(teams[j].users!=null){
 											for (var i = 0; i < teams[j].users.length; i++) {
-												var evaluatedName = {"name" : teams[j].users[i].userName,"id": teams[j].users[i].id};
+												var evaluatedName = {"name" : teams[j].users[i].userName,"id": teams[j].users[i].id,"roleId":teams[j].users[i].roleId};
 												a.push(evaluatedName);
 											}
 											var team = {"classname" : teams[j].teamName,"classId": teams[j].teamId,"student" : a};
@@ -50,8 +50,13 @@ $(document).on("click","#addclass",function() {
 										$(newdiv).append(newselect);
 										var newselect2 = $("<select class='studentList'></select>");
 										for (var j = 0; j < b[0].student.length; j++) {
+											if(b[0].student[j].roleId ==2){
+												var newoption1 = $("<option>" + b[0].student[j].name+'(老师)'
+														+ "</option>");
+											}else{
 											var newoption1 = $("<option>" + b[0].student[j].name
 													+ "</option>");
+											}
 											$(newoption1).attr("value",b[0].student[j].id);
 											$(newselect2).append(newoption1);
 										}
@@ -78,8 +83,13 @@ $(document).on("click","#addclass",function() {
 						$(newdiv).append(newselect);
 						var newselect2 = $("<select class='studentList'></select>");
 						for (var j = 0; j < b[0].student.length; j++) {
+							if(b[0].student[j].roleId ==2){
+								var newoption1 = $("<option>" + b[0].student[j].name+'(老师)'
+										+ "</option>");
+							}else{
 							var newoption1 = $("<option>" + b[0].student[j].name
 									+ "</option>");
+							}
 							$(newoption1).attr("value",b[0].student[j].id);
 							$(newselect2).append(newoption1);
 						}
@@ -96,8 +106,13 @@ function optionChange(sd) {
 		if (className == b[i].classname) {
 			var newselect4 = $("<select class='studentList'></select>'");
 			for (var j = 0; j < b[i].student.length; j++) {
+				if(b[i].student[j].roleId ==2){
+					var newoption4 = $("<option>" + b[i].student[j].name+'(老师)'
+							+ "</option>");
+				}else{
 				var newoption4 = $("<option>" + b[i].student[j].name
 						+ "</option>");
+				}
 				$(newoption4).attr("value",b[i].student[j].id);
 				$(newselect4).append(newoption4);
 			}
@@ -161,6 +176,7 @@ $(document)
 								contentType : 'application/json; charset=utf-8',
 								dataType : 'json',
 								success : function(quizs) {
+									if(clickcount==1){
 										for (var i = 0; i < quizs.length; i++) {
 											var newcheck = $("<input type='checkbox' name='checkbox' value="
 													+ quizs[i].id
@@ -170,6 +186,7 @@ $(document)
 										}
 										$(':input').labelauty();
 									clickcount++;
+									}
 								},
 								error : function() {
 									alert(3);
@@ -183,6 +200,10 @@ function submitmarkTable() {
 	var endTime = $("#date").val();
 	var quizs = [];
 	var qs = $('input[name="checkbox"]:checked');
+	if(qs.length==0){
+		alert("你还没有选择题目");
+		return;
+	}
 	for (var i = 0; i < qs.length; i++) {
 		var marktableQuiz = {
 			"quizId" : $(qs)[i].value
@@ -191,6 +212,10 @@ function submitmarkTable() {
 	}
 	var usermarke = [];
 	var lgth = $(".classList");
+	if(lgth.length==0){
+		alert("你没有选择班级以及被评分人！");
+		return;
+	}
 	for (var j = 0; j < lgth.length; j++) {
 		var usermarke_team = $(".classList")[j];
 		var usermarke_user = $(".studentList")[j];
@@ -199,6 +224,17 @@ function submitmarkTable() {
 		
 		var markeTableTeam = {"teamId":teamId,"evaluatedId":studentId};
 		usermarke.push(markeTableTeam);
+	}
+	for(var i=0;i<usermarke.length;i++){
+		//var team_id = usermark[i].teamId;
+		for(var j=i+1;j<usermarke.length;j++){
+			//var team_id2 = usermark[j].teamId;
+			if(usermarke[i].teamId == usermarke[j].teamId && usermarke[i].evaluatedId == usermarke[j].evaluatedId){
+				usermarke.splice(j,1);
+				alert("有相同的班级和被评人存在");
+				return;
+			}
+		}
 	}
 
 	var markTable = {
@@ -216,6 +252,7 @@ function submitmarkTable() {
 		success : function() {
 			alert("Save Success!!");
 			$("#myTable").modal("hide");
+			location.reload();
 		},
 		error : function() {
 			alert("Save Error!!");

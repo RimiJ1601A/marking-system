@@ -2,22 +2,22 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Rimiedu_MSystem | admi</title>
+<title>Rimiedu_MSystem | admin</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	href="/css/font-awesome.min.css">
 
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionibjgl.csscons.min.css">
+	href="/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -26,7 +26,9 @@
   -->
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
-
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -44,6 +46,7 @@
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- Messages: style can be found in dropdown.less-->
+				<%-- 
 				<li class="dropdown messages-menu">
 					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
@@ -132,14 +135,14 @@
 					</ul>
 				</li>
 
-
+				--%>
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="${sessionScope.user.headPhotoUrl}" class="user-image"
 						alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">Alexander Pierce</span>
+						<span class="hidden-xs">${sessionScope.user.userName}</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
@@ -147,10 +150,11 @@
 							class="img-circle" alt="User Image">
 
 							<p>
-								Alexander Pierce - Web Developer <small>Member since
-									Nov. 2012</small>
+								${sessionScope.user.userName} <small>${sessionScope.roleName}
+									</small>
 							</p></li>
 						<!-- Menu Body -->
+						<%-- 
 						<li class="user-body">
 							<div class="row">
 								<div class="col-xs-4 text-center">
@@ -164,13 +168,14 @@
 								</div>
 							</div> <!-- /.row -->
 						</li>
+						--%>
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="/profile" class="btn btn-default btn-flat">Profile</a>
+								<a href="/profile" class="btn btn-default btn-flat">修改信息</a>
 							</div>
 							<div class="pull-right">
-								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
+								<a href="/signOut" class="btn btn-default btn-flat">退出登录</a>
 							</div>
 						</li>
 					</ul>
@@ -203,6 +208,7 @@
 		</div>
 
 		<!-- search form (Optional) -->
+		<%-- 
 		<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
 				<input type="text" name="q" class="form-control"
@@ -214,6 +220,7 @@
 				</span>
 			</div>
 		</form>
+		--%>
 		<!-- /.search form --> <!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
@@ -350,7 +357,7 @@
 					<div class="info-box">
 						<span class="info-box-icon bg-aqua"><i class="fa fa-group"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">在线学生</span> <span
+							<span class="info-box-text">已注册学生</span> <span
 								class="info-box-number">${studentsSum}</span>
 						</div>
 						<!-- /.info-box-content -->
@@ -363,7 +370,7 @@
 						<span class="info-box-icon bg-green"><i
 							class="fa fa-user-plus"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">本月新增学生</span> <span
+							<span class="info-box-text">本月注册学生</span> <span
 								class="info-box-number">${studentsMonthlySum}</span>
 						</div>
 						<!-- /.info-box-content -->
@@ -376,7 +383,7 @@
 						<span class="info-box-icon bg-yellow"><i
 							class="fa  fa-graduation-cap"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">在校老师</span> <span
+							<span class="info-box-text">已注册老师</span> <span
 								class="info-box-number">${teachersSum}</span>
 						</div>
 						<!-- /.info-box-content -->
@@ -387,10 +394,10 @@
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box">
 						<span class="info-box-icon bg-red"><i
-							class="fa fa-hand-peace-o"></i></span>
+							class="fa fa-book"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">课程种类</span> <span
-								class="info-box-number">100</span>
+							<span class="info-box-text">已注册班级</span> <span
+								class="info-box-number">${calssesSum}</span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>
@@ -419,7 +426,7 @@
 						<!-- /.box-header -->
 						<div class="box-body" style="display: block;">
 							<p class="text-center">
-								<strong>每月用户对比: 统计至 ${nowdate}</strong>
+								<strong>每月注册用户数对比: 统计至 ${nowdate}</strong>
 							</p>
 							<div class="chart">
 								<!-- 被评次数 Chart Canvas -->
@@ -478,11 +485,15 @@
 							</c:forEach>
 							</ul>
 						</div>
-						<!-- /.box-body -->
+						 
+						
 						<div class="box-footer text-center">
+						&nbsp;
+						<!--
 							<a href="javascript:void(0)" class="uppercase">查看所有事件</a>
+							-->
 						</div>
-						<!-- /.box-footer -->
+						  
 					</div>
 				</div>
 			</div>
@@ -615,14 +626,14 @@
 	<!-- REQUIRED JS SCRIPTS -->
 
 	<!-- jQuery 3.1.0 -->
-	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+
 	<!-- adminchartjs数据 -->
 	<script type="text/javascript">
 		var Xaxis = ${Xaxis};
 		var Yaxis = ${Yaxis};
 		var oldYaxis = ${oldYaxis};
-		var now = ${thisyear};
-		var last = ${thisyear - 1};
+		var now = ${thisyear}+"年当月注册用户";
+		var last = ${thisyear - 1}+"年当月注册用户";
 	</script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>

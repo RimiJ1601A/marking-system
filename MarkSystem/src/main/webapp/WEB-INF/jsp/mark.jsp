@@ -28,7 +28,9 @@
 
 
 
-<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 <script type="text/javascript" src="/js/studentQuizs.js"></script>
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
@@ -48,6 +50,7 @@
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- Messages: style can be found in dropdown.less-->
+				<%-- 
 				<li class="dropdown messages-menu">
 					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
@@ -136,14 +139,14 @@
 					</ul>
 				</li>
 
-
+				--%>
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="${sessionScope.user.headPhotoUrl}" class="user-image"
 						alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">Alexander Pierce</span>
+						<span class="hidden-xs">${sessionScope.user.userName}</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
@@ -151,10 +154,11 @@
 							class="img-circle" alt="User Image">
 
 							<p>
-								Alexander Pierce - Web Developer <small>Member since
-									Nov. 2012</small>
+								${sessionScope.user.userName} <small>${sessionScope.roleName}
+									</small>
 							</p></li>
 						<!-- Menu Body -->
+						<%-- 
 						<li class="user-body">
 							<div class="row">
 								<div class="col-xs-4 text-center">
@@ -168,13 +172,14 @@
 								</div>
 							</div> <!-- /.row -->
 						</li>
+						--%>
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="/profile" class="btn btn-default btn-flat">Profile</a>
+								<a href="/profile" class="btn btn-default btn-flat">修改信息</a>
 							</div>
 							<div class="pull-right">
-								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
+								<a href="/signOut" class="btn btn-default btn-flat">退出登录</a>
 							</div>
 						</li>
 					</ul>
@@ -207,6 +212,7 @@
 		</div>
 
 		<!-- search form (Optional) -->
+		<%-- 
 		<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
 				<input type="text" name="q" class="form-control"
@@ -218,6 +224,7 @@
 				</span>
 			</div>
 		</form>
+		--%>
 		<!-- /.search form --> <!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>

@@ -23,6 +23,7 @@ import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.RoleService;
 import org.rimi.marksystem.service.UserService;
 import org.rimi.marksystem.util.CommonMap;
+import org.rimi.marksystem.util.Messagedest;
 import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -110,14 +111,13 @@ public class UserController {
 				// TODO: handle exception
 			}
 		}
-		page = page * account;
-		if ((page + account) > userAllnum.size()) {
-			page = 0;
-		}
+//		page = page * account;
+//		if ((page + account) > userAllnum.size()) {
+//			page = 0;
+//		}
 		List<User> userlist = new ArrayList<User>();
 		if (name == null || name.isEmpty()) {
 			name="";
-			userlist = userServiceImpl.getUsersByPage(name , page, account);
 			totalPage = (userAllnum.size() + account - 1) / account;
 		}else{
 			try {
@@ -127,8 +127,8 @@ public class UserController {
 				// TODO Auto-generated catch block
 				totalPage = 1;
 			}
-			userlist = userServiceImpl.getUsersByPage(name , page, account);
 		}	
+		userlist = userServiceImpl.getUsersByPage(name , page* account, account);
 		model.addAttribute("userlist", userlist);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("selectName", name);

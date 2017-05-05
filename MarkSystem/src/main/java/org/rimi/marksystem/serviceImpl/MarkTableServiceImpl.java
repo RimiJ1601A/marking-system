@@ -7,6 +7,7 @@ import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.MarkTableQuiz;
 import org.rimi.marksystem.eneity.MarkTableTeam;
 import org.rimi.marksystem.eneity.Quiz;
+import org.rimi.marksystem.eneity.RequestMarkTableQuiz;
 import org.rimi.marksystem.eneity.UserMarke;
 import org.rimi.marksystem.service.MarkeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class MarkTableServiceImpl implements MarkeTableService{
 		 */
 		List<UserMarke> um = marktable.getUserMarke();
 		for (UserMarke userMarke : um) {
+			
 			MarkTableDaoImpl.insertUsermarke(userMarke.getTeamId(), userMarke.getEvaluatedId(), ID);
 		}
 	}
@@ -85,6 +87,13 @@ public class MarkTableServiceImpl implements MarkeTableService{
 	public void addEssayQuestion(Quiz quiz) {
 		// TODO Auto-generated method stub
 		MarkTableDaoImpl.insertEssayQuestion(quiz);
+	}
+
+
+	@Override
+	public List<RequestMarkTableQuiz> getEightInfo() {
+		// TODO Auto-generated method stub
+		return MarkTableDaoImpl.selectEightInfo();
 	}
 
 }
