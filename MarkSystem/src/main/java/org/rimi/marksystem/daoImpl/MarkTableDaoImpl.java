@@ -259,5 +259,61 @@ public class MarkTableDaoImpl implements MarkTableDao{
 			}
 		});
 		return umlist;
+	}
+
+	@Override
+	public List<MarkTable> getMarkTableByEvalutedId(int evalutedUserId) {
+		List<MarkTable> mtlist = new ArrayList<MarkTable>();
+		
+		mtlist = jdbcTemplate.query("select * from marktable,user_marke where marktable.id = user_marke.marktable_id and user_marke.evaluated_id = ?", 
+				new PreparedStatementSetter() {
+					
+					@Override
+					public void setValues(PreparedStatement ps) throws SQLException {
+						ps.setInt(1, evalutedUserId);
+					}
+				}, new ResultSetExtractor<List<MarkTable>>() {
+
+					@Override
+					public List<MarkTable> extractData(ResultSet rs) throws SQLException, DataAccessException {
+						List<MarkTable> templist = new ArrayList<MarkTable>();
+						while(rs.next()){
+							MarkTable mt = new MarkTable();
+							mt.setId(rs.getInt(1));
+							mt.setName(rs.getString(2));
+							mt.setStartTime(rs.getString(3));
+							mt.setEndTime(rs.getString(4));
+							templist.add(mt);
+						}
+						return templist;
+					}
+				});
+		
+		return mtlist;
+	}
+
+	@Override
+	public Quiz getQuizById(int quizId) {
+		Quiz quiz = new Quiz();
+		quiz=jdbcTemplate.query("select * from quiz where id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, quizId);
+			}
+		}, new ResultSetExtractor<Quiz>() {
+			@Override
+			public Quiz extractData(ResultSet rs) throws SQLException, DataAccessException {
+				Quiz quiz = new Quiz();
+				while(rs.next()){
+					quiz.setId(rs.getInt(1));
+					quiz.setQuizTitle(rs.getString(2));
+					quiz.setQuizType(QuizType.getQuizType(rs.getString(3)));
+				}
+				return quiz;
+			}		
+		});
+		return quiz;
 	}	
 }

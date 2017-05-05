@@ -391,11 +391,12 @@ public class UserDapImpl implements UserDao {
 				// TODO Auto-generated method stub
 				User user = new User();
 				while(rs.next()){
-					user.setId(rs.getInt(1));
+					user.setId(rs.getInt(1));	
 					user.setUserName(rs.getString(4));
 					user.setAge(rs.getInt(5));
 					user.setSex(Sex.getSexByValue(rs.getInt(6)));
 					user.setRoleId(rs.getInt(7));
+					user.setBulidTime(rs.getString(8));
 					user.setHeadPhotoUrl(rs.getString(9));
 				}
 				return user;

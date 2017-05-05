@@ -13,17 +13,6 @@ create table IF NOT EXISTS user(
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = utf8;
 
-INSERT INTO user(user_account,password,user_name,age,sex,role_id,bulid_time,headphoto_url)
-    VALUES  ("test1","1008611abc","张三",20,1,1,"2017-03-13","/images/defaultHeadPhoto.png"),
-            ("test2","1008611abc","李大",19,2,2,"2017-03-13","/images/defaultHeadPhoto.png"),
-            ("test3","1008611abc","李二",19,2,2,"2017-03-13","/images/defaultHeadPhoto.png"),
-            ("test4","1008611abc","王五",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
-            ("test5","1008611abc","王六",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
-            ("test6","1008611abc","王七",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
-            ("test7","1008611abc","王八",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
-            ("test8","1008611abc","王九",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
-            ("test9","1008611abc","王十",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png");
-
 create table IF NOT EXISTS role(
     id int NOT NULL AUTO_INCREMENT,
     role_name varchar(20) NOT NULL,
@@ -33,9 +22,9 @@ create table IF NOT EXISTS role(
 )ENGINE = InnoDb DEFAULT CHARSET = utf8;
 
 INSERT INTO role(role_name,function_id,bulid_time)
-    VALUES  ("管理员","1,2,3,4,5,6,7,8,9,10,11,12,13","2017-03-12"),
+    VALUES  ("管理员","1,2,3,4,5,6,7,8,9,10,11,12,13,15","2017-03-12"),
             ("教师","5,6,7,8","2017-03-12"),
-            ("学生","13,14","2017-03-12");
+            ("学生","14","2017-03-12");
 
 create table IF NOT EXISTS function(
     id int NOT NULL AUTO_INCREMENT,
@@ -57,9 +46,9 @@ VALUES ("查看用户"),
         ("查看职位"),
         ("删除职位"),
         ("创建评分表"),
-        ("评分评分表"); 	
+        ("评分评分表"),
+	("查询评分表");	
            
-
 create table IF NOT EXISTS team(
     id int NOT NULL AUTO_INCREMENT,
     team_name varchar(20) NOT NULL,
@@ -67,18 +56,14 @@ create table IF NOT EXISTS team(
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 
-INSERT INTO team(team_name,bulid_time) VALUES ("Java1601","2017-03-12"),("ios1601","2017-03-12");
 
 create table IF NOT EXISTS u_p_t(
     id int NOT NULL AUTO_INCREMENT,.
-
     user_id int NOT NULL,
     team_id int NOT NULL,
     role_id int NOT NULL,
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
-
-INSERT INTO u_p_t(user_id,team_id,role_id) VALUES (3,2,2),(2,1,2),(4,1,3),(5,1,3),(6,1,3),(7,2,3),(8,2,3);
 
 create table IF NOT EXISTS quiz(
     id int NOT NULL AUTO_INCREMENT,
@@ -87,11 +72,6 @@ create table IF NOT EXISTS quiz(
     PRIMARY KEY(id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 
-INSERT INTO quiz(quiz_title,quiz_type) VALUES 
-            ("该老师教学质量如何","choice_question"),
-            ("这个老师帅不帅","choice_question"),
-            ("叙述对这个老师的评价","essay_question")
-            ;
 
 create table IF NOT EXISTS quiz_content(
     id int NOT NULL AUTO_INCREMENT,
@@ -101,16 +81,6 @@ create table IF NOT EXISTS quiz_content(
     PRIMARY KEY(id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 
-INSERT INTO quiz_content(quiz_id,quiz_content,quiz_score) VALUES 
-                        (1,"很好",10),
-                        (1,"非常好",9),
-                        (1,"中等",8),
-                        (1,"勉强",7),
-                        (2,"帅",10),
-                        (2,"不帅",7)
-                        ;
-
-
 create table IF NOT EXISTS marktable(
     id int NOT NULL AUTO_INCREMENT,
     name varchar(50) NOT NULL,
@@ -119,9 +89,6 @@ create table IF NOT EXISTS marktable(
     PRIMARY KEY(id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 
-INSERT INTO marktable(name,start_time,end_time) VALUES
-        ("第一次考核","2017-04-01","2017-04-10"),
-        ("第二次考核","2017-04-03","2017-04-11");
 
 create table IF NOT EXISTS marktable_quiz(
     id int NOT NULL AUTO_INCREMENT,
@@ -129,12 +96,7 @@ create table IF NOT EXISTS marktable_quiz(
     marktable_id int NOT NULL,
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
-INSERT INTO marktable_quiz(quiz_id,marktable_id) VALUES
-        (1,1),
-        (2,1),
-        (3,1),
-        (2,2),
-        (3,2);
+
 
 create table IF NOT EXISTS user_marke(
     id int NOT NULL AUTO_INCREMENT,
@@ -144,9 +106,6 @@ create table IF NOT EXISTS user_marke(
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 
-INSERT INTO user_marke(team_id,evaluated_id,marktable_id) VALUES
-                        (1,2,1),
-                        (2,3,1);
 
 
 create table IF NOT EXISTS resulttable(
@@ -161,16 +120,6 @@ create table IF NOT EXISTS resulttable(
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 
-INSERT INTO resulttable(quiz_id,answer,answer_score,evaluated_id,evaluation_id,marktable_id,team_id) VALUES
-                        (1,"很好",10,2,4,1,1),
-                        (2,"帅",8,2,4,1,1),
-                        (3,"该老师积极认真负责",0,2,4,1,1),
-                        (1,"很好",10,2,5,1,1),
-                        (2,"不帅",7,2,5,1,1),
-                        (3,"该老师积极向上",0,2,5,1,1),
-                        (1,"非常好",7,2,6,1,1),
-                        (2,"帅",7,2,6,1,1),
-                        (3,"该老师积极向上",0,2,6,1,1);
 
 create table MONTH_TABLE(
   MONTH_NUM INT
@@ -190,3 +139,63 @@ INSERT INTO MONTH_TABLE(MONTH_NUM) VALUES(12);
 
 
 
+
+
+
+
+
+
+INSERT INTO user(user_account,password,user_name,age,sex,role_id,bulid_time,headphoto_url)
+    VALUES  ("test1","1008611abc","张三",20,1,1,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test2","1008611abc","李大",19,2,2,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test3","1008611abc","李二",19,2,2,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test4","1008611abc","王五",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test5","1008611abc","王六",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test6","1008611abc","王七",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test7","1008611abc","王八",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test8","1008611abc","王九",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png"),
+            ("test9","1008611abc","王十",18,1,3,"2017-03-13","/images/defaultHeadPhoto.png");
+
+INSERT INTO team(team_name,bulid_time) VALUES ("Java1601","2017-03-12"),("ios1601","2017-03-12");
+INSERT INTO u_p_t(user_id,team_id,role_id) VALUES (3,2,2),(2,1,2),(4,1,3),(5,1,3),(6,1,3),(7,2,3),(8,2,3);
+
+INSERT INTO quiz(quiz_title,quiz_type) VALUES 
+            ("该老师教学质量如何","choice_question"),
+            ("这个老师帅不帅","choice_question"),
+            ("叙述对这个老师的评价","essay_question")
+            ;
+
+INSERT INTO quiz_content(quiz_id,quiz_content,quiz_score) VALUES 
+                        (1,"很好",10),
+                        (1,"非常好",9),
+                        (1,"中等",8),
+                        (1,"勉强",7),
+                        (2,"帅",10),
+                        (2,"不帅",7)
+                        ;
+
+INSERT INTO marktable(name,start_time,end_time) VALUES
+        ("第一次考核","2017-04-01","2017-04-10"),
+        ("第二次考核","2017-04-03","2017-04-11");
+INSERT INTO marktable_quiz(quiz_id,marktable_id) VALUES
+        (1,1),
+        (2,1),
+        (3,1),
+        (2,2),
+        (3,2);
+
+INSERT INTO resulttable(quiz_id,answer,answer_score,evaluated_id,evaluation_id,marktable_id,team_id) VALUES
+                        (1,"很好",10,2,4,1,1),
+                        (2,"帅",8,2,4,1,1),
+                        (3,"该老师积极认真负责",0,2,4,1,1),
+                        (1,"很好",10,2,5,1,1),
+                        (2,"不帅",7,2,5,1,1),
+                        (3,"该老师积极向上",0,2,5,1,1),
+                        (1,"非常好",7,2,6,1,1),
+                        (2,"帅",7,2,6,1,1),
+                        (3,"该老师积极向上",0,2,6,1,1);
+
+
+INSERT INTO user_marke(team_id,evaluated_id,marktable_id) VALUES
+                        (1,2,1),
+                        (2,3,1);
