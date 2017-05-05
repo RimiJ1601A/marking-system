@@ -12,9 +12,7 @@
 }
 
 /*调整左侧遍导航条*/
-/*.skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {*/
-    background-color: #328bcd;
-}
+
 /*调整用户面板头像*/
 .user-panel{
 	margin-top: 10px;
@@ -32,6 +30,13 @@
 }
 .user-panel .info{
 	position: relative;
+}
+
+.user-panel>.info {
+	text-align: center;
+	margin-top: 15px;
+	left:0;
+	padding: 5px 5px 5px 5px;
 }
 
 /*调整新闻展示栏位置*/
@@ -69,9 +74,9 @@
 
 }
 /* jsp不识别line-height属性，消息框调整 */
-.info-box > .info-box-icon{
+/* .info-box > .info-box-icon{
 	padding-top:20px;
-}
+} */
 #profileUserImg{
 	width: 120px;
     height: 120px;
@@ -109,7 +114,7 @@
     height: 100px;
 } */
 
-/* 调整图表中的小图标houver效果 */
+/* 调整图表中的小图标hover效果 */
 span.glyphicon.glyphicon-picture:hover{
 
     background-color: blanchedalmond;

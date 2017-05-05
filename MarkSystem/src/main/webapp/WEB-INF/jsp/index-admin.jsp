@@ -10,14 +10,14 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Rimiedu_MSystem | admi</title>
+<title>Rimiedu_MSystem | admin</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	href="/css/font-awesome.min.css">
 
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionibjgl.csscons.min.css">
+	href="/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -192,7 +192,7 @@
 		<section class="sidebar"> <!-- Sidebar user panel (optional) -->
 		<div class="user-panel">
 			<div class="image">
-				<img src="${sessionScope.user.headPhotoUrl}" class="img-circle"
+				<img src="${sessionScope.user.headPhotoUrl}.png" class="img-circle"
 					alt="User Image">
 			</div>
 			<div class="info">
@@ -352,7 +352,7 @@
 					<div class="info-box">
 						<span class="info-box-icon bg-aqua"><i class="fa fa-group"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">在线学生</span> <span
+							<span class="info-box-text">已注册学生</span> <span
 								class="info-box-number">${studentsSum}</span>
 						</div>
 						<!-- /.info-box-content -->
@@ -365,7 +365,7 @@
 						<span class="info-box-icon bg-green"><i
 							class="fa fa-user-plus"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">本月新增学生</span> <span
+							<span class="info-box-text">本月注册学生</span> <span
 								class="info-box-number">${studentsMonthlySum}</span>
 						</div>
 						<!-- /.info-box-content -->
@@ -378,7 +378,7 @@
 						<span class="info-box-icon bg-yellow"><i
 							class="fa  fa-graduation-cap"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">在校老师</span> <span
+							<span class="info-box-text">已注册老师</span> <span
 								class="info-box-number">${teachersSum}</span>
 						</div>
 						<!-- /.info-box-content -->
@@ -389,10 +389,10 @@
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box">
 						<span class="info-box-icon bg-red"><i
-							class="fa fa-hand-peace-o"></i></span>
+							class="fa fa-book"></i></span>
 						<div class="info-box-content">
-							<span class="info-box-text">课程种类</span> <span
-								class="info-box-number">100</span>
+							<span class="info-box-text">已注册班级</span> <span
+								class="info-box-number">${calssesSum}</span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>
@@ -421,7 +421,7 @@
 						<!-- /.box-header -->
 						<div class="box-body" style="display: block;">
 							<p class="text-center">
-								<strong>每月用户对比: 统计至 ${nowdate}</strong>
+								<strong>每月注册用户数对比: 统计至 ${nowdate}</strong>
 							</p>
 							<div class="chart">
 								<!-- 被评次数 Chart Canvas -->
@@ -623,8 +623,8 @@
 		var Xaxis = ${Xaxis};
 		var Yaxis = ${Yaxis};
 		var oldYaxis = ${oldYaxis};
-		var now = ${thisyear};
-		var last = ${thisyear - 1};
+		var now = ${thisyear}+"年当月注册用户";
+		var last = ${thisyear - 1}+"年当月注册用户";
 	</script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>

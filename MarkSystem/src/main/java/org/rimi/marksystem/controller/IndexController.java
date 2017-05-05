@@ -16,6 +16,7 @@ import org.rimi.marksystem.eneity.TeamAndUser;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.CountService;
 import org.rimi.marksystem.service.MarkService;
+import org.rimi.marksystem.service.TeamService;
 import org.rimi.marksystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,8 @@ public class IndexController {
 	private CountService countServiceImpl;
 	@Autowired
 	private MarkService markServiceImpl;
-	
+	@Autowired
+	private TeamService teamServiceImpl;
 	private final int TeacherChartLength = 6;
 	
 	@RequestMapping("/index")
@@ -43,13 +45,17 @@ public class IndexController {
 
 		user = (User) request.getSession().getAttribute("user");
 		if (user.getRoleId() == 1) {
-            // index-admin顶部卡片统计数据，在校学生、本月新增学生、在校老师
+            // index-admin顶部卡片统计数据，已注册学生、本月注册学生、已注册老师、已经注册班级
             int studentsSum = userServiceImpl.getUsersSumByRoleId(3);
             int studentsMonthlySum = userServiceImpl.getMonthlyUsersSumByBuildTime(3);
             int teachersSum = userServiceImpl.getUsersSumByRoleId(2);
+            int calssesSum = teamServiceImpl.getTeam();
+
             model.addAttribute("studentsSum", studentsSum);
             model.addAttribute("studentsMonthlySum", studentsMonthlySum);
             model.addAttribute("teachersSum", teachersSum);
+            model.addAttribute("calssesSum", calssesSum);
+
             
             // 获取登录系统时间
             long currentLoginTime = System.currentTimeMillis();
@@ -67,10 +73,11 @@ public class IndexController {
             Calendar c = Calendar.getInstance();
             c.setTime(logindate);
             int thisyear=c.get(Calendar.YEAR);
-            
+            int thismonth=c.get(Calendar.MONTH);
+
             model.addAttribute("thisyear", thisyear);
-            model.addAttribute("Xaxis",countServiceImpl.getXaxis(thisyear));//获得登录年份时间的横坐标
-            model.addAttribute("Yaxis", countServiceImpl.getYaxis(thisyear));//获得登录年份时间的纵坐标
+            model.addAttribute("Xaxis",countServiceImpl.getNewXaxis(thismonth));//获得登录年份时间的横坐标
+            model.addAttribute("Yaxis", countServiceImpl.getLastYaxis(thisyear));//获得登录年份时间的纵坐标
             model.addAttribute("oldYaxis", countServiceImpl.getLastYaxis(thisyear-1));//获得前一年的纵坐标
             
             

@@ -242,4 +242,12 @@ public class CountServiceImpl implements CountService {
 		return content;
 	}
 	
+	@Override
+	public List<Integer> getNewXaxis(int month) {
+		List<Integer> newXaxis=new ArrayList<>();
+		for(int i=1;i<=month;i++){
+			newXaxis.add(i);
+		}
+		return newXaxis;
+	}
 }
