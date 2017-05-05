@@ -28,6 +28,7 @@ public class UserDapImpl implements UserDao {
 	@Autowired
 	private RoleDao roleDaoImpl;
 
+	
 	// 查询所有用户信息
 	public List<User> selectAllUser() {
 		List<User> userlist = new ArrayList<User>();
@@ -58,6 +59,10 @@ public class UserDapImpl implements UserDao {
 	// 插入单个用户
 	public void insertUser(final User user) {
 		// TODO Auto-generated method stub
+		int i =jdbcTemplate.queryForObject("select count(*) from user where user_account = ?", new Object[]{user.getUserAccount()},Integer.class);
+		if(i>0){
+			return;
+		}
 		jdbcTemplate.update(
 				"insert into user (user_account,password,user_name,age,sex,role_id,bulid_time,headphoto_url) values(?,?,?,?,?,?,?,?) ",
 				new PreparedStatementSetter() {
@@ -403,6 +408,39 @@ public class UserDapImpl implements UserDao {
 			}
 		});
 		return user;
+	}
+
+	@Override
+	public List<User> selectUsersByRoleId(int roleId) {
+		List<User> userlist = new ArrayList<User>();
+		userlist = jdbcTemplate.query("select * from user where role_id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, roleId);
+			}
+		}, new ResultSetExtractor<List<User>>() {
+
+			@Override
+			public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<User> templist = new ArrayList<User>();
+				while(rs.next()){
+					User user = new User();
+					user.setId(rs.getInt(1));
+					user.setUserAccount(rs.getString(2));
+					user.setPassword(rs.getString(3));
+					user.setUserName(rs.getString(4));
+					user.setAge(rs.getInt(5));
+					user.setSex(Sex.getSexByValue(rs.getInt(6)));
+					user.setRoleId(rs.getInt(7));
+					user.setBulidTime(rs.getDate(8).toString());
+					user.setHeadPhotoUrl(rs.getString(9));							
+					templist.add(user);
+				}
+				return templist;
+			}
+		});
+		return userlist;
 	}
 
 }

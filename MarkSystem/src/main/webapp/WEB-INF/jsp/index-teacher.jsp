@@ -14,10 +14,10 @@
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	href="/css/font-awesome.min.css">
 
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	href="/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -27,7 +27,9 @@
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
 
-
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -45,6 +47,7 @@
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- Messages: style can be found in dropdown.less-->
+				<%-- 
 				<li class="dropdown messages-menu">
 					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
@@ -59,8 +62,8 @@
 									<!-- start message --> <a href="#">
 										<div class="pull-left">
 											<!-- User Image -->
-											<img src="${sessionScope.user.headPhotoUrl}"
-												class="img-circle" alt="User Image">
+											<img src="${sessionScope.user.headPhotoUrl}" class="img-circle"
+												alt="User Image">
 										</div> <!-- Message title and timestamp -->
 										<h4>
 											Support Team <small><i class="fa fa-clock-o"></i> 5
@@ -133,26 +136,26 @@
 					</ul>
 				</li>
 
-
+				--%>
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="${sessionScope.user.headPhotoUrl}" class="user-image"
 						alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">Alexander Pierce</span>
+						<span class="hidden-xs">${sessionScope.user.userName}</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
-						<li class="user-header"><img
-							src="${sessionScope.user.headPhotoUrl}" class="img-circle"
-							alt="User Image">
+						<li class="user-header"><img src="${sessionScope.user.headPhotoUrl}"
+							class="img-circle" alt="User Image">
 
 							<p>
-								Alexander Pierce - Web Developer <small>Member since
-									Nov. 2012</small>
+								${sessionScope.user.userName} <small>${sessionScope.roleName}
+									</small>
 							</p></li>
 						<!-- Menu Body -->
+						<%-- 
 						<li class="user-body">
 							<div class="row">
 								<div class="col-xs-4 text-center">
@@ -166,13 +169,14 @@
 								</div>
 							</div> <!-- /.row -->
 						</li>
+						--%>
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="/profile" class="btn btn-default btn-flat">Profile</a>
+								<a href="/profile" class="btn btn-default btn-flat">修改信息</a>
 							</div>
 							<div class="pull-right">
-								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
+								<a href="/signOut" class="btn btn-default btn-flat">退出登录</a>
 							</div>
 						</li>
 					</ul>
@@ -205,6 +209,7 @@
 		</div>
 
 		<!-- search form (Optional) -->
+		<%-- 
 		<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
 				<input type="text" name="q" class="form-control"
@@ -216,6 +221,7 @@
 				</span>
 			</div>
 		</form>
+		--%>
 		<!-- /.search form --> <!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
@@ -399,7 +405,10 @@
 						</div>
 						<!-- /.box-body -->
 						<div class="box-footer text-center">
+							&nbsp;
+						<!--
 							<a href="javascript:void(0)" class="uppercase">查看所有事件</a>
+							-->
 						</div>
 						<!-- /.box-footer -->
 					</div>
@@ -418,31 +427,20 @@
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
-							<div class="callout callout-info">
-								<h4>2016-11-01 12:00</h4>
-
-								<p>这是我见过最帅的老师，没有之一！</p>
-							</div>
-							<div class="callout callout-danger">
-								<h4>2016-10-28 12:00</h4>
-
-								<p>老师，人家有个大胆的想法....</p>
-							</div>
-							<div class="callout callout-warning">
-								<h4>2016-10-30 13:30</h4>
-
-								<p>原来想不通的地方，老师一讲，居然让我举一反三，关键老师讲课还幽默！</p>
-							</div>
-							<div class="callout callout-success">
-								<h4>2016-10-30 13:30</h4>
-
-								<p>老师我只能给你101分了，多的一分就是让你骄傲的！</p>
-							</div>
+						
+						<c:forEach var="comment" items="${TeacherResults.contentmap}">
+							<c:forEach var="content" items="${comment.value}">							
+								<div class="callout callout-info">
+									<h4>${comment.key}</h4>
+									<p>${content}</p>
+								</div>					
+							</c:forEach>
+						</c:forEach>
 						</div>
 						<!-- /.box-body -->
 
 						<div class="box-footer text-center">
-							<a href="javascript:void(0)" class="uppercase">查看更多评语</a>
+							<a id="more-content" href="javascript:void(0)" class="uppercase">查看更多评语</a>
 						</div>
 					</div>
 
@@ -472,6 +470,46 @@
 
 	<!-- jQuery 3.1.0 -->
 	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+	<script type="text/javascript">
+	
+		var XendTime = "${TeacherResults.xEndTime}";
+		var a = XendTime.split(",");
+		for(var i=0;i<a.length;i++){
+			a[i]=a[i].replace("[","");
+			a[i]=a[i].replace("]","");
+		}
+		var recent  = ${TeacherResults.recentlist};
+		var avrage = ${TeacherResults.averagelist};
+		
+		
+		var lss=$(".callout");
+		for(var i=0;i<lss.length;i++){
+			var color = i%4;
+			if(color==0){
+				lss[i].className="callout callout-info";
+			}else if(color==1){
+				lss[i].className="callout callout-danger";
+			}else if(color==2){
+				lss[i].className="callout callout-success";
+			}else{
+				lss[i].className="callout callout-warning";
+			}
+			if(i>3){
+				$(lss[i]).css("display","none");
+			}
+		}
+		$("#more-content").on("click",function(){
+			var hiddendiv = $(".callout:hidden");
+			if(hiddendiv[0]==null){
+				alert("没有数据了");
+			}
+			for(var i =0;i<3;i++){
+				$(hiddendiv[i]).css("display","block");
+			}
+		})
+		
+	</script>
+	
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->

@@ -15,6 +15,7 @@ public class TeamServiceImpl implements TeamService {
 
 	@Autowired
 	private TeamDao teamDaoImpl;
+	@Autowired
 	private UserDao userdaoimp;
 	@Autowired
 	private RoleDao roledaoimp;
@@ -106,7 +107,14 @@ public class TeamServiceImpl implements TeamService {
 
 	public int getUserId(String userAccount) {
 		// TODO Auto-generated method stub
-		return userdaoimp.selectUserId(userAccount);
+		int i ;
+		try {
+			i=	userdaoimp.selectUserId(userAccount);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			i=-1;
+		}
+		return i;
 	}
 
 	public int getUserId(int teamId, int roleId) {
@@ -125,14 +133,26 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	public int getUsersRoleId(String userAccount) {
-		
-		return userdaoimp.selectUsersRoleId(userAccount);
+		int i;
+		try {
+			i = userdaoimp.selectUsersRoleId(userAccount);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			i=-1;
+		}
+		return i;
 	}
 
 	@Override
 	public int getTeam(String name) {
 		// TODO Auto-generated method stub
 		return teamDaoImpl.selectTeam(name);
+	}
+
+	@Override
+	public List<String> getUserAccount() {
+		// TODO Auto-generated method stub
+		return userdaoimp.selectAllUserAccount();
 	}
 
 }

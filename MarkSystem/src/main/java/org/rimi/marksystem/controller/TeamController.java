@@ -6,6 +6,8 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
+
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.TeamService;
@@ -129,21 +131,27 @@ public class TeamController {
 			for (int i = 1; i <= Count; i++) {
 				if (i < 10) {
 					userAccount = studentPref + "00" + i;
-				} else if (i > 10 && i < 100) {
+				} else if (i >= 10 && i < 100) {
 					userAccount = studentPref + "0" + i;
 				} else {
 					userAccount = studentPref + i;
 				}
 				User user = new User();
-				user.setUserAccount(userAccount);
-				user.setAge(20);
-				user.setPassword("123456");
-				user.setUserName("张三");
-				user.setRoleId(roleId);
-				user.setBulidTime(sj);
-				user.setSex(Sex.MAN);
-				// 添加新学生
-				teamServiceImpl.addUser(user);
+				List<String> userAccounts = teamServiceImpl.getUserAccount();
+				if(userAccounts.contains(userAccount)){
+					System.out.println("相同"+userAccount);
+				}else{
+					user.setUserAccount(userAccount);
+					user.setAge(20);
+					user.setPassword("123456");
+					user.setUserName("张三");
+					user.setRoleId(roleId);
+					user.setBulidTime(sj);
+					user.setSex(Sex.MAN);
+					user.setHeadPhotoUrl("/images/defaultHeadPhoto.png");
+					// 添加新学生
+					teamServiceImpl.addUser(user);	
+				}
 				// 获得学生userID
 				int userId = teamServiceImpl.getUserId(userAccount);
 				// 插入学生到班级
@@ -164,7 +172,7 @@ public class TeamController {
 			int roleId = teamServiceImpl.getRoleId("学生");
 			int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
 			// 插入学生到班级
-			if (usersRoleId == roleId) {
+			if (userId >0 && usersRoleId >0 && usersRoleId == roleId) {
 				teamServiceImpl.addtTeam(userId, roleId, teamId);
 			}
 			return "redirect:/team";

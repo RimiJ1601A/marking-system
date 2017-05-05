@@ -70,7 +70,8 @@
 	height:15px;
 	color:#0088cc;
 	position:relative;
-	left:10px;
+	
+	
 }
 .btsize-wz:hover{
 	color:gray;
@@ -79,14 +80,15 @@
 #btsc{
 	color:#EA356D;
 	position:relative;
-	left:30px;
+	
+	
 }
 #btsc:hover{
 	color:#BB6F86;
 }
 #btbj{
 	position:relative;
-	left:20px;
+	
 }
 .fenyewz{
 	position:relative;

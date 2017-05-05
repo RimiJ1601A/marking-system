@@ -30,7 +30,7 @@ $(document).on("click","#addclass",function() {
 											var a = [];
 											if(teams[j].users!=null){
 											for (var i = 0; i < teams[j].users.length; i++) {
-												var evaluatedName = {"name" : teams[j].users[i].userName,"id": teams[j].users[i].id};
+												var evaluatedName = {"name" : teams[j].users[i].userName,"id": teams[j].users[i].id,"roleId":teams[j].users[i].roleId};
 												a.push(evaluatedName);
 											}
 											var team = {"classname" : teams[j].teamName,"classId": teams[j].teamId,"student" : a};
@@ -50,8 +50,13 @@ $(document).on("click","#addclass",function() {
 										$(newdiv).append(newselect);
 										var newselect2 = $("<select class='studentList'></select>");
 										for (var j = 0; j < b[0].student.length; j++) {
+											if(b[0].student[j].roleId ==2){
+												var newoption1 = $("<option>" + b[0].student[j].name+'(老师)'
+														+ "</option>");
+											}else{
 											var newoption1 = $("<option>" + b[0].student[j].name
 													+ "</option>");
+											}
 											$(newoption1).attr("value",b[0].student[j].id);
 											$(newselect2).append(newoption1);
 										}
@@ -78,8 +83,13 @@ $(document).on("click","#addclass",function() {
 						$(newdiv).append(newselect);
 						var newselect2 = $("<select class='studentList'></select>");
 						for (var j = 0; j < b[0].student.length; j++) {
+							if(b[0].student[j].roleId ==2){
+								var newoption1 = $("<option>" + b[0].student[j].name+'(老师)'
+										+ "</option>");
+							}else{
 							var newoption1 = $("<option>" + b[0].student[j].name
 									+ "</option>");
+							}
 							$(newoption1).attr("value",b[0].student[j].id);
 							$(newselect2).append(newoption1);
 						}
@@ -96,8 +106,13 @@ function optionChange(sd) {
 		if (className == b[i].classname) {
 			var newselect4 = $("<select class='studentList'></select>'");
 			for (var j = 0; j < b[i].student.length; j++) {
+				if(b[i].student[j].roleId ==2){
+					var newoption4 = $("<option>" + b[i].student[j].name+'(老师)'
+							+ "</option>");
+				}else{
 				var newoption4 = $("<option>" + b[i].student[j].name
 						+ "</option>");
+				}
 				$(newoption4).attr("value",b[i].student[j].id);
 				$(newselect4).append(newoption4);
 			}
@@ -185,6 +200,10 @@ function submitmarkTable() {
 	var endTime = $("#date").val();
 	var quizs = [];
 	var qs = $('input[name="checkbox"]:checked');
+	if(qs.length==0){
+		alert("你还没有选择题目");
+		return;
+	}
 	for (var i = 0; i < qs.length; i++) {
 		var marktableQuiz = {
 			"quizId" : $(qs)[i].value
@@ -193,6 +212,10 @@ function submitmarkTable() {
 	}
 	var usermarke = [];
 	var lgth = $(".classList");
+	if(lgth.length==0){
+		alert("你没有选择班级以及被评分人！");
+		return;
+	}
 	for (var j = 0; j < lgth.length; j++) {
 		var usermarke_team = $(".classList")[j];
 		var usermarke_user = $(".studentList")[j];

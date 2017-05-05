@@ -57,4 +57,11 @@ public interface UserService {
     public int getUsersSumByRoleId(int roleId);
     //统计当月注册用户
     public int getMonthlyUsersSumByBuildTime(int roleId);
+    
+    /***
+     * 根据职位ID获取该职位用户
+     * @param roleId
+     * @return
+     */
+    public List<User> getUsersByRoleId(int roleId);
 }

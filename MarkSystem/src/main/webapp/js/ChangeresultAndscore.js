@@ -1,7 +1,7 @@
 $(document).on("click",".result",function(){
 		var td = $(this);
 		var txt = td.text();
-		if(txt == "输入不能为空！" || txt =="点击修改"){
+		if(txt == "输入不能为空！" || txt =="点击修改" || txt =="点击输入选项内容"){
 			var input =  $("<input type='text'value=''/>");
 		}
 		else{

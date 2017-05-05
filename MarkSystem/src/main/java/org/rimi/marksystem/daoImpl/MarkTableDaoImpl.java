@@ -139,7 +139,7 @@ public class MarkTableDaoImpl implements MarkTableDao{
 
 	public MarkTableTeam selectMarkeTableTeam(final int teamId) {
 		// TODO Auto-generated method stub
-		MarkTableTeam markTableTeam = jdbcTemplate.query("select user_name,user_id,team_id,team_name from u_p_t,user,team where user.id = u_p_t.user_id and u_p_t.team_id = team.id and team_id = ?", new PreparedStatementSetter() {
+		MarkTableTeam markTableTeam = jdbcTemplate.query("select user_name,user_id,user.role_id,team_id,team_name from u_p_t,user,team where user.id = u_p_t.user_id and u_p_t.team_id = team.id and team_id = ?", new PreparedStatementSetter() {
 			
 			public void setValues(PreparedStatement ps) throws SQLException {
 				// TODO Auto-generated method stub
@@ -155,10 +155,11 @@ public class MarkTableDaoImpl implements MarkTableDao{
 					User user = new User();
 					user.setUserName(rs.getString(1));
 					user.setId(rs.getInt(2));
+					user.setRoleId(rs.getInt(3));
 					users.add(user);
 					mtt.setUsers(users);
-					mtt.setTeamId(rs.getInt(3));
-					mtt.setTeamName(rs.getString(4));
+					mtt.setTeamId(rs.getInt(4));
+					mtt.setTeamName(rs.getString(5));
 				}
 				return mtt;
 			}

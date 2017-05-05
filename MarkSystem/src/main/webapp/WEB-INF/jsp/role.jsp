@@ -9,15 +9,17 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	href="/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	href="/css/ionicons.min.css">
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
 <link type="text/css" rel="stylesheet" href="/css/dialog.css">
 <link rel="stylesheet" href="/css/zhiweiguanli.css">
-
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -35,6 +37,7 @@
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- Messages: style can be found in dropdown.less-->
+				<%-- 
 				<li class="dropdown messages-menu">
 					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
@@ -49,8 +52,8 @@
 									<!-- start message --> <a href="#">
 										<div class="pull-left">
 											<!-- User Image -->
-											<img src="${sessionScope.user.headPhotoUrl}"
-												class="img-circle" alt="User Image">
+											<img src="${sessionScope.user.headPhotoUrl}" class="img-circle"
+												alt="User Image">
 										</div> <!-- Message title and timestamp -->
 										<h4>
 											Support Team <small><i class="fa fa-clock-o"></i> 5
@@ -123,26 +126,26 @@
 					</ul>
 				</li>
 
-
+				--%>
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="${sessionScope.user.headPhotoUrl}" class="user-image"
 						alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">Alexander Pierce</span>
+						<span class="hidden-xs">${sessionScope.user.userName}</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
-						<li class="user-header"><img
-							src="${sessionScope.user.headPhotoUrl}" class="img-circle"
-							alt="User Image">
+						<li class="user-header"><img src="${sessionScope.user.headPhotoUrl}"
+							class="img-circle" alt="User Image">
 
 							<p>
-								Alexander Pierce - Web Developer <small>Member since
-									Nov. 2012</small>
+								${sessionScope.user.userName} <small>${sessionScope.roleName}
+									</small>
 							</p></li>
 						<!-- Menu Body -->
+						<%-- 
 						<li class="user-body">
 							<div class="row">
 								<div class="col-xs-4 text-center">
@@ -156,13 +159,14 @@
 								</div>
 							</div> <!-- /.row -->
 						</li>
+						--%>
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="/profile" class="btn btn-default btn-flat">Profile</a>
+								<a href="/profile" class="btn btn-default btn-flat">修改信息</a>
 							</div>
 							<div class="pull-right">
-								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
+								<a href="/signOut" class="btn btn-default btn-flat">退出登录</a>
 							</div>
 						</li>
 					</ul>
@@ -195,6 +199,7 @@
 		</div>
 
 		<!-- search form (Optional) -->
+		<%-- 
 		<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
 				<input type="text" name="q" class="form-control"
@@ -206,6 +211,7 @@
 				</span>
 			</div>
 		</form>
+		--%>
 		<!-- /.search form --> <!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
@@ -243,7 +249,7 @@
 					<c:if test="${fn:contains(functions,'创建评分表')}">
 						<li><a href="/markTable">创建评分表</a></li>
 					</c:if>
-					<li><a href="#">考评</a></li>
+					<li><a href="/mark">考评</a></li>
 				</ul></li>
 
 		</ul>
@@ -313,7 +319,7 @@
 															name="gn" id="glrq">&nbsp;日期</li>
 													</ul>
 												</div>
-												<c:if test="${fn:contains(functions,'增加用户')}">
+												<c:if test="${fn:contains(functions,'增加职位')}">
 												<button type="button" class="btn btn-info " title="添加职位"
 													onclick="tjzw()">
 													<i class="fa fa-fw fa-plus"></i>
@@ -375,26 +381,28 @@
                                                                     ${fun}
                                                                 </c:forEach></td>
 														<td class="xsrq">${it.buildTime }</td>
-														<td style="vertical-align: middle; text-align: center;">
-														<c:if test="${fn:contains(functions,'查看用户')}">
+														<td >
+														<c:if test="${fn:contains(functions,'查看职位')}">
 														<span
 															class="glyphicon glyphicon-picture btsize-wz"
 															aria-hidden="true" title="查看"
 															onclick="ck('${it.roleName}','${it.function}','${it.buildTime }')"
 															style="color: #00c0ef;"></span> 
 															</c:if>
-															<c:if test="${fn:contains(functions,'编辑用户')}">
+															<c:if test="${fn:contains(functions,'编辑职位')}">
 															<span
 															class="glyphicon glyphicon-list-alt btsize-wz" id="btbj"
 															aria-hidden="true" title="编辑"
 															onclick="bj('${it.roleName}')" style="color: #00c0ef;"></span>
 															
 															</c:if>
-															<c:if test="${fn:contains(functions,'删除用户')}">
+															<%-- 
+															<c:if test="${fn:contains(functions,'删除职位')}">
 															<span class="glyphicon glyphicon-trash btsize-wz"
 															id="btsc" aria-hidden="true" title="删除"
 															onclick="sc(${it.id})" style="color: rgb(212, 106, 64);"></span>
 															</c:if>
+															--%>
 															</td>
 													</tr>
 												</c:forEach>

@@ -65,4 +65,10 @@ public interface UserDao {
     
     public User selectUserByid(int id);
     
+    /***
+     * 根据职位ID获取该职位用户
+     * @param roleId
+     * @return
+     */
+    public List<User> selectUsersByRoleId(int roleId);
 }

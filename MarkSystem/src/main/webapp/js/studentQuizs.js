@@ -4,7 +4,6 @@ $(document).on("click","#goMarkTable_btn",function(){
 	var markTable_id = $(this).parent().parent().find("td").get(0).innerHTML;
 	var evaluated_id = $(this).parent().parent().find("td").get(5).innerHTML;
 	var teamName = $(this).parent().parent().find("td").get(4).innerHTML;
-	alert(evaluated_id);
 	$.ajax({
 		url : '/stuGetQuiz',
 		type : 'post',
@@ -45,7 +44,7 @@ $(document).on("click","#goMarkTable_btn",function(){
 			$(".modal-body").append(newInit);
 		},
 		error : function(){
-			alert(2);
+			alert(ERROR);
 		}
 	});
 });

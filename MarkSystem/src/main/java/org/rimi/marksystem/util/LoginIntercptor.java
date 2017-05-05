@@ -30,7 +30,7 @@ public class LoginIntercptor  implements HandlerInterceptor{
 			}else{
 					return true;		
 			}
-		}else if(uri.contains("css") || uri.contains("js") || uri.contains("png") || uri.contains("jpg") || uri.contains("jpeg")){
+		}else if(uri.contains("fonts")||uri.contains("css") || uri.contains("js") || uri.contains("png") || uri.contains("jpg") || uri.contains("jpeg")){
 			return true;
 		}else{
 			if(user != null){

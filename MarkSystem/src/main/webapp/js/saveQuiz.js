@@ -9,15 +9,15 @@ $(document).on("click","#button",function(){
 		var List_id = $("<span class='List_id'>"+acount+'.'+"</span>");
 		var content = $("<div class='content-lxd'>"+'__________点击编辑内容__________'+"</div>");
 		var p = $("<p class='Line'></p>");
-		var newResult = $("<span class='result'>"+'A'+"</span>");
-		var newFont = $("<span class='font'>"+'.    Score:'+"</span>");
-		var newScore = $("<span class='score'>"+'90'+"</span></br></br>");
-		var newResult1 = $("<span class='result'>"+'B'+"</span>");
-		var newFont1 = $("<span class='font'>"+'.    Score:'+"</span>");
-		var newScore1 = $("<span class='score'>"+'80'+"</span></br></br>");
-		var newResult2 = $("<span class='result'>"+'C'+"</span>");
-		var newFont2 = $("<span class='font'>"+'.    Score:'+"</span>");
-		var newScore2 = $("<span class='score'>"+'70'+"</span></br></br>");
+		var newResult = $("<span style='font-size:20px;'>A:</span><span class='result'>"+'点击输入选项内容'+"</span>");
+		var newFont = $("<span class='font'>"+'.    分数:'+"</span>");
+		var newScore = $("<span class='score'>"+'10'+"</span></br></br>");
+		var newResult1 = $("<span style='font-size:20px;'>B:</span><span class='result'>"+'点击输入选项内容'+"</span>");
+		var newFont1 = $("<span class='font'>"+'.    分数:'+"</span>");
+		var newScore1 = $("<span class='score'>"+'7'+"</span></br></br>");
+		var newResult2 = $("<span style='font-size:20px;'>C:</span><span class='result'>"+'点击输入选项内容'+"</span>");
+		var newFont2 = $("<span class='font'>"+'.    分数:'+"</span>");
+		var newScore2 = $("<span class='score'>"+'4'+"</span></br></br>");
 		var add = $("<div id='add-result'></div>");
 		var gly =	$("<span class='glyphicon glyphicon-plus'></span>");
 		

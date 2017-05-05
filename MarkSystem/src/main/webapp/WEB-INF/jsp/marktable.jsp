@@ -56,7 +56,9 @@ input.labelauty+label {
 
 
 
-<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 
 <script type="text/javascript" src="/js/marke.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -173,6 +175,7 @@ input.labelauty+label {
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
 				<!-- Messages: style can be found in dropdown.less-->
+				<%-- 
 				<li class="dropdown messages-menu">
 					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
@@ -187,8 +190,8 @@ input.labelauty+label {
 									<!-- start message --> <a href="#">
 										<div class="pull-left">
 											<!-- User Image -->
-											<img src="${sessionScope.user.headPhotoUrl}"
-												class="img-circle" alt="User Image">
+											<img src="${sessionScope.user.headPhotoUrl}" class="img-circle"
+												alt="User Image">
 										</div> <!-- Message title and timestamp -->
 										<h4>
 											Support Team <small><i class="fa fa-clock-o"></i> 5
@@ -261,26 +264,26 @@ input.labelauty+label {
 					</ul>
 				</li>
 
-
+				--%>
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
 						src="${sessionScope.user.headPhotoUrl}" class="user-image"
 						alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-						<span class="hidden-xs">Alexander Pierce</span>
+						<span class="hidden-xs">${sessionScope.user.userName}</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
-						<li class="user-header"><img
-							src="${sessionScope.user.headPhotoUrl}" class="img-circle"
-							alt="User Image">
+						<li class="user-header"><img src="${sessionScope.user.headPhotoUrl}"
+							class="img-circle" alt="User Image">
 
 							<p>
-								Alexander Pierce - Web Developer <small>Member since
-									Nov. 2012</small>
+								${sessionScope.user.userName} <small>${sessionScope.roleName}
+									</small>
 							</p></li>
 						<!-- Menu Body -->
+						<%-- 
 						<li class="user-body">
 							<div class="row">
 								<div class="col-xs-4 text-center">
@@ -294,13 +297,14 @@ input.labelauty+label {
 								</div>
 							</div> <!-- /.row -->
 						</li>
+						--%>
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="/profile" class="btn btn-default btn-flat">Profile</a>
+								<a href="/profile" class="btn btn-default btn-flat">修改信息</a>
 							</div>
 							<div class="pull-right">
-								<a href="/signOut" class="btn btn-default btn-flat">Sign out</a>
+								<a href="/signOut" class="btn btn-default btn-flat">退出登录</a>
 							</div>
 						</li>
 					</ul>
@@ -333,6 +337,7 @@ input.labelauty+label {
 		</div>
 
 		<!-- search form (Optional) -->
+		<%-- 
 		<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
 				<input type="text" name="q" class="form-control"
@@ -344,6 +349,7 @@ input.labelauty+label {
 				</span>
 			</div>
 		</form>
+		--%>
 		<!-- /.search form --> <!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
@@ -381,7 +387,7 @@ input.labelauty+label {
 					<c:if test="${fn:contains(functions,'创建评分表')}">
 						<li><a href="/markTable">创建评分表</a></li>
 					</c:if>
-					<li><a href="#">考评</a></li>
+					<li><a href="/mark">考评</a></li>
 				</ul></li>
 
 		</ul>
@@ -422,8 +428,7 @@ input.labelauty+label {
 			</table>
 			<div id="AddQuizType" data-toggle="modal" data-target="#quizType">
 				<a
-					class="button button-glow button-border button-rounded button-primary">Add
-					essay question</a>
+					class="button button-glow button-border button-rounded button-primary">自定义问答题</a>
 			</div>
 			<div class="modal fade" id="quizType" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
@@ -449,8 +454,7 @@ input.labelauty+label {
 			</div>
 			<div id="button" data-toggle="modal" data-target="#myModal">
 				<a
-					class="button button-glow button-border button-rounded button-primary">Diy
-					your quesition</a>
+					class="button button-glow button-border button-rounded button-primary">自定义选择题</a>
 			</div>
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
@@ -459,7 +463,7 @@ input.labelauty+label {
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">diy question</h4>
+							<h4 class="modal-title" id="myModalLabel">自定义问题</h4>
 						</div>
 						<div class="modal-body">
 							<div class="main clearfix">
@@ -471,11 +475,11 @@ input.labelauty+label {
 												<span class="List_id">1.</span>
 												<div class="content-lxd">________点击编辑内容________</div>
 												<p class="Line"></p>
-												</br> <span class="result">A</span><span class="font">.
-													Score:</span><span class="score">90</span></br> </br> <span class="result">B</span><span
-													class="font">. Score:</span><span class="score">80</span></br> </br>
+												</br><span class="result">A</span><span class="font">.
+													分数:</span><span class="score">10</span></br> </br> <span class="result">B</span><span
+													class="font">. 分数:</span><span class="score">7</span></br> </br>
 												<span class="result">C</span><span class="font">.
-													Score:</span><span class="score">70</span></br> </br>
+													分数:</span><span class="score">4</span></br> </br>
 											</div>
 											<div id="add-result">
 												<span class="glyphicon glyphicon-plus"></span>
@@ -489,12 +493,12 @@ input.labelauty+label {
 						</div>
 						<div class="modal-footer">
 							<nav> <a id="bb-nav-prev" href="#"
-								class="bb-custom-icon bb-custom-icon-arrow-left">Prev</a> <a
+								class="bb-custom-icon bb-custom-icon-arrow-left">上一页</a> <a
 								id="bb-nav-next" href="#"
-								class="bb-custom-icon bb-custom-icon-arrow-right">Next</a> <a
+								class="bb-custom-icon bb-custom-icon-arrow-right">下一页</a> <a
 								id="bb-nav-last" href="#"
-								class="bb-custom-icon bb-custom-icon-last">New</a> <a
-								id="saveQuiz" class="saveQuiz" style="cursor: pointer;">Save</a>
+								class="bb-custom-icon bb-custom-icon-last">新建</a> <a
+								id="saveQuiz" class="saveQuiz" style="cursor: pointer;">保存</a>
 							</nav>
 						</div>
 					</div>
@@ -504,8 +508,7 @@ input.labelauty+label {
 			</div>
 			<div id="List_button" data-toggle="modal" data-target="#myTable">
 				<a
-					class="button button-glow button-border button-rounded button-primary">Diy
-					your Table</a>
+					class="button button-glow button-border button-rounded button-primary">创建评分表</a>
 			</div>
 			<div class="modal fade" id="myTable" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
@@ -518,13 +521,12 @@ input.labelauty+label {
 						</div>
 						<div class="modal-body" id="Table-body">
 							<input type="text" id="Title" class="form-control"
-								placeholder="Quiz Title...."> <input type="text"
+								placeholder="请输入评分表名字...."> <input type="text"
 								id="date" value="" readonly class="form-control"
-								placeholder="Write end Time....">
+								placeholder="选择开始和结束时间...">
 							<div id="choosequiz" class="btn btn-default" type="button"
-								data-toggle="modal" data-target="#quizList">Diy your List</div>
-							<div id="addclass" class="btn btn-default" type="button">Add
-								Class</div>
+								data-toggle="modal" data-target="#quizList">选择需要的题目</div>
+							<div id="addclass" class="btn btn-default" type="button">选择班级和被评人</div>
 							<div id="c_nameAnds_name"></div>
 							<div id="fengeLine"></div>
 						</div>

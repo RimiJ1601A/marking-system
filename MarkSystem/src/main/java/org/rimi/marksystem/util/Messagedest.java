@@ -11,7 +11,8 @@ public class Messagedest {
 		MessageDigest md = null;
 		try {
 			md = MessageDigest.getInstance("MD5");
-			md.digest(str.getBytes());
+			md.update(str.getBytes());
+			return new BigInteger(1, md.digest()).toString(16);
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

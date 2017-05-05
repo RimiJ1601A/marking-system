@@ -21,6 +21,8 @@ public interface CountService {
     public List<Long> getYaxis(int year);
     //获得指定年前一年的人数统计数据
     public List<Long> getLastYaxis(int lastyear);
+    //动态生成admin横坐标
+    public List<Integer> getNewXaxis(int month);
     
     /***
      * 获取被评老师最新数据
