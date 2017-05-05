@@ -11,6 +11,7 @@ import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.UserDao;
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
+import org.rimi.marksystem.util.Messagedest;
 import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -63,7 +64,7 @@ public class UserDapImpl implements UserDao {
 
 					public void setValues(PreparedStatement ps) throws SQLException {
 						ps.setString(1, user.getUserAccount());
-						ps.setString(2, user.getPassword());
+						ps.setString(2, Messagedest.getMD5(user.getPassword()));
 						ps.setString(3, user.getUserName());
 						ps.setInt(4, user.getAge());
 						ps.setInt(5, user.getSex().getValue());
@@ -100,7 +101,7 @@ public class UserDapImpl implements UserDao {
 
 					public void setValues(PreparedStatement ps) throws SQLException {
 						ps.setString(1, userName);
-						ps.setString(2, passWord);
+						ps.setString(2, Messagedest.getMD5(passWord));
 					}
 				}, new ResultSetExtractor<User>() {
 
@@ -225,7 +226,7 @@ public class UserDapImpl implements UserDao {
 
 			public void setValues(PreparedStatement ps) throws SQLException {
 				// TODO Auto-generated method stub
-				ps.setString(1, password);
+				ps.setString(1, Messagedest.getMD5(password));
 				ps.setString(2, account);
 			}
 		});
@@ -240,7 +241,7 @@ public class UserDapImpl implements UserDao {
 					public void setValues(PreparedStatement ps) throws SQLException {
 						// TODO Auto-generated method stub
 						ps.setString(1, account);
-						ps.setString(2, password);
+						ps.setString(2, Messagedest.getMD5(password));
 
 					}
 				}, new ResultSetExtractor<User>() {
@@ -272,7 +273,7 @@ public class UserDapImpl implements UserDao {
 
 			public void setValues(PreparedStatement ps) throws SQLException {
 				// TODO Auto-generated method stub
-				ps.setString(1, "123456");
+				ps.setString(1, Messagedest.getMD5("123456"));
 				ps.setString(2, account);
 			}
 		});

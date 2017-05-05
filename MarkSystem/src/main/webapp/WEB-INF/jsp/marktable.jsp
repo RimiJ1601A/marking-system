@@ -396,49 +396,28 @@ input.labelauty+label {
 			<table class="table table-inverse">
 				<thead>
 					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th>#</th>
-						<th>QuizTitle</th>
-						<th>EvaluatedName</th>
-						<th>TeamID</th>
+						<th>班级</th>
+						<th style="display:none;">被评人ID</th>
+						<th>被评人</th>
+						<th style="display:none;">表ID</th>
+						<th>表名</th>
+						<th>开始时间</th>
+						<th>结束时间</th>
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="List"  items="${eightInfo}">
 					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
+						<td>${List.teamName }</th>
+						<td style="display:none;">${List.evalueateId }</th>
+						<td>${List.evaluatedName }</th>
+						<td style="display:none;">${List.marktableId }</th>
+						<td>${List.name }</th>
+						<td>${List.startTime }</th>
+						<td>${List.endTime }</th>
 					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					</tr>
+				</c:forEach>
+
 				</tbody>
 			</table>
 			<div id="AddQuizType" data-toggle="modal" data-target="#quizType">

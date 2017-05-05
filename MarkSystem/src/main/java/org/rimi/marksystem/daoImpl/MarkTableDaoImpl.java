@@ -13,6 +13,7 @@ import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.MarkTableTeam;
 import org.rimi.marksystem.eneity.Quiz;
 import org.rimi.marksystem.eneity.QuizContent;
+import org.rimi.marksystem.eneity.RequestMarkTableQuiz;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.eneity.UserMarke;
 import org.rimi.marksystem.util.QuizType;
@@ -259,5 +260,31 @@ public class MarkTableDaoImpl implements MarkTableDao{
 			}
 		});
 		return umlist;
+	}
+
+	@Override
+	public List<RequestMarkTableQuiz> selectEightInfo() {
+		List<RequestMarkTableQuiz> rMarkTableQuizs = jdbcTemplate.query("select team_name,evaluated_id,user_name,marktable_id,name,start_time,end_time from user,team,user_marke,marktable where user_marke.marktable_id = marktable.id and user_marke.team_id = team.id and user_marke.evaluated_id = user.id and user.id = user_marke.evaluated_id order by start_time DESC limit 0,8", new ResultSetExtractor<List<RequestMarkTableQuiz>>(){
+
+			@Override
+			public List<RequestMarkTableQuiz> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				List<RequestMarkTableQuiz> rmtqs = new ArrayList<>();
+				while(rs.next()){
+					RequestMarkTableQuiz rmtq = new RequestMarkTableQuiz();
+					rmtq.setTeamName(rs.getString(1));
+					rmtq.setEvalueateId(rs.getInt(2));
+					rmtq.setEvaluatedName(rs.getString(3));
+					rmtq.setMarktableId(rs.getInt(4));
+					rmtq.setName(rs.getString(5));
+					rmtq.setStartTime(rs.getString(6));
+					rmtq.setEndTime(rs.getString(7));
+					rmtqs.add(rmtq);
+				}
+				return rmtqs;
+			}
+			
+		});
+		return rMarkTableQuizs;
 	}	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.MarkTableTeam;
 import org.rimi.marksystem.eneity.Quiz;
+import org.rimi.marksystem.eneity.RequestMarkTableQuiz;
 import org.springframework.stereotype.Component;
 
 /*
@@ -39,4 +40,6 @@ public interface MarkeTableService {
 
 	
 	public void addEssayQuestion(Quiz quiz);
+	
+	public List<RequestMarkTableQuiz> getEightInfo();
 }

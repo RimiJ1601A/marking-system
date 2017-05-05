@@ -139,6 +139,7 @@ $(document).on("click",".saveQuiz",function(){
 		success : function(){
 			alert("Save Success!");
 			$("#myModal").modal("hide");
+			location.reload();
 		},
 		error : function(){
 			alert("Error!!");
@@ -157,6 +158,7 @@ function saveEssayQuestion(){
 		success : function(){
 			alert("Save Success!");
 			$("#quizType").modal("hide");
+			location.reload();
 		},
 		error : function(){
 			alert("Error!!");

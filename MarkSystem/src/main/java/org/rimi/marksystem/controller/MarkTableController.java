@@ -5,9 +5,11 @@ import java.util.List;
 import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.MarkTableTeam;
 import org.rimi.marksystem.eneity.Quiz;
+import org.rimi.marksystem.eneity.RequestMarkTableQuiz;
 import org.rimi.marksystem.service.MarkeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,8 +24,9 @@ public class MarkTableController {
 	
 	
 	@RequestMapping("/markTable")
-	public String markeTableView(){
-		
+	public String markeTableView(Model model){
+		List<RequestMarkTableQuiz> requestMarkTableQuizs = markTableServiceImpl.getEightInfo();
+		model.addAttribute("eightInfo",requestMarkTableQuizs);
 		return "marktable";
 	}
 	

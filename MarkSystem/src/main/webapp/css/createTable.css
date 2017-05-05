@@ -5,9 +5,9 @@
 }
 
 #button{
-   position: relative;
-   left: 65%;
-   top: 24px;
+    position: absolute;
+    left: 69.1%;
+    top: 353px;
 }
 
 
@@ -47,9 +47,9 @@
 }
 
 #List_button{
-    position: relative;
-    top: -16px;
-    left: 78.7%;
+    position: absolute;
+    left: 81%;
+    top: 353px;
 }
 
 #Title{

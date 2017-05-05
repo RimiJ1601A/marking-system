@@ -23,6 +23,7 @@ import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.RoleService;
 import org.rimi.marksystem.service.UserService;
 import org.rimi.marksystem.util.CommonMap;
+import org.rimi.marksystem.util.Messagedest;
 import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -73,7 +74,7 @@ public class UserController {
 	public String login(@RequestParam("userAccount") String userAccount, @RequestParam("password") String password,
 			Model model, HttpServletRequest request) {
 		User user = new User();
-		user = userServiceImpl.getUserByUserAccountAndPassword(userAccount, password);
+		user = userServiceImpl.getUserByUserAccountAndPassword(userAccount, Messagedest.getMD5(password));
 		if (user == null) {
 			model.addAttribute("error", "用户名密码错误");
 			return "login";
