@@ -12,7 +12,8 @@
 	<aop:aspectj-autoproxy />
 	<bean class="org.rimi.marksystem.util.LoggingAspect"></bean>
 	<bean class="org.rimi.marksystem.serviceImpl.UserServiceImpl"></bean>
-
+	<bean class="org.rimi.marksystem.serviceImpl.RoleServiceImpl"></bean>
+	<bean class="org.rimi.marksystem.serviceImpl.TeamServiceImpl"></bean>
 	<mvc:annotation-driven />
 	<mvc:resources location="/images/" mapping="/images/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
