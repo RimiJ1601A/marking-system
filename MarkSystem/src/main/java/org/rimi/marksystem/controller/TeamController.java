@@ -172,7 +172,7 @@ public class TeamController {
 			int roleId = teamServiceImpl.getRoleId("学生");
 			int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
 			// 插入学生到班级
-			if (usersRoleId == roleId) {
+			if (userId >0 && usersRoleId >0 && usersRoleId == roleId) {
 				teamServiceImpl.addtTeam(userId, roleId, teamId);
 			}
 			return "redirect:/team";
