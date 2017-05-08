@@ -251,7 +251,12 @@
 					<c:if test="${fn:contains(functions,'创建评分表')}">
 						<li><a href="/markTable">创建评分表</a></li>
 					</c:if>
-					<li><a href="/mark">考评</a></li>
+										<c:if test="${fn:contains(functions,'评分评分表')}">
+						<li><a href="/mark">考评</a></li>
+					</c:if>
+					<c:if test="${fn:contains(functions,'查询评分表')}">
+						<li ><a href="/resultscore">评分考核结果</a></li>
+					</c:if>	
 				</ul></li>
 
 		</ul>

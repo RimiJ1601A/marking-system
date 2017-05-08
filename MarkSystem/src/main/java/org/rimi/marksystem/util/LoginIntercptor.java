@@ -34,7 +34,13 @@ public class LoginIntercptor  implements HandlerInterceptor{
 			return true;
 		}else{
 			if(user != null){
+				
+				
 				user.getRoleId();
+				
+				
+				
+				
 				
 				return true;				
 			}else{

@@ -43,8 +43,7 @@ public class UserDapImpl implements UserDao {
 					user.setUserName(rs.getString(4));
 					user.setAge(rs.getInt(5));
 					user.setSex(Sex.getSexByValue(rs.getInt(6)));
-					user.setRoleId(rs.getInt(7));
-					
+					user.setRoleId(rs.getInt(7));			
 					user.setBulidTime(rs.getDate(8).toString());
 					user.setHeadPhotoUrl(rs.getString(9));
 					user.setRoleName(roleDaoImpl.selectRoleNameByRoleId(rs.getInt(7)));
@@ -58,7 +57,6 @@ public class UserDapImpl implements UserDao {
 
 	// 插入单个用户
 	public void insertUser(final User user) {
-		// TODO Auto-generated method stub
 		int i =jdbcTemplate.queryForObject("select count(*) from user where user_account = ?", new Object[]{user.getUserAccount()},Integer.class);
 		if(i>0){
 			return;

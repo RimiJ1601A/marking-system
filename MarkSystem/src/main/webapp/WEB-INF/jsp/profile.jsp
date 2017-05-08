@@ -259,7 +259,12 @@
 					<c:if test="${fn:contains(functions,'创建评分表')}">
 						<li><a href="/markTable">创建评分表</a></li>
 					</c:if>
-					<li><a href="#">考评</a></li>
+					<c:if test="${fn:contains(functions,'评分评分表')}">
+						<li><a href="/mark">考评</a></li>
+					</c:if>
+					<c:if test="${fn:contains(functions,'查询评分表')}">
+						<li ><a href="/resultscore">评分考核结果</a></li>
+					</c:if>	
 				</ul></li>
 
 		</ul>
@@ -436,56 +441,10 @@
 							</div>
 							<!-- /.tab-pane -->
 							<div class="tab-pane" id="setinfo">
+								
 								<form action="/changeInfo" method="post" class="form-horizontal" charset="UTF-8">
 
-									<div class="form-group">
-										<label for="inputName" class="col-sm-2 control-label">姓名</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control" name="userName"
-												placeholder="修改你的姓名...">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="inputAge" class="col-sm-2 control-label">年龄</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control" name="age"
-												placeholder="修改你的年龄...">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="inputSex" class="col-sm-2 control-label">性别</label>
-										<div class="col-sm-10">
-											<!--   <input type="text" class="form-control" id="inputSex" placeholder="修改你的性别..."> -->
-											<label><input name="sex" type="radio" value="1" />男</label>
-											<label><input name="sex" type="radio" value="2" />女</label>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="inputExperience" class="col-sm-2 control-label">你的经历</label>
-										<div class="col-sm-10">
-											<textarea readonly="readonly" class="form-control" id="inputExperience"
-												placeholder="抱歉该功能暂未开放"></textarea>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="inputSkills" class="col-sm-2 control-label">主要技能</label>
-										<div class="col-sm-10">
-											<input readonly="readonly" type="text" class="form-control" id="inputSkills"
-												placeholder="抱歉该功能暂未开放">
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="inputMotto" class="col-sm-2 control-label">座右铭</label>
-										<div class="col-sm-10">
-											<input readonly="readonly" type="text" class="form-control" id="inputMotto"
-												placeholder="抱歉该功能暂未开放">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-sm-offset-2 col-sm-10">
-											<button type="submit" class="btn btn-danger">提交修改</button>
-										</div>
-									</div>
+
 								</form>
 							</div>
 							<!-- /.tab-pane -->
@@ -555,7 +514,7 @@
 
 	<!-- Scrollslim js -->
 	<script src="/js/jquery.slimscroll.min.js"></script>
-
+	<script src="/js/profile.js"></script>
 	<!-- Chart js -->
 	<script src="/js/Chart.min.js"></script>
 	<!-- 处理头像上传的js -->
