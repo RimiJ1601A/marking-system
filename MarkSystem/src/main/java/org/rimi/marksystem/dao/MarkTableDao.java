@@ -89,4 +89,9 @@ public interface MarkTableDao {
 	 */
 	public List<RequestMarkTableQuiz> selectEightInfo();
 
+	
+	/**
+	 * 根据marktableId删除表
+	 */
+	public void deleteMarkTable(int markTableId);
 }

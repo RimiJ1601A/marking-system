@@ -96,4 +96,11 @@ public class MarkTableServiceImpl implements MarkeTableService{
 		return MarkTableDaoImpl.selectEightInfo();
 	}
 
+
+	@Override
+	public void deleteMark(int marktableId) {
+		// TODO Auto-generated method stub
+		MarkTableDaoImpl.deleteMarkTable(marktableId);
+	}
+
 }

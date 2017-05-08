@@ -409,18 +409,20 @@ input.labelauty+label {
 						<th>表名</th>
 						<th>开始时间</th>
 						<th>结束时间</th>
+						<th>#</th>
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="List"  items="${eightInfo}">
 					<tr class="bg-primary" style="background-color: #292b2c;">
-						<td>${List.teamName }</th>
-						<td style="display:none;">${List.evalueateId }</th>
-						<td>${List.evaluatedName }</th>
-						<td style="display:none;">${List.marktableId }</th>
-						<td>${List.name }</th>
-						<td>${List.startTime }</th>
-						<td>${List.endTime }</th>
+						<td>${List.teamName }</td>
+						<td style="display:none;">${List.evalueateId }</td>
+						<td>${List.evaluatedName }</td>
+						<td>${List.name }</td>
+						<td>${List.startTime }</td>
+						<td>${List.endTime }</td>
+						<td style="display:none;">${List.marktableId }</td>
+						<td id="delete-btn-lxd"><span class="glyphicon glyphicon-trash"></span></td>
 					</tr>
 				</c:forEach>
 
