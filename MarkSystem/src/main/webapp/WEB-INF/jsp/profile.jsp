@@ -10,7 +10,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Rimiedu_MSystem | admi</title>
+<title>Rimiedu_MSystem | profile</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -367,20 +367,21 @@
 				<div class="col-md-9">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#timeline" data-toggle="tab">教育履历</a></li>
-							<li><a href="#setinfo" data-toggle="tab">修改信息</a></li>
+<!-- 							<li class="active"><a href="#timeline" data-toggle="tab">教育履历</a></li>
+
+ -->							<li class="active"><a href="#setinfo" data-toggle="tab">修改信息</a></li>
 							<li><a href="#setpassword" data-toggle="tab">修改密码</a></li>
 						</ul>
 						<div class="tab-content">
 							<!-- /.tab-pane -->
-							<div class="tab-pane active" id="timeline">
-								<!-- The timeline -->
+							<!-- <div class="tab-pane active" id="timeline">
+								The timeline
 								<ul class="timeline timeline-inverse">
-									<!-- timeline time label -->
+									timeline time label
 									<li class="time-label"><span class="bg-red"> 10
 											Oct. 2016 </span></li>
-									<!-- /.timeline-label -->
-									<!-- timeline item -->
+									/.timeline-label
+									timeline item
 									<li><i class="fa fa-envelope bg-blue"></i>
 										<div class="timeline-item">
 											<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
@@ -396,7 +397,7 @@
 												<a class="btn btn-primary btn-xs">Read more</a>
 											</div>
 										</div></li>
-									<!-- END timeline item -->
+									END timeline item
 									<li><i class="fa fa-camera bg-purple"></i>
 										<div class="timeline-item">
 											<span class="time"><i class="fa fa-clock-o"></i> 2
@@ -413,12 +414,12 @@
 													src="http://placehold.it/150x100" alt="..." class="margin">
 											</div>
 										</div></li>
-									<!-- END timeline item -->
-									<!-- timeline time label -->
+									END timeline item
+									timeline time label
 									<li class="time-label"><span class="bg-green"> 3
 											Jan. 2014 </span></li>
-									<!-- /.timeline-label -->
-									<!-- timeline item -->
+									/.timeline-label
+									timeline item
 									<li><i class="fa fa-camera bg-purple"></i>
 										<div class="timeline-item">
 											<span class="time"><i class="fa fa-clock-o"></i> 2
@@ -435,16 +436,79 @@
 													src="http://placehold.it/150x100" alt="..." class="margin">
 											</div>
 										</div></li>
-									<!-- END timeline item -->
+									
 									<li><i class="fa fa-clock-o bg-gray"></i></li>
 								</ul>
-							</div>
+							</div> 
+							 -->
+							
+							
+							
+							
+							
 							<!-- /.tab-pane -->
-							<div class="tab-pane" id="setinfo">
-								
+<<<<<<< HEAD
+							
+
+
+=======
+							<div class="tab-pane active" id="setinfo">
 								<form action="/changeInfo" method="post" class="form-horizontal" charset="UTF-8">
 
-
+									<div class="form-group" id="formInfo">
+										<label for="inputName" class="col-sm-2 control-label">姓名</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="userName"
+												value="${sessionScope.user.userName}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputAge" class="col-sm-2 control-label">年龄</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="age" id="age"
+												value="${sessionScope.user.age}">
+										</div>
+									</div>
+									<div class="form-group">
+									
+										<label for="inputSex" class="col-sm-2 control-label">性别</label>
+										<div class="col-sm-10">
+										<div class="raido">
+											<!--   <input type="text" class="form-control" id="inputSex" placeholder="修改你的性别..."> -->
+											<label style="padding:5px;"><input name="sex" type="radio" value="1" />男</label>
+											<label style="padding:5px;"><input name="sex" type="radio" value="2" />女</label>
+										</div>
+										</div>
+									</div>
+									
+								<!-- 	<div class="form-group">
+										<label for="inputExperience" class="col-sm-2 control-label">你的经历</label>
+										<div class="col-sm-10">
+											<textarea readonly="readonly" class="form-control" id="inputExperience"
+												placeholder="抱歉该功能暂未开放"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputSkills" class="col-sm-2 control-label">主要技能</label>
+										<div class="col-sm-10">
+											<input readonly="readonly" type="text" class="form-control" id="inputSkills"
+												placeholder="抱歉该功能暂未开放">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputMotto" class="col-sm-2 control-label">座右铭</label>
+										<div class="col-sm-10">
+											<input readonly="readonly" type="text" class="form-control" id="inputMotto"
+												placeholder="抱歉该功能暂未开放">
+										</div>
+									</div> -->
+									
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<button type="submit" class="btn btn-danger">提交修改</button>
+										</div>
+									</div>
+>>>>>>> role、user、team页面图表显示完善
 								</form>
 							</div>
 							<!-- /.tab-pane -->
