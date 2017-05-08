@@ -354,7 +354,7 @@ input.labelauty+label {
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="/index"><i class="fa fa-home"></i>
+			<li class="treeview"><a href="/index"><i class="fa fa-home"></i>
 					<span>个人主页</span></a></li>
 
 			<c:set var="functions" value="${sessionScope.functions}" />
@@ -379,13 +379,13 @@ input.labelauty+label {
 					</ul></li>
 			</c:if>
 
-			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
+			<li class="active"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
 				</span> </a>
 				<ul class="treeview-menu">
 					<c:if test="${fn:contains(functions,'创建评分表')}">
-						<li><a href="/markTable">创建评分表</a></li>
+						<li class="active"><a href="/markTable">创建评分表</a></li>
 					</c:if>
 					<li><a href="/mark">考评</a></li>
 				</ul></li>

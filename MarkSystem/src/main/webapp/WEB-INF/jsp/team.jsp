@@ -218,7 +218,7 @@
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="/index"><i class="fa fa-home"></i>
+			<li class="treeview"><a href="/index"><i class="fa fa-home"></i>
 					<span>个人主页</span></a></li>
 
 			<c:set var="functions" value="${sessionScope.functions}" />
@@ -228,7 +228,7 @@
 
 			<c:if
 				test="${fn:contains(functions,'用户') || fn:contains(functions,'班级')}">
-				<li class="treeview"><a href="#"><i class="fa fa-user"></i>
+				<li class="active"><a href="#"><i class="fa fa-user"></i>
 						<span>用户管理</span> <span class="pull-right-container"> <i
 							class="fa fa-angle-left pull-right"></i>
 					</span> </a>
@@ -238,7 +238,7 @@
 							<li><a href="/user">人员信息</a></li>
 						</c:if>
 						<c:if test="${fn:contains(functions,'班级')}">
-							<li><a href="/team">班级信息</a></li>
+							<li class="active"><a href="/team">班级信息</a></li>
 						</c:if>
 					</ul></li>
 			</c:if>
@@ -461,10 +461,11 @@
                                                     aria-controls="example1" data-dt-idx="6" tabindex="0">6</a>
                                                  
 												</li>
+												 --%>
 												<li class="paginate_button next" id="example1_next"><a
 													onclick="xyy()" aria-controls="example1" data-dt-idx="7"
 													tabindex="0">下一页</a></li>
-													 --%>
+													
 											</ul>
 										</div>
 									</div>
@@ -668,7 +669,7 @@
 			<label class="label-ziti srbjrs"> 输入班级人数:</label>
 			<div class="input-group srbjrsk">
 				<input type="text" class="form-control" id="stucount"
-					placeholder="请输入班级学生人数" aria-describedby="sizing-addon2">
+					placeholder="请输入班级学生人数" aria-describedby="sizing-addon2" onkeyup="this.value=this.value.replace(/[^0-9]+/,'');"/>
 			</div>
 
 			<button type="button" class="btn btn-info pltjxsbt"

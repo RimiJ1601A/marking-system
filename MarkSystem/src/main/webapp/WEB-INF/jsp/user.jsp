@@ -219,7 +219,7 @@
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="/index"><i class="fa fa-home"></i>
+			<li class="treeview"><a href="/index"><i class="fa fa-home"></i>
 					<span>个人主页</span></a></li>
 
 			<c:set var="functions" value="${sessionScope.functions}" />
@@ -230,14 +230,14 @@
 
 			<c:if
 				test="${fn:contains(functions,'用户') || fn:contains(functions,'班级')}">
-				<li class="treeview"><a href="#"><i class="fa fa-user"></i>
+				<li class="active"><a href="#"><i class="fa fa-user"></i>
 						<span>用户管理</span> <span class="pull-right-container"> <i
 							class="fa fa-angle-left pull-right"></i>
 					</span> </a>
 
 					<ul class="treeview-menu">
 						<c:if test="${fn:contains(functions,'用户')}">
-							<li><a href="/user">人员信息</a></li>
+							<li class="active"><a href="/user">人员信息</a></li>
 						</c:if>
 						<c:if test="${fn:contains(functions,'班级')}">
 							<li><a href="/team">班级信息</a></li>
@@ -479,7 +479,7 @@
 			<label class="label-ziti zwtjbq"> 年龄:</label>
 			<div class="input-group zwtjsrk">
 				<input type="text" class="form-control" placeholder="请输入年龄"
-					aria-describedby="sizing-addon2" name="srnl">
+					aria-describedby="sizing-addon2" name="srnl" onkeyup="this.value=this.value.replace(/[^0-9]+/,'');"/>
 			</div>
 			<label class="label-ziti zwtjbq"> 性别:</label>
 			<div class="input-group zwtjsrk">
@@ -539,7 +539,7 @@
 			<label class="label-ziti zwtjbq"> 年龄:</label>
 			<div class="input-group zwtjsrk">
 				<input type="text" id="srnl" class="form-control" placeholder="请输入年龄"
-					aria-describedby="sizing-addon2" name="srnl">
+					aria-describedby="sizing-addon2" name="srnl" onkeyup="this.value=this.value.replace(/[^0-9]+/,'');">
 			</div>
 			<label class="label-ziti zwtjbq"> 性别:</label>
 			<div class="input-group zwtjsrk">
