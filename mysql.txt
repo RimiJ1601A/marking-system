@@ -2,7 +2,7 @@
 use markSystem;
 create table IF NOT EXISTS user(
     id int NOT NULL AUTO_INCREMENT,
-    user_account varchar(20) NOT NULL,
+    user_account varchar(20) NOT NULL unique,
     password varchar(50) NOT NULL,
     user_name varchar(10) NOT NULL,
     age int(3) NOT NULL,
@@ -10,6 +10,7 @@ create table IF NOT EXISTS user(
     role_id int NOT NULL,
     bulid_time date NOT NULL,
     headphoto_url varchar(100) NOT NULL,
+    email varchar(20),
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = utf8;
 

@@ -30,7 +30,6 @@ public class Start{
 	 */
     @PostConstruct  
     public void  init(){  
-        System.out.println("I'm  init  method  using  @PostConstrut....");
         if(userServiceImpl.getUserByUserAccountAndPassword("root", "123456") == null){
         	User user = new User();
         	user.setAge(22);
@@ -45,7 +44,6 @@ public class Start{
         	user.setUserAccount("root");
         	userServiceImpl.addUser(user);
         }
-        System.out.println("加载完成");
     }  
       
 } 
