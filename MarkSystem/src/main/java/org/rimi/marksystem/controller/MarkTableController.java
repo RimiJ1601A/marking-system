@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -64,5 +65,12 @@ public class MarkTableController {
 	@ResponseBody
 	public void addEssayQuestion(@RequestBody Quiz quiz){
 		markTableServiceImpl.addEssayQuestion(quiz);
+	}
+	
+	@RequestMapping("/deleteMarkTable")
+	@ResponseBody
+	public void deleteInfo(@RequestParam(value= "MarktableId") int marktableId){
+		
+		markTableServiceImpl.deleteMark(marktableId);
 	}
 }

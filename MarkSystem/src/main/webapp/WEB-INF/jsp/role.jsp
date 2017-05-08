@@ -216,12 +216,12 @@
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="/index"><i class="fa fa-home"></i>
+			<li class="treeview"><a href="/index"><i class="fa fa-home"></i>
 					<span>个人主页</span></a></li>
 
 			<c:set var="functions" value="${sessionScope.functions}" />
 			<c:if test="${fn:contains(functions,'职位')}">
-				<li><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
+				<li class="active"><a href="/role"><i class="fa fa-briefcase"></i> <span>职位管理</span></a></li>
 			</c:if>
 
 			<c:if
@@ -526,7 +526,7 @@
                                                     aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
                                                 <li class="paginate_button "><a href="role?dangqianye=6"
                                                     aria-controls="example1" data-dt-idx="6" tabindex="0">6</a>
-                                                    --%>
+                                                    
 		</li>
 		<li class="paginate_button next" id="example1_next"><a
 			onclick="xyy()" aria-controls="example1" data-dt-idx="7" tabindex="0">下一页</a></li>
@@ -543,7 +543,7 @@
 	</section>
 
 	</div>
-
+--%>
 	<%-- <div class="right_top">
 
                 <div class="input_position zwgl">

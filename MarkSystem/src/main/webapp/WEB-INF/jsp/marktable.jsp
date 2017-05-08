@@ -354,7 +354,7 @@ input.labelauty+label {
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="/index"><i class="fa fa-home"></i>
+			<li class="treeview"><a href="/index"><i class="fa fa-home"></i>
 					<span>个人主页</span></a></li>
 
 			<c:set var="functions" value="${sessionScope.functions}" />
@@ -379,13 +379,13 @@ input.labelauty+label {
 					</ul></li>
 			</c:if>
 
-			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
+			<li class="active"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
 				</span> </a>
 				<ul class="treeview-menu">
 					<c:if test="${fn:contains(functions,'创建评分表')}">
-						<li><a href="/markTable">创建评分表</a></li>
+						<li class="active"><a href="/markTable">创建评分表</a></li>
 					</c:if>
 					<c:if test="${fn:contains(functions,'评分评分表')}">
 						<li><a href="/mark">考评</a></li>
@@ -414,18 +414,20 @@ input.labelauty+label {
 						<th>表名</th>
 						<th>开始时间</th>
 						<th>结束时间</th>
+						<th>#</th>
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="List"  items="${eightInfo}">
 					<tr class="bg-primary" style="background-color: #292b2c;">
-						<td>${List.teamName }</th>
-						<td style="display:none;">${List.evalueateId }</th>
-						<td>${List.evaluatedName }</th>
-						<td style="display:none;">${List.marktableId }</th>
-						<td>${List.name }</th>
-						<td>${List.startTime }</th>
-						<td>${List.endTime }</th>
+						<td>${List.teamName }</td>
+						<td style="display:none;">${List.evalueateId }</td>
+						<td>${List.evaluatedName }</td>
+						<td>${List.name }</td>
+						<td>${List.startTime }</td>
+						<td>${List.endTime }</td>
+						<td style="display:none;">${List.marktableId }</td>
+						<td id="delete-btn-lxd"><span class="glyphicon glyphicon-trash"></span></td>
 					</tr>
 				</c:forEach>
 

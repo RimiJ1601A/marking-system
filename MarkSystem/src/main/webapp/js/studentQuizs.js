@@ -142,4 +142,3 @@ $(document).on("click",".essayQuizValue",function(){
 				}
 	});
 });
-

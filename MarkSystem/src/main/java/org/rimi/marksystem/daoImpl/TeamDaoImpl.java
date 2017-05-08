@@ -285,6 +285,10 @@ public class TeamDaoImpl implements TeamDao {
 
 	public void insertTeam(int userId, int roleId, int teamId) {
 		// TODO Auto-generated method stub
+		int i = jdbcTemplate.queryForObject("select count(*) from u_p_t where user_id = ? and team_id =? and role_id=?", new Object[]{userId,teamId,roleId}, Integer.class);
+		if(i>0){
+			return;
+		}
 		jdbcTemplate.update("INSERT INTO u_p_t(user_id,team_id,role_id) VALUES (?,?,?) ", userId,teamId,roleId);
 	}
 

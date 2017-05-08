@@ -342,5 +342,12 @@ public class MarkTableDaoImpl implements MarkTableDao{
 			
 		});
 		return rMarkTableQuizs;
+	}
+
+	@Override
+	public void deleteMarkTable(int markTableId) {
+		// TODO Auto-generated method stub
+		jdbcTemplate.update("delete from marktable where id = ?", markTableId);
+		jdbcTemplate.update("delete from marktable_quiz where marktable_id = ?", markTableId);
 	}	
 }

@@ -262,3 +262,19 @@ function submitmarkTable() {
 function closequizmodal(){
 	$("#quizList").modal("hide");
 }
+$(document).on("click","#delete-btn-lxd",function(){
+	var marktableId = $(this).prev().text();
+	alert(marktableId);
+	$.ajax({
+		url : '/deleteMarkTable',
+		type : 'post',
+		data : {MarktableId:marktableId},
+		success : function(){
+			alert("DELETE SUCCESS!");
+			location.reload();
+		},
+		error: function(){
+			alert("DELETE ERROR!");
+		}
+	})
+});
