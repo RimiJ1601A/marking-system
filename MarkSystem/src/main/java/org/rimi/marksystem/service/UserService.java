@@ -64,4 +64,6 @@ public interface UserService {
      * @return
      */
     public List<User> getUsersByRoleId(int roleId);
+    
+    public User getUserById(int userId);
 }

@@ -500,8 +500,8 @@
 			<div class="row">
 			
 			<c:forEach var="teacherli" items="${teacherlist}">
-			
-							<div class="col-md-4">
+				<a class="success" href="/resultscore?teacherId=${teacherli.user.id}">
+					<div class="col-md-4">
 					<!-- Widget: user widget style 1 -->
 					<div class="box box-widget widget-user">
 						<!-- Add the bg color to the header using any of the bg-* classes -->
@@ -549,8 +549,8 @@
 					</div>
 					<!-- /.widget-user -->
 				</div>
-				<!-- /.col -->
-			
+		
+				</a>
 			
 			
 			

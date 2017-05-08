@@ -84,6 +84,11 @@ public interface MarkTableDao {
 
 	public List<UserMarke> selectUserMarkeBymarktableId(int id); 
 
+	
+	public List<MarkTable> getMarkTableByEvalutedId(int evalutedUserId);
+	
+	public Quiz getQuizById(int quizId);
+	
 	/*
 	 * 获得最新8条数据
 	 */

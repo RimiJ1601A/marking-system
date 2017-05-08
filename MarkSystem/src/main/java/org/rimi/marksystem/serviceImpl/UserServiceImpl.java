@@ -177,5 +177,10 @@ public class UserServiceImpl implements UserService {
 		return userlist;
 	}
 
+	@Override
+	public User getUserById(int userId) {	
+		return userDaoImpl.selectUserByid(userId);
+	}
+
 
 }

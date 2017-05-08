@@ -10,6 +10,7 @@ import org.rimi.marksystem.dao.ResultTableDao;
 import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.Quiz;
 import org.rimi.marksystem.eneity.ResultTable;
+import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.util.QuizType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -192,6 +193,114 @@ public class ResultTableDaoImpl implements ResultTableDao{
 			}
 		});
 			
+		return rtlist;
+	}
+
+	@Override
+	public List<User> selectEndEvalutedTeacherId() {
+		List<User> userlist = new ArrayList<User>();
+		userlist=jdbcTemplate.query("select evaluated_Id from resulttable order by id desc", new ResultSetExtractor<List<User> >(){
+
+			@Override
+			public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				List<User> templist = new ArrayList<User>();
+				while(rs.next()){
+					User user = new User();
+					user.setId(rs.getInt(1));
+					templist.add(user);
+				}
+				return templist;
+			}
+			
+		});
+		
+		return userlist;
+	}
+
+	@Override
+	public List<Integer> selectTeamByMarkTableId(int markTableId,int teacherId) {
+		List<Integer> teamIdlist = new ArrayList<Integer>();
+		teamIdlist = jdbcTemplate.query("select distinct team_id from resulttable where marktable_id = ? and  evaluated_id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, markTableId);
+				ps.setInt(2, teacherId);
+			}
+		}, new ResultSetExtractor<List<Integer>>() {
+
+			@Override
+			public List<Integer> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<Integer> teamIdlist = new ArrayList<Integer>();
+				while(rs.next()){
+					teamIdlist.add(rs.getInt(1));
+				}
+				return teamIdlist;
+			}
+		});		
+		return teamIdlist;
+	}
+
+	@Override
+	public List<Integer> selectEvalutionStudentEvalutionStudentByTeam(int markTableId, int teacherId, int teamId) {
+		// TODO Auto-generated method stub
+		List<Integer> userIdlist = new ArrayList<Integer>();
+		userIdlist = jdbcTemplate.query("select distinct evaluation_id from resulttable where marktable_id = ? and  evaluated_id = ? and team_id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, markTableId);
+				ps.setInt(2, teacherId);
+				ps.setInt(3, teamId);
+			}
+		}, new ResultSetExtractor<List<Integer>>() {
+
+			@Override
+			public List<Integer> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<Integer> userIdlist = new ArrayList<Integer>();
+				while(rs.next()){
+					userIdlist.add(rs.getInt(1));
+				}
+				return userIdlist;
+			}
+		});		
+		return userIdlist;
+	}
+
+	@Override
+	public List<ResultTable> getMarkResult(int teacherId, int markTableId, int teamId, int evalutionUserId) {
+		List<ResultTable> rtlist = new ArrayList<ResultTable>();
+		rtlist = jdbcTemplate.query("select * from resulttable where marktable_id = ? and  evaluated_id = ? and team_id = ? and evaluation_id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, markTableId);
+				ps.setInt(2, teacherId);
+				ps.setInt(3, teamId);
+				ps.setInt(4, evalutionUserId);
+				
+			}
+		}, new ResultSetExtractor<List<ResultTable>>() {
+
+			@Override
+			public List<ResultTable> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<ResultTable> templist = new ArrayList<ResultTable>();
+				while(rs.next()){
+					ResultTable rt = new ResultTable();
+					rt.setId(rs.getInt(1));
+					rt.setQuizId(rs.getInt(2));
+					rt.setAnswer(rs.getString(3));
+					rt.setAnswerScore(rs.getString(4));
+					templist.add(rt);
+				}
+				
+				return templist;
+			}
+		});
+		
 		return rtlist;
 	}
 
