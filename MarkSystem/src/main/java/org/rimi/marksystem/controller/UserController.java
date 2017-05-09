@@ -198,7 +198,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/updatePassword")
+	/*@RequestMapping("/updatePassword")
 	public String updatePassword(@RequestParam("account") String account, @RequestParam("password") String password,
 			HttpServletRequest request, Model model) {
 
@@ -214,7 +214,7 @@ public class UserController {
 		userServiceImpl.updateUserRole(account, role_id);
 
 		return "redirect:/index";
-	}
+	}*/
 
 	// 插入
 	@RequestMapping("/insertUser")
