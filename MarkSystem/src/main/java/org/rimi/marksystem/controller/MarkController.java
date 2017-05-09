@@ -32,11 +32,9 @@ public class MarkController {
 		
 		for (RequestMarkTableQuiz requestMarkTableQuiz : rmtqs) {
 			List<Integer> count = markServiceImpl.getInfo(user_id, requestMarkTableQuiz.getMarktableId());
-			if(count.size() == 0){
-				requestMarkTableQuiz.setMarked(true);//没有被评价
-			}else{
-				requestMarkTableQuiz.setMarked(false);//已被评价
-			}
+			
+			requestMarkTableQuiz.setCountSize(count.size());
+			
 		}
 		for(int i=0;i<rmtqs.size();i++){
 			if(user_id == rmtqs.get(i).getEvalueateId()){

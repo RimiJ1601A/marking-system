@@ -3,14 +3,20 @@ package org.rimi.marksystem.controller;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
+import javax.swing.text.html.parser.Entity;
+
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.TeamService;
+import org.rimi.marksystem.util.EntityHandle;
+import org.rimi.marksystem.util.MSSheet;
 import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +25,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jxl.Sheet;
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 
 @Controller
 public class TeamController {
@@ -136,11 +144,12 @@ public class TeamController {
 				} else {
 					userAccount = studentPref + i;
 				}
-				User user = new User();
+				
 				List<String> userAccounts = teamServiceImpl.getUserAccount();
 				if(userAccounts.contains(userAccount)){
 					System.out.println("相同"+userAccount);
 				}else{
+					User user = new User();
 					user.setUserAccount(userAccount);
 					user.setAge(20);
 					user.setPassword("123456");
@@ -236,12 +245,23 @@ public class TeamController {
 	public String export(@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "path", required = false) String path, Model model)
 			throws IOException, WriteException {
-		if (name == null || name.isEmpty()) {
-			name = "team.xsl";
+		
+		if(teamServiceImpl.createTeamExcel(null,null)){
+			return "redirect:/team";			
+		}else{
+			return "";
+			
 		}
-		if (path == null || path.isEmpty()) {
-			path = "C:/";
-		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/***
 		OutputStream os = new FileOutputStream(path + name);
 		// 创建工作薄
 		WritableWorkbook workbook = Workbook.createWorkbook(os);
@@ -275,5 +295,7 @@ public class TeamController {
 		workbook.close();
 		os.close();
 		return "redirect:/team";
+		*/
 	}
+	
 }
