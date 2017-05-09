@@ -141,5 +141,10 @@ public class IndexController {
 
 		return "profile";
 	}
+	@RequestMapping("/404")
+	public String test404() {
+
+		return "404Error";
+	}
 
 }
