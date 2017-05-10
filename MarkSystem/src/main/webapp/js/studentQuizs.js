@@ -1,5 +1,6 @@
 var quizsOnclick_count = 0;
 $(document).on("click","#goMarkTable_btn",function(){
+	$("#Save_result").remove();
 	quizsOnclick_count = 0;
 	var markTable_id = $(this).parent().parent().find("td").get(0).innerHTML;
 	var evaluated_id = $(this).parent().parent().find("td").get(5).innerHTML;
@@ -61,11 +62,27 @@ $(document).on("click","#prevQuizs",function(){
 $(document).on("click","#nextQuizs",function(){
 	var index = $(".initQuizsContent").children().length;
 	if(quizsOnclick_count == index-1){
-		
-	}else{
-		$(".quiz_title"+quizsOnclick_count+"").css("display","none");
-		$(".quiz_title"+(quizsOnclick_count+1)+"").css("display","block");
-		quizsOnclick_count++;		
+
+	}else if(quizsOnclick_count == index-2){
+		$("#Save_result").remove();
+		var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>")
+		$("#nextQuizs").after(Tagbtn);
+		if($('input[type="radio"][name="student_quizContent'+quizsOnclick_count+'"]:checked').length!=0||($(".quiz_title"+quizsOnclick_count+"").children().text())!="点击在这里输入你的问题答案!"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!="输入不能为空！"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!=""){
+			$(".quiz_title"+quizsOnclick_count+"").css("display","none");
+			$(".quiz_title"+(quizsOnclick_count+1)+"").css("display","block");
+			quizsOnclick_count++;
+		}else{
+			alert("你还没有完成当前的题");
+		}			
+	}
+	else{
+		if($('input[type="radio"][name="student_quizContent'+quizsOnclick_count+'"]:checked').length!=0||($(".quiz_title"+quizsOnclick_count+"").children().text())!="点击在这里输入你的问题答案!"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!="输入不能为空！"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!=""){
+			$(".quiz_title"+quizsOnclick_count+"").css("display","none");
+			$(".quiz_title"+(quizsOnclick_count+1)+"").css("display","block");
+			quizsOnclick_count++;
+		}else{
+			alert("你还没有完成当前的题");
+		}
 	}
 });
 
