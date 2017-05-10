@@ -99,4 +99,6 @@ public interface MarkTableDao {
 	 * 根据marktableId删除表
 	 */
 	public void deleteMarkTable(int markTableId);
+	
+	public MarkTable selectMarkTableByMarkTableId(int markTableID);
 }

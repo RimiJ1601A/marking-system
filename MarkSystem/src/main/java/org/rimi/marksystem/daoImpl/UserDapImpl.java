@@ -32,6 +32,8 @@ public class UserDapImpl implements UserDao {
 	// 查询所有用户信息
 	public List<User> selectAllUser() {
 		List<User> userlist = new ArrayList<User>();
+		
+		
 		userlist = jdbcTemplate.query("select * from user", new ResultSetExtractor<List<User>>() {
 			public List<User> extractData(ResultSet rs) throws SQLException, DataAccessException {
 				List<User> tempUser = new ArrayList<User>();

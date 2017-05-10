@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Rimiedu_MSystem| team-info</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -314,8 +314,8 @@
 												<div class="btn-group">
 													<button type="button"
 														class="btn btn-info btn-flat dropdown-toggle"
-														data-toggle="dropdown" aria-expanded="false" title="管理图表">
-														<i class="fa fa-fw fa-list-ul"></i>
+														data-toggle="dropdown" aria-expanded="false" >
+														<i class="fa fa-fw fa-list-ul" data-toggle="tooltip" data-placement="top" title="管理图表"></i>
 													</button>
 													<ul class="dropdown-menu ">
 														<li><input type="checkbox" checked="checked"
@@ -331,18 +331,18 @@
 													</ul>
 												</div>
 												<c:if test="${fn:contains(functions,'创建班级')}">
-												<button type="button" class="btn btn-info " title="创建班级"
+												<button type="button" class="btn btn-info " data-toggle="tooltip" data-placement="top" title="创建班级"
 													onclick="tjzw()">
 													<i class="fa fa-fw fa-plus"></i>
 												</button>
 												</c:if>
-												<button type="button" class="btn btn-info " title="刷新"
+												<button type="button" class="btn btn-info " data-toggle="tooltip" data-placement="top" title="刷新"
 													onclick="shuaxin()">
 													<i class="fa fa-fw fa-refresh"></i>
 												</button>
 
 												<button type="button" class="btn btn-info btn-flat"
-													title="导出表格" onclick="exportExel()">
+													data-toggle="tooltip" data-placement="top" title="导出表格" onclick="exportExel()">
 													<i class="fa fa-fw fa-download"></i>
 												</button>
 
@@ -408,16 +408,16 @@
 													
 												</c:forEach></td>
 														<td class="xsrq">${it.buildTime}</td>
-														<td >
+														<td style="text-align:center;">
 														<c:if test="${fn:contains(functions,'查看班级')}">
 														<span class="glyphicon glyphicon-picture btsize-wz"
-															aria-hidden="true" title="查看"
+															aria-hidden="true" data-toggle="tooltip" data-placement="left" title="查看详情"
 															onclick="ck('${it.teamName}',${it.studentCount},'${it.students}','${it.teacherName}','${it.buildTime}')">
 															</span>
 															</c:if>
 															<c:if test="${fn:contains(functions,'编辑班级')}">
 															<span class="glyphicon glyphicon-list-alt btsize-wz"
-															id="btbj" aria-hidden="true" title="编辑"
+															id="btbj" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="编辑"
 															onclick="bj(${it.id})" style="color: #00c0ef;"></span> 
 															</c:if>
 															<%-- 

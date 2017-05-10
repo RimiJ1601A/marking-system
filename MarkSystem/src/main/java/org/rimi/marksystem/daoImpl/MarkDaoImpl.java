@@ -1,5 +1,6 @@
 package org.rimi.marksystem.daoImpl;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -11,9 +12,11 @@ import org.rimi.marksystem.dao.MarkDao;
 import org.rimi.marksystem.eneity.Quiz;
 import org.rimi.marksystem.eneity.QuizContent;
 import org.rimi.marksystem.eneity.RequestMarkTableQuiz;
+import org.rimi.marksystem.eneity.UserMarke;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
@@ -146,6 +149,35 @@ public class MarkDaoImpl implements MarkDao{
 
 		});
 		return count;
+	}
+
+	@Override
+	public List<UserMarke> selectUserMarkeByEvalutedId(int evalutedId) {
+		
+		List<UserMarke> umlist = jdbcTemplate.query("select * from user_marke where evaluated_id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+					ps.setInt(1, evalutedId);
+			}
+		}, new ResultSetExtractor<List<UserMarke>>() {
+
+			@Override
+			public List<UserMarke> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<UserMarke> umlist = new ArrayList<UserMarke>();
+				while(rs.next()){
+					UserMarke um = new UserMarke();
+					um.setId(rs.getInt(1));
+					um.setTeamId(rs.getInt(2));
+					um.setEvaluatedId(rs.getInt(3));
+					um.setMarktableId(rs.getInt(4));
+					umlist.add(um);
+				}
+				return umlist;
+			}
+		});
+		
+		return umlist;
 	}
 	
 }

@@ -8,6 +8,7 @@ import java.util.TreeMap;
 
 import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.Quiz;
+import org.rimi.marksystem.eneity.ResultScore;
 import org.rimi.marksystem.eneity.ResultTable;
 import org.rimi.marksystem.eneity.TeacherResults;
 import org.rimi.marksystem.eneity.Team;
@@ -129,6 +130,13 @@ public class ResultScoreController {
 			userRseultTable.setUser(user);
 		}
 		return urtlist;
+	}
+	
+	@RequestMapping("/getResultScore")
+	@ResponseBody
+	public List<ResultScore> getResultScore(@RequestParam("evalutionId") int evalutionId){
+		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreByevalutedId(evalutionId);
+		return rtlist;
 	}
 	
 }

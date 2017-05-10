@@ -1,5 +1,6 @@
 package org.rimi.marksystem.daoImpl;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,8 +21,12 @@ import org.rimi.marksystem.util.QuizType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
 
 
@@ -43,7 +48,7 @@ public class MarkTableDaoImpl implements MarkTableDao{
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String datetime = df.format(new Date()); 
 		jdbcTemplate.update("INSERT INTO marktable(name,start_time,end_time) VALUES(?,?,?)",marktable.getName(),datetime,marktable.getEndTime());
-		
+
 		//获取当前评分表的ID字段
 /*		int ID = selectCurrentMarketTableID();
 		List<MarkTableQuiz> mtq = marktable.getMarkTableQuiz();
@@ -88,7 +93,6 @@ public class MarkTableDaoImpl implements MarkTableDao{
 	 */
 	public int insertMarkeTable_quiz(int quizId, int marktableId) {
 		// TODO Auto-generated method stub
-		
 		int i = jdbcTemplate.update("INSERT INTO marktable_quiz (quiz_id,marktable_id) VALUES(?,?)", quizId,marktableId);
 		return i;
 	}
@@ -349,5 +353,30 @@ public class MarkTableDaoImpl implements MarkTableDao{
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("delete from marktable where id = ?", markTableId);
 		jdbcTemplate.update("delete from marktable_quiz where marktable_id = ?", markTableId);
+	}
+
+	@Override
+	public MarkTable selectMarkTableByMarkTableId(int markTableID) {
+		MarkTable mt=jdbcTemplate.query("select * from marktable where id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, markTableID);
+			}
+		}, new ResultSetExtractor<MarkTable>() {
+
+			@Override
+			public MarkTable extractData(ResultSet rs) throws SQLException, DataAccessException {
+				MarkTable mt = new MarkTable();
+				while(rs.next()){
+					mt.setId(rs.getInt(1));
+					mt.setName(rs.getString(2));
+					mt.setStartTime(rs.getString(3));
+					mt.setEndTime(rs.getString(4));
+				}		
+				return mt;
+			}
+		});
+		return mt;
 	}	
 }

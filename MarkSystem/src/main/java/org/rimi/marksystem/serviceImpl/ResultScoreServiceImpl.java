@@ -7,15 +7,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.rimi.marksystem.dao.MarkDao;
 import org.rimi.marksystem.dao.MarkTableDao;
 import org.rimi.marksystem.dao.ResultTableDao;
 import org.rimi.marksystem.dao.TeamDao;
 import org.rimi.marksystem.dao.UserDao;
 import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.Quiz;
+import org.rimi.marksystem.eneity.ResultScore;
 import org.rimi.marksystem.eneity.ResultTable;
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
+import org.rimi.marksystem.eneity.UserMarke;
 import org.rimi.marksystem.eneity.UserRseultTable;
 import org.rimi.marksystem.service.ResultScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,8 @@ public class ResultScoreServiceImpl implements ResultScoreService{
 	private MarkTableDao markTableDapImpl;
 	@Autowired
 	private TeamDao teamDaoImpl;
+	@Autowired
+	private MarkDao markDao;
 	
 	@Override
 	public User getEndEvalutedTeacherId() {
@@ -108,6 +113,36 @@ public class ResultScoreServiceImpl implements ResultScoreService{
 		}
 		
 		return urtlist;
+	}
+	@Override
+	public List<ResultScore> getResultScoreByevalutedId(int evalutedId) {
+		
+		List<UserMarke> umlist = markDao.selectUserMarkeByEvalutedId(evalutedId);
+		
+		List<ResultScore> rtlist = new ArrayList<ResultScore>();
+		for (UserMarke userMarke : umlist) {
+			MarkTable mt = markTableDapImpl.selectMarkTableByMarkTableId(userMarke.getMarktableId());
+			User user = userDaoImpl.selectUserByid(userMarke.getEvaluatedId());
+			Team team = teamDaoImpl.getTeamByiId(userMarke.getTeamId());		
+			List<User> userlist = teamDaoImpl.selectUserId(team.getId(), 3);
+			
+			List<User> evalutionedUserlist = getEvalutionStudentByTeam(userMarke.getMarktableId(),userMarke.getEvaluatedId(),userMarke.getTeamId());		
+			List<User> unUserlist = new ArrayList<User>();
+			for(int i = 0;i< userlist.size() ; i++) {
+				for (User user3 : evalutionedUserlist) {
+					if(userlist.get(i).getId()==user3.getId()){
+						userlist.remove(i);
+					}
+				}
+			}
+			for (int i=0 ;i<userlist.size() ; i++) {
+				unUserlist.add(userDaoImpl.selectUserByid(userlist.get(i).getId()));
+			}	
+			userlist.removeAll(evalutionedUserlist);
+			ResultScore rscore = new ResultScore(mt,user,team,evalutionedUserlist,unUserlist);
+			rtlist.add(rscore);
+		}
+		return rtlist;
 	}
 	
 }

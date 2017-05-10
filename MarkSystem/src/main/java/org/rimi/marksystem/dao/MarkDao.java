@@ -5,6 +5,7 @@ import java.util.List;
 import org.rimi.marksystem.eneity.Quiz;
 import org.rimi.marksystem.eneity.QuizContent;
 import org.rimi.marksystem.eneity.RequestMarkTableQuiz;
+import org.rimi.marksystem.eneity.UserMarke;
 import org.springframework.stereotype.Component;
 
 
@@ -48,4 +49,8 @@ public interface MarkDao {
 	 */
 	
 	public List<Integer> selectResultInfo(int user_id,int marktable_id);
+	
+	
+	public List<UserMarke> selectUserMarkeByEvalutedId(int evalutedId);
+	
 }

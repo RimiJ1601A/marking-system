@@ -382,10 +382,9 @@
 
 								<div class="row">
 
-									<div>
-										<label class="col-sm-1 control-label">老师名字：</label>
-	
-										<div class="col-sm-1">
+									<div class="col-sm-2">
+										<label class="col-sm-6 control-label">老师名字：</label>	
+										<div class="col-sm-6">
 											<select id="teacherName" name="teacherName"
 												class="selectpicker show-tick form-control"
 												data-live-search="false" onchange="selectMarkName()">
@@ -395,52 +394,84 @@
 											</select>
 										</div>
 									</div>
-
-									<div>
-										<label class="col-sm-1 control-label">考核名字：</label>
-										<div class="col-sm-1">
+<!-- 
+									<div class="col-sm-2">
+										<label class="col-sm-6 control-label">考核名字：</label>
+										<div class="col-sm-6">
 											<select id="markName" name="markName"
 												class="selectpicker show-tick form-control"
 												data-live-search="false" onchange="markName()">
-<!-- 												<option value="0">第一次</option>
+												<option value="0">第一次</option>
 												<option value="1">第二次</option>
-												<option value="2">第三次</option> -->
+												<option value="2">第三次</option>
 											</select>
 										</div>
 									</div>
 
-									<div>
-										<label class="col-sm-1 control-label">考核班级：</label>
-										<div class="col-sm-1">
+									<div class="col-sm-2">
+										<label class="col-sm-6 control-label">考核班级：</label>
+										<div class="col-sm-6">
 											<select id="teamName" name="teamName"
 												class="selectpicker show-tick form-control"
 												data-live-search="false" onchange="teamName()">
-<!-- 												<option value="0">java1601</option>
+												<option value="0">java1601</option>
 												<option value="1">ios1601</option>
-												<option value="2">web1601</option> -->
+												<option value="2">web1601</option>
 											</select>
 										</div>
 									</div>
 
-									<div>
-										<label class="col-sm-1 control-label">已评价学生：</label>
-										<div class="col-sm-1">
+									<div class="col-sm-2">
+										<label class="col-sm-6 control-label">已评价学生：</label>
+										<div class="col-sm-6">
 											<select id="evaluateUserName" name="evaluateUserName"
 												class="selectpicker show-tick form-control"
 												data-live-search="false" onchange="evaluateUserName()">
-<!-- 												<option value="0">张三</option>
+												<option value="0">张三</option>
 												<option value="1">李四</option>
-												<option value="2">王五</option> -->
+												<option value="2">王五</option>
 											</select>
 										</div>
+									</div> -->
+									<div class="col-sm-2" style="text-align: center;">
+										<button id="select" type="button" class="btn btn-primary btn-sm">确定</button>
 									</div>
-
-									<button id="select" type="button" class="btn btn-primary btn-sm">确定</button>
-
 								</div>
+								
+								<div id="tableresult" class="row" style="display:none">
+									<div class="col-xs-12">
+										<div class="box box-solid box-primary">
+											<div class="box-header">
+												<h3 class="box-title">评分结果</h3>
+											</div>
+											<div class="box-body">
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered table-striped dataTable">
+															<thead>
+																<tr class="row">
+																	<th class="sorting_asc">考核老师</th>
+																	<th class="sorting_asc">考核名称</th>
+																	<th class="sorting_asc">结束时间</th>
+																	<th class="sorting_asc">考核班级</th>
+																	<th class="sorting_asc">已评价学生</th>
+																	<th class="sorting_asc">未评价学生</th>
+																</tr>
+															</thead>
+															<tbody id="markTableresult">
+										
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
 
-
-								<div id="resultScore" class="row" style="display:none">
+									</div>
+								</div>
+								
+	
+								<div id="resultScore" class="row box-header" style="display:none">
 
 									<div class="col-md-3">
 										<div class="box box-primary">
@@ -469,7 +500,7 @@
 
 										</div>
 									</div>
-
+									
 									<div class="col-md-5">
 										<div id="resultMark" class="row">
 <!-- 										
