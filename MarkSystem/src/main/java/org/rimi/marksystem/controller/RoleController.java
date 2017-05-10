@@ -34,18 +34,11 @@ public class RoleController {
 	private RoleService roleServiceImpl;
 	
 	@RequestMapping(value="/role")
-	public String getRole(@RequestParam(value="value",required=false)String name,@RequestParam(value="dangqianye",required=false)String pageNum,Model model){
-		
-		if (name == null || name.isEmpty()) {
-			name="";
-		}
-		int total = roleServiceImpl.getRole(name);
-		PageShow page = new PageShow(total,pageNum);
-		List<Role> rolePage = roleServiceImpl.getRole(page.getStart(), ConstantClassField.COUNT, name);
+	public String getRole(@RequestParam(value="value",required=false)String name,@RequestParam(value="currentPageName",required=false)String pageNum,Model model){
+		PageShow page = roleServiceImpl.getPage(name, pageNum);
+		List<Role> rolePage = roleServiceImpl.getRole(page.getStart(), ConstantClassField.COUNT, page.getName());
 		model.addAttribute("rolePage", rolePage);
-		model.addAttribute("dangqianye", page.getCurrentPageNum());
-		model.addAttribute("selectName", name);
-		model.addAttribute("next", page.getTotalPage());
+		model.addAttribute("page", page);
 		return "role";
 	}
 	//增加职位

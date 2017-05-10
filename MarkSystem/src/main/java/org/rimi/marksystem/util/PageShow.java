@@ -5,7 +5,13 @@ public class PageShow {
 	private int totalPage;//总页数
 	private int currentPageNum;//当前页
 	private int start;//数据库查询开始的记录
-	
+	private String name;//查询的名字
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getTotalPage() {
 		return totalPage;
 	}
@@ -35,6 +41,9 @@ public class PageShow {
 			this.totalPage = 1;
 		}
 	}
+	public void returnName(String name){
+		this.name=name;
+	}
 	/**
 	 * 返回当前页的页码
 	 * @param pageNum 前台传的当前页页码
@@ -63,9 +72,10 @@ public class PageShow {
 	 * @param total 总数
 	 * @param pageNum 前台传的当前页
 	 */
-	public PageShow(int total,String pageNum){
+	public PageShow(int total,String pageNum,String name){
 		this.returnTotalPage(total);
 		this.returnCurrentPageNum(pageNum);
 		this.returnStart(this.currentPageNum);
+		this.returnName(name);
 	}
 }
