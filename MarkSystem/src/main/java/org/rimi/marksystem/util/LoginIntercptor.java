@@ -1,9 +1,15 @@
 package org.rimi.marksystem.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.rimi.marksystem.dao.FunctionUrlDao;
+import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.eneity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,6 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginIntercptor  implements HandlerInterceptor{
 	
 	
+	@Autowired
+	private RoleDao roleDaoImpl;
+	
+	@Autowired
+	private FunctionUrlDao functionUrlDaoImpl;
 	/*
 	 * 进入controller访问路径之前调用，return true进入controller,return false不进入controller
 	 */
@@ -34,9 +45,20 @@ public class LoginIntercptor  implements HandlerInterceptor{
 			return true;
 		}else{
 			if(user != null){
-				user.getRoleId();
+				int roleId = user.getRoleId();
+				String functionName = roleDaoImpl.selectFunctionNameByRoleId(roleId);
+				String [] functionNames = functionName.split(",");
 				
-				return true;				
+/*				String url = null;
+				for(int i=0;i<functionNames.length;i++){
+					url = url+functionUrlDaoImpl.selectUrlByFunctionName(functionNames[i])+",";//所有小链接的集合
+				}
+				if(url.contains(uri)){
+					return true;
+				}else{
+					return false;
+				}*/	
+				return true;
 			}else{
 				response.sendRedirect("/loginPage");
 				return false;
