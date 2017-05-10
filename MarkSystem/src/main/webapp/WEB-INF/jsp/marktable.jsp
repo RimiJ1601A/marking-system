@@ -418,6 +418,12 @@ input.labelauty+label {
 					</tr>
 				</thead>
 				<tbody>
+				<c:set  var="list" scope="session" value="${eightInfo}"></c:set>
+					<c:if test="${fn:length(list) == 0}">
+						<tr class="bg-primary" style="background-color: #292b2c;">
+							<td colspan=6 style="text-align:center;"><b>最近没有发布评分表</b></td>
+						</tr>
+					</c:if>
 				<c:forEach var="List"  items="${eightInfo}">
 					<tr class="bg-primary" style="background-color: #292b2c;">
 						<td>${List.teamName }</td>
@@ -433,9 +439,28 @@ input.labelauty+label {
 
 				</tbody>
 			</table>
-			<div id="AddQuizType" data-toggle="modal" data-target="#quizType">
+			<div class="row">
+			<div class="col-sm-4" id="List_button" data-toggle="modal" data-target="#myTable" style="
+    text-align: center;">
 				<a
-					class="button button-glow button-border button-rounded button-primary">自定义问答题</a>
+					class="button button-glow button-border button-rounded button-primary " style="
+    width: 60%;
+">创建评分表</a>
+			</div>
+			<div class="col-sm-4"  id="button" data-toggle="modal" data-target="#myModal" style="
+    text-align: center;">
+				<a
+					class="button button-glow button-border button-rounded button-primary " style="
+    width: 60%;
+">自定义选择题</a>
+			</div>
+			<div class="col-sm-4"  id="AddQuizType" data-toggle="modal" data-target="#quizType" style="
+    text-align: center;">
+				<a
+					class="button button-glow button-border button-rounded button-primary" style="
+    width: 60%;
+">自定义问答题</a>
+			</div>
 			</div>
 			<div class="modal fade" id="quizType" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
@@ -459,10 +484,7 @@ input.labelauty+label {
 				</div>
 				<!-- /.modal -->
 			</div>
-			<div id="button" data-toggle="modal" data-target="#myModal">
-				<a
-					class="button button-glow button-border button-rounded button-primary">自定义选择题</a>
-			</div>
+
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -513,10 +535,7 @@ input.labelauty+label {
 				</div>
 				<!-- /.modal -->
 			</div>
-			<div id="List_button" data-toggle="modal" data-target="#myTable">
-				<a
-					class="button button-glow button-border button-rounded button-primary">创建评分表</a>
-			</div>
+
 			<div class="modal fade" id="myTable" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">

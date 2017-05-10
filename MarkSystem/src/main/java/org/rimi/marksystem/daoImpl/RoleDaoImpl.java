@@ -225,7 +225,7 @@ public class RoleDaoImpl implements RoleDao {
 		String functionNames = "";
 		for(int i=0;i<functionsId.length;i++){
 			int num = Integer.valueOf(functionsId[i]);
-			functionNames=functionNames+selectRoleFunction(num);
+			functionNames=functionNames+selectRoleFunction(num)+",";
 		}
 		
 		
