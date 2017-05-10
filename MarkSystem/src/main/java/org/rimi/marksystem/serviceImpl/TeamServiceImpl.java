@@ -35,9 +35,9 @@ public class TeamServiceImpl implements TeamService {
 		return teamDaoImpl.selectAllTeam();
 	}
 	
-	public boolean createTeamExcel(String path,String name){
+	public void createTeamExcel(String path,String name){
 		if (name == null || name.isEmpty()) {
-			name = PathCostant.DEFAULT_NAME;
+			name = PathCostant.TEAM_DEFAULT_NAME;
 		}
 		if (path == null || path.isEmpty()) {
 			path = PathCostant.DEFAULT_PATH;
@@ -64,15 +64,11 @@ public class TeamServiceImpl implements TeamService {
 				| IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 			logger.error(e);
-			return false;
 		} catch (WriteException e) {
 			logger.error(e);
-			return false;
 		} catch (IOException e) {
 			logger.error(e);
-			return false;
 		}
-		return true;
 	}
 
 	public List<Team> getTeam(int start, int count) {

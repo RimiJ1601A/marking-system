@@ -49,5 +49,5 @@ public interface TeamService {
 		 * @param name 文件名
 		 * @return
 		 */
-		public boolean createTeamExcel(String path,String name);
+		public void createTeamExcel(String path,String name);
 }

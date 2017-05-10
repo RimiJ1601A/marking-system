@@ -397,16 +397,18 @@
 													<tr role="row" class="odd">
 														<td class="bjmc">${it.teamName}</td>
 														<td class="xsrs">${it.studentCount}</td>
-														<td class="xsxm"><c:forEach var="item"
+														<td class="xsxm">
+													<c:forEach var="item"
 																items="${it.students}">
 													${item}
 													
-												</c:forEach></td>
-														<td class="jsxm"><c:forEach var="teac"
+													</c:forEach></td>
+														<td class="jsxm">
+													<c:forEach var="teac"
 																items="${it.teacherName}">
 													${teac}
 													
-												</c:forEach></td>
+													</c:forEach></td>
 														<td class="xsrq">${it.buildTime}</td>
 														<td style="text-align:center;">
 														<c:if test="${fn:contains(functions,'查看班级')}">

@@ -174,7 +174,7 @@ function sc(zwid) {
 // 弹出框确认
 function scqueren() {
 	$("#scdialog").dialog("close");
-	location.href = "roledelete?zwid=" + $("#cuanId").val();
+	location.href = "roledelete?roleId=" + $("#cuanId").val();
 }
 // 弹出框取消
 function scquxiao() {

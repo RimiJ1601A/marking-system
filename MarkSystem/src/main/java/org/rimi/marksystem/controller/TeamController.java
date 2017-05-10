@@ -245,57 +245,8 @@ public class TeamController {
 	public String export(@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "path", required = false) String path, Model model)
 			throws IOException, WriteException {
-		
-		if(teamServiceImpl.createTeamExcel(null,null)){
-			return "redirect:/team";			
-		}else{
-			return "";
-			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/***
-		OutputStream os = new FileOutputStream(path + name);
-		// 创建工作薄
-		WritableWorkbook workbook = Workbook.createWorkbook(os);
-		// 创建新的一页
-		WritableSheet sheet = workbook.createSheet("班级表", 0);
-		List<Team> team = teamServiceImpl.getAllTeam();
-		int size = team.size();
-		Label bjmc = new Label(0, 0, "班级名称");
-		sheet.addCell(bjmc);
-		Label xsrs = new Label(1, 0, "学生人数");
-		sheet.addCell(xsrs);
-		Label xsxm = new Label(2, 0, "学生姓名");
-		sheet.addCell(xsxm);
-		Label jsxm = new Label(3, 0, "教师姓名");
-		sheet.addCell(jsxm);
-		Label cjrq = new Label(4, 0, "创建日期");
-		sheet.addCell(cjrq);
-		for (int i = 1; i <= size; i++) {
-			Label a = new Label(0, i, team.get(i - 1).getTeamName());
-			sheet.addCell(a);
-			Label b = new Label(1, i, team.get(i - 1).getStudentCount() + "");
-			sheet.addCell(b);
-			Label c = new Label(2, i, team.get(i - 1).getStudents().toString());
-			sheet.addCell(c);
-			Label d = new Label(3, i, team.get(i - 1).getTeacherName().toString());
-			sheet.addCell(d);
-			Label f = new Label(4, i, team.get(i - 1).getBuildTime());
-			sheet.addCell(f);
-		}
-		workbook.write();
-		workbook.close();
-		os.close();
+		teamServiceImpl.createTeamExcel(path, name);
 		return "redirect:/team";
-		*/
 	}
 	
 }
