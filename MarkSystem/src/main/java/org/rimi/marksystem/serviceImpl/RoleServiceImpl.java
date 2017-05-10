@@ -5,6 +5,8 @@ import java.util.List;
 import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.eneity.Role;
 import org.rimi.marksystem.service.RoleService;
+import org.rimi.marksystem.util.ConstantClassField;
+import org.rimi.marksystem.util.PageShow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 @Component
@@ -67,7 +69,14 @@ public class RoleServiceImpl implements RoleService {
 		// TODO Auto-generated method stub
 		return roleDaoImpl.selectRoleFunction(id);
 	}
-
+	public PageShow getPage(String name,String pageNum){
+		if (name == null || name.isEmpty()) {
+			name="";
+		}
+		int total = this.getRole(name);
+		PageShow page = new PageShow(total,pageNum,name);
+		return page;
+	}
 	public List<Role> getRole(int start,int count,String name) {
 		// TODO Auto-generated method stub
 		return roleDaoImpl.selectRole(start, count, name);
