@@ -374,7 +374,7 @@
 								data-dismiss="modal">关闭</button>
 							<button type="button"  id="prevQuizs" class="btn btn-default">上一题</button>
 							<button type="button"  id="nextQuizs" class="btn btn-default">下一题</button>
-							<button type="button"  id="Save_result" class="btn btn-primary">提交</button>
+							<!-- <button type="button"  id="Save_result" class="btn btn-primary">提交</button> -->
 						</div>
 					</div>
 					<!-- /.modal-content -->

@@ -2,6 +2,7 @@ package org.rimi.marksystem.service;
 
 import java.util.List;
 import org.rimi.marksystem.eneity.Role;
+import org.rimi.marksystem.util.PageShow;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -34,4 +35,6 @@ public interface RoleService {
 	public String getFunctionNameByRoleId(int roleId);
 	//根据role名称查roleId
 	public int getRoleId(String roleName);
+	//分页查询
+	public PageShow getPage(String name,String pageNum);
 }
