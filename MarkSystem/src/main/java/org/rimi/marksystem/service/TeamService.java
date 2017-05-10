@@ -43,4 +43,11 @@ public interface TeamService {
 		public int getUsersRoleId(String userAccount);
 		//得到用户账号
 		public List<String> getUserAccount();
+		/**
+		 * 保存team的Excel
+		 * @param path 路径
+		 * @param name 文件名
+		 * @return
+		 */
+		public boolean createTeamExcel(String path,String name);
 }

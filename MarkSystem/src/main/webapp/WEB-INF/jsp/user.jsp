@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="charset=UTF-8">
-<title>Insert title here</title>
+<title>Rimiedu_MSystem| user-info</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -253,7 +253,12 @@
 					<c:if test="${fn:contains(functions,'创建评分表')}">
 						<li><a href="/markTable">创建评分表</a></li>
 					</c:if>
-					<li><a href="/mark">考评</a></li>
+										<c:if test="${fn:contains(functions,'评分评分表')}">
+						<li><a href="/mark">考评</a></li>
+					</c:if>
+					<c:if test="${fn:contains(functions,'查询评分表')}">
+						<li ><a href="/resultscore">评分考核结果</a></li>
+					</c:if>	
 				</ul></li>
 
 		</ul>
@@ -308,8 +313,8 @@
 												<div class="btn-group">
 													<button type="button"
 														class="btn btn-info btn-flat dropdown-toggle"
-														data-toggle="dropdown" aria-expanded="false" title="管理图表">
-														<i class="fa fa-fw fa-list-ul"></i>
+														data-toggle="dropdown" aria-expanded="false" >
+														<i class="fa fa-fw fa-list-ul" data-toggle="tooltip" data-placement="top" title="管理图表"></i>
 													</button>
 													<ul class="dropdown-menu ">
 														<li><input type="checkbox" checked="checked"
@@ -327,17 +332,17 @@
 													</ul>
 												</div>
 												<c:if test="${fn:contains(functions,'增加用户')}">
-												<button type="button" class="btn btn-info " title="添加人员"
+												<button type="button" class="btn btn-info " data-toggle="tooltip" data-placement="top" title="添加人员"
 													onclick="tjry()">
 													<i class="fa fa-fw fa-plus"></i>
 												</button>
 												</c:if>
-												<button type="button" class="btn btn-info " title="刷新"
+												<button type="button" class="btn btn-info " data-toggle="tooltip" data-placement="top" title="刷新"
 													onclick="shuaxin()">
 													<i class="fa fa-fw fa-refresh"></i>
 												</button>
 
-												<button type="button" class="btn btn-info btn-flat"
+												<button type="button" class="btn btn-info btn-flat" data-toggle="tooltip" data-placement="top"
 													title="导出表格" onclick="exportExel()">
 													<i class="fa fa-fw fa-download"></i>
 												</button>
@@ -401,17 +406,17 @@
 														<td class="xsxb">${it.sex.sex}</td>
 														<td class="xszw">${it.roleName}</td>
 														<td class="xscjrq">${it.bulidTime}</td>			
-														<td >
+														<td  style="text-align:center;">
 															<div>
 															<c:if test="${fn:contains(functions,'查看用户')}">
 															<span class="glyphicon glyphicon-picture btsize-wz"
-																aria-hidden="true" title="查看" onclick="ck('${it.userAccount}','${it.userName}','${it.age}','${it.sex.sex}','${it.roleName}','${it.bulidTime}')"
+																aria-hidden="true"  data-toggle="tooltip" data-placement="left" title="查看详情" onclick="ck('${it.userAccount}','${it.userName}','${it.age}','${it.sex.sex}','${it.roleName}','${it.bulidTime}')"
 																style="color: #00c0ef;"></span>
 															</c:if>
 															<c:if test="${fn:contains(functions,'编辑用户')}">
 															<span
 																class="glyphicon glyphicon-list-alt btsize-wz" id="btbj"
-																aria-hidden="true" title="编辑" onclick="bj('${it.userAccount}','${it.userName}','${it.age}')"
+																aria-hidden="true" data-toggle="tooltip" data-placement="right" title="编辑" onclick="bj('${it.userAccount}','${it.userName}','${it.age}')"
 																style="color: #00c0ef;"></span>
 															</c:if>
 															<%-- 

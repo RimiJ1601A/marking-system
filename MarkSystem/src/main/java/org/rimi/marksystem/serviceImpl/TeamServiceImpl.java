@@ -1,18 +1,28 @@
 package org.rimi.marksystem.serviceImpl;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.TeamDao;
 import org.rimi.marksystem.dao.UserDao;
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.TeamService;
+import org.rimi.marksystem.util.MSSheet;
+import org.rimi.marksystem.util.PathCostant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import jxl.write.WriteException;
 @Component
 public class TeamServiceImpl implements TeamService {
 
+	private Logger logger = Logger.getLogger(TeamServiceImpl.class);
+	
 	@Autowired
 	private TeamDao teamDaoImpl;
 	@Autowired
@@ -23,6 +33,46 @@ public class TeamServiceImpl implements TeamService {
 	public List<Team> getAllTeam() {
 		// TODO Auto-generated method stub
 		return teamDaoImpl.selectAllTeam();
+	}
+	
+	public boolean createTeamExcel(String path,String name){
+		if (name == null || name.isEmpty()) {
+			name = PathCostant.DEFAULT_NAME;
+		}
+		if (path == null || path.isEmpty()) {
+			path = PathCostant.DEFAULT_PATH;
+		}
+
+		List<String> titles = new ArrayList<>();
+		titles.add("班级名称");
+		titles.add("学生人数");
+		titles.add("学生姓名");
+		titles.add("教师姓名");
+		titles.add("创建日期");
+		
+		
+		List<String> needProperties = new ArrayList<>();
+		needProperties.add("teamName");
+		needProperties.add("studentCount");
+		needProperties.add("students");
+		needProperties.add("teacherName");
+		needProperties.add("buildTime");
+		
+		try {
+			MSSheet msSheet = new MSSheet(titles, this.getAllTeam(),needProperties, path + name, "班级表", 0);
+		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | SecurityException
+				| IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+			logger.error(e);
+			return false;
+		} catch (WriteException e) {
+			logger.error(e);
+			return false;
+		} catch (IOException e) {
+			logger.error(e);
+			return false;
+		}
+		return true;
 	}
 
 	public List<Team> getTeam(int start, int count) {

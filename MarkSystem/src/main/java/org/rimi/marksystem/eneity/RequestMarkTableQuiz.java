@@ -60,4 +60,19 @@ public class RequestMarkTableQuiz {
 		this.evaluatedName = evaluatedName;
 	}
     
+	
+	public void setCountSize(int countSize){
+		if(countSize == 0){
+			this.setMarked(true);//没有被评价
+		}else{
+			this.setMarked(false);//已被评价
+		}
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+	
+	
 }

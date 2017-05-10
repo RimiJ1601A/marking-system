@@ -17,6 +17,7 @@ public class User {
     private String bulidTime;				//用户注册时间
     private String headPhotoUrl;			//头像URL路径
 	private String roleName;				//职位名称
+	
 	public String getRoleName() {
 		return roleName;
 	}
