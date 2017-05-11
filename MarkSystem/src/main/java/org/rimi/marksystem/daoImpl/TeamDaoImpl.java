@@ -50,46 +50,15 @@ public class TeamDaoImpl implements TeamDao {
 						
 					}
 					int teamId = rs.getInt(1);
+					//查学生
+					List<String> studentNames = selectStudentsOrTeachter(teamId, roleIdStu);
+					//查老师
+					List<String> teachersName = selectStudentsOrTeachter(teamId, roleIdTeacher);
 					team.setId(teamId);
 					team.setTeamName(rs.getString(2));
 					team.setBuildTime(rs.getString(3));
-					//查学生
-					List<User> students = selectUserId(teamId,roleIdStu);//查userID
-					List<String> studentNames = new ArrayList<String>();//存学生名字
-					ListIterator<User> it = students.listIterator();
-					while(it.hasNext()){
-						User user = it.next();
-						userId = user.getId();
-//						User student = new User();
-						String name = "";//查学生名字
-						try {
-							name = userdaoimp.selectName(userId);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							
-						}
-//						student.setUserName(name);
-//						studentNames.add(student);
-						studentNames.add(name);
-					}
 					team.setStudentCount(studentNames.size());
 					team.setStudents(studentNames);
-					//查老师
-					List<User> teachers = selectUserId(teamId,roleIdTeacher);//查老师userID
-					List<String> teachersName = new ArrayList<String>();//存老师名字
-					ListIterator<User> item = teachers.listIterator();
-					while(item.hasNext()){
-						User user = item.next();
-						userId = user.getId();
-						String name = "";//查教师名字
-						try {
-							name = userdaoimp.selectName(userId);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							
-						}
-						teachersName.add(name);
-					}
 					team.setTeacherName(teachersName);
 					result.add(team);
 				}
@@ -100,87 +69,7 @@ public class TeamDaoImpl implements TeamDao {
 		return teams;
 	}
 
-	public List<Team> selectTeam(final int start, final int count) {
-		List<Team> teams = new ArrayList<Team>(); 
-		teams = jdbcTemplate.query("select * from team limit ?,?", new PreparedStatementSetter(){
-
-			public void setValues(PreparedStatement ps) throws SQLException {
-				// TODO Auto-generated method stub
-				ps.setInt(1, start);
-				ps.setInt(2, count);
-			}
-			},new ResultSetExtractor<List<Team>>(){
-
-			public List<Team> extractData(ResultSet rs) throws SQLException, DataAccessException {
-				List<Team> result = new ArrayList<Team>(); 
-				while(rs.next()){
-					Team team = new Team();
-					int userId;
-					int roleIdStu = 3;
-					int roleIdTeacher = 2;
-					try {
-						roleIdStu = roledaoimp.selectRoleId("学生");
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						
-					}
-					try {
-						roleIdTeacher = roledaoimp.selectRoleId("教师");
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						
-					}
-					int teamId = rs.getInt(1);
-					team.setId(teamId);
-					team.setTeamName(rs.getString(2));
-					team.setBuildTime(rs.getString(3));
-					//查学生
-					List<User> students = selectUserId(teamId,roleIdStu);//查userID
-					List<String> studentNames = new ArrayList<String>();//存学生名字
-					ListIterator<User> it = students.listIterator();
-					while(it.hasNext()){
-						User user = it.next();
-						userId = user.getId();
-//						User student = new User();
-						String name = "";//查学生名字
-						try {
-							name = userdaoimp.selectName(userId);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							
-						}
-//						student.setUserName(name);
-//						studentNames.add(student);
-						studentNames.add(name);
-					}
-					team.setStudentCount(studentNames.size());
-					team.setStudents(studentNames);
-					//查老师
-					List<User> teachers = selectUserId(teamId,roleIdTeacher);//查老师userID
-					List<String> teachersName = new ArrayList<String>();//存老师名字
-					ListIterator<User> item = teachers.listIterator();
-					while(item.hasNext()){
-						User user = item.next();
-						userId = user.getId();
-						String name = "";//查教师名字
-						try {
-							name = userdaoimp.selectName(userId);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							
-						}
-						teachersName.add(name);
-					}
-					team.setTeacherName(teachersName);
-					result.add(team);
-				}
-				return result;
-			}
-			
-		});
-		return teams;
-	}
-
+	
 	public List<Team> selectTeam(final int start,final int count,final String name) {
 		List<Team> teams = new ArrayList<Team>();
 		teams = jdbcTemplate.query("select * from team where team_name like ? limit ?,?", new PreparedStatementSetter(){
@@ -214,46 +103,15 @@ public class TeamDaoImpl implements TeamDao {
 						
 					}
 					int teamId = rs.getInt(1);
+					//查学生
+					List<String> studentNames = selectStudentsOrTeachter(teamId, roleIdStu);
+					//查老师
+					List<String> teachersName = selectStudentsOrTeachter(teamId, roleIdTeacher);
 					team.setId(teamId);
 					team.setTeamName(rs.getString(2));
 					team.setBuildTime(rs.getString(3));
-					//查学生
-					List<User> students = selectUserId(teamId,roleIdStu);//查userID
-					List<String> studentNames = new ArrayList<String>();//存学生名字
-					ListIterator<User> it = students.listIterator();
-					while(it.hasNext()){
-						User user = it.next();
-						userId = user.getId();
-//						User student = new User();
-						String name = "";//查学生名字
-						try {
-							name = userdaoimp.selectName(userId);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							
-						}
-//						student.setUserName(name);
-//						studentNames.add(student);
-						studentNames.add(name);
-					}
 					team.setStudentCount(studentNames.size());
 					team.setStudents(studentNames);
-					//查老师
-					List<User> teachers = selectUserId(teamId,roleIdTeacher);//查老师userID
-					List<String> teachersName = new ArrayList<String>();//存老师名字
-					ListIterator<User> item = teachers.listIterator();
-					while(item.hasNext()){
-						User user = item.next();
-						userId = user.getId();
-						String name = "";//查教师名字
-						try {
-							name = userdaoimp.selectName(userId);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							
-						}
-						teachersName.add(name);
-					}
 					team.setTeacherName(teachersName);
 					result.add(team);
 				}
@@ -369,6 +227,27 @@ public class TeamDaoImpl implements TeamDao {
 	public int selectTeam(String name) {
 		// TODO Auto-generated method stub
 		return jdbcTemplate.queryForObject("select count(*) from team where team_name like ?", new Object[]{"%"+name+"%"} ,Integer.class);
+	}
+
+
+	@Override
+	public List<String> selectStudentsOrTeachter(int teamId, int roleId) {
+		List<User> users = selectUserId(teamId,roleId);//查userID
+		List<String> studentNames = new ArrayList<String>();//存user名字
+		ListIterator<User> it = users.listIterator();
+		while(it.hasNext()){
+			User user = it.next();
+			int userId = user.getId();
+			String name = "";
+			try {
+				name = userdaoimp.selectName(userId);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				
+			}
+			studentNames.add(name);
+		}
+		return studentNames;
 	}
 
 }

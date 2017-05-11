@@ -15,8 +15,10 @@ import javax.swing.text.html.parser.Entity;
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.TeamService;
+import org.rimi.marksystem.util.ConstantClassField;
 import org.rimi.marksystem.util.EntityHandle;
 import org.rimi.marksystem.util.MSSheet;
+import org.rimi.marksystem.util.PageShow;
 import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,71 +43,20 @@ public class TeamController {
 	private final int account = 10; // 每页显示的数据
 
 	@RequestMapping("/team")
-	public String goTeam(@RequestParam(value = "value", required = false) String name,@RequestParam(value = "dangqianye", required = false) String pageNum, Model model) {
-		int totalPage;// 总页数
-		int start;
-		if (name == null || name.isEmpty()) {
-			name="";
-		}
-		int total = teamServiceImpl.getTeam(name);
-		model.addAttribute("total", total);
-		totalPage = (total + account - 1) / account;
-		if(totalPage <=0){
-			totalPage = 1;
-		}
-		// 分页查询
-		if (pageNum == null || pageNum.isEmpty()) {
-			start = 0;
-		} else {
-			start = Integer.parseInt(pageNum) - 1;
-//			if (start < 0) {
-//				start = 0;
-//			}
-//			if (start >= totalPage) {
-//				start = totalPage - 1;
-//			}
-		}
-		List<Team> team = teamServiceImpl.getTeam(start*account, account, name);
+	public String goTeam(@RequestParam(value = "value", required = false) String name,@RequestParam(value = "currentPageName", required = false) String pageNum, Model model) {
+		PageShow page = teamServiceImpl.getPage(name, pageNum);
+		List<Team> team = teamServiceImpl.getTeam(page.getStart(), ConstantClassField.COUNT, page.getName());
 		model.addAttribute("team", team);
-		model.addAttribute("dangqianye", start + 1);
-		model.addAttribute("next", totalPage);
-		model.addAttribute("selectName", name);
+		model.addAttribute("page", page);
 		return "team";
 	}
-
-	// 搜索
-//	@RequestMapping(value = "/teamselect", method = RequestMethod.GET)
-//	public String selectTeam(@RequestParam(value = "selectName", required = false) String name, Model model) {
-//
-//		List<Team> team = teamServiceImpl.getTeam(0, 10, name);
-//		model.addAttribute("team", team);
-//		model.addAttribute("total", team.size());
-//		model.addAttribute("dangqianye", 1);
-//		model.addAttribute("next", 1);
-//		return "team";
-//	}
 
 	// 增加
 	@RequestMapping(value = "/teamadd", method = RequestMethod.GET)
 	public String teamAdd(@RequestParam("teamName") String name, Model model) {
 		// 判断是否存在此班级名称
-		boolean exits = false;
-		List<String> teamName = teamServiceImpl.getTeamName();
-		if (teamName.contains(name)) {
-			exits = true;
-		}
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String sj = sdf.format(date);
-		Team team = new Team();
-		team.setTeamName(name);
-		team.setBuildTime(sj);
-		if (name == null || name.isEmpty() || exits == true) {
-			return "redirect:/team";
-		} else {
-			teamServiceImpl.addTeam(team);
-			return "redirect:/team";
-		}
+		teamServiceImpl.addTeamByName(name);
+		return "redirect:/team";
 	}
 
 	// 修改
@@ -127,117 +78,38 @@ public class TeamController {
 	public String addStudentDefault(@RequestParam("teamId") int teamId, @RequestParam("studentPref") String studentPref,
 			@RequestParam("studentCount") String studentCount, Model model) {
 
-		if (studentPref == null || studentPref.isEmpty() || studentCount == null || studentCount.isEmpty()) {
-			return "redirect:/team";
-		} else {
-			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String sj = sdf.format(date);
-			int roleId = teamServiceImpl.getRoleId("学生");
-			int Count = Integer.parseInt(studentCount);
-			String userAccount;
-			for (int i = 1; i <= Count; i++) {
-				if (i < 10) {
-					userAccount = studentPref + "00" + i;
-				} else if (i >= 10 && i < 100) {
-					userAccount = studentPref + "0" + i;
-				} else {
-					userAccount = studentPref + i;
-				}
-				
-				List<String> userAccounts = teamServiceImpl.getUserAccount();
-				if(userAccounts.contains(userAccount)){
-					System.out.println("相同"+userAccount);
-				}else{
-					User user = new User();
-					user.setUserAccount(userAccount);
-					user.setAge(20);
-					user.setPassword("123456");
-					user.setUserName("张三");
-					user.setRoleId(roleId);
-					user.setBulidTime(sj);
-					user.setSex(Sex.MAN);
-					user.setHeadPhotoUrl("/images/defaultHeadPhoto.png");
-					// 添加新学生
-					teamServiceImpl.addUser(user);	
-				}
-				// 获得学生userID
-				int userId = teamServiceImpl.getUserId(userAccount);
-				// 插入学生到班级
-				teamServiceImpl.addtTeam(userId, roleId, teamId);
-			}
-			return "redirect:/team";
-		}
+		teamServiceImpl.addDefaultStudents(teamId, studentPref, studentCount);
+		return "redirect:/team";
 	}
 
 	// 添加学生
 	@RequestMapping(value = "/addstu", method = RequestMethod.GET)
 	public String addstu(@RequestParam("teamId") int teamId, @RequestParam("userAccount") String userAccount) {
 
-		if (userAccount == null || userAccount.isEmpty()) {
-			return "redirect:/team";
-		} else {
-			int userId = teamServiceImpl.getUserId(userAccount);
-			int roleId = teamServiceImpl.getRoleId("学生");
-			int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
-			// 插入学生到班级
-			if (userId >0 && usersRoleId >0 && usersRoleId == roleId) {
-				teamServiceImpl.addtTeam(userId, roleId, teamId);
-			}
-			return "redirect:/team";
-		}
+		teamServiceImpl.addStudentsOrTeacher(userAccount, "学生", teamId);
+		return "redirect:/team";
 	}
 
 	// 删除学生
 	@RequestMapping(value = "/deletestu", method = RequestMethod.GET)
 	public String dropstu(@RequestParam("teamId") int teamId, @RequestParam("userAccount") String userAccount) {
-
-		if (userAccount == null || userAccount.isEmpty()) {
-			return "redirect:/team";
-		} else {
-			int userId = teamServiceImpl.getUserId(userAccount);
-			int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
-			int roleId = teamServiceImpl.getRoleId("学生");
-			if (usersRoleId == roleId) {
-				teamServiceImpl.dropTeam(userId, roleId, teamId);
-			}
-			return "redirect:/team";
-		}
+		teamServiceImpl.deleteStudentsOrTeacher(userAccount, "学生", teamId);
+		return "redirect:/team";
 	}
 
 	// 添加教师
 	@RequestMapping(value = "/addteacher", method = RequestMethod.GET)
 	public String addteacher(@RequestParam("teamId") int teamId, @RequestParam("userAccount") String userAccount) {
 
-		if (userAccount == null || userAccount.isEmpty()) {
-			return "redirect:/team";
-		} else {
-			int userId = teamServiceImpl.getUserId(userAccount);
-			int roleId = teamServiceImpl.getRoleId("教师");
-			int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
-			// 插入教师到班级
-			if (usersRoleId == roleId) {
-				teamServiceImpl.addtTeam(userId, roleId, teamId);
-			}
-			return "redirect:/team";
-		}
+		teamServiceImpl.addStudentsOrTeacher(userAccount, "教师", teamId);
+		return "redirect:/team";
 	}
 
 	// 删除教师
 	@RequestMapping(value = "/deleteteacher", method = RequestMethod.GET)
 	public String dropteacher(@RequestParam("teamId") int teamId, @RequestParam("userAccount") String userAccount) {
-
-		if (userAccount == null || userAccount.isEmpty()) {
-			return "redirect:/team";
-		} else {
-			int userId = teamServiceImpl.getUserId(userAccount);
-			int roleId = teamServiceImpl.getRoleId("教师");
-			int usersRoleId = teamServiceImpl.getUsersRoleId(userAccount);
-			if (usersRoleId == roleId) {
-				teamServiceImpl.dropTeam(userId, roleId, teamId);
-			}
-			return "redirect:/team";
-		}
+		teamServiceImpl.deleteStudentsOrTeacher(userAccount, "教师", teamId);
+		return "redirect:/team";
 	}
 
 	// 导出Excel表
