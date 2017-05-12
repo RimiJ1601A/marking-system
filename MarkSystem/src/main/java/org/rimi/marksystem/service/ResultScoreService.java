@@ -54,5 +54,8 @@ public interface ResultScoreService {
 	public List<UserRseultTable> getMarkResult(int teacherId,int markTableId,int teamId,int evalutionUserId);
 	
 	
-	public List<ResultScore> getResultScoreByevalutedId(int evalutedId);
+	public List<ResultScore> getResultScoreByevalutedId(int evalutedId,int start,int num);
+	
+	public List<ResultScore> getResultScoreAll(int start,int num);
+	
 }

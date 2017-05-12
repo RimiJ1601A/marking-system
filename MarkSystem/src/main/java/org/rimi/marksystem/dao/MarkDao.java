@@ -51,6 +51,9 @@ public interface MarkDao {
 	public List<Integer> selectResultInfo(int user_id,int marktable_id);
 	
 	
-	public List<UserMarke> selectUserMarkeByEvalutedId(int evalutedId);
+	public List<UserMarke> selectUserMarkeByEvalutedId(int evalutedId,int start,int num);
 	
+	public List<UserMarke> selectUserMarkeAll(int start,int num);
+	
+	public Integer selectAllCountUserMarke();
 }

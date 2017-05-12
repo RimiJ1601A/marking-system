@@ -21,66 +21,18 @@ function selectMarkName() {
 		}
 	})
 }
-/*function markName() {
-	var teacherId =$("#teacherName").val();
-	var markNameId =$("#markName").val();
-	$.ajax({
-		url: '/getMarkTeam',
-		type : 'post',
-		data: {markNameId:markNameId,teacherId:teacherId},	
-		datatype:"json",  
-		success : function(data){		
-			$("#teamName").children().remove();
-			$("#evaluateUserName").children().remove();
-			if(data == "" || data == null){
-				alert("这位老师这次考核还没有人评价");
-			}else{
-				for(var i=0;i<data.length;i++){		
-					$("#teamName").append("<option value="+data[i].id+">"+data[i].teamName+"</option>");
-				}
-			}
-			$("#teamName").selectpicker("refresh");
-			$("#evaluateUserName").selectpicker("refresh");
-			$("#teamName").selectpicker('val', 'name');
-			$("#evaluateUserName").selectpicker('val', 'name');
-			
-		},
-		error : function(){
-			alert("Error!!");
-		}
-	})
-}
-function teamName() {
-	var teacherId =$("#teacherName").val();
-	var markNameId =$("#markName").val();
-	var teamId =$("#teamName").val();
-	$.ajax({
-		url: '/getTeamStudent',
-		type : 'post',
-		data: {markNameId:markNameId,teacherId:teacherId,teamId:teamId},	
-		datatype:"json",  
-		success : function(data){
-			$("#evaluateUserName").children().remove();
-			if(data == "" || data == null){
-				alert("这位老师这次考核还没有人评价");
-			}else{
-				for(var i=0;i<data.length;i++){		
-					$("#evaluateUserName").append("<option value="+data[i].id+">"+data[i].userName+"</option>");
-				}
-			}
-			$("#evaluateUserName").selectpicker("refresh");			
-			$("#evaluateUserName").selectpicker('val', 'name');
-		},
-		error : function(){
-			alert("Error!!");
-		}
-	})
-}
 
-*/
+$("#selectAllInfo").on("click",function(){
+	var teacherId=$("#teacherNameInfo").val();
+	if(teacherId == "" || teacherId == null){
+		alert("请选择完全");
+		return;
+	}
+	window.location.href = "/resultscore?teacherId="+teacherId;
+})
+
 $("#select").on("click", function() {
-	var teacherId =$("#teacherName").val();
-	
+	var teacherId =$("#teacherName").val();	
 	if(teacherId == "" || teacherId == null){
 		alert("请选择完全");
 		return;
@@ -91,8 +43,7 @@ $("#select").on("click", function() {
 		data: {evalutionId:teacherId},	
 		datatype:"json",  
 		success : function(data){
-			$("#tableresult").css("display","block");
-			$("#markTableresult").children().remove();
+			$("#markTableresult").children().remove();	
 			for(var i = 0;i<data.length;i++){
 				var newDiv = "<tr class='row'>" +
 								"<td class='evalutedId' abbr="+data[i].user.id+">"+data[i].user.userName+"</td>" +
@@ -100,9 +51,11 @@ $("#select").on("click", function() {
 								"<td>"+data[i].markTable.endTime+"</td>" +
 								"<td class='teamId' abbr="+data[i].team.id+">"+data[i].team.teamName+"</td>";
 				
-				var td1="";			
-				for(var j=0;j<data[i].evaluationStudent.length;j++){
-					td1 = td1+"<p value="+data[i].evaluationStudent[j].id+" class='evalutedUserName' style='float:left;padding:0px 5px;cursor:pointer'>"+data[i].evaluationStudent[j].userName+"</p>";
+				var td1="";
+				if(data[i].evaluationStudent != null){
+					for(var j=0;j<data[i].evaluationStudent.length;j++){
+						td1 = td1+"<p value="+data[i].evaluationStudent[j].id+" class='evalutedUserName' style='float:left;padding:0px 5px;cursor:pointer'>"+data[i].evaluationStudent[j].userName+"</p>";
+					}
 				}
 				var td1content="<td>"+td1+"</td>";
 				newDiv = newDiv + td1content ;				
@@ -113,9 +66,9 @@ $("#select").on("click", function() {
 				var tdunevaluation="<td>"+td2+"</td>";
 				newDiv = newDiv + tdunevaluation+"</tr>";
 				$("#markTableresult").append(newDiv);
-
+				
 			}
-			read();
+
 		},
 		error : function(){
 			alert("Error!!"); 
@@ -124,8 +77,10 @@ $("#select").on("click", function() {
 
 	
 });
-function read(){
-	$(".evalutedUserName").click(function(e){
+
+
+$(document).ready(function(){
+	$(document).on("click",".evalutedUserName",function(e){
 		var evalutedId = $(e.target).parent().parent().find(".evalutedId").attr("abbr");
 		var martableId = $(e.target).parent().parent().find(".martableId").attr("abbr");
 		var teamId = $(e.target).parent().parent().find(".teamId").attr("abbr");
@@ -156,13 +111,9 @@ function read(){
 			error:function(){
 				alert("error");
 			}
-		})
-		
-		
-	});
-}
-
-
+		})		
+	})
+})
 
 
 
@@ -172,4 +123,4 @@ function changeState(el) {
 		el.checked = el.readOnly = false;
 	else if (!el.checked)
 		el.readOnly = el.indeterminate = true;
-};
+}

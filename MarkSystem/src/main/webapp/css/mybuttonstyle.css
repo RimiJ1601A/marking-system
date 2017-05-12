@@ -1,0 +1,23 @@
+.btn-border{
+    background: none;
+    border-width: 0.5px;
+    border-style: solid;
+    color: black;
+}
+.btn-border:hover{
+    background: none;
+    background-color: #1b9af7;
+    border-width: 0.5px;
+    border-style: solid;
+    color:white;
+}
+.btn-click{
+    background: none;
+    background-color: #1b9af7;
+    border-width: 0.5px;
+    border-style: solid;
+    color:white;
+}
+.btn-strong{
+    font-size: 20px;
+}

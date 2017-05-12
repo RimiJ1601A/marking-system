@@ -152,12 +152,14 @@ public class MarkDaoImpl implements MarkDao{
 	}
 
 	@Override
-	public List<UserMarke> selectUserMarkeByEvalutedId(int evalutedId) {
-		List<UserMarke> umlist = jdbcTemplate.query("select * from user_marke where evaluated_id = ? order by id desc", new PreparedStatementSetter() {
+	public List<UserMarke> selectUserMarkeByEvalutedId(int evalutedId,int start,int num) {
+		List<UserMarke> umlist = jdbcTemplate.query("select * from user_marke where evaluated_id = ? order by id desc limit ?,?", new PreparedStatementSetter() {
 			
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {
 					ps.setInt(1, evalutedId);
+					ps.setInt(2, start);
+					ps.setInt(3, num);
 			}
 		}, new ResultSetExtractor<List<UserMarke>>() {
 
@@ -177,6 +179,39 @@ public class MarkDaoImpl implements MarkDao{
 		});
 		
 		return umlist;
+	}
+
+	@Override
+	public List<UserMarke> selectUserMarkeAll(int start, int num) {
+		List<UserMarke> umlist = jdbcTemplate.query("select * from user_marke order by id desc limit ?,?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+					ps.setInt(1, start);
+					ps.setInt(2, num);
+			}
+		}, new ResultSetExtractor<List<UserMarke>>() {
+
+			@Override
+			public List<UserMarke> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<UserMarke> umlist = new ArrayList<UserMarke>();
+				while(rs.next()){
+					UserMarke um = new UserMarke();
+					um.setId(rs.getInt(1));
+					um.setTeamId(rs.getInt(2));
+					um.setEvaluatedId(rs.getInt(3));
+					um.setMarktableId(rs.getInt(4));
+					umlist.add(um);
+				}
+				return umlist;
+			}
+		});		
+		return umlist;
+	}
+
+	@Override
+	public Integer selectAllCountUserMarke() {
+		return jdbcTemplate.queryForObject("select count(*) from user_marke", Integer.class);
 	}
 	
 }

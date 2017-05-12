@@ -17,4 +17,6 @@ public interface MarkService {
 	public List<Integer> getTeamId(int id);
 	
 	public List<Integer> getInfo(int userid,int marktableid);
+	
+	public Integer getAllCountUserMarke();
 }

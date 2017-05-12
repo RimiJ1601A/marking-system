@@ -53,5 +53,10 @@ public class MarkServiceImpl implements MarkService{
 		// TODO Auto-generated method stub
 		return markDaoImpl.selectResultInfo(userid, marktableid);
 	}
+
+	@Override
+	public Integer getAllCountUserMarke() {
+		return markDaoImpl.selectAllCountUserMarke();
+	}
 	
 }

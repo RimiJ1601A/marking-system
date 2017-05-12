@@ -11,26 +11,16 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <title>Rimiedu_MSystem | admi</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-
-<!-- Theme style -->
+<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/ionicons.min.css">
+<link rel="stylesheet" href="/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
 <link rel="stylesheet" href="/css/buttons.css">
-<link
-	href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"
-	rel="stylesheet">
 <link rel="stylesheet" href="/css/build.css">
+<link rel="stylesheet" type="text/css" href="/css/mybuttonstyle.css">
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -287,11 +277,28 @@
 							<li class="active"><a href="#timeline" data-toggle="tab">评分总览</a></li>
 							<li><a href="#setinfo" data-toggle="tab">评分详细信息</a></li>
 						</ul>
+					
 						<div class="tab-content">
 							<!-- /.tab-pane -->
-							<div class="tab-pane active" id="timeline">
+							<div class="tab-pane active" id="timeline">							
 								<div class="row">
-
+									<div class="col-sm-2">
+										<label class="col-sm-6 control-label">老师名字：</label>	
+										<div class="col-sm-6">
+											<select id="teacherNameInfo" name="teacherName"
+												class="selectpicker show-tick form-control"
+												data-live-search="false" onchange="selectMarkName()">
+												<c:forEach var="teac" items="${teacherlist}" >
+													<option value="${teac.id}">${teac.userName}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-2" style="text-align: center;">
+										<button id="selectAllInfo" type="button" class="btn btn-primary btn-sm">确定</button>
+									</div>
+								</div>
+								<div class="row">														
 									<div class="col-md-3">
 										<div class="box box-primary">
 											<div class="box-header with-border">
@@ -387,58 +394,20 @@
 										<div class="col-sm-6">
 											<select id="teacherName" name="teacherName"
 												class="selectpicker show-tick form-control"
-												data-live-search="false" onchange="selectMarkName()">
+												onchange="selectMarkName()">
 												<c:forEach var="teac" items="${teacherlist}" >
 													<option value="${teac.id}">${teac.userName}</option>
 												</c:forEach>
 											</select>
 										</div>
 									</div>
-<!-- 
-									<div class="col-sm-2">
-										<label class="col-sm-6 control-label">考核名字：</label>
-										<div class="col-sm-6">
-											<select id="markName" name="markName"
-												class="selectpicker show-tick form-control"
-												data-live-search="false" onchange="markName()">
-												<option value="0">第一次</option>
-												<option value="1">第二次</option>
-												<option value="2">第三次</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="col-sm-2">
-										<label class="col-sm-6 control-label">考核班级：</label>
-										<div class="col-sm-6">
-											<select id="teamName" name="teamName"
-												class="selectpicker show-tick form-control"
-												data-live-search="false" onchange="teamName()">
-												<option value="0">java1601</option>
-												<option value="1">ios1601</option>
-												<option value="2">web1601</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="col-sm-2">
-										<label class="col-sm-6 control-label">已评价学生：</label>
-										<div class="col-sm-6">
-											<select id="evaluateUserName" name="evaluateUserName"
-												class="selectpicker show-tick form-control"
-												data-live-search="false" onchange="evaluateUserName()">
-												<option value="0">张三</option>
-												<option value="1">李四</option>
-												<option value="2">王五</option>
-											</select>
-										</div>
-									</div> -->
 									<div class="col-sm-2" style="text-align: center;">
 										<button id="select" type="button" class="btn btn-primary btn-sm">确定</button>
 									</div>
 								</div>
+		
 								
-								<div id="tableresult" class="row" style="display:none">
+								<div id="tableresult" class="row">
 									<div class="col-xs-12">
 										<div class="box box-solid box-primary">
 											<div class="box-header">
@@ -459,9 +428,32 @@
 																</tr>
 															</thead>
 															<tbody id="markTableresult">
-										
-															</tbody>
+																<c:forEach var="rtAll" items="${rtlist}">
+																	<tr>
+																		<td></td>
+																		<td class="evalutedId" abbr="${rtAll.user.id}">${rtAll.user.userName}</td>
+																		<td class="martableId" abbr="${rtAll.markTable.id}">${rtAll.markTable.name}</td>
+																		<td>${rtAll.markTable.endTime}</td>
+																		<td class="teamId" abbr="${rtAll.team.id}">${rtAll.team.teamName}</td>																	
+																		<td>
+																		<c:forEach var="estn" items="${rtAll.evaluationStudent}">																	
+																			<p value="${estn.id}" class="evalutedUserName" style="float:left;padding:0px 5px;cursor:pointer">${estn.userName}</p>
+																		</c:forEach>
+																		</td>
+																		<td>
+																			<c:forEach var="unstu" items="${rtAll.unevaluationStudent}">
+																				<p style="float:left;padding:0px 5px;">${unstu.userName}</p>
+																			</c:forEach>
+																		</td>
+																	</tr>
+																</c:forEach>													
+															</tbody>																														
 														</table>
+														 <div class="rows">
+														        <div class="btn-toolbar" role="toolbar" aria-label="...">
+														       
+																</div>
+														 </div>
 													</div>
 												</div>
 											</div>
@@ -512,16 +504,6 @@
 													Small </label>
 											</div>
 										</div>
-										
-										<div class="col-sm-10">
-											<p/>这是第二道题
-											<div class="radio">
-												<input type="radio" name="radio2" id="radio1"
-													value="option1" checked=""> <label for="radio1">
-													Small </label>
-											</div>
-										</div>
-										 -->
 										</div>
 									</div>
 
@@ -549,13 +531,8 @@
 		<strong>Copyright &copy; 2017 <a href="#">Rimiedu</a>.
 		</strong> All rights reserved. </footer>
 	</div>
-	<!-- ./wrapper -->
-
-	<!-- REQUIRED JS SCRIPTS -->
-	<!-- Latest compiled and minified CSS -->
-
-	<!-- Latest compiled and minified JavaScript -->
-	<!-- jQuery 3.1.0 -->
+	
+	
 	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
 	<script type="text/javascript">
 		
@@ -567,6 +544,8 @@
 				alert(msg);
 			}
 		}
+		var allButtons = ${page.totalPage};
+		var startPage = ${page.currentPage};
 		var XendTime = "${TeacherResults.xEndTime}";
 		var a = XendTime.split(",");
 		for(var i=0;i<a.length;i++){
@@ -624,18 +603,11 @@
 		}); 
 	</script>
 	<script type="text/javascript" src="/js/resultscore.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-
-	<!-- Bootstrap 3.3.6 -->
+	<script src="/js/bootstrap-select.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-	<!-- AdminLTE App -->
 	<script src="/js/app.min.js"></script>
-
-	<!-- Scrollslim js -->
+	<script type="text/javascript" src="/js/mybutton.js"></script>
 	<script src="/js/jquery.slimscroll.min.js"></script>
-
-	<!-- Chart js -->
 	<script src="/js/Chart.min.js"></script>
 	<script src="/js/teacherchart.js"></script>
 </html>

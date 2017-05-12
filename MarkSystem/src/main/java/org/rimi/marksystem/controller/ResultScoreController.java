@@ -20,6 +20,7 @@ import org.rimi.marksystem.service.MarkService;
 import org.rimi.marksystem.service.ResultScoreService;
 import org.rimi.marksystem.service.TeamService;
 import org.rimi.marksystem.service.UserService;
+import org.rimi.marksystem.util.Page;
 import org.rimi.marksystem.util.PageShow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jca.cci.connection.ConnectionSpecConnectionFactoryAdapter;
@@ -84,10 +85,12 @@ public class ResultScoreController {
         	tr.setAveragelist(avrage);
         	tr.setRecentlist(recent);
         }
-        
+		Page page = new Page(markServiceImpl.getAllCountUserMarke(),1);
+		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreAll((page.getCurrentPage()-1)*page.getNum(),page.getNum());
         model.addAttribute("TeacherResults", tr);	
         model.addAttribute("teacherlist", userlist);
-
+        model.addAttribute("rtlist", rtlist);
+        model.addAttribute("page", page);
 		return "resultScore";
 	}
 	
@@ -138,9 +141,8 @@ public class ResultScoreController {
 	@RequestMapping("/getResultScore")
 	@ResponseBody
 	public List<ResultScore> getResultScore(@RequestParam("evalutionId") int evalutionId){
-		PageShow page = new PageShow();
-		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreByevalutedId(evalutionId);
+		Page page = new Page(markServiceImpl.getAllCountUserMarke(),1);
+		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreByevalutedId(evalutionId,(page.getCurrentPage()-1)*page.getNum(),page.getNum());
 		return rtlist;
 	}
-	
 }

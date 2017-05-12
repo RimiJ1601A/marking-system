@@ -233,6 +233,7 @@ public class TeamServiceImpl implements TeamService {
 				} else {
 					userAccount = studentPref + i;
 				}
+				addDefaultUser(userAccount, roleId);
 				// 获得学生userID
 				int userId = getUserId(userAccount);
 				// 插入学生到班级

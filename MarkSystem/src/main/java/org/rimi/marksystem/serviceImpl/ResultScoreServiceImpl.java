@@ -115,10 +115,17 @@ public class ResultScoreServiceImpl implements ResultScoreService{
 		return urtlist;
 	}
 	@Override
-	public List<ResultScore> getResultScoreByevalutedId(int evalutedId) {
-		
-		List<UserMarke> umlist = markDao.selectUserMarkeByEvalutedId(evalutedId);
-		
+	public List<ResultScore> getResultScoreByevalutedId(int evalutedId,int start,int num) {	
+		List<UserMarke> umlist = markDao.selectUserMarkeByEvalutedId(evalutedId,start,num);
+		return getRes(umlist);
+	}
+	@Override
+	public List<ResultScore> getResultScoreAll(int start, int num) {
+		List<UserMarke> umlist = markDao.selectUserMarkeAll(start,num);
+		return getRes(umlist);
+	}
+	
+	public List<ResultScore> getRes(List<UserMarke> umlist){
 		List<ResultScore> rtlist = new ArrayList<ResultScore>();
 		for (UserMarke userMarke : umlist) {
 			MarkTable mt = markTableDapImpl.selectMarkTableByMarkTableId(userMarke.getMarktableId());
@@ -128,21 +135,26 @@ public class ResultScoreServiceImpl implements ResultScoreService{
 			
 			List<User> evalutionedUserlist = getEvalutionStudentByTeam(userMarke.getMarktableId(),userMarke.getEvaluatedId(),userMarke.getTeamId());		
 			List<User> unUserlist = new ArrayList<User>();
-			for(int i = 0;i< userlist.size() ; i++) {
-				for (User user3 : evalutionedUserlist) {
-					if(userlist.get(i).getId()==user3.getId()){
-						userlist.remove(i);
+			if(evalutionedUserlist!=null){
+				for(int i = 0;i< userlist.size() ; i++) {
+						for (User user3 : evalutionedUserlist) {
+							if(userlist.get(i).getId()==user3.getId()){
+								userlist.remove(i);
+							}
+						}
 					}
-				}
 			}
 			for (int i=0 ;i<userlist.size() ; i++) {
-				unUserlist.add(userDaoImpl.selectUserByid(userlist.get(i).getId()));
-			}	
-			userlist.removeAll(evalutionedUserlist);
+				if(userlist.get(i).getId()!=-1){				
+					unUserlist.add(userDaoImpl.selectUserByid(userlist.get(i).getId()));
+				}
+			}
+			if(evalutionedUserlist!=null){
+				userlist.removeAll(evalutionedUserlist);				
+			}
 			ResultScore rscore = new ResultScore(mt,user,team,evalutionedUserlist,unUserlist);
 			rtlist.add(rscore);
 		}
 		return rtlist;
 	}
-	
 }
