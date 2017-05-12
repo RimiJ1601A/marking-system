@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.rimi.marksystem.eneity.Team;
 import org.rimi.marksystem.eneity.User;
+import org.rimi.marksystem.eneity.UserMessage;
+import org.rimi.marksystem.util.PageShow;
 import org.springframework.stereotype.Component;
 @Component
 public interface TeamService {
 
 		//查询
 		public List<Team> getAllTeam();
-		//分页查询
-		public List<Team> getTeam(int start,int count);
 		//根据班级名称搜索
 		public List<Team> getTeam(int start,int count,String name);
 		//查询总数
@@ -25,8 +25,6 @@ public interface TeamService {
 		public void dropTeam(int id);
 		//得到班级名称
 		public List<String> getTeamName();
-		//添加人员
-		public void addUser(User user);
 		//通过职位名称查roleID
 		public int getRoleId(String name);
 		//添加班级学生和教师
@@ -49,5 +47,49 @@ public interface TeamService {
 		 * @param name 文件名
 		 * @return
 		 */
-		public boolean createTeamExcel(String path,String name);
+		public void createTeamExcel(String path,String name);
+		/**
+		 * 获得分页的参数
+		 * @param name 查询的名称
+		 * @param pageNum 当前页的页码
+		 * @return
+		 */
+		public PageShow getPage(String name,String pageNum);
+		
+		public void addTeamByName(String name);
+		/**
+		 * 批量添加学生到班级
+		 * @param teamId 班级ID
+		 * @param studentPref 学生前缀
+		 * @param studentCount 学生数量
+		 */
+		public void addDefaultStudents(int teamId , String studentPref,String studentCount);
+		/**
+		 * 添加默认的学生账号到user表
+		 * @param userAccount 学生账号
+		 * @param roleId 职位ID
+		 */
+		public void addDefaultUser(String userAccount,int roleId);
+		/**
+		 * 添加学生或老师进班级
+		 * @param userAccount 用户账号
+		 * @param roleName 职位名称,输入教师或学生
+		 * @param teamId 班级ID
+		 */
+		public void addStudentsOrTeacher(String userAccount,String roleName ,int teamId);
+		/**
+		 * 获取账号相关信息
+		 * @param userAccount 用户账号
+		 * @param roleName 职位名称,输入教师或学生
+		 * 
+		 * @return 
+		 */
+		public UserMessage getUserMessage(String userAccount,String roleName);
+		/**
+		 * 添加学生或老师进班级
+		 * @param userAccount 用户账号
+		 * @param roleName 职位名称,输入教师或学生
+		 * @param teamId 班级ID
+		 */
+		public void deleteStudentsOrTeacher(String userAccount,String roleName ,int teamId);
 }

@@ -391,7 +391,7 @@
 														<span
 															class="glyphicon glyphicon-picture btsize-wz"
 															aria-hidden="true" data-toggle="tooltip" data-placement="left" title="查看详情"
-															onclick="ck('${it.roleName}','${it.function}','${it.buildTime }')"
+															onclick="ck('${it.roleName}','${it.function.toString().replaceAll('\\[|\\]','')}','${it.buildTime }')"
 															style="color: #00c0ef;"></span> 
 															</c:if>
 															<c:if test="${fn:contains(functions,'编辑职位')}">
@@ -641,37 +641,16 @@
 		<form action="roleadd" method="get">
 			<label class="label-ziti zwtjbq"> 职位名称:</label>
 			<div class="input-group zwtjsrk">
-				<input type="text" name="zwname" class="form-control"
+				<input type="text" name="functionName" class="form-control"
 					placeholder="请输入职位名称" aria-describedby="sizing-addon2" />
 			</div>
 			<label class="label-ziti zwtjbq"> 选择功能:</label>
 			<div class="zwtjsrk">
 				<p>
-					<input type="checkbox" name="zwgn" value="1">&nbsp;<label>
-						查看用户</label> <input type="checkbox" name="zwgn" value="2">&nbsp;<label>
-						编辑用户</label> <input type="checkbox" name="zwgn" value="3">&nbsp;<label>
-						增加用户</label> <input type="checkbox" name="zwgn" value="4">&nbsp;<label>
-						删除用户</label>
-				</p>
-				<p>
-					<input type="checkbox" name="zwgn" value="5">&nbsp;<label>
-						创建班级</label> <input type="checkbox" name="zwgn" value="6">&nbsp;<label>
-						查看班级</label> <input type="checkbox" name="zwgn" value="7">&nbsp;<label>
-						编辑班级</label> <input type="checkbox" name="zwgn" value="8">&nbsp;<label>
-						删除班级</label>
-				</p>
-				<p>
-					<input type="checkbox" name="zwgn" value="9">&nbsp;<label>
-						增加职位</label> <input type="checkbox" name="zwgn" value="10">&nbsp;<label>
-						编辑职位</label> <input type="checkbox" name="zwgn" value="11">&nbsp;<label>
-						查看职位</label> <input type="checkbox" name="zwgn" value="12">&nbsp;<label>
-						删除职位</label>
-				</p>
-				<p>
-					<input type="checkbox" name="zwgn" value="13">&nbsp;<label>
-						创建评分表</label> <input type="checkbox" name="zwgn" value="14">&nbsp;<label>
-						评分</label>
-
+				<c:forEach var="it" items="${function}">
+                           <input type="checkbox" name="functionId" value="${it.id}">&nbsp;
+                          ${it.functionName}
+                 </c:forEach>
 				</p>
 			</div>
 			<input type="submit" class="btn btn-info dhk-btwz" value="确认" />
@@ -702,37 +681,16 @@
 		<form action="rolemodify" method="get">
 			<label class="label-ziti zwtjbq"> 职位名称:</label>
 			<div class="input-group zwtjsrk">
-				<input type="text" name="zwname" class="form-control" id="zwbjzwmc"
+				<input type="text" name="functionName" class="form-control" id="zwbjzwmc"
 					value="请输入职位名称" aria-describedby="sizing-addon2" readonly="true" />
 			</div>
 			<label class="label-ziti zwtjbq"> 选择功能:</label>
 			<div class="zwtjsrk">
 				<p>
-					<input type="checkbox" name="zwgn" value="1">&nbsp;<label>
-						查看用户</label> <input type="checkbox" name="zwgn" value="2">&nbsp;<label>
-						编辑用户</label> <input type="checkbox" name="zwgn" value="3">&nbsp;<label>
-						增加用户</label> <input type="checkbox" name="zwgn" value="4">&nbsp;<label>
-						删除用户</label>
-				</p>
-				<p>
-					<input type="checkbox" name="zwgn" value="5">&nbsp;<label>
-						创建班级</label> <input type="checkbox" name="zwgn" value="6">&nbsp;<label>
-						查看班级</label> <input type="checkbox" name="zwgn" value="7">&nbsp;<label>
-						编辑班级</label> <input type="checkbox" name="zwgn" value="8">&nbsp;<label>
-						删除班级</label>
-				</p>
-				<p>
-					<input type="checkbox" name="zwgn" value="9">&nbsp;<label>
-						增加职位</label> <input type="checkbox" name="zwgn" value="10">&nbsp;<label>
-						编辑职位</label> <input type="checkbox" name="zwgn" value="11">&nbsp;<label>
-						查看职位</label> <input type="checkbox" name="zwgn" value="12">&nbsp;<label>
-						删除职位</label>
-				</p>
-				<p>
-					<input type="checkbox" name="zwgn" value="13">&nbsp;<label>
-						创建评分表</label> <input type="checkbox" name="zwgn" value="14">&nbsp;<label>
-						评分</label>
-
+					<c:forEach var="it" items="${function}">
+                           <input type="checkbox" name="functionId" value="${it.id}">&nbsp;
+                          ${it.functionName}
+                	 </c:forEach>
 				</p>
 			</div>
 			<input type="submit" class="btn btn-info dhk-btwz" value="确认" />

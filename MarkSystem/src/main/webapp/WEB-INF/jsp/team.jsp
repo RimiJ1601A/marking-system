@@ -397,16 +397,18 @@
 													<tr role="row" class="odd">
 														<td class="bjmc">${it.teamName}</td>
 														<td class="xsrs">${it.studentCount}</td>
-														<td class="xsxm"><c:forEach var="item"
+														<td class="xsxm">
+													<c:forEach var="item"
 																items="${it.students}">
 													${item}
 													
-												</c:forEach></td>
-														<td class="jsxm"><c:forEach var="teac"
+													</c:forEach></td>
+														<td class="jsxm">
+													<c:forEach var="teac"
 																items="${it.teacherName}">
 													${teac}
 													
-												</c:forEach></td>
+													</c:forEach></td>
 														<td class="xsrq">${it.buildTime}</td>
 														<td style="text-align:center;">
 														<c:if test="${fn:contains(functions,'查看班级')}">
@@ -439,7 +441,7 @@
 								<div class="row">
 									<div class="col-sm-5">
 										<div class="dataTables_info" id="example1_info" role="status"
-											aria-live="polite">第${dangqianye}页,共${next}页</div>
+											aria-live="polite">第${page.getCurrentPageNum()}页,共${page.getTotalPage()}页</div>
 									</div>
 									<div class="col-sm-7">
 										<div class="dataTables_paginate paging_simple_numbers"
@@ -763,9 +765,8 @@
 	<script type="text/javascript" src="/js/bjgl.js"></script>
 	<script type="text/javascript">
 		//分页的总页数,当前页和总的记录数
-		var yeshu=${next};
-		var dangqianye = ${dangqianye};
-		var total = ${total};
+		var yeshu=${page.getTotalPage()};
+    	var dangqianye=${page.getCurrentPageNum()};
 		//定义删除ID
 		var scId;
 		var teamId;//接收班级ID
@@ -779,27 +780,27 @@
 		var studentPref;
 		var userAccount;
 		//搜索框赋值
-		if("${selectName}" == ""){
+		if("${page.getName()}" == ""){
 			
 		}else{
-			$("#sousuo").attr("placeholder","${selectName}");
+			$("#sousuo").attr("placeholder","${page.getName()}");
 		}
 		// 分页
 		var xsys = 6;// 页面显示多少页
 		var yuan;
-		var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=team?dangqianye="+ dangqianye + "&value=${selectName}>" + dangqianye + "</a>";
+		var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=team?currentPageName="+ dangqianye + "&value=${page.getName()}>" + dangqianye + "</a>";
 		$("#dqy").append(dqy);
 		for (var i = 1; i <= yeshu; i++) {
 			if (yeshu < xsys) {
 				if (i < dangqianye) {
 					yuan = "<a aria-controls='example1' data-dt-idx='" + i
-							+ "' tabindex='0' href=team?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "' tabindex='0' href=team?currentPageName=" + i + "&value=${page.getName()}>" + i
 							+ "</a>";
 					$("#qianmian").append(yuan);
 				}
 				if (i > dangqianye) {
 					var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
-							+ "' tabindex='0' href=team?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "' tabindex='0' href=team?currentPageName=" + i + "&value=${page.getName()}>" + i
 							+ "</a>";
 
 					$("#fyanniu").append(yuansu);
@@ -807,7 +808,7 @@
 			} else {
 				if (i < dangqianye) {
 					yuan = "<a aria-controls='example1' data-dt-idx='" + i
-							+ "' tabindex='0' href=team?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "' tabindex='0' href=team?currentPageName=" + i + "&value=${page.getName()}>" + i
 							+ "</a>";
 					if (i <=dangqianye-xsys) {
 						yuan = "";
@@ -816,7 +817,7 @@
 				}
 				if (i > dangqianye) {
 					var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
-							+ "' tabindex='0' href=team?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "' tabindex='0' href=team?currentPageName=" + i + "&value=${page.getName()}>" + i
 							+ "</a>";
 					if (i > xsys) {
 						yuansu = "";
@@ -832,7 +833,7 @@
 			if (dangqianye < 1) {
 				dangqianye = 1;
 			}
-			location.href="team?value=${selectName}"+"&dangqianye="+ dangqianye;
+			location.href="team?value=${page.getName()}"+"&currentPageName="+ dangqianye;
 		}
 		// 下一页
 		function xyy() {
@@ -840,7 +841,7 @@
 			if (dangqianye > yeshu) {
 				dangqianye = yeshu;
 			}
-			location.href="team?value=${selectName}"+"&dangqianye="+ dangqianye;
+			location.href="team?value=${page.getName()}"+"&currentPageName="+ dangqianye;
 		}
 	</script>
 	<!-- Bootstrap 3.3.6 -->
