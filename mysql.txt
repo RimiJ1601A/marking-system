@@ -64,6 +64,8 @@ create table IF NOT EXISTS u_p_t(
     role_id int NOT NULL,
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+alter table u_p_t ADD INDEX (team_id);
+
 
 create table IF NOT EXISTS quiz(
     id int NOT NULL AUTO_INCREMENT,
@@ -96,7 +98,7 @@ create table IF NOT EXISTS marktable_quiz(
     marktable_id int NOT NULL,
     PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
-
+alter table marktable_quiz ADD INDEX (marktable_id);
 
 create table IF NOT EXISTS user_marke(
     id int NOT NULL AUTO_INCREMENT,
@@ -117,9 +119,9 @@ create table IF NOT EXISTS resulttable(
     evaluation_id int NOT null,
     marktable_id int NOT NULL,
     team_id int NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
-
+alter table resulttable add index(evaluated_id,marktable_id);
 
 create table MONTH_TABLE(
   MONTH_NUM INT

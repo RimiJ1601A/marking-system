@@ -1,6 +1,7 @@
 package org.rimi.marksystem.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,9 @@ import org.rimi.marksystem.service.MarkService;
 import org.rimi.marksystem.service.ResultScoreService;
 import org.rimi.marksystem.service.TeamService;
 import org.rimi.marksystem.service.UserService;
+import org.rimi.marksystem.util.PageShow;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jca.cci.connection.ConnectionSpecConnectionFactoryAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -88,7 +91,7 @@ public class ResultScoreController {
 		return "resultScore";
 	}
 	
-	@RequestMapping("/getMarkTable")
+/*	@RequestMapping("/getMarkTable")
 	@ResponseBody
 	public List<MarkTable> getTeacherAllResult(Model model,@RequestParam("teacherId") int teacherId){
 		List<MarkTable> mtlist = resultScoreServiceImpl.getMarkTableByEvalutedId(teacherId);
@@ -118,7 +121,7 @@ public class ResultScoreController {
 			model.addAttribute("msg", "没有该数据");
 		}
 		return userlist;
-	}
+	}*/
 	
 	
 	@RequestMapping("/getMarkResult")
@@ -135,6 +138,7 @@ public class ResultScoreController {
 	@RequestMapping("/getResultScore")
 	@ResponseBody
 	public List<ResultScore> getResultScore(@RequestParam("evalutionId") int evalutionId){
+		PageShow page = new PageShow();
 		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreByevalutedId(evalutionId);
 		return rtlist;
 	}

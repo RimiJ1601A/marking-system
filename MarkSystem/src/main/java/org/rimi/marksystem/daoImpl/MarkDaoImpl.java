@@ -153,8 +153,7 @@ public class MarkDaoImpl implements MarkDao{
 
 	@Override
 	public List<UserMarke> selectUserMarkeByEvalutedId(int evalutedId) {
-		
-		List<UserMarke> umlist = jdbcTemplate.query("select * from user_marke where evaluated_id = ?", new PreparedStatementSetter() {
+		List<UserMarke> umlist = jdbcTemplate.query("select * from user_marke where evaluated_id = ? order by id desc", new PreparedStatementSetter() {
 			
 			@Override
 			public void setValues(PreparedStatement ps) throws SQLException {

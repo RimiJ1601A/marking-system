@@ -442,7 +442,7 @@
 									<div class="col-xs-12">
 										<div class="box box-solid box-primary">
 											<div class="box-header">
-												<h3 class="box-title">评分结果</h3>
+												<h3 class="box-title">评分结果(可通过点击已评价人查看具体评分结果)</h3>
 											</div>
 											<div class="box-body">
 												<div class="row">
