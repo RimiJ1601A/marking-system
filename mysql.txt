@@ -74,6 +74,19 @@ create table IF NOT EXISTS quiz(
     PRIMARY KEY(id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 
+INSERT INTO quiz(quiz_title,quiz_type) VALUES 
+            ("你认为该讲师上课的出勤情况怎样？","choice_question"),
+            ("你认为该讲师会主动关注和指导学员项目开发中遇到的问题吗？","choice_question"),
+	("你认为该讲师上课精神状态怎样？","choice_question"),
+	("你认为该老师对项目的熟悉程度和项目进度的把控程度如何？","choice_question"),
+	("你认为该讲师授课是否形象易懂，重点突出？","choice_question"),
+	("你认为该讲师知识储备怎么样？","choice_question"),
+	("你认为该讲师语言表达能力和授课条理性如何？","choice_question"),
+	("你认为该讲师注重培养学员知识灵活运用能力怎么样？","choice_question"),
+	("你认为该讲师对待课程反馈态度如何？","choice_question"),
+	("你认为该讲师解答学员文理是怎么样的？","choice_question"),
+            ("请写下你认为该讲师的教学特点，希望和建议，以及开课以来还未搞懂的知识点","essay_question");
+
 
 create table IF NOT EXISTS quiz_content(
     id int NOT NULL AUTO_INCREMENT,
@@ -82,6 +95,49 @@ create table IF NOT EXISTS quiz_content(
     quiz_score int NOT NULL,
     PRIMARY KEY(id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
+
+
+INSERT INTO quiz_content(quiz_id,quiz_content,quiz_score) VALUES 
+                        (1,"A.提前到教室，做好相关准备工作",10),
+                        (1,"B.很准时，无迟到现象",6),
+                        (1,"C.偶尔有迟到早退现象",3),
+                        (1,"D.经常有迟到早退现象",0),
+                        (2,"A.经常在班级走动，主动关注和帮助学员解决问题",10),
+                        (2,"B.偶尔看看学员项目",6),
+                        (2,"C.很少在班级走动，学员问到问题就帮助解答",3),
+                        (2,"D.坐在讲台做自己的事，甚至有时找不到老师",0),
+                        (3,"A.非常有激情",10),
+                        (3,"B.精神饱满",6),
+                        (3,"C.状态良好",3),
+                        (3,"D.状态不佳",0),
+                        (4,"A.非常熟悉，积极主动跟进学员项目进度，发现问题并及时解决",10),
+                        (4,"B.熟悉，偶尔看一下几个学员项目",6),
+                        (4,"C.一般，偶尔提示项目进度",3),
+                        (4,"D.不熟悉，基本不关心学员进度，也不提示进度",0),
+                        (5,"A.非常形象易懂，案例多，重点突出",10),
+                        (5,"B.偶尔举例，有重点",6),
+                        (5,"C.理解起来较费力，重点不突出",3),
+                        (5,"D.很抽象，难理解，抓不住重点",0),
+                        (6,"A.学识丰富，知识储备完善",10),
+                        (6,"B.只懂本专业知识，知识面较窄",6),
+                        (6,"C.专业知识很有限",3),
+                        (6,"D.知识陈旧，与新技术脱节",0),
+                        (7,"A.非常流畅，条理清晰",10),
+                        (7,"B.较清晰",6),
+                        (7,"C.经常卡顿，条理一般",3),
+                        (7,"D.不好，思维太跳跃",0),
+                        (8,"A.很好，经常举一反三，让学员搞清楚为什么要这样做",10),
+                        (8,"B.较好，偶尔讲一下此知识可以运用到哪些地方",6),
+                        (8,"C.一般，只讲是什么",3),
+                        (8,"D.不好，听完不知道该运用到哪里",0),
+                        (9,"A.高度重视，及时解决",10),
+                        (9,"B.较重视，按要求解决",6),
+                        (9,"C.不重视，多次提醒之后才解决",3),
+                        (9,"D.假装不知道",0),
+                        (10,"A.主动及时且清晰解答学员疑问",10),
+                        (10,"B.对学员主动的问题当时答不上来，但课后会给予答复",6),
+                        (10,"C.解答模糊，敷衍了事",3),
+                        (10,"D.装假没看见，不解答",0);
 
 create table IF NOT EXISTS marktable(
     id int NOT NULL AUTO_INCREMENT,
@@ -119,7 +175,7 @@ create table IF NOT EXISTS resulttable(
     evaluation_id int NOT null,
     marktable_id int NOT NULL,
     team_id int NOT NULL,
-    PRIMARY KEY (id),
+    PRIMARY KEY (id)
 )ENGINE = InnoDb DEFAULT CHARSET = UTF8;
 alter table resulttable add index(evaluated_id,marktable_id);
 
@@ -164,10 +220,7 @@ INSERT INTO user(user_account,password,user_name,age,sex,role_id,bulid_time,head
 INSERT INTO team(team_name,bulid_time) VALUES ("Java1601","2017-03-12"),("ios1601","2017-03-12");
 INSERT INTO u_p_t(user_id,team_id,role_id) VALUES (3,2,2),(2,1,2),(4,1,3),(5,1,3),(6,1,3),(7,2,3),(8,2,3);
 
-INSERT INTO quiz(quiz_title,quiz_type) VALUES 
-            ("该老师教学质量如何","choice_question"),
-            ("这个老师帅不帅","choice_question"),
-            ("叙述对这个老师的评价","essay_question")
+
             ;
 
 INSERT INTO quiz_content(quiz_id,quiz_content,quiz_score) VALUES 

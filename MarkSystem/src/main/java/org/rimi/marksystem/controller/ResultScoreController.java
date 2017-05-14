@@ -41,8 +41,6 @@ public class ResultScoreController {
 	private UserService userServiceImpl;
 	@Autowired
 	private MarkService markServiceImpl;
-	@Autowired
-	private TeamService teamServiceImpl;
 	
 	private static final int TeacherChartLength=6;				//图表显示宽度
 	
@@ -145,4 +143,18 @@ public class ResultScoreController {
 		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreByevalutedId(evalutionId,(page.getCurrentPage()-1)*page.getNum(),page.getNum());
 		return rtlist;
 	}
+	
+	/***
+	 * 获取评分结果页面
+	 * @param currentPage  当前页数
+	 * @return
+	 */
+	@RequestMapping("/getResultScorePage")
+	@ResponseBody
+	public List<ResultScore> getResultScorePage(@RequestParam("currentPage") int currentPage){
+		Page page = new Page(markServiceImpl.getAllCountUserMarke(),currentPage);
+		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreAll((page.getCurrentPage()-1)*page.getNum(),page.getNum());
+		return rtlist;
+	}
+	
 }

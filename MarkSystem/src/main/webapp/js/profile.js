@@ -10,3 +10,18 @@
 	}
 	$("#formInfo").submit();
 }*/
+
+function passwordverify(){
+	
+	if($("#newPassword").val() == "" || $("#newPasswordconfirm").val() == "" ||　$("#inputOldpw").val() ==""){
+		alert("输入不能为空");
+		return false;
+	}
+	if( $("#newPassword").val() != $("#newPasswordconfirm").val()){
+		alert("两次密码输入不一样");
+		return false;
+	}else{
+		return true;
+	}
+
+}

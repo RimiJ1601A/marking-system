@@ -23,7 +23,10 @@ $(document).ready(function(){
         $(this).addClass("button-primary");
         preButtonControl();
         nextButtonControl();
-        buttonComposing();
+        if(allButtons>9){
+        	buttonComposing();
+        }
+        
     });
     nextButtonClick();
     preButtonClick();   

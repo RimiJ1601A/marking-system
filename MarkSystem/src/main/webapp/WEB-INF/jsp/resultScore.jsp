@@ -602,7 +602,6 @@
 		    $('#teacherName').selectpicker();  */
 		}); 
 	</script>
-	<script type="text/javascript" src="/js/resultscore.js"></script>
 	<script src="/js/bootstrap-select.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/app.min.js"></script>
@@ -610,4 +609,5 @@
 	<script src="/js/jquery.slimscroll.min.js"></script>
 	<script src="/js/Chart.min.js"></script>
 	<script src="/js/teacherchart.js"></script>
+	<script type="text/javascript" src="/js/resultscore.js"></script>
 </html>

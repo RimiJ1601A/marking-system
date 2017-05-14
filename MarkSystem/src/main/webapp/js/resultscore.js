@@ -68,7 +68,8 @@ $("#select").on("click", function() {
 				$("#markTableresult").append(newDiv);
 				
 			}
-
+			$(".btn-toolbar").remove();
+			
 		},
 		error : function(){
 			alert("Error!!"); 
@@ -112,7 +113,47 @@ $(document).ready(function(){
 				alert("error");
 			}
 		})		
-	})
+	});
+	$(document).on("click",".btn-group.button.button-rounded.button-square",function(){
+			var currentPage = $(this).attr("page");
+				$.ajax({
+					url: '/getResultScorePage',
+					type : 'post',
+					data: {currentPage:currentPage},	
+					datatype:"json",
+					success:function(data){
+						$("#markTableresult").children().remove();	
+						for(var i = 0;i<data.length;i++){
+							var newDiv = "<tr class='row'>" +
+							"<td class='evalutedId' abbr="+data[i].user.id+">"+data[i].user.userName+"</td>" +
+							"<td class='martableId' abbr="+data[i].markTable.id+">"+data[i].markTable.name+"</td>" +
+							"<td>"+data[i].markTable.endTime+"</td>" +
+							"<td class='teamId' abbr="+data[i].team.id+">"+data[i].team.teamName+"</td>";
+							
+							var td1="";
+							if(data[i].evaluationStudent != null){
+								for(var j=0;j<data[i].evaluationStudent.length;j++){
+									td1 = td1+"<p value="+data[i].evaluationStudent[j].id+" class='evalutedUserName' style='float:left;padding:0px 5px;cursor:pointer'>"+data[i].evaluationStudent[j].userName+"</p>";
+								}
+							}
+							var td1content="<td>"+td1+"</td>";
+							newDiv = newDiv + td1content ;				
+							var td2="";
+							for(var k=0;k<data[i].unevaluationStudent.length;k++){
+								td2 = td2+"<p style='float:left;padding:0px 5px;'>"+data[i].unevaluationStudent[k].userName+"</p>";
+							}
+							var tdunevaluation="<td>"+td2+"</td>";
+							newDiv = newDiv + tdunevaluation+"</tr>";
+							$("#markTableresult").append(newDiv);
+							
+						}
+					},
+					error:function(){
+						alert("error");
+					}
+				})	
+			
+	});
 })
 
 
