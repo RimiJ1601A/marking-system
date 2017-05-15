@@ -176,26 +176,7 @@
       </div>
     </section>
 			
-		<!-- 	<section class="content">
-      <div class="error-page">
-        <h2 class="headline text-yellow"> 404</h2>
-
-        <div class="error-content">
-          <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
-
-          <p>
-            找不到你要的页面，你可以 尝试<a href="/index">返回个人首页</a> .
-          </p>
-
-         
-        </div>
-        /.error-content
-      </div>
-      /.error-page
-    </section> -->
-			
-			<!-- /.content -->
-
+		
 
 
 		</div>

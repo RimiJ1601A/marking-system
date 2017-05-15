@@ -43,6 +43,9 @@ public class LoginIntercptor  implements HandlerInterceptor{
 			}
 		}else if(uri.contains("fonts")||uri.contains("css") || uri.contains("js") || uri.contains("png") || uri.contains("jpg") || uri.contains("jpeg")){
 			return true;
+		}else if(uri.equals("/forgetpassword")){
+			
+			return true;
 		}else{
 			if(user != null){
 				int roleId = user.getRoleId();
@@ -80,7 +83,8 @@ public class LoginIntercptor  implements HandlerInterceptor{
 	 */
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		// TODO Auto-generated method stub
-	}
+		
 
+	}
+	
 }
