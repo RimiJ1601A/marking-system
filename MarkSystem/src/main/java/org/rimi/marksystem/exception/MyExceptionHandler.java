@@ -20,13 +20,9 @@ public class MyExceptionHandler implements HandlerExceptionResolver{
 		// TODO Auto-generated method stub
         Map<String, Object> model = new HashMap<String, Object>();  
         model.put("ex", ex); 
-        if(ex instanceof Exception){
-        	logger.error(ex);
-        	return new ModelAndView("error-business", model);
-        }else{
-        	logger.error(ex);
-        	return new ModelAndView("error", model);
-        }
+    	logger.error(ex);
+    	return new ModelAndView("500Error", model);
+       
 	}
 
 }

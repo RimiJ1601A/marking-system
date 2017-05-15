@@ -73,10 +73,11 @@ public class IndexController {
             Calendar c = Calendar.getInstance();
             c.setTime(logindate);
             int thisyear=c.get(Calendar.YEAR);
-            int thismonth=c.get(Calendar.MONTH);
+            int thismonth=c.get(Calendar.MONTH)+1;
 
             model.addAttribute("thisyear", thisyear);
             model.addAttribute("Xaxis",countServiceImpl.getNewXaxis(thismonth));//获得登录年份时间的横坐标
+            
             model.addAttribute("Yaxis", countServiceImpl.getLastYaxis(thisyear));//获得登录年份时间的纵坐标
             model.addAttribute("oldYaxis", countServiceImpl.getLastYaxis(thisyear-1));//获得前一年的纵坐标
             
@@ -97,7 +98,9 @@ public class IndexController {
             	tr.setCount(count);
             	teacherResultslist.add(tr);          	
             }
-            model.addAttribute("teacherlist", teacherResultslist);           
+            model.addAttribute("teacherlist", teacherResultslist);  
+//            int[] test=new int[2];
+//            test[3]=10;
             return "index-admin";
 		} else if (user.getRoleId() == 2) {
             TeacherResults tr = countServiceImpl.getTeachersResults(user.getId());
@@ -132,7 +135,7 @@ public class IndexController {
 			model.addAttribute("rmtqs", rmtqs);		
 			return "index-student";
 		} else {
-			return "index";
+			return "index-normal";
 		}
 
 	}
@@ -141,5 +144,15 @@ public class IndexController {
 
 		return "profile";
 	}
+	@RequestMapping("/404")
+	public String test404() {
 
+		return "404Error";
+	}
+
+	@RequestMapping("/forgetpassword")
+	public String forgetpw(){
+		return "forgetpassword";
+	}
+	
 }

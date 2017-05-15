@@ -10,7 +10,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Rimiedu_MSystem | admin</title>
+<title>管理员|Rimiedu_MSystem</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -283,7 +283,7 @@
 				<small>新闻、个人看板</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+				<li><a href="/index"><i class="fa fa-dashboard"></i> 主页</a></li>
 				<li class="active">个人首页</li>
 			</ol>
 			</section>

@@ -1,11 +1,17 @@
-		$("form").submit(function(e){
-			var acc = $("#userAccount").val();
-			var pas =  $("#passWord").val();
+				function check(){
 			
-			if(acc == "" || pas == "" || acc == null || pas == null){
-				alert("不能为空");
-				return;
-			}else{
-				$("#loginForm").submit();
+				var acc = $("#userAccount").val();
+				var pas =  $("#passWord").val();
+				
+				if(acc == "" || pas == "" || acc == null || pas == null){
+					alert("账号或密码不能为空！");
+					return false;
+				}else{
+					return true;
+					}
+			
+			
 			}	
-		});
+		
+		    
+		

@@ -10,7 +10,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>学生|Rimiedu_MSystem</title>
+<title>Rimiedu_MSystem | normal</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -18,12 +18,8 @@
 
 <link rel="stylesheet"
 	href="/css/ionicons.min.css">
-<!-- Theme style -->
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
-  -->
+
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
 <script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
@@ -46,98 +42,7 @@
 		</a> <!-- Navbar Right Menu -->
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
-				<!-- Messages: style can be found in dropdown.less-->
-				<%-- 
-				<li class="dropdown messages-menu">
-					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
-						class="label label-success">4</span>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="header">You have 4 messages</li>
-						<li>
-							<!-- inner menu: contains the messages -->
-							<ul class="menu">
-								<li>
-									<!-- start message --> <a href="#">
-										<div class="pull-left">
-											<!-- User Image -->
-											<img src="${sessionScope.user.headPhotoUrl}" class="img-circle"
-												alt="User Image">
-										</div> <!-- Message title and timestamp -->
-										<h4>
-											Support Team <small><i class="fa fa-clock-o"></i> 5
-												mins</small>
-										</h4> <!-- The message -->
-										<p>Why not buy a new awesome theme?</p>
-								</a>
-								</li>
-								<!-- end message -->
-							</ul> <!-- /.menu -->
-						</li>
-						<li class="footer"><a href="#">See All Messages</a></li>
-					</ul>
-				</li>
-				<!-- /.messages-menu -->
-
-				<!-- Notifications Menu -->
-				<li class="dropdown notifications-menu">
-					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span
-						class="label label-warning">10</span>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="header">You have 10 notifications</li>
-						<li>
-							<!-- Inner Menu: contains the notifications -->
-							<ul class="menu">
-								<li>
-									<!-- start notification --> <a href="#"> <i
-										class="fa fa-users text-aqua"></i> 5 new members joined today
-								</a>
-								</li>
-								<!-- end notification -->
-							</ul>
-						</li>
-						<li class="footer"><a href="#">View all</a></li>
-					</ul>
-				</li>
-
-				<!-- Tasks Menu -->
-				<li class="dropdown tasks-menu">
-					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-flag-o"></i> <span
-						class="label label-danger">9</span>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="header">You have 9 tasks</li>
-						<li>
-							<!-- Inner menu: contains the tasks -->
-							<ul class="menu">
-								<li>
-									<!-- Task item --> <a href="#"> <!-- Task title and progress text -->
-										<h3>
-											Design some buttons <small class="pull-right">20%</small>
-										</h3> <!-- The progress bar -->
-										<div class="progress xs">
-											<!-- Change the css width attribute to simulate progress -->
-											<div class="progress-bar progress-bar-aqua"
-												style="width: 20%" role="progressbar" aria-valuenow="20"
-												aria-valuemin="0" aria-valuemax="100">
-												<span class="sr-only">20% Complete</span>
-											</div>
-										</div>
-								</a>
-								</li>
-								<!-- end task item -->
-							</ul>
-						</li>
-						<li class="footer"><a href="#">View all tasks</a></li>
-					</ul>
-				</li>
-
-				--%>
-				<!-- User Account Menu -->
+				
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
@@ -154,23 +59,7 @@
 								${sessionScope.user.userName} <small>${sessionScope.roleName}
 									</small>
 							</p></li>
-						<!-- Menu Body -->
-						<%-- 
-						<li class="user-body">
-							<div class="row">
-								<div class="col-xs-4 text-center">
-									<a href="#">Followers</a>
-								</div>
-								<div class="col-xs-4 text-center">
-									<a href="#">Sales</a>
-								</div>
-								<div class="col-xs-4 text-center">
-									<a href="#">Friends</a>
-								</div>
-							</div> <!-- /.row -->
-						</li>
-						--%>
-						<!-- Menu Footer-->
+						
 						<li class="user-footer">
 							<div class="pull-left">
 								<a href="/profile" class="btn btn-default btn-flat">修改信息</a>
@@ -182,11 +71,8 @@
 					</ul>
 				</li>
 
-				<!--  应该将control替换为登入登出 -->
-				<!-- Control Sidebar Toggle Button -->
-				<!-- <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li> -->
+				
+          </li> 
 			</ul>
 		</div>
 		</nav> </header>
@@ -203,27 +89,12 @@
 				<p>${sessionScope.user.userName}</p>
 				<!-- Status -->
 				<!-- 通过text-xxx来个更改颜色 -->
-				<a href="#"><i class="fa fa-circle text-purple
-"></i>
+				<a href="#"><i class="fa fa-circle text-warning"></i>
 					${sessionScope.roleName}</a>
 			</div>
 		</div>
 
-		<!-- search form (Optional) -->
-		<%-- 
-		<form action="#" method="get" class="sidebar-form">
-			<div class="input-group">
-				<input type="text" name="q" class="form-control"
-					placeholder="Search..."> <span class="input-group-btn">
-					<button type="submit" name="search" id="search-btn"
-						class="btn btn-flat">
-						<i class="fa fa-search"></i>
-					</button>
-				</span>
-			</div>
-		</form>
-		--%>
-		<!-- /.search form --> <!-- Sidebar Menu -->
+		
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
@@ -335,93 +206,7 @@
 			<!-- 这里放个人看板信息 -->
 			<section class="dashboard "> <!-- 统计图 -->
 
-			<div class="row">
-				<div class="col-lg-7 ">
-					<div class="box box-solid">
-						<div class="box-header with-border">
-							<h3 class="box-title">个人总览</h3>
-
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body" style="display: block;">
-							<p class="text-center">
-								<strong>学习状况: 1 Jan, 2016 - 30 Jul, 2016</strong>
-							</p>
-							<div class="chart">
-								<!-- 被评次数 Chart Canvas -->
-								<!-- 显示从系统启用到查询时的统计数据 -->
-								<canvas id="studentChart" style="height: 220px; width: 1071px;"
-									height="220" width="1071"></canvas>
-							</div>
-							<!-- /.chart-responsive -->
-						</div>
-						<!-- /.box -->
-					</div>
-				</div>
-
-
-
-				<!-- 事件提醒盒 -->
-				<div class="col-lg-5">
-
-					<div class="box box-solid">
-						<div class="box-header with-border">
-							<h3 class="box-title">最近事件</h3>
-
-
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<ul class="products-list product-list-in-box">
-								<c:forEach var="rm" items="${rmtqs}">
-								<c:if test="${rm.marked}">					
-									<li class="item">
-										<div class="product-img">
-											<img src="/images/default-50x50.gif" alt="Product Image">
-										</div>
-										<div class="product-info">
-											<a href="/mark" class="product-title">${rm.evaluatedName} 
-											<span class="label label-warning pull-right">${rm.startTime}</span>
-											</a> <span class="product-description"> 需要你对${rm.evaluatedName}进行教学质量评分. </span>
-										</div>
-									</li>
-								</c:if>					
-								</c:forEach>
-								<!-- /.item -->
-								
-							<!-- 	<li class="item">
-									<div class="product-img">
-										<img src="/images/default-50x50.gif" alt="Product Image">
-									</div>
-									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Teacher
-											Shang <span class="label label-info pull-right">2016-10</span>
-										</a> <span class="product-description"> 需要你对Teacher
-											Shang进行教学质量评分. </span>
-									</div>
-								</li>
-								/.item
-								<li class="item">
-									<div class="product-img">
-										<img src="/images/default-50x50.gif" alt="Product Image">
-									</div>
-									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Teacher
-											Li <span class="label label-danger pull-right">2017-04</span>
-										</a> <span class="product-description"> 需要你对Teacher
-											Li进行教学质量评分. </span>
-									</div>
-								</li> -->
-
-							</ul>
-						</div>
-						<!-- /.box-body -->
-						<div class="box-footer text-center">
-							&nbsp;
-						<!--
-							<a href="javascript:void(0)" class="uppercase">查看所有事件</a>
-							-->
-						</div>
+			
 						<!-- /.box-footer -->
 					</div>
 				</div>
