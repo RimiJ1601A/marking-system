@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Rimiedu_MSystem| team-info</title>
+<title>班级管理|Rimiedu_MSystem</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	href="/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	href="/css/ionicons.min.css">
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
@@ -275,8 +275,9 @@
 				<small>编辑班级</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-				<li class="active">职位管理</li>
+				<li><a href="/index"><i class="fa fa-dashboard"></i> 主页</a></li>
+				<li>用户管理</li>
+				<li class="active">人员信息</li>
 			</ol>
 			</section>
 			<br> <br>

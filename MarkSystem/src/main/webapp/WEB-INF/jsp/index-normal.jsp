@@ -153,7 +153,7 @@
 				<small>新闻、个人看板</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+				<li><a href="/index"><i class="fa fa-dashboard"></i> 主页</a></li>
 				<li class="active">个人首页</li>
 			</ol>
 			</section>
