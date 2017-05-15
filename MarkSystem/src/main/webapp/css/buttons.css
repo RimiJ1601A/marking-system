@@ -192,7 +192,7 @@
 .button-primary,
 .button-primary-flat {
   background-color: #1B9AF7;
-  border-color: #404142;
+  border-color: #1B9AF7;
   color: #FFF; }
   .button-primary:visited,
   .button-primary-flat:visited {
@@ -201,7 +201,7 @@
   .button-primary-flat:hover,
   .button-primary-flat:focus {
     background-color: #4cb0f9;
-    border-color: #080808;
+    border-color: #4cb0f9;
     color: #FFF; }
   .button-primary:active, .button-primary.active, .button-primary.is-active,
   .button-primary-flat:active,
@@ -467,13 +467,13 @@
   .button-border.button-primary, .button-primary.button-border-thin, .button-primary.button-border-thick,
   .button-border-thin.button-primary,
   .button-border-thick.button-primary {
-    color: #0c0c0c; }
+    color: #1B9AF7; }
     .button-border.button-primary:hover, .button-primary.button-border-thin:hover, .button-primary.button-border-thick:hover, .button-border.button-primary:focus, .button-primary.button-border-thin:focus, .button-primary.button-border-thick:focus,
     .button-border-thin.button-primary:hover,
     .button-border-thin.button-primary:focus,
     .button-border-thick.button-primary:hover,
     .button-border-thick.button-primary:focus {
-      background-color: rgb(41, 43, 44);
+      background-color: rgba(76, 176, 249, 0.9);
       color: rgba(255, 255, 255, 0.9); }
     .button-border.button-primary:active, .button-primary.button-border-thin:active, .button-primary.button-border-thick:active, .button-border.button-primary.active, .button-primary.active.button-border-thin, .button-primary.active.button-border-thick, .button-border.button-primary.is-active, .button-primary.is-active.button-border-thin, .button-primary.is-active.button-border-thick,
     .button-border-thin.button-primary:active,
@@ -959,7 +959,7 @@
             box-shadow: 0 0 0 rgba(27, 154, 247, 0.3); }
   50% {
     -webkit-box-shadow: 0 0 20px rgba(27, 154, 247, 0.8);
-            box-shadow: 0 0 20px rgba(22, 22, 23, 0.8); }
+            box-shadow: 0 0 20px rgba(27, 154, 247, 0.8); }
   to {
     -webkit-box-shadow: 0 0 0 rgba(27, 154, 247, 0.3);
             box-shadow: 0 0 0 rgba(27, 154, 247, 0.3); } }
