@@ -1,4 +1,4 @@
-//var allButtons = 480;           //总页数
+var allButtons = 26;           //总页数
 //var startPage = 10;             //开始的页数
 /**按钮自动生成 */
 $(document).ready(function(){
@@ -15,18 +15,17 @@ $(document).ready(function(){
 /**点击数字按钮 */
 $(document).ready(function(){
     $(document).on("click",".btn-group.button.button-rounded.button-square",function(){
-        if($(this).attr("page")==$(".button-primary").attr("page")){
+        if($(this).attr("page")==$(".btn-toolbar>.button-primary").attr("page")){
             return;
         }    
-        $(".button-primary").attr("class","btn-group button button-rounded button-square button-small btn-border");
+        $(".btn-toolbar>.button-primary").attr("class","btn-group button button-rounded button-square button-small btn-border");
         $(this).removeClass("btn-border");
         $(this).addClass("button-primary");
         preButtonControl();
         nextButtonControl();
         if(allButtons>9){
-        	buttonComposing();
+             buttonComposing();
         }
-        
     });
     nextButtonClick();
     preButtonClick();   
@@ -34,14 +33,14 @@ $(document).ready(function(){
 
 /** 上一页按钮显示控制 */
 function preButtonControl(){
-    if($(".button-primary").attr("page") ==  1){
+    if($(".btn-toolbar>.button-primary").attr("page") ==  1){
         $(".pre").remove();
     }else{
         if($(".pre").length == 0){
             var preDiv = $("<a type='button' href='#' class='btn-group button button-rounded btn-border button-small pre' page='0000'>/a>").text("上一页");
             $(".btn-toolbar>.btn-group:first").before(preDiv);
         }
-        $(".pre").attr("page",parseInt($(".button-primary").attr("page"))-1);
+        $(".pre").attr("page",parseInt($(".btn-toolbar>.button-primary").attr("page"))-1);
     }
 }
 /** 上一页按钮点击控制 */
@@ -57,14 +56,14 @@ function preButtonClick(){
 }
 /** 下一页按钮显示控制 */
 function nextButtonControl(){
-    if($(".button-primary").attr("page") == allButtons){
+    if($(".btn-toolbar>.button-primary").attr("page") == allButtons){
          $(".next").remove();
     }else{
         if($(".next").length == 0){
             var nextDiv = $("<a type='button' href='#' class='btn-group button button-rounded btn-border button-small next' page='#'>/a>").text("下一页");
             $(".btn-toolbar>.btn-group:last").after(nextDiv);
         }
-         $(".next").attr("page",parseInt($(".button-primary").attr("page"))+1);
+         $(".next").attr("page",parseInt($(".btn-toolbar>.button-primary").attr("page"))+1);
     }
 }
 /** 下一页按钮点击控制 */
@@ -81,7 +80,7 @@ function nextButtonClick(){
 
 /** 按钮排版*/
 function buttonComposing(){
-    var currentPage = $(".button-primary").attr("page");
+    var currentPage = $(".btn-toolbar>.button-primary").attr("page");
     if(currentPage>=6 && currentPage<allButtons-3){
         createButton(currentPage);
         if(allButtons-currentPage==4){
@@ -100,7 +99,7 @@ function buttonComposing(){
             if(differencePage==4){
 
             }else if(differencePage==3){
-                if($(".button-primary").next().attr("page") != (allButtons-2)){   
+                if($(".btn-toolbar>.button-primary").next().attr("page") != (allButtons-2)){   
                     var newDiv1 = $("<a type='button' href='#' class='btn-group button button-rounded button-square btn-border button-small' page="+(allButtons-2)+"></a>").text(allButtons-2);                    
                     $(".btn-toolbar>.btn-strong:last").before(newDiv1);
                     $($(".button-square")[1]).remove();

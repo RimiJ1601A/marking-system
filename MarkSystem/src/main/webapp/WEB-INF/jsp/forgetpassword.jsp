@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<title>用户登录|Rimiedu_MSystem </title>
+<title>密码找回|Rimiedu_MSystem</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -21,63 +21,36 @@
 </head>
 <body class="hold-transition login-page">
 <div class="wrapper">
-	
 	<div class="login-box">
-		<div class="login-logo">
+	<div class="login-logo">
 			<a href="javascript:void(0)"><b>睿峰</b>评教系统</a>
 		</div>
-		<!-- /.login-logo -->
-		<div class="login-box-body">
-			<p class="login-box-msg">用户登录</p>
-			<form id="loginForm" action="/login" method="post" onSubmit="return check()">
-				<div class="form-group has-feedback">
-					<input id="userAccount" type="text" name="userAccount" class="form-control" placeholder="账号"> <span
-						class="glyphicon glyphicon-user form-control-feedback"></span>
-				</div>
-				<div class="form-group has-feedback">
-					<input id="passWord" type="password" name="password" class="form-control" placeholder="密码">
-					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="checkbox icheck">
-							<label> <input type="checkbox"> 请记住我
-							</label>
-							<span class="pull-right"><a href="/forgetpassword">忘记密码</a><br></span>
-							
-						</div>
-						
-					</div>
-					<!-- /.col -->
-					<div class="col-xs-12">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
-					</div>
-					<!-- /.col -->
-				</div>
-			</form>
-			<!-- 第三方登录链接 -->
-			<!-- <div class="social-auth-links text-center">
-				<p>— OR —</p>
-				<a href="#" class="btn   btn-social-icon btn-info btn-flat"><i
-					class="fa fa-qq"></i> </a> <a href="#"
-					class="btn   btn-social-icon btn-danger btn-flat"><i
-					class="fa fa-weibo"></i> </a> <a href="#"
-					class="btn  btn-social-icon btn-success btn-flat"><i
-					class="fa fa-wechat"></i></a>
-
-			</div> -->
-			<!-- /.social-auth-links -->
-
+      <div class="box box-solid box-primary">
+        <div class="box-header">
+          <h3 class="box-title">用户帮助中心</h3>
+          
+        </div><!-- /.box-header -->
+        <div class="box-body">
+        <p>请尝试使用你的<b>初始密码登录</b>
+        <p>若你已经<b>修改密码</b>
+          <p>请联系你的<b>系统管理员</b>找回密码！</p>
+          
+        </div><!-- /.box-body -->
+       <div class="box-footer" style="text-align:center">
+                 <a href="/loginpage" class="btn btn-primary"><i class="fa fa-map-signs"></i> 返回登录页面</a>
+       </div>
+      </div><!-- /.box -->
+   
 		</div>
-		<!-- /.login-box-body -->
-	</div>
-	<footer style="text-align:center;position:relative;">
+		
+ <footer style="text-align:center;position:relative;">
            
                   
 		<strong>Copyright &copy; 2017 <a href="#">睿峰教育</a>.
 		</strong> 版权所有.
            
             </footer>
+	
 	</div>
 	
  	<script type="text/javascript" src="/js/jquery-2.2.3.min.js"></script>

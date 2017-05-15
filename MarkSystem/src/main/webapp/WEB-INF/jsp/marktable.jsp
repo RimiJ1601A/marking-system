@@ -6,20 +6,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>创建评教表|Rimiedu_MSystem</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	href="/css/font-awesome.min.css">
 
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	href="/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
-  -->
+
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
 
@@ -29,8 +26,8 @@
 <link type="text/css" rel="stylesheet" href="/css/marke.css">
 <link type="text/css" rel="stylesheet" href="/css/createTable.css">
 
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 <link rel="stylesheet" type="text/css" href="/css/bookblock.css" />
 <!-- custom demo style -->
 <link rel="stylesheet" type="text/css" href="/css/demo1.css" />
@@ -179,98 +176,7 @@ input.labelauty+label {
 		</a> <!-- Navbar Right Menu -->
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
-				<!-- Messages: style can be found in dropdown.less-->
-				<%-- 
-				<li class="dropdown messages-menu">
-					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
-						class="label label-success">4</span>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="header">You have 4 messages</li>
-						<li>
-							<!-- inner menu: contains the messages -->
-							<ul class="menu">
-								<li>
-									<!-- start message --> <a href="#">
-										<div class="pull-left">
-											<!-- User Image -->
-											<img src="${sessionScope.user.headPhotoUrl}" class="img-circle"
-												alt="User Image">
-										</div> <!-- Message title and timestamp -->
-										<h4>
-											Support Team <small><i class="fa fa-clock-o"></i> 5
-												mins</small>
-										</h4> <!-- The message -->
-										<p>Why not buy a new awesome theme?</p>
-								</a>
-								</li>
-								<!-- end message -->
-							</ul> <!-- /.menu -->
-						</li>
-						<li class="footer"><a href="#">See All Messages</a></li>
-					</ul>
-				</li>
-				<!-- /.messages-menu -->
-
-				<!-- Notifications Menu -->
-				<li class="dropdown notifications-menu">
-					<!-- Menu toggle button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span
-						class="label label-warning">10</span>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="header">You have 10 notifications</li>
-						<li>
-							<!-- Inner Menu: contains the notifications -->
-							<ul class="menu">
-								<li>
-									<!-- start notification --> <a href="#"> <i
-										class="fa fa-users text-aqua"></i> 5 new members joined today
-								</a>
-								</li>
-								<!-- end notification -->
-							</ul>
-						</li>
-						<li class="footer"><a href="#">View all</a></li>
-					</ul>
-				</li>
-
-				<!-- Tasks Menu -->
-				<li class="dropdown tasks-menu">
-					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-flag-o"></i> <span
-						class="label label-danger">9</span>
-				</a>
-					<ul class="dropdown-menu">
-						<li class="header">You have 9 tasks</li>
-						<li>
-							<!-- Inner menu: contains the tasks -->
-							<ul class="menu">
-								<li>
-									<!-- Task item --> <a href="#"> <!-- Task title and progress text -->
-										<h3>
-											Design some buttons <small class="pull-right">20%</small>
-										</h3> <!-- The progress bar -->
-										<div class="progress xs">
-											<!-- Change the css width attribute to simulate progress -->
-											<div class="progress-bar progress-bar-aqua"
-												style="width: 20%" role="progressbar" aria-valuenow="20"
-												aria-valuemin="0" aria-valuemax="100">
-												<span class="sr-only">20% Complete</span>
-											</div>
-										</div>
-								</a>
-								</li>
-								<!-- end task item -->
-							</ul>
-						</li>
-						<li class="footer"><a href="#">View all tasks</a></li>
-					</ul>
-				</li>
-
-				--%>
-				<!-- User Account Menu -->
+			
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
@@ -428,6 +334,22 @@ input.labelauty+label {
 						style="width: 60%;">自定义问答题</a>
 				</div>
 			</div>
+		<section class="content-header">
+			<h1>
+				创建评教表
+				<!-- 可以放上次登录时间 -->
+				<small>新建用于评教的考评表</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
+				<li >评教</li>
+				<li class="active">创建评分表</li>
+			</ol>
+			</section>
+			<br> <br>
+			<section class="dashboard ">
+			
+			</section>
 			<table class="table table-inverse">
 				<thead>
 					<tr class="bg-primary" style="background-color: #292b2c;">
@@ -488,9 +410,9 @@ input.labelauty+label {
 				</tbody>
 			</table>
 
-<!-- 			<div class="rows">
+			<div class="rows">
 				<div class="btn-toolbar" role="toolbar" aria-label="..."></div>
-			</div> -->
+			</div>
 			<div class="modal fade" id="quizType" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">

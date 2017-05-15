@@ -25,6 +25,6 @@ public class TestController {
 	@RequestMapping("*")
 	public String noFound(){
 		
-		return "noFound";
+		return "404Error";
 	}
 }

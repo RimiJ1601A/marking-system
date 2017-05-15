@@ -10,7 +10,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Rimiedu_MSystem | admi</title>
+<title>评教结果|Rimiedu_MSystem</title>
 <link rel="stylesheet" href="/css/bootstrap.css">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/ionicons.min.css">
@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="/css/buttons.css">
 <link rel="stylesheet" href="/css/build.css">
 <link rel="stylesheet" type="text/css" href="/css/mybuttonstyle.css">
+<script src="/js/html5shiv.js"></script>         
+<script src="/js/respond.min.js"></script>
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
