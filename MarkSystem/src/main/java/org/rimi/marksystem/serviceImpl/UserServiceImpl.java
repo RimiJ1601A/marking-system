@@ -6,6 +6,7 @@ import org.rimi.marksystem.dao.RoleDao;
 import org.rimi.marksystem.dao.UserDao;
 import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.UserService;
+import org.rimi.marksystem.util.PageShow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -180,6 +181,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(int userId) {	
 		return userDaoImpl.selectUserByid(userId);
+	}
+
+	@Override
+	public PageShow getPage(String name, String pageNum) {
+		if(name == null || name.isEmpty()){
+			name="";
+		}
+		int total = userDaoImpl.selectUser(name).size();
+		PageShow page = new PageShow(total, pageNum, name);
+		return page;
 	}
 
 
