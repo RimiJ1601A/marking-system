@@ -10,7 +10,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Rimiedu_MSystem |teacher</title>
+<title>Rimiedu_MSystem | normal</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -18,18 +18,14 @@
 
 <link rel="stylesheet"
 	href="/css/ionicons.min.css">
-<!-- Theme style -->
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
-  -->
+
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
-
 <script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
 <script src="/js/html5shiv.js"></script>         
 <script src="/js/respond.min.js"></script>
+
 </head>
 <body class="hold-transition skin-black sidebar-mini fixed">
 
@@ -46,6 +42,7 @@
 		</a> <!-- Navbar Right Menu -->
 		<div class="navbar-custom-menu">
 			<ul class="nav navbar-nav">
+				
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
@@ -62,23 +59,7 @@
 								${sessionScope.user.userName} <small>${sessionScope.roleName}
 									</small>
 							</p></li>
-						<!-- Menu Body -->
-						<%-- 
-						<li class="user-body">
-							<div class="row">
-								<div class="col-xs-4 text-center">
-									<a href="#">Followers</a>
-								</div>
-								<div class="col-xs-4 text-center">
-									<a href="#">Sales</a>
-								</div>
-								<div class="col-xs-4 text-center">
-									<a href="#">Friends</a>
-								</div>
-							</div> <!-- /.row -->
-						</li>
-						--%>
-						<!-- Menu Footer-->
+						
 						<li class="user-footer">
 							<div class="pull-left">
 								<a href="/profile" class="btn btn-default btn-flat">修改信息</a>
@@ -90,11 +71,8 @@
 					</ul>
 				</li>
 
-				<!--  应该将control替换为登入登出 -->
-				<!-- Control Sidebar Toggle Button -->
-				<!-- <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li> -->
+				
+          </li> 
 			</ul>
 		</div>
 		</nav> </header>
@@ -111,26 +89,12 @@
 				<p>${sessionScope.user.userName}</p>
 				<!-- Status -->
 				<!-- 通过text-xxx来个更改颜色 -->
-				<a href="#"><i class="fa fa-circle text-info"></i>
+				<a href="#"><i class="fa fa-circle text-warning"></i>
 					${sessionScope.roleName}</a>
 			</div>
 		</div>
 
-		<!-- search form (Optional) -->
-		<%-- 
-		<form action="#" method="get" class="sidebar-form">
-			<div class="input-group">
-				<input type="text" name="q" class="form-control"
-					placeholder="Search..."> <span class="input-group-btn">
-					<button type="submit" name="search" id="search-btn"
-						class="btn btn-flat">
-						<i class="fa fa-search"></i>
-					</button>
-				</span>
-			</div>
-		</form>
-		--%>
-		<!-- /.search form --> <!-- Sidebar Menu -->
+		
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
@@ -172,17 +136,16 @@
 					</c:if>
 					<c:if test="${fn:contains(functions,'查询评分表')}">
 						<li ><a href="/resultscore">评分考核结果</a></li>
-					</c:if>		
+					</c:if>	
 				</ul></li>
 
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
 
 
+
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-
-			<!-- Content Header (Page header) -->
 			<section class="content-header">
 			<h1>
 				欢迎来到个人首页
@@ -243,122 +206,14 @@
 			<!-- 这里放个人看板信息 -->
 			<section class="dashboard "> <!-- 统计图 -->
 
-			<div class="row">
-				<div class="col-lg-7 ">
-					<div class="box box-solid">
-						<div class="box-header with-border">
-							<h3 class="box-title">个人总览</h3>
-
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body" style="display: block;">
-							<p class="text-center">
-								<strong>班级教学质量: 1 Jan, 2016 - 30 Jul, 2016</strong>
-							</p>
-							<div class="chart">
-								<!-- 被评次数 Chart Canvas -->
-								<!-- 显示从系统启用到查询时的统计数据 -->
-								<canvas id="teacherChart" style="height: 220px; width: 1071px;"
-									height="220" width="1071"></canvas>
-							</div>
-							<!-- /.chart-responsive -->
-						</div>
-						<!-- /.box -->
-					</div>
-				</div>
-
-
-
-				<!-- 事件提醒盒 -->
-				<div class="col-lg-5">
-
-					<div class="box box-solid">
-						<div class="box-header with-border">
-							<h3 class="box-title">最近事件</h3>
-
-
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<ul class="products-list product-list-in-box">
-								<li class="item">
-									<div class="product-img">
-										<img src="/images/default-50x50.gif" alt="Product Image">
-									</div>
-									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Java1601
-											<span class="label label-warning pull-right">2016-11</span>
-										</a> <span class="product-description"> Java1601对你发起了评教. </span>
-									</div>
-								</li>
-								<!-- /.item -->
-								<li class="item">
-									<div class="product-img">
-										<img src="/images/default-50x50.gif" alt="Product Image">
-									</div>
-									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Ios1601
-											<span class="label label-info pull-right">2016-10</span>
-										</a> <span class="product-description"> Ios1601对你发起了评教. </span>
-									</div>
-								</li>
-								<!-- /.item -->
-								<li class="item">
-									<div class="product-img">
-										<img src="/images/default-50x50.gif" alt="Product Image">
-									</div>
-									<div class="product-info">
-										<a href="javascript:void(0)" class="product-title">Web1701
-											<span class="label label-danger pull-right">2017-04</span>
-										</a> <span class="product-description"> Web1701对你发起了评教. </span>
-									</div>
-								</li>
-
-							</ul>
-						</div>
-						<!-- /.box-body -->
-						<div class="box-footer text-center">
-							&nbsp;
-						<!--
-							<a href="javascript:void(0)" class="uppercase">查看所有事件</a>
-							-->
-						</div>
+			
 						<!-- /.box-footer -->
 					</div>
 				</div>
 			</div>
 
 
-			<!-- 学生评语 -->
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="box box-solid">
-						<div class="box-header with-border">
-							<i class="fa fa-bullhorn"></i>
 
-							<h3 class="box-title">学生评语</h3>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-						
-						<c:forEach var="comment" items="${TeacherResults.contentmap}">
-							<c:forEach var="content" items="${comment.value}">							
-								<div class="callout callout-info">
-									<h4>${comment.key}</h4>
-									<p>${content}</p>
-								</div>					
-							</c:forEach>
-						</c:forEach>
-						</div>
-						<!-- /.box-body -->
-
-						<div class="box-footer text-center">
-							<a id="more-content" href="javascript:void(0)" class="uppercase">查看更多评语</a>
-						</div>
-					</div>
-
-				</div>
-			</div>
 
 
 
@@ -383,46 +238,6 @@
 
 	<!-- jQuery 3.1.0 -->
 	<script type="text/javascript" src="/js/jquery-3.1.0.js"></script>
-	<script type="text/javascript">
-	
-		var XendTime = "${TeacherResults.xEndTime}";
-		var a = XendTime.split(",");
-		for(var i=0;i<a.length;i++){
-			a[i]=a[i].replace("[","");
-			a[i]=a[i].replace("]","");
-		}
-		var recent  = ${TeacherResults.recentlist};
-		var avrage = ${TeacherResults.averagelist};
-		
-		
-		var lss=$(".callout");
-		for(var i=0;i<lss.length;i++){
-			var color = i%4;
-			if(color==0){
-				lss[i].className="callout callout-info";
-			}else if(color==1){
-				lss[i].className="callout callout-danger";
-			}else if(color==2){
-				lss[i].className="callout callout-success";
-			}else{
-				lss[i].className="callout callout-warning";
-			}
-			if(i>3){
-				$(lss[i]).css("display","none");
-			}
-		}
-		$("#more-content").on("click",function(){
-			var hiddendiv = $(".callout:hidden");
-			if(hiddendiv[0]==null){
-				alert("没有数据了");
-			}
-			for(var i =0;i<3;i++){
-				$(hiddendiv[i]).css("display","block");
-			}
-		})
-		
-	</script>
-	
 	<!-- Bootstrap 3.3.6 -->
 	<script src="/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
@@ -434,5 +249,5 @@
 	<!-- Chart js -->
 	<script src="/js/Chart.min.js"></script>
 	<!-- adminchartjs -->
-	<script src="/js/teacherchart.js"></script>
+	<script src="/js/studentchart.js"></script>
 </html>

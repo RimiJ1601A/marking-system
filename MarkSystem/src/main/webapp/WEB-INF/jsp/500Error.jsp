@@ -10,7 +10,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Rimiedu_MSystem | 400Error</title>
+<title>Rimiedu_MSystem | 500Error</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -154,23 +154,24 @@
 
 			<section class="content-header">
       <h1>
-        404 Error Page
+        500 Error Page
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
-        <li class="active">404 error</li>
+        <li class="active">500 error</li>
       </ol>
        </section>
+       
        <section>
          
       <div class="error-page">
-        <h2 class="headline text-yellow"> 404</h2>
+        <h2 class="headline text-red"> 500</h2>
 
         <div class="error-content" style="display:inline;'">
-          <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
+          <h3><i class="fa fa-warning text-red"></i> Oops! Something went wrong.</h3>
 
           <p>
-            找不到你要的页面，你可以 尝试<a href="/index">返回个人首页</a> .
+            我们将尽快进行修复，或者，你可以 尝试<a href="/index">返回个人首页</a> .
           </p>
 
          

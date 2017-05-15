@@ -98,7 +98,9 @@ public class IndexController {
             	tr.setCount(count);
             	teacherResultslist.add(tr);          	
             }
-            model.addAttribute("teacherlist", teacherResultslist);           
+            model.addAttribute("teacherlist", teacherResultslist);  
+//            int[] test=new int[2];
+//            test[3]=10;
             return "index-admin";
 		} else if (user.getRoleId() == 2) {
             TeacherResults tr = countServiceImpl.getTeachersResults(user.getId());
@@ -133,7 +135,7 @@ public class IndexController {
 			model.addAttribute("rmtqs", rmtqs);		
 			return "index-student";
 		} else {
-			return "index";
+			return "index-normal";
 		}
 
 	}
