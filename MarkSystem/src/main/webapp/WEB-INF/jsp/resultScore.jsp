@@ -242,6 +242,7 @@
 						</c:if>
 					</ul></li>
 			</c:if>
+<c:if test="${fn:contains(functions,'评分表')}">
 
 			<li class="active"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
@@ -258,16 +259,19 @@
 						<li class="active"><a href="/resultscore">评分考核结果</a></li>
 					</c:if>			
 				</ul></li>
+					</c:if>			
 
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
 		<div class="content-wrapper">
 			<section class="content-header">
-			<h1>个人简介</h1>
+			<h1>评教结果
+			<small>评教结果查询</small></h1>
+			
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i>主页</a></li>
-				<li><a href="#">个人首页</a></li>
-				<li class="active">个人简介</li>
+				<li><a href="/index"><i class="fa fa-dashboard"></i>主页</a></li>
+				<li><a href="#">评分考核结果</a></li>
+				<li class="active">评教结果</li>
 			</ol>
 			</section>
 			<!-- Main content -->
@@ -284,25 +288,37 @@
 							<!-- /.tab-pane -->
 							<div class="tab-pane active" id="timeline">							
 								<div class="row">
-									<div class="col-sm-2">
-										<label class="col-sm-6 control-label">老师名字：</label>	
-										<div class="col-sm-6">
+								
+										<div class="col-sm-9">
+										<div class="form-group">
+                  <label>请选择你要查看的被评用户:</label>
+                  		<div class="row">
+								<div class="col-sm-6">
+								 <select id="teacherNameInfo" name="teacherName" class="form-control selectpicker show-tick" data-live-search="false" onchange="selectMarkName()">
+                    <c:forEach var="teac" items="${teacherlist}" >
+													<option value="${teac.id}">${teac.userName}</option>
+												</c:forEach>
+                  </select></div>
+								<div class="col-sm-6">
+										<button id="selectAllInfo" type="button" class="btn btn-primary">确定</button>
+									</div></div>
+                 
+                </div>
+										<%-- <span><label class="control-label">老师名字：</label></span>	
 											<select id="teacherNameInfo" name="teacherName"
 												class="selectpicker show-tick form-control"
 												data-live-search="false" onchange="selectMarkName()">
 												<c:forEach var="teac" items="${teacherlist}" >
 													<option value="${teac.id}">${teac.userName}</option>
 												</c:forEach>
-											</select>
+											</select> --%>
 										</div>
-									</div>
-									<div class="col-sm-2" style="text-align: center;">
-										<button id="selectAllInfo" type="button" class="btn btn-primary btn-sm">确定</button>
-									</div>
+						
+									
 								</div>
 								<div class="row">														
 									<div class="col-md-3">
-										<div class="box box-primary">
+										<div class="box box-solid box-info">
 											<div class="box-header with-border">
 												<h3 class="box-title">关于我</h3>
 											</div>
@@ -330,7 +346,7 @@
 									</div>
 
 									<div class="col-md-9">
-										<div class="box box-solid">
+										<div class="box box box-solid box-info">
 											<div class="box-header with-border">
 												<h3 class="box-title">个人总览</h3>
 
@@ -354,8 +370,8 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<div class="col-lg-12">
-											<div class="box box-solid">
+										
+											<div class="box box-solid box-info">
 												<div class="box-header with-border">
 													<i class="fa fa-bullhorn"></i>
 
@@ -381,7 +397,7 @@
 														class="uppercase">查看更多评语</a>
 												</div>
 											</div>
-										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -389,24 +405,23 @@
 
 							<div class="tab-pane" id="setinfo">
 
-								<div class="row">
-
-									<div class="col-sm-2">
-										<label class="col-sm-6 control-label">老师名字：</label>	
-										<div class="col-sm-6">
-											<select id="teacherName" name="teacherName"
-												class="selectpicker show-tick form-control"
-												onchange="selectMarkName()">
-												<c:forEach var="teac" items="${teacherlist}" >
+				<div class="row">
+								
+										<div class="col-sm-12">
+										<div class="form-group">
+                  <label>请选择你要查看的被评用户:</label>
+                  		<div class="row">
+								<div class="col-sm-6">
+								 <select id="teacherNameInfo" name="teacherName" class="form-control selectpicker show-tick" data-live-search="false" onchange="selectMarkName()">
+                    <c:forEach var="teac" items="${teacherlist}" >
 													<option value="${teac.id}">${teac.userName}</option>
 												</c:forEach>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-2" style="text-align: center;">
-										<button id="select" type="button" class="btn btn-primary btn-sm">确定</button>
-									</div>
-								</div>
+                  </select></div>
+								<div class="col-sm-6">
+										<button id="selectAllInfo" type="button" class="btn btn-primary">确定</button>
+									</div></div>
+                 
+                </div>
 		
 								
 								<div id="tableresult" class="row">

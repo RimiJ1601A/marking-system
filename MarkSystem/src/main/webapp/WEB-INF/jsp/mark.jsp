@@ -143,6 +143,7 @@
 						</c:if>
 					</ul></li>
 			</c:if>
+<c:if test="${fn:contains(functions,'评分表')}">
 
 			<li class="active"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
@@ -161,6 +162,7 @@
 					</c:if>	
 					
 				</ul></li>
+					</c:if>	
 
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
@@ -169,7 +171,106 @@
 		
 		
 		<div class="content-wrapper">
-			<table class="table table-inverse"
+		<section class="content-header">
+			<h1>
+				进行评教
+				<!-- 可以放上次登录时间 -->
+				<small>请在此完成评教</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="/index"><i class="fa fa-dashboard"></i> 主页</a></li>
+				<li >评分系统</li>
+				<li class="active">评教</li>
+			</ol>
+			</section>
+			<br> <br>
+			<section class="dashboard ">
+			<div class="col-xs-12">
+					<div class="box box-solid box-primary">
+						<div class="box-header">
+							<h3 class="box-title">考评创建列表</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<table id="example1"
+											class="table table-bordered table-striped dataTable"
+											role="grid" aria-describedby="example1_info">
+											<thead>
+												<tr role="row">
+													<th class="sorting_asc xsmc" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-sort="ascending"
+														aria-label="Rendering engine: activate to sort column descending"
+														style="width: 40px;">评分表ID</th>
+														<th class="sorting xsrq" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Platform(s): activate to sort column ascending"
+														style="width: 62px;">评教表名</th>
+													<th class="sorting gnmc" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Browser: activate to sort column ascending"
+														style="width: 50px;">开始时间</th>
+														<th class="sorting xsrq" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Platform(s): activate to sort column ascending"
+														style="width: 50px;">结束时间</th>
+														<th class="sorting xsrq" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Platform(s): activate to sort column ascending"
+														style="width: 40px;">考评班级</th>
+														<th class="sorting gnmc" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Browser: activate to sort column ascending"
+														style="width: 20px;display:none;">被评用户ID</th>
+														<th class="sorting gnmc" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Browser: activate to sort column ascending"
+														style="width: 40px;">被评用户</th>
+													<th class="sorting" tabindex="0" aria-controls="example1"
+														rowspan="1" colspan="1"
+														aria-label="Engine version: activate to sort column ascending"
+														style="width: 46px; text-align: center;">操作</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:set  var="list" scope="session" value="${Listrmtq}"></c:set>
+					<c:if test="${fn:length(list) == 0}">
+						<tr >
+							<td colspan=7 style="text-align:center;"><b>没有对应时间下需要评分的表</b></td>
+						</tr>
+					</c:if>
+					<c:forEach var="Listrmtqs" items="${Listrmtq}">
+						<tr >
+							<td>${Listrmtqs.marktableId}</td>
+							<td>${Listrmtqs.startTime}</td>
+							<td>${Listrmtqs.endTime}</td>
+							<td>${Listrmtqs.name}</td>
+							<td>${Listrmtqs.teamName}</td>
+							<td style="display:none;">${Listrmtqs.evalueateId}</td>
+							<td>${Listrmtqs.evaluatedName}</td>
+							<c:if test="${Listrmtqs.marked}">
+							<td style="
+    text-align: center;"><div id="goMarkTable_btn" class="btn btn-default"
+									style="height: 30px;" data-toggle="modal" data-target="#student_quizs">点击进入答题</div>
+							</td>
+							</c:if>
+							<c:if test="${!Listrmtqs.marked}">
+							<td style="text-align:center"><div class="btn btn-default"
+									style="height: 30px;">已被您评价过</div>
+							</td>
+							</c:if>
+						</tr>
+					</c:forEach>	
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+			<%-- <table class="table table-inverse"
 				style="width: 80%; position: relative; left: 10%;">
 				<thead>
 					<tr class="bg-primary" style="background-color: #292b2c;">
@@ -211,44 +312,9 @@
 							</c:if>
 						</tr>
 					</c:forEach>
-					<!-- <tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					</tr>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-					</tr> -->
+					
 				</tbody>
-			</table>
+			</table> --%>
 			<div class="modal fade" id="student_quizs" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -270,6 +336,7 @@
 					<!-- /.modal-content -->
 				</div>
 				<!-- /.modal -->
+				</section>
 			</div>
 
 

@@ -43,6 +43,12 @@ $(document).on("click","#goMarkTable_btn",function(){
 				
 			}
 			$(".modal-body").append(newInit);
+			var index = $(".initQuizsContent").children().length;
+			if(index == 1){
+				$("#Save_result").remove();
+				var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>");
+				$("#nextQuizs").after(Tagbtn);
+			}
 		},
 		error : function(){
 			alert(ERROR);
