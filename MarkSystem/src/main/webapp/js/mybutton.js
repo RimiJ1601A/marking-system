@@ -1,4 +1,4 @@
-var allButtons = 26;           //总页数
+//var allButtons = 26;           //总页数
 //var startPage = 10;             //开始的页数
 /**按钮自动生成 */
 $(document).ready(function(){

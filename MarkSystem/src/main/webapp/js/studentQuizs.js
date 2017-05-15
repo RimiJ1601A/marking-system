@@ -43,6 +43,12 @@ $(document).on("click","#goMarkTable_btn",function(){
 				
 			}
 			$(".modal-body").append(newInit);
+			var index = $(".initQuizsContent").children().length;
+			if(index==1){
+				$("#Save_result").remove();
+				var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>")
+				$("#nextQuizs").after(Tagbtn);
+			}
 		},
 		error : function(){
 			alert(ERROR);
@@ -60,10 +66,25 @@ $(document).on("click","#prevQuizs",function(){
 });
 
 $(document).on("click","#nextQuizs",function(){
+	alert(quizsOnclick_count);
 	var index = $(".initQuizsContent").children().length;
-	if(quizsOnclick_count == index-1){
+	if(quizsOnclick_count==index-1){
+		
+	}
+	else if(index == 2&&quizsOnclick_count!=index-1){
 
-	}else if(quizsOnclick_count == index-2){
+		if($('input[type="radio"][name="student_quizContent'+quizsOnclick_count+'"]:checked').length!=0||($(".quiz_title"+quizsOnclick_count+"").children().text())!="点击在这里输入你的问题答案!"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!="输入不能为空！"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!=""){
+			$(".quiz_title"+quizsOnclick_count+"").css("display","none");
+			$(".quiz_title"+(quizsOnclick_count+1)+"").css("display","block");
+			$("#Save_result").remove();
+			var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>")
+			$("#nextQuizs").after(Tagbtn);
+			quizsOnclick_count++;
+		}else{
+			alert("你还没有完成当前的题");
+		}			
+	}
+	else if(index>2&&quizsOnclick_count == index-2){
 		$("#Save_result").remove();
 		var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>")
 		$("#nextQuizs").after(Tagbtn);
@@ -87,6 +108,8 @@ $(document).on("click","#nextQuizs",function(){
 });
 
 $(document).on("click","#Save_result",function(){
+	if($('input[type="radio"][name="student_quizContent'+quizsOnclick_count+'"]:checked').length!=0||($(".quiz_title"+quizsOnclick_count+"").children().text())!="点击在这里输入你的问题答案!"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!="输入不能为空！"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!=""){
+		
 	var AllQuiz = $(".initQuizsContent").children();
 	var requestTable = [];
 	for(var i=0;i<AllQuiz.length;i++){
@@ -125,7 +148,9 @@ $(document).on("click","#Save_result",function(){
 			alert("Save Error!!");
 		}
 	})
-	
+	}else{
+		alert("你还有题没有答完！！");
+	}	
 });
 function ta(obj){
 	var val=$(obj).val().length;

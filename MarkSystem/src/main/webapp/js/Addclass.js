@@ -264,7 +264,6 @@ function closequizmodal(){
 }
 $(document).on("click","#delete-btn-lxd",function(){
 	var marktableId = $(this).prev().text();
-	alert(marktableId);
 	$.ajax({
 		url : '/deleteMarkTable',
 		type : 'post',
