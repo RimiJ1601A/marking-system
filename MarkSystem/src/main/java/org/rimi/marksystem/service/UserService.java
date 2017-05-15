@@ -3,6 +3,7 @@ package org.rimi.marksystem.service;
 import java.util.List;
 
 import org.rimi.marksystem.eneity.User;
+import org.rimi.marksystem.util.PageShow;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -45,6 +46,8 @@ public interface UserService {
     public List<User> getUsersByPage(int page,int account);
     //分页搜索
     public List<User> getUsersByPage(String name,int page,int account);
+    
+    public PageShow getPage(String name,String pageNum);
     
     /***
      * 修改头像

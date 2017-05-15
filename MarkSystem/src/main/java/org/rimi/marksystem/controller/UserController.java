@@ -23,7 +23,9 @@ import org.rimi.marksystem.eneity.User;
 import org.rimi.marksystem.service.RoleService;
 import org.rimi.marksystem.service.UserService;
 import org.rimi.marksystem.util.CommonMap;
+import org.rimi.marksystem.util.ConstantClassField;
 import org.rimi.marksystem.util.Messagedest;
+import org.rimi.marksystem.util.PageShow;
 import org.rimi.marksystem.util.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,7 +63,7 @@ public class UserController {
 	private UserService userServiceImpl;
 	@Autowired
 	private RoleService roleServiceImpl;
-	private final int account = 10; // 每页显示的数据
+	//private final int account = 10; // 每页显示的数据
 
 	// 登陆页面
 	@RequestMapping("/loginPage")
@@ -89,49 +91,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user")
-	public String getUser(@RequestParam(value="value",required=false) String name ,Model model, HttpServletRequest request) {
-		int totalPage;// 总页数
-		String obj = request.getParameter("dangqianye");
-		// 当前页
-		int dqy;
-		if (obj == null || obj.isEmpty()) {
-			dqy = 1;
-		} else {
-			dqy = Integer.parseInt(obj);
-		}
-		model.addAttribute("dangqianye", dqy);
-		List<String> userAllnum = userServiceImpl.getAllUserAccount();
-		model.addAttribute("userAllnum", userAllnum.size());
+	public String getUser(@RequestParam(value="value",required=false)String name,@RequestParam(value="currentPageName",required=false)String pageNum,Model model, HttpServletRequest request) {
 		
-		int page = 0;
-		if (obj != null) {
-			try {
-				page = Integer.valueOf(obj) - 1;
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
-//		page = page * account;
-//		if ((page + account) > userAllnum.size()) {
-//			page = 0;
-//		}
-		List<User> userlist = new ArrayList<User>();
-		if (name == null || name.isEmpty()) {
-			name="";
-			totalPage = (userAllnum.size() + account - 1) / account;
-		}else{
-			try {
-				userlist = userServiceImpl.getUser(name);
-				totalPage = (userlist.size() + account - 1) / account;
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				totalPage = 1;
-			}
-		}	
-		userlist = userServiceImpl.getUsersByPage(name , page* account, account);
+		PageShow page = userServiceImpl.getPage(name, pageNum);
+		List<User> userlist = userServiceImpl.getUsersByPage(page.getName() , page.getStart(), ConstantClassField.COUNT);
 		model.addAttribute("userlist", userlist);
-		model.addAttribute("totalPage", totalPage);
-		model.addAttribute("selectName", name);
+		model.addAttribute("page", page);
 		// 返回职位名称
 		List<String> rolenames = roleServiceImpl.getRoleName();
 		model.addAttribute("rolename", rolenames);
@@ -254,7 +219,7 @@ public class UserController {
 		return "redirect:/index";
 	}
 
-	@RequestMapping("/selectUser")
+/*	@RequestMapping("/selectUser")
 	public String selectUser(@RequestParam("value") String name, Model model) {
 
 		if (name == null || name.isEmpty()) {
@@ -269,7 +234,7 @@ public class UserController {
 			model.addAttribute("rolename", rolenames);
 			return "user";
 		}
-	}
+	}*/
 
 	// 删除
 	@RequestMapping("/deleteUser")

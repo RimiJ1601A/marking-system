@@ -44,9 +44,9 @@ $(document).on("click","#goMarkTable_btn",function(){
 			}
 			$(".modal-body").append(newInit);
 			var index = $(".initQuizsContent").children().length;
-			if(index==1){
+			if(index == 1){
 				$("#Save_result").remove();
-				var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>")
+				var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>");
 				$("#nextQuizs").after(Tagbtn);
 			}
 		},
@@ -58,15 +58,16 @@ $(document).on("click","#goMarkTable_btn",function(){
 $(document).on("click","#prevQuizs",function(){
 	if(quizsOnclick_count == 0){
 		
-	}else{
+	}else if($('input[type="radio"][name="student_quizContent'+quizsOnclick_count+'"]:checked').length!=0||($(".quiz_title"+quizsOnclick_count+"").children().text())!="点击在这里输入你的问题答案!"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!="输入不能为空！"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!=""){
 		$(".quiz_title"+quizsOnclick_count+"").css("display","none");
 		$(".quiz_title"+(quizsOnclick_count-1)+"").css("display","block");
 		quizsOnclick_count--;		
+	}else{
+		alert("你有题没有答！！");
 	}
 });
 
 $(document).on("click","#nextQuizs",function(){
-	alert(quizsOnclick_count);
 	var index = $(".initQuizsContent").children().length;
 	if(quizsOnclick_count==index-1){
 		
@@ -85,13 +86,14 @@ $(document).on("click","#nextQuizs",function(){
 		}			
 	}
 	else if(index>2&&quizsOnclick_count == index-2){
-		$("#Save_result").remove();
-		var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>")
-		$("#nextQuizs").after(Tagbtn);
+
 		if($('input[type="radio"][name="student_quizContent'+quizsOnclick_count+'"]:checked').length!=0||($(".quiz_title"+quizsOnclick_count+"").children().text())!="点击在这里输入你的问题答案!"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!="输入不能为空！"&&($(".quiz_title"+quizsOnclick_count+"").children().text())!=""){
 			$(".quiz_title"+quizsOnclick_count+"").css("display","none");
 			$(".quiz_title"+(quizsOnclick_count+1)+"").css("display","block");
 			quizsOnclick_count++;
+			$("#Save_result").remove();
+			var Tagbtn = $("<button type='button'  id='Save_result' class='btn btn-primary'>提交</button>")
+			$("#nextQuizs").after(Tagbtn);
 		}else{
 			alert("你还没有完成当前的题");
 		}			

@@ -153,7 +153,7 @@
 						</c:if>
 					</ul></li>
 			</c:if>
-
+<c:if test="${fn:contains(functions,'评分表')}">
 			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
@@ -169,7 +169,7 @@
 						<li ><a href="/resultscore">评分考核结果</a></li>
 					</c:if>	
 				</ul></li>
-
+</c:if>
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
 
@@ -350,7 +350,7 @@
 								<div class="row">
 									<div class="col-sm-5">
 										<div class="dataTables_info" id="example1_info" role="status"
-											aria-live="polite">第${dangqianye}页,共${totalPage}页</div>
+											aria-live="polite">第${page.getCurrentPageNum()}页,共${page.getTotalPage()}页</div>
 									</div>
 									<div class="col-sm-7">
 										<div class="dataTables_paginate paging_simple_numbers"
@@ -493,9 +493,9 @@
 
 	<script src="/js/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript">
-		//分页的总页数,当前页和总的记录数
-		var yeshu = ${totalPage};
-		var dangqianye = ${dangqianye};
+	//分页的总页数,当前页和总的记录数
+    var yeshu=${page.getTotalPage()};
+    var dangqianye=${page.getCurrentPageNum()};
 		//人员信息
 		var zh ;
 		var rymc ;
@@ -505,27 +505,27 @@
 		var cjrq ;
 		
 		//搜索框赋值
-		if("${selectName}" == ""){
+		if("${page.getName()}" == ""){
 			
 		}else{
-			$("#sousuo").attr("placeholder","${selectName}");
+			$("#sousuo").attr("placeholder","${page.getName()}");
 		}
 		// 分页
 		var xsys = 6;// 页面显示多少页
 		var yuan;
-		var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=user?dangqianye="+ dangqianye + "&value=${selectName}>" + dangqianye + "</a>";
+		var dqy = "<a aria-controls='example1' data-dt-idx='1' tabindex='0' href=user?currentPageName="+ dangqianye + "&value=${page.getName()}>" + dangqianye + "</a>";
 		$("#dqy").append(dqy);
 		for (var i = 1; i <= yeshu; i++) {
 			if (yeshu < xsys) {
 				if (i < dangqianye) {
 					yuan = "<a aria-controls='example1' data-dt-idx='" + i
-							+ "' tabindex='0' href=user?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "' tabindex='0' href=user?currentPageName=" + i + "&value=${page.getName()}>" + i
 							+ "</a>";
 					$("#qianmian").append(yuan);
 				}
 				if (i > dangqianye) {
 					var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
-							+ "' tabindex='0' href=user?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "' tabindex='0' href=user?currentPageName=" + i + "&value=${page.getName()}>" + i
 							+ "</a>";
 
 					$("#fyanniu").append(yuansu);
@@ -533,7 +533,7 @@
 			} else {
 				if (i < dangqianye) {
 					yuan = "<a aria-controls='example1' data-dt-idx='" + i
-							+ "' tabindex='0' href=user?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "' tabindex='0' href=user?currentPageName=" + i + "&value=${page.getName()}>" + i
 							+ "</a>";
 					if (i <=dangqianye-xsys) {
 						yuan = "";
@@ -542,7 +542,7 @@
 				}
 				if (i > dangqianye) {
 					var yuansu = "<a aria-controls='example1' data-dt-idx='" + i
-							+ "' tabindex='0' href=user?dangqianye=" + i + "&value=${selectName}>" + i
+							+ "' tabindex='0' href=user?currentPageName=" + i + "&value=${page.getName()}>" + i
 							+ "</a>";
 					if (i > xsys) {
 						yuansu = "";
@@ -558,7 +558,7 @@
 			if (dangqianye < 1) {
 				dangqianye = 1;
 			}
-			location.href="user?value=${selectName}"+"&dangqianye="+ dangqianye;
+			location.href="user?value=${page.getName()}"+"&currentPageName="+ dangqianye;
 		}
 		// 下一页
 		function xyy() {
@@ -566,7 +566,7 @@
 			if (dangqianye > yeshu) {
 				dangqianye = yeshu;
 			}
-			location.href="user?value=${selectName}"+"&dangqianye="+ dangqianye;
+			location.href="user?value=${page.getName()}"+"&currentPageName="+ dangqianye;
 		}
 		</script>
 	<script type="text/javascript" src="/js/marke.js"></script>

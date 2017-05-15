@@ -85,5 +85,4 @@
 	<bean class="org.rimi.marksystem.util.Start"></bean>
 	<bean class="org.rimi.marksystem.exception.MyExceptionHandler"></bean>
 
-
 </beans>

@@ -203,8 +203,7 @@
 				<p>${sessionScope.user.userName}</p>
 				<!-- Status -->
 				<!-- 通过text-xxx来个更改颜色 -->
-				<a href="#"><i class="fa fa-circle text-purple
-"></i>
+				<a href="#"><i class="fa fa-circle text-purple"></i>
 					${sessionScope.roleName}</a>
 			</div>
 		</div>
@@ -251,6 +250,7 @@
 						</c:if>
 					</ul></li>
 			</c:if>
+<c:if test="${fn:contains(functions,'评分表')}">
 
 			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
@@ -267,6 +267,7 @@
 						<li ><a href="/resultscore">评分考核结果</a></li>
 					</c:if>	
 				</ul></li>
+					</c:if>	
 
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>

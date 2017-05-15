@@ -139,7 +139,7 @@ public class UserDapImpl implements UserDao {
 
 	public List<User> selectUser(final String name) {
 		List<User> username = new ArrayList<User>();
-		username = jdbcTemplate.query("select * from user where user_name like ? limit 0,10",
+		username = jdbcTemplate.query("select * from user where user_name like ?",
 				new PreparedStatementSetter() {
 
 					public void setValues(PreparedStatement ps) throws SQLException {

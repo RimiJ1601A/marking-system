@@ -64,13 +64,6 @@ input.labelauty+label {
 <script src="/js/saveQuiz.js"></script>
 <script src="/js/jquery-labelauty.js"></script>
 <script src="/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript">
-	var allButtons = $
-	{
-		totalPage
-	};
-	var startPage = 1;
-</script>
 <script type="text/javascript" src="/js/mybutton.js"></script>
 <script>
 	$(document).on("click", "#button a", function() {
@@ -285,22 +278,24 @@ input.labelauty+label {
 						</c:if>
 					</ul></li>
 			</c:if>
+			<c:if test="${fn:contains(functions,'评分表')}">
 
-			<li class="active"><a href="#"><i class="fa fa-file-text"></i>
-					<span>评分系统</span> <span class="pull-right-container"> <i
-						class="fa fa-angle-left pull-right"></i>
-				</span> </a>
-				<ul class="treeview-menu">
-					<c:if test="${fn:contains(functions,'创建评分表')}">
-						<li class="active"><a href="/markTable">创建评分表</a></li>
-					</c:if>
-					<c:if test="${fn:contains(functions,'评分评分表')}">
-						<li><a href="/mark">考评</a></li>
-					</c:if>
-					<c:if test="${fn:contains(functions,'查询评分表')}">
-						<li><a href="/resultscore">评分考核结果</a></li>
-					</c:if>
-				</ul></li>
+				<li class="active"><a href="#"><i class="fa fa-file-text"></i>
+						<span>评分系统</span> <span class="pull-right-container"> <i
+							class="fa fa-angle-left pull-right"></i>
+					</span> </a>
+					<ul class="treeview-menu">
+						<c:if test="${fn:contains(functions,'创建评分表')}">
+							<li class="active"><a href="/markTable">创建评分表</a></li>
+						</c:if>
+						<c:if test="${fn:contains(functions,'评分评分表')}">
+							<li><a href="/mark">考评</a></li>
+						</c:if>
+						<c:if test="${fn:contains(functions,'查询评分表')}">
+							<li><a href="/resultscore">评分考核结果</a></li>
+						</c:if>
+					</ul></li>
+			</c:if>
 
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
@@ -434,255 +429,143 @@ input.labelauty+label {
 									</table>
 								</div>
 							</div>
-<%-- 							<div class="row">
-								<div class="col-sm-12">
-									<table id="example1"
-										class="table table-bordered table-striped dataTable"
-										role="grid" aria-describedby="example1_info">
-										<thead>
-											<tr role="row">
-												<th class="sorting_asc xsmc" tabindex="0"
-													aria-controls="example1" rowspan="1" colspan="1"
-													aria-sort="ascending"
-													aria-label="Rendering engine: activate to sort column descending"
-													style="width: 50px;">评教班级</th>
-												<th class="sorting gnmc" tabindex="0"
-													aria-controls="example1" rowspan="1" colspan="1"
-													aria-label="Browser: activate to sort column ascending"
-													style="width: 50px;">被评用户</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:set var="list" scope="session" value="${quizsList}"></c:set>
-											<c:if test="${fn:length(list) == 0}">
-												<tr>
-													<td colspan=2 style="text-align: center;"><b>最近没有发布评分表</b></td>
-												</tr>
-											</c:if>
-											<c:forEach var="List" items="${quizsList}">
-												<tr>
-													<td>${List.quizTitle }</td>
-													<td>${List.quizType }</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-
-									</table>
+						</div>
+					</div>
+				
+					<div class="modal fade" id="quizType" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">自定义添加问答题</h4>
 								</div>
-							</div> --%>
-							<%-- <table class="table table-inverse">
-				<thead>
-					<tr >
-						<th>班级</th>
-						<th style="display: none;">被评人ID</th>
-						<th>被评人</th>
-						<th style="display: none;">表ID</th>
-						<th>表名</th>
-						<th>开始时间</th>
-						<th>结束时间</th>
-						<th>#</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:set var="list" scope="session" value="${eightInfo}"></c:set>
-					<c:if test="${fn:length(list) == 0}">
-						<tr class="bg-primary" style="background-color: #292b2c;">
-							<td colspan=6 style="text-align: center;"><b>最近没有发布评分表</b></td>
-						</tr>
-					</c:if>
-					<c:forEach var="List" items="${eightInfo}">
-						<tr class="bg-primary" style="background-color: #292b2c;">
-							<td>${List.teamName }</td>
-							<td style="display: none;">${List.evalueateId }</td>
-							<td>${List.evaluatedName }</td>
-							<td>${List.name }</td>
-							<td>${List.startTime }</td>
-							<td>${List.endTime }</td>
-							<td style="display: none;">${List.marktableId }</td>
-							<td id="delete-btn-lxd"><span
-								class="glyphicon glyphicon-trash"></span></td>
-						</tr>
-					</c:forEach>
-
-				</tbody>
-			</table>
-			<table  class="table table-inverse">
-				<thead>
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<th>题目内容</th>
-						<th>题目类型</th>
-						<tr >
-							<td colspan=6 style="text-align:center;"><b>最近没有发布评分表</b></td>
-						</tr>
-					</c:if>
-				<c:forEach var="List"  items="${eightInfo}">
-					<tr>
-						<td>${List.teamName }</td>
-						<td style="display:none;">${List.evalueateId }</td>
-						<td>${List.evaluatedName }</td>
-						<td>${List.name }</td>
-						<td>${List.startTime }</td>
-						<td>${List.endTime }</td>
-						<td style="display:none;">${List.marktableId }</td>
-						<td id="delete-btn-lxd"><span class="glyphicon glyphicon-trash"></span></td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:set var="lists" scope="session" value="${quizsList}"></c:set>
-					<c:if test="${fn:length(lists) == 0}">
-						<tr class="bg-primary" style="background-color: #292b2c;">
-							<td colspan=2 style="text-align: center;"><b>未找到数据</b></td>
-						</tr>
-					</c:if>
-					<c:forEach var="List" items="${quizsList}">
-						<tr class="bg-primary" style="background-color: #292b2c;">
-							<td>${List.quizTitle }</td>
-							<td>${List.quizType }</td>
-						</tr>
-					</c:forEach>
-
-				</tbody>
-			</table>
-
-			<div class="rows">
-				<div class="btn-toolbar" role="toolbar" aria-label="..."></div>
-			</div>
-			</table> --%>
-							<div class="modal fade" id="quizType" tabindex="-1" role="dialog"
-								aria-labelledby="myModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-											<h4 class="modal-title" id="myModalLabel">自定义添加问答题</h4>
-										</div>
-										<div id="quiztypeBody" class="modal-body">
-											<div id="Add_quizType">输入问题题目</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">关闭</button>
-											<button type="button" class="btn btn-primary"
-												onclick="saveEssayQuestion();">添加</button>
-										</div>
-									</div>
-									<!-- /.modal-content -->
+								<div id="quiztypeBody" class="modal-body">
+									<div id="Add_quizType">输入问题题目</div>
 								</div>
-								<!-- /.modal -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary"
+										onclick="saveEssayQuestion();">添加</button>
+								</div>
 							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal -->
+					</div>
 
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-								aria-labelledby="myModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-											<h4 class="modal-title" id="myModalLabel">自定义问题</h4>
-										</div>
-										<div class="modal-body">
-											<div class="main clearfix">
-												<div class="bb-custom-wrapper">
-													<div id="bb-bookblock" class="bb-bookblock">
-														<div class="bb-item">
-															<!--<a href="http://drbl.in/bKVq">123</a>-->
-															<div class="createTable_List">
-																<span class="List_id">1.</span>
-																<div class="content-lxd">________点击编辑内容________</div>
-																<p class="Line"></p>
-																</br> <span class="result">A</span><span class="font">.
-																	分数:</span><span class="score">10</span></br> </br> <span class="result">B</span><span
-																	class="font">. 分数:</span><span class="score">7</span></br> </br>
-																<span class="result">C</span><span class="font">.
-																	分数:</span><span class="score">4</span></br> </br>
-															</div>
-															<div id="add-result">
-																<span class="glyphicon glyphicon-plus"></span>
-															</div>
-														</div>
-
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">自定义问题</h4>
+								</div>
+								<div class="modal-body">
+									<div class="main clearfix">
+										<div class="bb-custom-wrapper">
+											<div id="bb-bookblock" class="bb-bookblock">
+												<div class="bb-item">
+													<!--<a href="http://drbl.in/bKVq">123</a>-->
+													<div class="createTable_List">
+														<span class="List_id">1.</span>
+														<div class="content-lxd">________点击编辑内容________</div>
+														<p class="Line"></p>
+														</br> <span class="result">A</span><span class="font">.
+															分数:</span><span class="score">10</span></br> </br> <span class="result">B</span><span
+															class="font">. 分数:</span><span class="score">7</span></br> </br> <span
+															class="result">C</span><span class="font">. 分数:</span><span
+															class="score">4</span></br> </br>
 													</div>
-
+													<div id="add-result">
+														<span class="glyphicon glyphicon-plus"></span>
+													</div>
 												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<nav> <a id="bb-nav-prev" href="#"
-												class="bb-custom-icon bb-custom-icon-arrow-left">上一页</a> <a
-												id="bb-nav-next" href="#"
-												class="bb-custom-icon bb-custom-icon-arrow-right">下一页</a> <a
-												id="bb-nav-last" href="#"
-												class="bb-custom-icon bb-custom-icon-last">新建</a> <a
-												id="saveQuiz" class="saveQuiz" style="cursor: pointer;">保存</a>
-											</nav>
-										</div>
-									</div>
-									<!-- /.modal-content -->
-								</div>
-								<!-- /.modal -->
-							</div>
 
-							<div class="modal fade" id="myTable" tabindex="-1" role="dialog"
-								aria-labelledby="myModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-											<h4 class="modal-title" id="myModalLabel">diy Table</h4>
-										</div>
-										<div class="modal-body" id="Table-body">
-											<input type="text" id="Title" class="form-control"
-												placeholder="请输入评分表名字...."> <input type="text"
-												id="date" value="" readonly class="form-control"
-												placeholder="选择开始和结束时间...">
-											<div id="choosequiz" class="btn btn-default" type="button"
-												data-toggle="modal" data-target="#quizList">选择需要的题目</div>
-											<div id="addclass" class="btn btn-default" type="button">选择班级和被评人</div>
-											<div id="c_nameAnds_name"></div>
-											<div id="fengeLine"></div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">关闭</button>
-											<button type="button" class="btn btn-primary"
-												onclick="submitmarkTable();">提交</button>
+											</div>
+
 										</div>
 									</div>
-									<!-- /.modal-content -->
 								</div>
-								<!-- /.modal -->
+								<div class="modal-footer">
+									<nav> <a id="bb-nav-prev" href="#"
+										class="bb-custom-icon bb-custom-icon-arrow-left">上一页</a> <a
+										id="bb-nav-next" href="#"
+										class="bb-custom-icon bb-custom-icon-arrow-right">下一页</a> <a
+										id="bb-nav-last" href="#"
+										class="bb-custom-icon bb-custom-icon-last">新建</a> <a
+										id="saveQuiz" class="saveQuiz" style="cursor: pointer;">保存</a>
+									</nav>
+								</div>
 							</div>
-							<!--<select class="classList">
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal -->
+					</div>
+
+					<div class="modal fade" id="myTable" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">diy Table</h4>
+								</div>
+								<div class="modal-body" id="Table-body">
+									<input type="text" id="Title" class="form-control"
+										placeholder="请输入评分表名字...."> <input type="text"
+										id="date" value="" readonly class="form-control"
+										placeholder="选择开始和结束时间...">
+									<div id="choosequiz" class="btn btn-default" type="button"
+										data-toggle="modal" data-target="#quizList">选择需要的题目</div>
+									<div id="addclass" class="btn btn-default" type="button">选择班级和被评人</div>
+									<div id="c_nameAnds_name"></div>
+									<div id="fengeLine"></div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary"
+										onclick="submitmarkTable();">提交</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal -->
+					</div>
+					<!--<select class="classList">
 					
 				</select>-->
-						</div>
-						<div class="modal fade" id="quizList" tabindex="-1" role="dialog"
-							aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-hidden="true">&times;</button>
-										<h4 class="modal-title" id="myModalLabel">diy quizList</h4>
-									</div>
-									<div class="modal-body"
-										style="overflow: scroll; height: 300px;">
-										<div class="quiz_List">
-											<!-- js生成-->
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">关闭</button>
-										<button type="button" class="btn btn-primary"
-											onclick="closequizmodal();">提交</button>
-									</div>
-								</div>
-								<!-- /.modal-content -->
+				</div>
+				<div class="modal fade" id="quizList" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">diy quizList</h4>
 							</div>
-							<!-- /.modal -->
+							<div class="modal-body" style="overflow: scroll; height: 300px;">
+								<div class="quiz_List">
+									<!-- js生成-->
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">关闭</button>
+								<button type="button" class="btn btn-primary"
+									onclick="closequizmodal();">提交</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal -->
 			</section>
 		</div>
 		<!-- /.content-wrapper -->
