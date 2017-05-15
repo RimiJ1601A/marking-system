@@ -122,6 +122,7 @@
 						</c:if>
 					</ul></li>
 			</c:if>
+<c:if test="${fn:contains(functions,'评分表')}">
 
 			<li class="treeview"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
@@ -138,6 +139,7 @@
 						<li ><a href="/resultscore">评分考核结果</a></li>
 					</c:if>	
 				</ul></li>
+					</c:if>	
 
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
@@ -204,13 +206,39 @@
 			</section>
 			<!-- Main content -->
 			<!-- 这里放个人看板信息 -->
-			<section class="dashboard "> <!-- 统计图 -->
+			<section class="dashboard ">
+			<div class="box box-default">
+            <div class="box-header with-border">
+              <i class="fa fa-warning"></i>
 
-			
-						<!-- /.box-footer -->
-					</div>
-				</div>
-			</div>
+              <h3 class="box-title">Alerts</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
+                soul, like these sweet mornings of spring which I enjoy with my whole heart.
+              </div>
+              <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-info"></i> Alert!</h4>
+                Info alert preview. This alert is dismissable.
+              </div>
+              <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+                Warning alert preview. This alert is dismissable.
+              </div>
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                Success alert preview. This alert is dismissable.
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
 
 
 
