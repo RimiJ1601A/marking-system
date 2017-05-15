@@ -41,9 +41,9 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="checkbox icheck">
-							<label> <input type="checkbox"> 请记住我
-							</label>
-							<span class="pull-right"><a href="/forgetpassword">忘记密码</a><br></span>
+							<!-- <label> <input type="checkbox"> 请记住我
+							</label> -->
+							<a href="/forgetpassword">忘记密码</a><br>
 							
 						</div>
 						

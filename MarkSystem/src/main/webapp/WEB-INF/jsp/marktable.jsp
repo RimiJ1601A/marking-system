@@ -334,7 +334,7 @@ input.labelauty+label {
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> 主页</a></li>
-				<li>评教</li>
+				<li>评分系统</li>
 				<li class="active">创建评分表</li>
 			</ol>
 			</section>
