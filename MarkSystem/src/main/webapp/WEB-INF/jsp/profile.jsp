@@ -447,11 +447,7 @@
 							
 							
 							<!-- /.tab-pane -->
-<<<<<<< HEAD
-							
 
-
-=======
 							<div class="tab-pane active" id="setinfo">
 								<form action="/changeInfo" method="post" class="form-horizontal" charset="UTF-8">
 
@@ -475,7 +471,7 @@
 										<div class="col-sm-10">
 										<div class="raido">
 											<!--   <input type="text" class="form-control" id="inputSex" placeholder="修改你的性别..."> -->
-											<label style="padding:5px;"><input name="sex" type="radio" value="1" />男</label>
+											<label style="padding:5px;"><input name="sex" type="radio" value="1" checked="checked"/>男</label>
 											<label style="padding:5px;"><input name="sex" type="radio" value="2" />女</label>
 										</div>
 										</div>
@@ -508,14 +504,13 @@
 											<button type="submit" class="btn btn-danger">提交修改</button>
 										</div>
 									</div>
->>>>>>> role、user、team页面图表显示完善
 								</form>
 							</div>
 							<!-- /.tab-pane -->
 
 
 							<div class="tab-pane" id="setpassword">
-								<form action="/changePassword" class="form-horizontal" method="post">
+								<form action="/changePassword" class="form-horizontal" method="post" onsubmit="return passwordverify()">
 									<div class="form-group">
 										<label for="inputOldpw" class="col-sm-2 control-label">旧密码</label>
 										<div class="col-sm-10">
@@ -526,11 +521,17 @@
 									<div class="form-group">
 										<label for="inputNewpw" class="col-sm-2 control-label">新密码</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="inputNewpw"
+											<input id="newPassword" type="password" class="form-control" id="inputNewpw"
 												name="newPassword" placeholder="请输入你的新密码...">
 										</div>
 									</div>
-
+									<div class="form-group">
+										<label for="inputNewpw" class="col-sm-2 control-label">新密码</label>
+										<div class="col-sm-10">
+											<input id="newPasswordconfirm" type="password" class="form-control" id="inputNewpw"
+												name="newPasswordconfirm" placeholder="请输入你的新密码...">
+										</div>
+									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-2 col-sm-10">
 											<button type="submit" class="btn btn-danger">确认修改</button>

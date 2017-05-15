@@ -57,7 +57,7 @@ input.labelauty+label {
 
 
 <script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
-<script src="/js/html5shiv.js"></script>         
+<script src="/js/html5shiv.js"></script>
 <script src="/js/respond.min.js"></script>
 
 <script type="text/javascript" src="/js/marke.js"></script>
@@ -73,6 +73,11 @@ input.labelauty+label {
 <script src="/js/saveQuiz.js"></script>
 <script src="/js/jquery-labelauty.js"></script>
 <script src="/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+	var allButtons = ${totalPage};
+	var startPage = 1;
+</script>
+<script type="text/javascript" src="/js/mybutton.js"></script>
 <script>
 	$(document).on("click", "#button a", function() {
 
@@ -275,12 +280,13 @@ input.labelauty+label {
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
-						<li class="user-header"><img src="${sessionScope.user.headPhotoUrl}"
-							class="img-circle" alt="User Image">
+						<li class="user-header"><img
+							src="${sessionScope.user.headPhotoUrl}" class="img-circle"
+							alt="User Image">
 
 							<p>
 								${sessionScope.user.userName} <small>${sessionScope.roleName}
-									</small>
+								</small>
 							</p></li>
 						<!-- Menu Body -->
 						<%-- 
@@ -336,8 +342,7 @@ input.labelauty+label {
 			</div>
 		</div>
 
-		<!-- search form (Optional) -->
-		<%-- 
+		<!-- search form (Optional) --> <%-- 
 		<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
 				<input type="text" name="q" class="form-control"
@@ -349,8 +354,7 @@ input.labelauty+label {
 				</span>
 			</div>
 		</form>
-		--%>
-		<!-- /.search form --> <!-- Sidebar Menu -->
+		--%> <!-- /.search form --> <!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
@@ -391,8 +395,8 @@ input.labelauty+label {
 						<li><a href="/mark">考评</a></li>
 					</c:if>
 					<c:if test="${fn:contains(functions,'查询评分表')}">
-						<li ><a href="/resultscore">评分考核结果</a></li>
-					</c:if>		
+						<li><a href="/resultscore">评分考核结果</a></li>
+					</c:if>
 				</ul></li>
 
 		</ul>
@@ -404,13 +408,33 @@ input.labelauty+label {
 		<!-- Content Wrapper. Contains page content -->
 
 		<div class="content-wrapper">
+			<div class="row">
+				<div class="col-sm-4" id="List_button" data-toggle="modal"
+					data-target="#myTable" style="text-align: center;">
+					<a
+						class="button button-glow button-border button-rounded button-primary "
+						style="width: 60%;">创建评分表</a>
+				</div>
+				<div class="col-sm-4" id="button" data-toggle="modal"
+					data-target="#myModal" style="text-align: center;">
+					<a
+						class="button button-glow button-border button-rounded button-primary "
+						style="width: 60%;">自定义选择题</a>
+				</div>
+				<div class="col-sm-4" id="AddQuizType" data-toggle="modal"
+					data-target="#quizType" style="text-align: center;">
+					<a
+						class="button button-glow button-border button-rounded button-primary"
+						style="width: 60%;">自定义问答题</a>
+				</div>
+			</div>
 			<table class="table table-inverse">
 				<thead>
 					<tr class="bg-primary" style="background-color: #292b2c;">
 						<th>班级</th>
-						<th style="display:none;">被评人ID</th>
+						<th style="display: none;">被评人ID</th>
 						<th>被评人</th>
-						<th style="display:none;">表ID</th>
+						<th style="display: none;">表ID</th>
 						<th>表名</th>
 						<th>开始时间</th>
 						<th>结束时间</th>
@@ -418,50 +442,55 @@ input.labelauty+label {
 					</tr>
 				</thead>
 				<tbody>
-				<c:set  var="list" scope="session" value="${eightInfo}"></c:set>
+					<c:set var="list" scope="session" value="${eightInfo}"></c:set>
 					<c:if test="${fn:length(list) == 0}">
 						<tr class="bg-primary" style="background-color: #292b2c;">
-							<td colspan=6 style="text-align:center;"><b>最近没有发布评分表</b></td>
+							<td colspan=6 style="text-align: center;"><b>最近没有发布评分表</b></td>
 						</tr>
 					</c:if>
-				<c:forEach var="List"  items="${eightInfo}">
-					<tr class="bg-primary" style="background-color: #292b2c;">
-						<td>${List.teamName }</td>
-						<td style="display:none;">${List.evalueateId }</td>
-						<td>${List.evaluatedName }</td>
-						<td>${List.name }</td>
-						<td>${List.startTime }</td>
-						<td>${List.endTime }</td>
-						<td style="display:none;">${List.marktableId }</td>
-						<td id="delete-btn-lxd"><span class="glyphicon glyphicon-trash"></span></td>
-					</tr>
-				</c:forEach>
+					<c:forEach var="List" items="${eightInfo}">
+						<tr class="bg-primary" style="background-color: #292b2c;">
+							<td>${List.teamName }</td>
+							<td style="display: none;">${List.evalueateId }</td>
+							<td>${List.evaluatedName }</td>
+							<td>${List.name }</td>
+							<td>${List.startTime }</td>
+							<td>${List.endTime }</td>
+							<td style="display: none;">${List.marktableId }</td>
+							<td id="delete-btn-lxd"><span
+								class="glyphicon glyphicon-trash"></span></td>
+						</tr>
+					</c:forEach>
 
 				</tbody>
 			</table>
-			<div class="row">
-			<div class="col-sm-4" id="List_button" data-toggle="modal" data-target="#myTable" style="
-    text-align: center;">
-				<a
-					class="button button-glow button-border button-rounded button-primary " style="
-    width: 60%;
-">创建评分表</a>
-			</div>
-			<div class="col-sm-4"  id="button" data-toggle="modal" data-target="#myModal" style="
-    text-align: center;">
-				<a
-					class="button button-glow button-border button-rounded button-primary " style="
-    width: 60%;
-">自定义选择题</a>
-			</div>
-			<div class="col-sm-4"  id="AddQuizType" data-toggle="modal" data-target="#quizType" style="
-    text-align: center;">
-				<a
-					class="button button-glow button-border button-rounded button-primary" style="
-    width: 60%;
-">自定义问答题</a>
-			</div>
-			</div>
+			<table  class="table table-inverse">
+				<thead>
+					<tr class="bg-primary" style="background-color: #292b2c;">
+						<th>题目内容</th>
+						<th>题目类型</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:set var="lists" scope="session" value="${quizsList}"></c:set>
+					<c:if test="${fn:length(lists) == 0}">
+						<tr class="bg-primary" style="background-color: #292b2c;">
+							<td colspan=2 style="text-align: center;"><b>未找到数据</b></td>
+						</tr>
+					</c:if>
+					<c:forEach var="List" items="${quizsList}">
+						<tr class="bg-primary" style="background-color: #292b2c;">
+							<td>${List.quizTitle }</td>
+							<td>${List.quizType }</td>
+						</tr>
+					</c:forEach>
+
+				</tbody>
+			</table>
+
+<!-- 			<div class="rows">
+				<div class="btn-toolbar" role="toolbar" aria-label="..."></div>
+			</div> -->
 			<div class="modal fade" id="quizType" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -471,13 +500,14 @@ input.labelauty+label {
 								aria-hidden="true">&times;</button>
 							<h4 class="modal-title" id="myModalLabel">自定义添加问答题</h4>
 						</div>
-						<div id="quiztypeBody"class="modal-body">
-							<div id="Add_quizType" >输入问题题目</div>
+						<div id="quiztypeBody" class="modal-body">
+							<div id="Add_quizType">输入问题题目</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">关闭</button>
-							<button type="button" class="btn btn-primary" onclick="saveEssayQuestion();">添加</button>
+							<button type="button" class="btn btn-primary"
+								onclick="saveEssayQuestion();">添加</button>
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -504,11 +534,12 @@ input.labelauty+label {
 												<span class="List_id">1.</span>
 												<div class="content-lxd">________点击编辑内容________</div>
 												<p class="Line"></p>
-												</br><span class="result">A</span><span class="font">.
-													分数:</span><span class="score">10</span></br> </br> <span class="result">B</span><span
-													class="font">. 分数:</span><span class="score">7</span></br> </br>
-												<span class="result">C</span><span class="font">.
-													分数:</span><span class="score">4</span></br> </br>
+												</br>
+												<span class="result">A</span><span class="font">. 分数:</span><span
+													class="score">10</span></br> </br> <span class="result">B</span><span
+													class="font">. 分数:</span><span class="score">7</span></br> </br> <span
+													class="result">C</span><span class="font">. 分数:</span><span
+													class="score">4</span></br> </br>
 											</div>
 											<div id="add-result">
 												<span class="glyphicon glyphicon-plus"></span>
@@ -527,8 +558,7 @@ input.labelauty+label {
 								class="bb-custom-icon bb-custom-icon-arrow-right">下一页</a> <a
 								id="bb-nav-last" href="#"
 								class="bb-custom-icon bb-custom-icon-last">新建</a> <a
-								id="saveQuiz" class="saveQuiz" style="cursor: pointer;">保存</a>
-							</nav>
+								id="saveQuiz" class="saveQuiz" style="cursor: pointer;">保存</a> </nav>
 						</div>
 					</div>
 					<!-- /.modal-content -->
@@ -547,8 +577,8 @@ input.labelauty+label {
 						</div>
 						<div class="modal-body" id="Table-body">
 							<input type="text" id="Title" class="form-control"
-								placeholder="请输入评分表名字...."> <input type="text"
-								id="date" value="" readonly class="form-control"
+								placeholder="请输入评分表名字...."> <input type="text" id="date"
+								value="" readonly class="form-control"
 								placeholder="选择开始和结束时间...">
 							<div id="choosequiz" class="btn btn-default" type="button"
 								data-toggle="modal" data-target="#quizList">选择需要的题目</div>

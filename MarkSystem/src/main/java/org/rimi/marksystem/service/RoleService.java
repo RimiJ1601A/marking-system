@@ -1,6 +1,8 @@
 package org.rimi.marksystem.service;
 
 import java.util.List;
+
+import org.rimi.marksystem.eneity.Function;
 import org.rimi.marksystem.eneity.Role;
 import org.rimi.marksystem.util.PageShow;
 import org.springframework.stereotype.Component;
@@ -25,7 +27,6 @@ public interface RoleService {
 	//删除(根据ID删除)
 	public void deleteRole(int id);
 	//根据ID查询功能名称
-//	public String getRoleFunction(int id);
 	public String getRoleFunction(int functionId);
 	//获取职位名
 	public List<String> getRoleName();
@@ -37,4 +38,10 @@ public interface RoleService {
 	public int getRoleId(String roleName);
 	//分页查询
 	public PageShow getPage(String name,String pageNum);
+	//获取功能
+	public List<Function> getFuntion();
+	//判断是否存在此职位名称
+	public void addSuccessOrError(String name,String functionId);
+	//导出Excel表
+	public void exportRoleEcel(String path,String name);
 }

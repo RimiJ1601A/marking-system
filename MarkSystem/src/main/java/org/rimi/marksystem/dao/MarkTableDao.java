@@ -99,4 +99,13 @@ public interface MarkTableDao {
 	 * 根据marktableId删除表
 	 */
 	public void deleteMarkTable(int markTableId);
+	
+	public MarkTable selectMarkTableByMarkTableId(int markTableID);
+	
+	/*
+	 * 分页查询题
+	 */
+	public List<Quiz> selectQuiz(int start,int count);
+	
+	public Integer selectQuizCount();
 }

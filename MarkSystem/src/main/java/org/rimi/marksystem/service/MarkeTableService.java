@@ -44,4 +44,7 @@ public interface MarkeTableService {
 	public List<RequestMarkTableQuiz> getEightInfo();
 	
 	public void deleteMark(int marktableId);
+	
+	public Integer getQuizCount();
+	public List<Quiz> getQuizs(int start,int count);
 }

@@ -175,7 +175,7 @@ public class CountServiceImpl implements CountService {
 		}
 		List<String> xEndTime = new ArrayList<>();					//x轴坐标		
 		for(int i =0;i<MarktableIdlist.size();i++){
-			xEndTime.add(resultTableDaoImpl.getEndTimeById(i+1));
+			xEndTime.add(resultTableDaoImpl.getEndTimeById(MarktableIdlist.get(i)));
 		}
 		List<Float> averagelist = new ArrayList<>();
 		List<Float> recentlist = new ArrayList<>();

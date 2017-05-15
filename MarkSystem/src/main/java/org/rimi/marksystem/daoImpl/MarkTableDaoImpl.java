@@ -353,5 +353,80 @@ public class MarkTableDaoImpl implements MarkTableDao{
 		// TODO Auto-generated method stub
 		jdbcTemplate.update("delete from marktable where id = ?", markTableId);
 		jdbcTemplate.update("delete from marktable_quiz where marktable_id = ?", markTableId);
+	}
+
+	@Override
+	public MarkTable selectMarkTableByMarkTableId(int markTableID) {
+		MarkTable mt=jdbcTemplate.query("select * from marktable where id = ?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, markTableID);
+			}
+		}, new ResultSetExtractor<MarkTable>() {
+
+			@Override
+			public MarkTable extractData(ResultSet rs) throws SQLException, DataAccessException {
+				MarkTable mt = new MarkTable();
+				while(rs.next()){
+					mt.setId(rs.getInt(1));
+					mt.setName(rs.getString(2));
+					mt.setStartTime(rs.getString(3));
+					mt.setEndTime(rs.getString(4));
+				}		
+				return mt;
+			}
+		});
+		return mt;
+	}
+
+	@Override
+	public List<Quiz> selectQuiz(int start, int count) {
+		
+		List<Quiz> quizs = jdbcTemplate.query("select * from quiz order by id DESC limit ?,?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, start);
+				ps.setInt(2, count);
+			}
+		}, new ResultSetExtractor<List<Quiz>>() {
+
+			@Override
+			public List<Quiz> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				List<Quiz> quizs = new ArrayList<>();
+				while(rs.next()){
+					Quiz quiz = new Quiz();
+					quiz.setQuizTitle(rs.getString(2));
+					quiz.setQuizType(QuizType.getQuizType(rs.getString(3)));
+					quizs.add(quiz);
+				}
+				return quizs;
+			}
+			
+		});
+		return quizs;
+	}
+
+	@Override
+	public Integer selectQuizCount() {
+		// TODO Auto-generated method stub
+		
+		int quizCount = jdbcTemplate.query("select count(*) from quiz", new ResultSetExtractor<Integer>(){
+
+			@Override
+			public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				Integer count = null;
+				while(rs.next()){
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+			
+		});
+		return quizCount;
 	}	
 }

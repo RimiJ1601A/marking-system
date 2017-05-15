@@ -1,6 +1,7 @@
 package org.rimi.marksystem.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.TreeMap;
 
 import org.rimi.marksystem.eneity.MarkTable;
 import org.rimi.marksystem.eneity.Quiz;
+import org.rimi.marksystem.eneity.ResultScore;
 import org.rimi.marksystem.eneity.ResultTable;
 import org.rimi.marksystem.eneity.TeacherResults;
 import org.rimi.marksystem.eneity.Team;
@@ -18,7 +20,10 @@ import org.rimi.marksystem.service.MarkService;
 import org.rimi.marksystem.service.ResultScoreService;
 import org.rimi.marksystem.service.TeamService;
 import org.rimi.marksystem.service.UserService;
+import org.rimi.marksystem.util.Page;
+import org.rimi.marksystem.util.PageShow;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jca.cci.connection.ConnectionSpecConnectionFactoryAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,8 +41,6 @@ public class ResultScoreController {
 	private UserService userServiceImpl;
 	@Autowired
 	private MarkService markServiceImpl;
-	@Autowired
-	private TeamService teamServiceImpl;
 	
 	private static final int TeacherChartLength=6;				//图表显示宽度
 	
@@ -80,14 +83,16 @@ public class ResultScoreController {
         	tr.setAveragelist(avrage);
         	tr.setRecentlist(recent);
         }
-        
+		Page page = new Page(markServiceImpl.getAllCountUserMarke(),1);
+		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreAll((page.getCurrentPage()-1)*page.getNum(),page.getNum());
         model.addAttribute("TeacherResults", tr);	
         model.addAttribute("teacherlist", userlist);
-
+        model.addAttribute("rtlist", rtlist);
+        model.addAttribute("page", page);
 		return "resultScore";
 	}
 	
-	@RequestMapping("/getMarkTable")
+/*	@RequestMapping("/getMarkTable")
 	@ResponseBody
 	public List<MarkTable> getTeacherAllResult(Model model,@RequestParam("teacherId") int teacherId){
 		List<MarkTable> mtlist = resultScoreServiceImpl.getMarkTableByEvalutedId(teacherId);
@@ -117,7 +122,7 @@ public class ResultScoreController {
 			model.addAttribute("msg", "没有该数据");
 		}
 		return userlist;
-	}
+	}*/
 	
 	
 	@RequestMapping("/getMarkResult")
@@ -129,6 +134,27 @@ public class ResultScoreController {
 			userRseultTable.setUser(user);
 		}
 		return urtlist;
+	}
+	
+	@RequestMapping("/getResultScore")
+	@ResponseBody
+	public List<ResultScore> getResultScore(@RequestParam("evalutionId") int evalutionId){
+		Page page = new Page(markServiceImpl.getAllCountUserMarke(),1);
+		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreByevalutedId(evalutionId,(page.getCurrentPage()-1)*page.getNum(),page.getNum());
+		return rtlist;
+	}
+	
+	/***
+	 * 获取评分结果页面
+	 * @param currentPage  当前页数
+	 * @return
+	 */
+	@RequestMapping("/getResultScorePage")
+	@ResponseBody
+	public List<ResultScore> getResultScorePage(@RequestParam("currentPage") int currentPage){
+		Page page = new Page(markServiceImpl.getAllCountUserMarke(),currentPage);
+		List<ResultScore> rtlist=resultScoreServiceImpl.getResultScoreAll((page.getCurrentPage()-1)*page.getNum(),page.getNum());
+		return rtlist;
 	}
 	
 }

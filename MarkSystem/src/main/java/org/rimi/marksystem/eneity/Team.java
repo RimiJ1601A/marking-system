@@ -12,7 +12,6 @@ public class Team {
     private String buildTime;			//创建时间
     private int studentCount;		//学生人数
     private List<String> teacherName;		//教师姓名
-//    private List<User> students;	//学生姓名
     private List<String> students;	//学生姓名
     public int getStudentCount() {
 		return studentCount;

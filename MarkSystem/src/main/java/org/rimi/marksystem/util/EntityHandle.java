@@ -47,7 +47,7 @@ public class EntityHandle<T> {
 		Method meth = clazz.getMethod(methodName);
 		Object reulstObj = meth.invoke(t);
 		
-	 	return reulstObj == null ? "" : reulstObj.toString(); 
+	 	return reulstObj == null ? "" : reulstObj.toString().replaceAll("\\[|\\]", ""); 
 	}
 	
 }

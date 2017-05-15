@@ -28,6 +28,10 @@ public class MarkTableController {
 	public String markeTableView(Model model){
 		List<RequestMarkTableQuiz> requestMarkTableQuizs = markTableServiceImpl.getEightInfo();
 		model.addAttribute("eightInfo",requestMarkTableQuizs);
+		List<Quiz> quizs = markTableServiceImpl.getQuizs(0, 5);
+		Integer totalPage = markTableServiceImpl.getQuizCount();
+		model.addAttribute("quizsList", quizs);
+		model.addAttribute("totalPage", totalPage);
 		return "marktable";
 	}
 	

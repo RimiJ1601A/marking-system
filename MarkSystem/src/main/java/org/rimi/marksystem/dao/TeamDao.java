@@ -9,10 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public interface TeamDao {
 
-	//查询
+	
+	 //查询
 	public List<Team> selectAllTeam();
-	//分页查询
-	public List<Team> selectTeam(int start,int count);
 	//根据班级名称搜索
 	public List<Team> selectTeam(int start,int count,String name);
 	//获得班级名称
@@ -35,4 +34,6 @@ public interface TeamDao {
 	public List<User> selectUserId(int teamId,int roleId);
 	
 	public Team getTeamByiId(int id);
+	
+	public List<String> selectStudentsOrTeachter(int teamId,int roleId);
 }
