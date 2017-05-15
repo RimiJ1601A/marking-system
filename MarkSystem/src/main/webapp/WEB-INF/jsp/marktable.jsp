@@ -21,13 +21,9 @@
 <link rel="stylesheet" href="/css/mystyle.css">
 
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.css">
-<link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.css">
 <link type="text/css" rel="stylesheet" href="/css/common.css">
 <link type="text/css" rel="stylesheet" href="/css/marke.css">
 <link type="text/css" rel="stylesheet" href="/css/createTable.css">
-
-<!-- <link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 <link rel="stylesheet" type="text/css" href="/css/bookblock.css" />
 <!-- custom demo style -->
 <link rel="stylesheet" type="text/css" href="/css/demo1.css" />
@@ -348,11 +344,99 @@ input.labelauty+label {
 			</section>
 			<br> <br>
 			<section class="dashboard ">
+			<div class="col-xs-12">
+					<div class="box box-solid box-primary">
+						<div class="box-header">
+							<h3 class="box-title">考评创建列表</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div id="example1_wrapper"
+								class="dataTables_wrapper form-inline dt-bootstrap">
+								<span>Step 1:创建评教题目</span>
+									<div class="row" style="padding:10px">
+		
+			<div class="col-sm-6 "  id="button" data-toggle="modal" data-target="#myModal" >
+				<a
+					class="button button-glow button-border button-rounded button-primary" style="
+    width: 100%;" >自定义选择题</a>
+			</div>
+			<div class="col-sm-6 pull-right"  id="AddQuizType" data-toggle="modal" data-target="#quizType">
+				<a
+					class="button button-glow button-border button-rounded button-primary" style="
+    width: 100%;
+">自定义问答题</a>
+			</div>
 			
-			</section>
-			<table class="table table-inverse">
+			</div>
+			<span>Step 2:创建评教表,选择评教用户</span>
+			<div class="row" style="padding:10px" >	<div class="col-sm-12 push-left" id="List_button" data-toggle="modal" data-target="#myTable">
+				<a
+					class="button button-glow button-border button-rounded button-primary " style="width: 100%;">创建评分表</a>
+			</div></div>
+								
+								<div class="row">
+									<div class="col-sm-12">
+										<table id="example1"
+											class="table table-bordered table-striped dataTable"
+											role="grid" aria-describedby="example1_info">
+											<thead>
+												<tr role="row">
+													<th class="sorting_asc xsmc" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-sort="ascending"
+														aria-label="Rendering engine: activate to sort column descending"
+														style="width: 50px;">评教班级</th>
+													<th class="sorting gnmc" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Browser: activate to sort column ascending"
+														style="width: 50px;">被评用户</th>
+													<th class="sorting xsrq" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Platform(s): activate to sort column ascending"
+														style="width: 72px;">评教表名</th>
+														<th class="sorting xsrq" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Platform(s): activate to sort column ascending"
+														style="width: 82px;">开始时间</th>
+														<th class="sorting xsrq" tabindex="0"
+														aria-controls="example1" rowspan="1" colspan="1"
+														aria-label="Platform(s): activate to sort column ascending"
+														style="width: 82px;">结束时间</th>
+													<th class="sorting" tabindex="0" aria-controls="example1"
+														rowspan="1" colspan="1"
+														aria-label="Engine version: activate to sort column ascending"
+														style="width: 46px; text-align: center;">操作</th>
+												</tr>
+											</thead>
+											<tbody>
+													<c:set  var="list" scope="session" value="${eightInfo}"></c:set>
+					<c:if test="${fn:length(list) == 0}">
+						<tr >
+							<td colspan=6 style="text-align:center;"><b>最近没有发布评分表</b></td>
+						</tr>
+					</c:if>
+				<c:forEach var="List"  items="${eightInfo}">
+					<tr >
+						<td>${List.teamName }</td>
+						<td style="display:none;">${List.evalueateId }</td>
+						<td>${List.evaluatedName }</td>
+						<td>${List.name }</td>
+						<td>${List.startTime }</td>
+						<td>${List.endTime }</td>
+						<td style="display:none;">${List.marktableId }</td>
+						<td id="delete-btn-lxd"><span class="glyphicon glyphicon-trash"></span></td>
+					</tr>
+				</c:forEach>
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+			
+			<%-- <table class="table table-inverse">
 				<thead>
-					<tr class="bg-primary" style="background-color: #292b2c;">
+					<tr >
 						<th>班级</th>
 						<th style="display: none;">被评人ID</th>
 						<th>被评人</th>
@@ -391,6 +475,20 @@ input.labelauty+label {
 					<tr class="bg-primary" style="background-color: #292b2c;">
 						<th>题目内容</th>
 						<th>题目类型</th>
+						<tr >
+							<td colspan=6 style="text-align:center;"><b>最近没有发布评分表</b></td>
+						</tr>
+					</c:if>
+				<c:forEach var="List"  items="${eightInfo}">
+					<tr>
+						<td>${List.teamName }</td>
+						<td style="display:none;">${List.evalueateId }</td>
+						<td>${List.evaluatedName }</td>
+						<td>${List.name }</td>
+						<td>${List.startTime }</td>
+						<td>${List.endTime }</td>
+						<td style="display:none;">${List.marktableId }</td>
+						<td id="delete-btn-lxd"><span class="glyphicon glyphicon-trash"></span></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -413,6 +511,7 @@ input.labelauty+label {
 			<div class="rows">
 				<div class="btn-toolbar" role="toolbar" aria-label="..."></div>
 			</div>
+			</table> --%>
 			<div class="modal fade" id="quizType" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -547,6 +646,7 @@ input.labelauty+label {
 				<!-- /.modal-content -->
 			</div>
 			<!-- /.modal -->
+			</section>
 		</div>
 		<!-- /.content-wrapper -->
 
