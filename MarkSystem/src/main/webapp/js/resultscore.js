@@ -32,7 +32,7 @@ $("#selectAllInfo").on("click",function(){
 })
 
 $("#select").on("click", function() {
-	var teacherId =$("#teacherName").val();	
+	var teacherId =$("#teacherNameInfolast").val();	
 	if(teacherId == "" || teacherId == null){
 		alert("请选择完全");
 		return;

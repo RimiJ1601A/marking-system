@@ -412,13 +412,13 @@
                   <label>请选择你要查看的被评用户:</label>
                   		<div class="row">
 								<div class="col-sm-6">
-								 <select id="teacherNameInfo" name="teacherName" class="form-control selectpicker show-tick" data-live-search="false" onchange="selectMarkName()">
+								 <select id="teacherNameInfolast" name="teacherName" class="form-control selectpicker show-tick" data-live-search="false" onchange="selectMarkName()">
                     <c:forEach var="teac" items="${teacherlist}" >
 													<option value="${teac.id}">${teac.userName}</option>
 												</c:forEach>
                   </select></div>
 								<div class="col-sm-6">
-										<button id="selectAllInfo" type="button" class="btn btn-primary">确定</button>
+										<button id="select" type="button" class="btn btn-primary">确定</button>
 									</div></div>
                  
                 </div>
