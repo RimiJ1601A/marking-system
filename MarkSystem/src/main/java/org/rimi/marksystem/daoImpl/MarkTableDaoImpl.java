@@ -378,5 +378,55 @@ public class MarkTableDaoImpl implements MarkTableDao{
 			}
 		});
 		return mt;
+	}
+
+	@Override
+	public List<Quiz> selectQuiz(int start, int count) {
+		
+		List<Quiz> quizs = jdbcTemplate.query("select * from quiz order by id DESC limit ?,?", new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setInt(1, start);
+				ps.setInt(2, count);
+			}
+		}, new ResultSetExtractor<List<Quiz>>() {
+
+			@Override
+			public List<Quiz> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				List<Quiz> quizs = new ArrayList<>();
+				while(rs.next()){
+					Quiz quiz = new Quiz();
+					quiz.setQuizTitle(rs.getString(2));
+					quiz.setQuizType(QuizType.getQuizType(rs.getString(3)));
+					quizs.add(quiz);
+				}
+				return quizs;
+			}
+			
+		});
+		return quizs;
+	}
+
+	@Override
+	public Integer selectQuizCount() {
+		// TODO Auto-generated method stub
+		
+		int quizCount = jdbcTemplate.query("select count(*) from quiz", new ResultSetExtractor<Integer>(){
+
+			@Override
+			public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+				// TODO Auto-generated method stub
+				Integer count = null;
+				while(rs.next()){
+					count = rs.getInt(1);
+				}
+				return count;
+			}
+			
+		});
+		return quizCount;
 	}	
 }

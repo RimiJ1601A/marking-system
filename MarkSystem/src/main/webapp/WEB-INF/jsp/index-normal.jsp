@@ -206,59 +206,41 @@
 			</section>
 			<!-- Main content -->
 			<!-- 这里放个人看板信息 -->
-			<section class="dashboard ">
-			<div class="box box-default">
+			<!-- <section class="dashboard "> -->
+			<div class="row dashboard">
+			<div class="box box-solid ">
             <div class="box-header with-border">
               <i class="fa fa-warning"></i>
 
-              <h3 class="box-title">Alerts</h3>
+              <h3 class="box-title">️注意</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
-                soul, like these sweet mornings of spring which I enjoy with my whole heart.
-              </div>
-              <div class="alert alert-info alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-info"></i> Alert!</h4>
-                Info alert preview. This alert is dismissable.
-              </div>
+              
+              
               <div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Warning alert preview. This alert is dismissable.
+                <h4><i class="icon fa fa-warning"></i> 非常抱歉!</h4>
+                此处还没有任何数据.
               </div>
-              <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                Success alert preview. This alert is dismissable.
-              </div>
+              
             </div>
             <!-- /.box-body -->
           </div>
+          </div>
+         <!--  </section> -->
 
-
-
-
-
-
-
-			</section>
-
-
-		</div>
+</div>
 		<!-- /.content-wrapper -->
 
 		<!-- Main Footer -->
-		<footer class="main-footer"> <!-- Default to the left -->
+		<footer class="main-footer">
 		<div class="pull-right hidden-xs">
 			<b>Version</b> 3.1.0
 		</div>
 		<strong>Copyright &copy; 2017 <a href="#">Rimiedu</a>.
 		</strong> All rights reserved. </footer>
+		
 	</div>
 	<!-- ./wrapper -->
 

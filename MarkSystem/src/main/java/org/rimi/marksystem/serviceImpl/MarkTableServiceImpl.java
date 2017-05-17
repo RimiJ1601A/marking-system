@@ -103,4 +103,22 @@ public class MarkTableServiceImpl implements MarkeTableService{
 		MarkTableDaoImpl.deleteMarkTable(marktableId);
 	}
 
+
+	@Override
+	public Integer getQuizCount() {
+		// TODO Auto-generated method stub
+		int totalCount = MarkTableDaoImpl.selectQuizCount();
+		Integer pageCount = null;
+		if(totalCount%5==0){
+			pageCount = totalCount/5;
+		}else{
+			pageCount = (totalCount/5) + 1;
+		}
+		return pageCount;
+	}
+	
+	
+	public List<Quiz> getQuizs(int start,int count){
+		return MarkTableDaoImpl.selectQuiz(start, count);
+	}
 }

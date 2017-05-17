@@ -270,7 +270,7 @@
 			
 			<ol class="breadcrumb">
 				<li><a href="/index"><i class="fa fa-dashboard"></i>主页</a></li>
-				<li><a href="#">评分考核结果</a></li>
+				<li><a href="#">评分系统</a></li>
 				<li class="active">评教结果</li>
 			</ol>
 			</section>
