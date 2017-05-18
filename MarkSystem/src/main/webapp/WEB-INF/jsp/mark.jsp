@@ -12,22 +12,11 @@
 <link rel="stylesheet"
 	href="/css/font-awesome.min.css">
 
-<link rel="stylesheet"
-	href="/css/ionicons.min.css">
-<!-- Theme style -->
+<link rel="stylesheet" href="/css/ionicons.min.css">
 <link rel="stylesheet" href="/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
-  -->
 <link rel="stylesheet" href="/css/skin-black.min.css">
 <link rel="stylesheet" href="/css/mystyle.css">
 <link rel="stylesheet" href="/css/buttons.css">
-
-
-
-
-
 <script type="text/javascript" src="/js/jquery-1.12.4.js"></script>
 <script src="/js/html5shiv.js"></script>         
 <script src="/js/respond.min.js"></script>
@@ -101,21 +90,6 @@
 			</div>
 		</div>
 
-		<!-- search form (Optional) -->
-		<%-- 
-		<form action="#" method="get" class="sidebar-form">
-			<div class="input-group">
-				<input type="text" name="q" class="form-control"
-					placeholder="Search..."> <span class="input-group-btn">
-					<button type="submit" name="search" id="search-btn"
-						class="btn btn-flat">
-						<i class="fa fa-search"></i>
-					</button>
-				</span>
-			</div>
-		</form>
-		--%>
-		<!-- /.search form --> <!-- Sidebar Menu -->
 		<ul class="sidebar-menu">
 			<li class="header">睿峰评教系统</li>
 			<!-- Optionally, you can add icons to the links -->
@@ -143,26 +117,26 @@
 						</c:if>
 					</ul></li>
 			</c:if>
-<c:if test="${fn:contains(functions,'评分表')}">
+			
+			<c:if test="${fn:contains(functions,'评分表')}">
 
-			<li class="active"><a href="#"><i class="fa fa-file-text"></i>
+				<li class="active"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
 				</span> </a>
 				<ul class="treeview-menu">
 					<c:if test="${fn:contains(functions,'创建评分表')}">
-						<li><a href="/markTable">创建评分表</a></li>
-					</c:if>
-					
+						<li class="active"><a href="/markTable">创建评分表</a></li>
+					</c:if>				
 					<c:if test="${fn:contains(functions,'评分评分表')}">
-						<li class="active"><a href="/mark">考评</a></li>
+						<li><a href="/mark">考评</a></li>
 					</c:if>
 					<c:if test="${fn:contains(functions,'查询评分表')}">
 						<li><a href="/resultscore">评分考核结果</a></li>
 					</c:if>	
 					
 				</ul></li>
-					</c:if>	
+			</c:if>	
 
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
@@ -246,9 +220,9 @@
 					<c:forEach var="Listrmtqs" items="${Listrmtq}">
 						<tr >
 							<td>${Listrmtqs.marktableId}</td>
+							<td>${Listrmtqs.name}</td>
 							<td>${Listrmtqs.startTime}</td>
 							<td>${Listrmtqs.endTime}</td>
-							<td>${Listrmtqs.name}</td>
 							<td>${Listrmtqs.teamName}</td>
 							<td style="display:none;">${Listrmtqs.evalueateId}</td>
 							<td>${Listrmtqs.evaluatedName}</td>
@@ -362,101 +336,7 @@
 	<!-- Scrollslim js -->
 	<script src="/js/jquery.slimscroll.min.js"></script>
 
-	<!-- Chart js -->
-	<script src="/js/Chart.min.js"></script>
-	<%-- 	<script type="text/javascript">
-	 $(function () {
-		    /* ChartJS
-		     * -------
-		     * Here we will create a few charts using ChartJS
-		     */
-
-		    //--------------
-		    //- AREA CHART -
-		    //--------------
-
-		    // Get context with jQuery - using jQuery's .get() method.
-		    var salesChartCanvas = $("#salesChart").get(0).getContext("2d");
-		    // This will get the first returned node in the jQuery collection.
-		    var salesChart = new Chart(salesChartCanvas);
-
-		    var salesChartData = {
-		      labels: ["January", "February", "March", "April", "May", "June", "July"],
-		      datasets: [
-		        {
-		          label: "Electronics",
-		          fillColor: "rgba(210, 214, 222, 1)",
-		          strokeColor: "rgba(210, 214, 222, 1)",
-		          pointColor: "rgba(210, 214, 222, 1)",
-		          pointStrokeColor: "#c1c7d1",
-		          pointHighlightFill: "#fff",
-		          pointHighlightStroke: "rgba(220,220,220,1)",
-		          data: [65, 59, 80, 81, 56, 55, 40]
-		        },
-		        {
-		          label: "Digital Goods",
-		          fillColor: "rgba(60,141,188,0.9)",
-		          strokeColor: "rgba(60,141,188,0.8)",
-		          pointColor: "#3b8bba",
-		          pointStrokeColor: "rgba(60,141,188,1)",
-		          pointHighlightFill: "#fff",
-		          pointHighlightStroke: "rgba(60,141,188,1)",
-		          data: [28, 48, 40, 19, 86, 27, 90]
-		        }
-		      ]
-		    };
-
-		    var salesChartOptions = {
-		      //Boolean - If we should show the scale at all
-		      showScale: true,
-		      //Boolean - Whether grid lines are shown across the chart
-		      scaleShowGridLines: false,
-		      //String - Colour of the grid lines
-		      scaleGridLineColor: "rgba(0,0,0,.05)",
-		      //Number - Width of the grid lines
-		      scaleGridLineWidth: 1,
-		      //Boolean - Whether to show horizontal lines (except X axis)
-		      scaleShowHorizontalLines: true,
-		      //Boolean - Whether to show vertical lines (except Y axis)
-		      scaleShowVerticalLines: true,
-		      //Boolean - Whether the line is curved between points
-		      bezierCurve: true,
-		      //Number - Tension of the bezier curve between points
-		      bezierCurveTension: 0.3,
-		      //Boolean - Whether to show a dot for each point
-		      pointDot: false,
-		      //Number - Radius of each point dot in pixels
-		      pointDotRadius: 4,
-		      //Number - Pixel width of point dot stroke
-		      pointDotStrokeWidth: 1,
-		      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-		      pointHitDetectionRadius: 20,
-		      //Boolean - Whether to show a stroke for datasets
-		      datasetStroke: true,
-		      //Number - Pixel width of dataset stroke
-		      datasetStrokeWidth: 2,
-		      //Boolean - Whether to fill the dataset with a color
-		      datasetFill: true,
-		      //String - A legend template
-		      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-		      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-		      maintainAspectRatio: true,
-		      //Boolean - whether to make the chart responsive to window resizing
-		      responsive: true
-		    };
-
-		    //Create the line chart
-		    salesChart.Line(salesChartData, salesChartOptions);
-
-		  
-		  });
-	</script>
-	<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
 
 </body>
 
- --%>
 </html>

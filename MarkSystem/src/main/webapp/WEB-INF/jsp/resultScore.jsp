@@ -242,7 +242,7 @@
 						</c:if>
 					</ul></li>
 			</c:if>
-<c:if test="${fn:contains(functions,'评分表')}">
+		<c:if test="${fn:contains(functions,'评分表')}">
 
 			<li class="active"><a href="#"><i class="fa fa-file-text"></i>
 					<span>评分系统</span> <span class="pull-right-container"> <i
@@ -259,8 +259,7 @@
 						<li class="active"><a href="/resultscore">评分考核结果</a></li>
 					</c:if>			
 				</ul></li>
-					</c:if>			
-
+			</c:if>			
 		</ul>
 		<!-- /.sidebar-menu --> </section> <!-- /.sidebar --> </aside>
 		<div class="content-wrapper">

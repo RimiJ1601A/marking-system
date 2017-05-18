@@ -47,5 +47,14 @@ public class Start{
         	userServiceImpl.addUser(user);
         }
     }  
+    
+    
+    
+    public static void main(String[] args) {
+		final User user = new User();
+		user.setAge(23);
+		user.setAge(21);
+		System.out.println(user.getAge());
+	}
        
 } 
